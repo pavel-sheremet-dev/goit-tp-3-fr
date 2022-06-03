@@ -8,7 +8,6 @@ export const StyledSection = styled.section`
 export const Title = styled.h1`
   font-size: 16pt;
   margin-bottom: 20px;
-  transition: ${({ theme }) => theme.transition('color')};
 
   ${({ isHidden }) =>
     isHidden &&
