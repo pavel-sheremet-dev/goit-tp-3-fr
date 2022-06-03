@@ -3,6 +3,7 @@ import { PageFormatContext, format } from 'context/pageFormatContext';
 import Section from 'components/common/section/Section';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
+import { ReactComponent as ExampleIcon } from 'images/svg/example-svg.svg';
 
 const Example = () => {
   const pageFormat = useContext(PageFormatContext);
@@ -37,6 +38,7 @@ const Example = () => {
       <button type="button" onClick={onClick}>
         SIGN UP
       </button>
+      <ExampleIcon style={{ fill: 'green' }} className={'someClass'} />
     </Section>
   );
 };
