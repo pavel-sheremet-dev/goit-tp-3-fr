@@ -1,5 +1,20 @@
+import { useContext } from 'react';
+import { PageFormatContext, format } from 'context/pageFormatContext';
+
+import InActionBooks from 'components/booksLibrary/inActionBooks';
+import InFinishBooks from 'components/booksLibrary/inFinishBooks';
+import InMarkerBooks from 'components/booksLibrary/inMarkerBooks';
+import Section from 'components/common/section/Section';
+
 const LibraryPage = () => {
-  return <></>;
+  const pageFormat = useContext(PageFormatContext);
+  return (
+    <Section title={'Библиотека'} titleLevel={'h2'} isHidden>
+      <InFinishBooks pageFormat={pageFormat} format={format} />
+      <InActionBooks pageFormat={pageFormat} format={format} />
+      <InMarkerBooks pageFormat={pageFormat} format={format} />
+    </Section>
+  );
 };
 
 // При отсутвии библиотеки рендерить модальное окно с шагами, по сути это не модальное окно
