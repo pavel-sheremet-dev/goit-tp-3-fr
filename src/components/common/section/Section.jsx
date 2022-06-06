@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import Container from 'components/common/container/Container';
-import { StyledSection, Title } from './Section.styled';
+import { Title } from './Section.styled';
 
 const Section = ({
   title,
@@ -10,7 +10,7 @@ const Section = ({
   style = {},
 }) => {
   return (
-    <StyledSection style={style}>
+    <section style={style}>
       <Container>
         {title && (
           <Title as={titleLevel} isHidden={isHidden}>
@@ -20,7 +20,7 @@ const Section = ({
 
         {children}
       </Container>
-    </StyledSection>
+    </section>
   );
 };
 

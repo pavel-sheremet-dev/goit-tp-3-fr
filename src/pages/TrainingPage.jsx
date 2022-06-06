@@ -1,3 +1,4 @@
+import Section from 'components/common/section/Section';
 import Countdown from '../components/Countdown';
 import { StyledCountdownContainer } from './TrainingPage.styled';
 
@@ -5,16 +6,18 @@ const nextYear = new Date().getFullYear() + 1;
 
 export const TrainingPage = () => {
   return (
-    <StyledCountdownContainer>
-      <Countdown
-        deadline={new Date(nextYear, 0, 1)}
-        title="До закінчення року залишилось"
-      />
-      <Countdown
-        deadline={new Date(2022, 7, 1)}
-        title="До досягнення мети залишилось"
-      />
-    </StyledCountdownContainer>
+    <Section title="Статистика" isHidden>
+      <StyledCountdownContainer>
+        <Countdown
+          deadline={new Date(nextYear, 0, 1)}
+          title="До закінчення року залишилось"
+        />
+        <Countdown
+          deadline={new Date(2022, 7, 1)}
+          title="До досягнення мети залишилось"
+        />
+      </StyledCountdownContainer>
+    </Section>
   );
 };
 

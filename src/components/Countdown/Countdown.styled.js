@@ -1,7 +1,4 @@
 import styled from 'styled-components';
-import { getCssVars } from 'styles/vars';
-
-const { lightText, numbers } = getCssVars().colors;
 
 export const StyledTimer = styled.div`
   @media screen and (max-width: 767px) {
@@ -25,14 +22,14 @@ export const Title = styled.h1`
   font-size: 14px;
   line-height: 1.21;
   margin-bottom: 9px;
-  color: ${lightText};
+  color: ${({ theme }) => theme.colors.lightText};
 `;
 
 export const TimeList = styled.div`
   display: flex;
   justify-content: center;
   padding: 1px 0 8px 0;
-  box-shadow: 4px 4px 8px rgba(36, 42, 55, 0.15);
+  box-shadow: ${({ theme }) => theme.shadows.counter};
 `;
 
 export const TimeItem = styled.div`
@@ -42,19 +39,19 @@ export const TimeItem = styled.div`
 `;
 
 export const Number = styled.span`
-  font-family: 'Open Sans';
+  font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 25px;
   line-height: 1.52;
   margin-bottom: 1px;
-  color: ${numbers};
+  color: ${({ theme }) => theme.colors.numbers};
 `;
 
 export const Word = styled.span`
   font-weight: 500;
   font-size: 10px;
   line-height: 1.2;
-  color: ${lightText};
+  color: ${({ theme }) => theme.colors.lightText};
 `;
 
 export const Dots = styled(Number)`
