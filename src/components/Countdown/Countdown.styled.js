@@ -42,7 +42,7 @@ export const TimeItem = styled.div`
 `;
 
 export const Number = styled.span`
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans';
   font-weight: 700;
   font-size: 25px;
   line-height: 1.52;
@@ -58,6 +58,5 @@ export const Word = styled.span`
 `;
 
 export const Dots = styled(Number)`
-  font-family: 'Open Sans', serif;
   margin: 0 10px 0;
 `;
