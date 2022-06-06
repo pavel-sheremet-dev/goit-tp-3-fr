@@ -1,5 +1,10 @@
+import Dashboard from './dashboard/Dashboard';
 const Main = () => {
-  return <main></main>;
+  return (
+    <main>
+      <Dashboard />
+    </main>
+  );
 };
 
 export default Main;
