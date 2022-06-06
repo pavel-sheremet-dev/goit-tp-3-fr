@@ -21,6 +21,9 @@ export const getCssVars = () => ({
     tablet: '768px',
     desktop: '1280px',
   },
+  shadows: {
+    counter: '4px 4px 8px rgba(36, 42, 55, 0.15)',
+  },
   transition: property => `${property} 200ms linear`,
 });
 

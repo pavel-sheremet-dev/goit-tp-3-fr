@@ -4,7 +4,7 @@ export const StyledContainer = styled.div`
   outline: 1px solid green;
   position: relative;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 20px 20px;
   width: 100vw;
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.mobile}) {
@@ -12,10 +12,10 @@ export const StyledContainer = styled.div`
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     width: ${({ theme }) => theme.breakPoints.tablet};
-    padding: 0 32px;
+    padding: 32px 32px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
-    padding: 0 16px;
+    padding: 40px 16px;
     width: ${({ theme }) => theme.breakPoints.desktop};
   }
 `;
