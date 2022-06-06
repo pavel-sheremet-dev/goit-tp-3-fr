@@ -13,6 +13,7 @@ const App = () => {
         <Layout>
           <GlobalStyle />
           <Header />
+
           <Main />
           <Example />
         </Layout>
