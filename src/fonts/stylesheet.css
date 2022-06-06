@@ -17,7 +17,7 @@
 }
 
 @font-face {
-  font-family: 'OpenSans';
+  font-family: 'Open Sans', sans-serif;
   src: url('OpenSans-Bold.woff2') format('woff2'),
     url('OpenSans-Bold.woff') format('woff');
   font-weight: 700;
