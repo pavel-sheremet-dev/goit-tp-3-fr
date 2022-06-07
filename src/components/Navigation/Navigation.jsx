@@ -42,7 +42,7 @@ const Navigation = () => {
       <StyledHeaderButton
       type="submit"
           onClick={() => dispatchEvent(signOut())}> 
-        Logout
+        Вихід
         </StyledHeaderButton>
         </StyledBox>
         </StyledBox>
