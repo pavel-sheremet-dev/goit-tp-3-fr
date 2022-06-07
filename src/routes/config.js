@@ -1,8 +1,27 @@
 export const routes = {
-  exampleRoute: {
+  signUp: {
     id: 1,
-    title: 'Example route name',
-    path: 'example-route-name',
-    absolutePath: '/example-route-name',
+    title: 'Registration',
+    path: '/',
+    absolutePath: '/',
+  },
+  login: {
+    id: 2,
+    title: 'Login',
+    path: 'login',
+    absolutePath: '/login',
+  },
+
+  training: {
+    id: 3,
+    title: 'Training',
+    path: 'training',
+    absolutePath: '/trainingPage',
+  },
+  library: {
+    id: 4,
+    title: 'Library',
+    path: 'library',
+    absolutePath: '/libraryPage',
   },
 };

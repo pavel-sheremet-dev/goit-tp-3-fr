@@ -1,10 +1,14 @@
-import Container from "components/common/container/Container";
+
+import {StyledContainerHeader, StyledHeader } from "./Header.styled";
 
 const Header = () => {
+
   return (
-    <header>
-      <Container>Your code</Container>
-    </header>
+    <StyledHeader>
+      <StyledContainerHeader >
+ 
+      </StyledContainerHeader>
+    </StyledHeader>
   );
 };
 
