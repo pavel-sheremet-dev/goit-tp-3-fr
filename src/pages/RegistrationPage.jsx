@@ -1,5 +1,5 @@
 const RegistrationPage = () => {
-  return <></>;
+  return <><p>RegistrationPage</p></>;
 };
 
 // 1.1 Форма регистрации
