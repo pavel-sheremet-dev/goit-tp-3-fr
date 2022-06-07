@@ -11,7 +11,7 @@ import PublicRoute from 'routes/PublicRoute/PublicRoute';
 import PrivateRoute from 'routes/PrivateRoute/PrivateRoute';
 import { Loader } from 'components/Loader/Loader';
 import { routes } from 'routes';
-const { signUp, login, training, library } = routes.routes;
+const { signUp, login, training, library, verificate } = routes.routes;
 const LibraryPage = lazy(() =>
   import('./pages/LibraryPage' /* webpackChunkName: "LibraryPage" */),
 );
@@ -27,6 +27,9 @@ const RegistrationPage = lazy(() =>
 );
 const TrainingPage = lazy(() =>
   import('./pages/TrainingPage' /* webpackChunkName: "TrainingPage" */),
+);
+const VerificatePage = lazy(() =>
+  import('./pages/VerificatePage' /* webpackChunkName: "TrainingPage" */),
 );
 
 const App = () => {
@@ -51,6 +54,14 @@ const App = () => {
                 element={
                   <PublicRoute redirectTo={library.absolutePath} restricted>
                     <LoginPage />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path={verificate.absolutePath}
+                element={
+                  <PublicRoute>
+                    <VerificatePage />
                   </PublicRoute>
                 }
               />

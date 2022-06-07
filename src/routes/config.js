@@ -24,4 +24,10 @@ export const routes = {
     path: 'library',
     absolutePath: '/libraryPage',
   },
+  verificate: {
+    id: 4,
+    title: 'Verification',
+    path: 'verificate',
+    absolutePath: '/verificate',
+  },
 };
