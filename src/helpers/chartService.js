@@ -1,33 +1,11 @@
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-);
-
-const getOptions = (normalizeResults, maxPoint) => ({
-  responsive: false,
+export const getOptions = (normalizeResults, maxPoint, labelsQuantity) => ({
+  responsive: true,
   plugins: {
     legend: {
       align: 'start',
       position: 'top',
       labels: {
-        padding: 20,
+        padding: 15,
         usePointStyle: true,
         generateLabels: chart => {
           const data = chart.data;
@@ -46,7 +24,10 @@ const getOptions = (normalizeResults, maxPoint) => ({
   },
   scales: {
     x: {
-      min: normalizeResults.length < 0 ? 7 : normalizeResults.length - 7,
+      min:
+        normalizeResults.length < 0
+          ? labelsQuantity
+          : normalizeResults.length - labelsQuantity,
       max: normalizeResults.length - 1,
       grid: {
         borderColor: '#B1B5C2',
@@ -88,7 +69,7 @@ const getOptions = (normalizeResults, maxPoint) => ({
   },
 });
 
-const getData = (plan, points, labels) => ({
+export const getData = (plan, points, labels) => ({
   labels,
   datasets: [
     {
@@ -106,23 +87,23 @@ const getData = (plan, points, labels) => ({
   ],
 });
 
-const getPlanValues = (
+export const getPlanValues = (
   startDate,
   deadlineDate,
   totalPages,
   normalizeResults,
 ) => {
-  const days =
-    (new Date(deadlineDate) - new Date(startDate)) / 1000 / 60 / 60 / 24;
-
-  const perDay = Math.ceil(totalPages / days);
-
-  const plan = new Array(normalizeResults.length).fill(perDay);
-
-  return plan;
+  const perDay = getPagesPerDay(startDate, deadlineDate, totalPages);
+  return new Array(normalizeResults.length).fill(perDay);
 };
 
-const getNormalizeResults = results => {
+export const getPagesPerDay = (startDate, deadlineDate, totalPages) => {
+  const days =
+    (new Date(deadlineDate) - new Date(startDate)) / 1000 / 60 / 60 / 24;
+  return Math.ceil(totalPages / days);
+};
+
+export const getNormalizeResults = (results, startDate) => {
   const allDatePoints = results.map(p => new Date(p.date).toLocaleDateString());
   const normalizeResults = [];
   allDatePoints.reduce((acc, label, idx, arr) => {
@@ -138,33 +119,8 @@ const getNormalizeResults = results => {
     }
     return isIn ? acc : [...acc, label];
   }, []);
-  return normalizeResults;
+  return [
+    { date: new Date(startDate).toLocaleDateString(), pointResult: 0 },
+    ...normalizeResults,
+  ];
 };
-
-const StatGraph = ({ responce }) => {
-  const { results, deadlineDate, startDate, totalPages } = responce;
-
-  const normalizeResults = getNormalizeResults(results);
-
-  const plan = getPlanValues(
-    startDate,
-    deadlineDate,
-    totalPages,
-    normalizeResults,
-  );
-
-  const points = normalizeResults.map(p => p.pointResult);
-  const maxPoint = Math.max(...points);
-  const normalizeLabels = normalizeResults.map(p => p.date);
-
-  return (
-    <Line
-      options={getOptions(normalizeResults, maxPoint)}
-      data={getData(plan, points, normalizeLabels)}
-      width={500}
-      height={200}
-    />
-  );
-};
-
-export default StatGraph;
