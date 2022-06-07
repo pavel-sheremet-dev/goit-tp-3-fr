@@ -87,40 +87,67 @@ export const getData = (plan, points, labels) => ({
   ],
 });
 
-export const getPlanValues = (
-  startDate,
-  deadlineDate,
-  totalPages,
-  normalizeResults,
-) => {
-  const perDay = getPagesPerDay(startDate, deadlineDate, totalPages);
-  return new Array(normalizeResults.length).fill(perDay);
+export const getPlanValues = (deadlineDate, totalPages, normalizeResults) => {
+  const readPagesStatus = getReadPagesStatus(normalizeResults);
+  const arr = normalizeResults.map((result, i) =>
+    getPagesPerDay(readPagesStatus[i], deadlineDate, totalPages, result),
+  );
+
+  return arr;
 };
 
-export const getPagesPerDay = (startDate, deadlineDate, totalPages) => {
+const getReadPagesStatus = normalizeResults => {
+  const array = normalizeResults.reduce(
+    (acc, result, idx) => [...acc, result.pointResult + acc[idx]],
+    [0],
+  );
+  return array.slice(1, array.length);
+};
+
+export const getPagesPerDay = (
+  readedPages,
+  deadlineDate,
+  totalPages,
+  result,
+) => {
   const days =
-    (new Date(deadlineDate) - new Date(startDate)) / 1000 / 60 / 60 / 24;
-  return Math.ceil(totalPages / days);
+    (new Date(deadlineDate) -
+      new Date(result.date.split('.').reverse().join('.'))) /
+    1000 /
+    60 /
+    60 /
+    24;
+
+  const delta = result.pointResult ? 1 : 0;
+
+  const leftFullDays = Math.floor(days - delta);
+
+  return Math.round((totalPages - readedPages) / leftFullDays);
 };
 
 export const getNormalizeResults = (results, startDate) => {
-  const allDatePoints = results.map(p => new Date(p.date).toLocaleDateString());
+  const updateResults = [
+    { date: startDate, pointResult: 0 },
+    ...results,
+    { date: new Date(), pointResult: 0 },
+  ];
+
+  const allDatePoints = updateResults.map(p =>
+    new Date(p.date).toLocaleDateString(),
+  );
   const normalizeResults = [];
   allDatePoints.reduce((acc, label, idx, arr) => {
     const isIn = acc.includes(label);
     if (isIn) {
       normalizeResults[normalizeResults.length - 1].pointResult +=
-        results[idx].pointResult;
+        updateResults[idx].pointResult;
     } else {
       normalizeResults.push({
-        date: new Date(results[idx].date).toLocaleDateString(),
-        pointResult: results[idx].pointResult,
+        date: new Date(updateResults[idx].date).toLocaleDateString(),
+        pointResult: updateResults[idx].pointResult,
       });
     }
     return isIn ? acc : [...acc, label];
   }, []);
-  return [
-    { date: new Date(startDate).toLocaleDateString(), pointResult: 0 },
-    ...normalizeResults,
-  ];
+  return normalizeResults;
 };

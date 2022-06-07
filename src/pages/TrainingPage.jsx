@@ -6,61 +6,29 @@ import { StyledCountdownContainer } from './TrainingPage.styled';
 const nextYear = new Date().getFullYear() + 1;
 
 const responce = {
-  startDate: '2022-06-20T01:42:27.042Z',
-  deadlineDate: '2022-06-25T01:43:27.042Z',
-  totalPages: 230,
-  readedPages: 105,
+  startDate: '2022-06-01',
+  deadlineDate: '2022-06-21',
+  totalPages: 200,
+  readedPages: 0,
   results: [
     {
-      date: '2022-06-20T01:42:27.042Z',
-      pointResult: 30,
+      date: '2022-06-01',
+      pointResult: 0,
     },
     {
-      date: '2022-06-21T05:50:52.336Z',
-      pointResult: 20,
+      date: '2022-06-02',
+      pointResult: 0,
     },
     {
-      date: '2022-06-21T09:42:11.411Z',
+      date: '2022-06-03',
       pointResult: 15,
     },
     {
-      date: '2022-06-21T09:42:11.411Z',
-      pointResult: 2,
-    },
-    {
-      date: '2022-06-22T09:42:11.411Z',
+      date: '2022-06-05',
       pointResult: 30,
     },
     {
-      date: '2022-06-23T09:42:11.411Z',
-      pointResult: 50,
-    },
-    {
-      date: '2022-06-24T09:42:11.411Z',
-      pointResult: 20,
-    },
-    {
-      date: '2022-06-25T09:42:11.411Z',
-      pointResult: 40,
-    },
-    {
-      date: '2022-06-25T09:42:11.411Z',
-      pointResult: 10,
-    },
-    {
-      date: '2022-06-29T09:42:11.411Z',
-      pointResult: 20,
-    },
-    {
-      date: '2022-06-29T09:42:11.411Z',
-      pointResult: 20,
-    },
-    {
-      date: '2022-06-29T09:42:11.411Z',
-      pointResult: 30,
-    },
-    {
-      date: '2022-06-30T09:42:11.411Z',
+      date: '2022-06-08',
       pointResult: 30,
     },
   ],

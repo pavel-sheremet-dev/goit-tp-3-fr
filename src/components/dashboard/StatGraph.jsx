@@ -28,8 +28,9 @@ ChartJS.register(
   Legend,
 );
 
-const StatGraph = ({ responce }) => {
+const StatGraph = ({ responce, getReadingPlan }) => {
   const [labelsQuantity, setlabelsQuantity] = useState(0);
+  const [plan, setPlan] = useState([]);
   const pageFormat = useContext(PageFormatContext);
   const { results, deadlineDate, startDate, totalPages } = responce;
 
@@ -50,19 +51,20 @@ const StatGraph = ({ responce }) => {
   }, [pageFormat]);
 
   const normalizeResults = useMemo(
-    () => getNormalizeResults(results),
-    [results],
+    () => getNormalizeResults(results, startDate),
+    [results, startDate],
   );
 
-  console.log(normalizeResults);
+  useEffect(() => {
+    setPlan(getPlanValues(deadlineDate, totalPages, normalizeResults));
+  }, [deadlineDate, normalizeResults, totalPages]);
 
-  const plan = useMemo(
-    () => getPlanValues(startDate, deadlineDate, totalPages, normalizeResults),
-    [deadlineDate, normalizeResults, startDate, totalPages],
-  );
+  useEffect(() => {
+    getReadingPlan(plan[plan.length - 1]);
+  }, [getReadingPlan, plan]);
 
   const points = normalizeResults.map(p => p.pointResult);
-  const maxPoint = Math.max(...points, plan[0]);
+  const maxPoint = Math.max(...points, ...plan);
   const normalizeLabels = normalizeResults.map(p => p.date);
 
   return (
