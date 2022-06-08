@@ -16,13 +16,13 @@ export const routes = {
     id: 3,
     title: 'Training',
     path: 'training',
-    absolutePath: '/trainingPage',
+    absolutePath: '/trainingpage',
   },
   library: {
     id: 4,
     title: 'Library',
     path: 'library',
-    absolutePath: '/libraryPage',
+    absolutePath: '/librarypage',
   },
   verificate: {
     id: 4,

@@ -69,9 +69,4 @@ a {
     clip: rect(0 0 0 0);
     overflow: hidden;
 }
-.activeNavLink {
-    background-color: ${({ theme }) => theme.colors.iconsHover};
-    border-radius: 50%;
-    padding: 8px 6px 8px 5px;
-}
 `;

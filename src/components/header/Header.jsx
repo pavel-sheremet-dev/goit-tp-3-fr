@@ -1,16 +1,20 @@
-
 import Navigation from "components/Navigation/Navigation";
-import {StyledContainerHeader, StyledHeader } from "./Header.styled";
+import { StyledContainerHeader } from "./Header.styled";
+import { getIsLoggedIn} from '../../redux/auth/auth-selectors';
+import { useSelector } from "react-redux";
 
 const Header = () => {
-
+ const isLoggedIn = useSelector(getIsLoggedIn);
   return (
-    <StyledHeader>
-      <StyledContainerHeader >
+  <>
+    {isLoggedIn ? (<StyledContainerHeader  style = {{justifyContent: "space-between"}} >
  <Navigation/>
-      </StyledContainerHeader>
-    </StyledHeader>
-  );
+      </StyledContainerHeader>) : (<StyledContainerHeader   >
+ <Navigation/>
+      </StyledContainerHeader>)}
+      
+    </>
+    );
 };
 
 export default Header;

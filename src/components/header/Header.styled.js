@@ -3,15 +3,18 @@ import styled from 'styled-components';
 
 export const StyledContainerHeader = styled(StyledContainer)`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-`;
-export const StyledHeader = styled.header`
   padding-top: 16px;
   padding-bottom: 17px;
-  box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
+  box-shadow: ${({ theme }) => theme.shadows.header};
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+    justify-content: space-between;
+  }
 `;
+
 export const StyledBox = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
 `;

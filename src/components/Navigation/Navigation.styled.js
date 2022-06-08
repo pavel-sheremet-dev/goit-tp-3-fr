@@ -17,14 +17,20 @@ export const StyledSpanName = styled.span`
 `;
 
 export const StyledSpanFirstLetterName = styled.span`
-  padding: 7px;
+  width: 33px;
+  height: 33px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-weight: 600;
   font-size: 14px;
   line-height: 1.21;
   background-color: ${({ theme }) => theme.colors.iconsHover};
   border-radius: 50%;
 `;
-export const StyledHeaderButton = styled.button`
+export const StyledHeaderButton = styled.button.attrs(props => ({
+  type: 'sumbit',
+}))`
   display: inline-block;
   margin-left: 14px;
   padding: 0px;

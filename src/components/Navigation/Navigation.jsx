@@ -16,38 +16,37 @@ const Navigation = () => {
   const isMobile = pageFormat === format.mobile;
   const isTablet = pageFormat === format.tablet;
   const isDesktop = pageFormat === format.desktop;
-    const name = useSelector(getUserName);
+  const name = useSelector(getUserName) ?? '';
+  const iconName = name[0]
   return (
     <>
-    <Logo />
-      {isLoggedIn &&
+      <Logo />
+      
+    
+      {isLoggedIn && (
         <>
-        {isDesktop &&  <StyledBox>
-        <StyledSpanFirstLetterName > {name && name.charAt(0)}</StyledSpanFirstLetterName>
-        <StyledSpanName>{name && name }</StyledSpanName>
-        </StyledBox >}
-        {isTablet && <StyledBox>
-        <StyledSpanFirstLetterName > {name && name.charAt(0)}</StyledSpanFirstLetterName>
-        <StyledSpanName>{ }</StyledSpanName>
-      </StyledBox >}
+        {(isDesktop || isTablet) && (
+          < StyledBox >
+        <StyledSpanFirstLetterName > {iconName}</StyledSpanFirstLetterName>
+        <StyledSpanName>{iconName }</StyledSpanName>
+          </StyledBox >
+        ) }
         <StyledBox>
       <StyledNav>
           <StyledBox>
           <UserNavMenu />
             </StyledBox>
             </StyledNav>
-      <StyledBox>
-       {isResponse && <StyledSpanFirstLetterName > {name && name.charAt(0)}</StyledSpanFirstLetterName>}
-        {isMobile && <StyledSpanFirstLetterName > {name && name.charAt(0)}</StyledSpanFirstLetterName>}
+            {(isResponse || isMobile) &&(
+              <StyledSpanFirstLetterName > {iconName}</StyledSpanFirstLetterName>
+            )}
       <StyledHeaderButton
-      type="submit"
           onClick={() => dispatchEvent(signOut())}> 
         Вихід
         </StyledHeaderButton>
         </StyledBox>
-        </StyledBox>
-        </>
-        }
+          </>
+      )}
       </>
   )
 }

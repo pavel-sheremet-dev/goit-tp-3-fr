@@ -1,7 +1,7 @@
 import LibraryForm from 'components/LibraryForm/LibraryForm'
 
 const LibraryPage = () => {
-  return <><LibraryForm/></>;
+  return <><LibraryForm /></>;
 };
 
 // При отсутвии библиотеки рендерить модальное окно с шагами, по сути это не модальное окно
