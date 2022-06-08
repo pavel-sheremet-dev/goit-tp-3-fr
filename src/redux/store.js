@@ -14,11 +14,17 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import authReduser from './auth/auth-slice';
+import booksReducer from './books/books-reducer';
 
 const persistAuthConfig = {
   key: 'local-token',
   storage,
   whitelist: ['token'],
+};
+
+const persistRootConfig = {
+  key: 'books',
+  storage,
 };
 
 // const persistRootConfig = {
@@ -29,6 +35,7 @@ const persistAuthConfig = {
 
 const rootReducer = combineReducers({
   auth: persistReducer(persistAuthConfig, authReduser),
+  books: persistReducer(persistRootConfig, booksReducer),
   // ... other reducers
 });
 

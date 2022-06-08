@@ -14,6 +14,7 @@ export const getCssVars = () => ({
     disabledBtn: '#B1B5C2',
     numbers: '#091E3F',
     after: 'rgba(36, 42, 55, 0.5)',
+    error: '#ff0000',
   },
   delay: 200,
   breakPoints: {
@@ -21,6 +22,11 @@ export const getCssVars = () => ({
     mobile: '480px',
     tablet: '768px',
     desktop: '1280px',
+  },
+  shadows: {
+    counter: '4px 4px 8px rgba(36, 42, 55, 0.15)',
+    inputShadow: '0px 1px 2px rgba(29, 29, 27, 0.15)',
+    btnShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)',
   },
   transition: property => `${property} 200ms linear`,
 });
