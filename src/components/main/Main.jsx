@@ -4,7 +4,7 @@ import TrainingPage from 'pages/TrainingPage';
 const Main = () => {
   return (
     <main>
-      <LibraryPage/>
+      <LibraryPage />
       <TrainingPage />
     </main>
   );

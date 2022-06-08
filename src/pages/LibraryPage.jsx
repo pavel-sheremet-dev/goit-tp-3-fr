@@ -1,7 +1,12 @@
-import LibraryForm from 'components/LibraryForm/LibraryForm'
+import Section from 'components/common/section/Section';
+import LibraryForm from 'components/LibraryForm/LibraryForm';
 
 const LibraryPage = () => {
-  return <><LibraryForm/></>;
+  return (
+    <Section title={'Моя бібліотека'} titleLevel={'h1'} isHidden>
+      <LibraryForm />
+    </Section>
+  );
 };
 
 // При отсутвии библиотеки рендерить модальное окно с шагами, по сути это не модальное окно
