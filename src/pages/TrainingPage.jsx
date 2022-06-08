@@ -1,8 +1,38 @@
 import Section from 'components/common/section/Section';
+import Dashboard from 'components/dashboard/Dashboard';
 import Countdown from '../components/Countdown';
 import { StyledCountdownContainer } from './TrainingPage.styled';
 
 const nextYear = new Date().getFullYear() + 1;
+
+const responce = {
+  startDate: '2022-06-01',
+  deadlineDate: '2022-06-21',
+  totalPages: 200,
+  readedPages: 0,
+  results: [
+    {
+      date: '2022-06-01',
+      pointResult: 0,
+    },
+    {
+      date: '2022-06-02',
+      pointResult: 0,
+    },
+    {
+      date: '2022-06-03',
+      pointResult: 15,
+    },
+    {
+      date: '2022-06-05',
+      pointResult: 30,
+    },
+    {
+      date: '2022-06-08',
+      pointResult: 30,
+    },
+  ],
+};
 
 export const TrainingPage = () => {
   return (
@@ -17,6 +47,7 @@ export const TrainingPage = () => {
           title="До досягнення мети залишилось"
         />
       </StyledCountdownContainer>
+      <Dashboard responce={responce} />
     </Section>
   );
 };

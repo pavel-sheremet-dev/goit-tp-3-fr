@@ -27,7 +27,8 @@ export const getCssVars = () => ({
     counter: '4px 4px 8px rgba(36, 42, 55, 0.15)',
     inputShadow: '0px 1px 2px rgba(29, 29, 27, 0.15)',
     btnShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)',
-    header: '0px 2px 3px rgba(9, 30, 63, 0.1);',
+    dashboard: '0px 2px 3px rgba(9, 30, 63, 0.25)',
+    header: '0px 2px 3px rgba(9, 30, 63, 0.1)',
   },
   transition: property => `${property} 200ms linear`,
 });
