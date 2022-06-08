@@ -1,10 +1,23 @@
+// import axios from 'axios';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import Section from 'components/common/section/Section';
 import Countdown from '../components/Countdown';
 import { StyledCountdownContainer } from './TrainingPage.styled';
-
+import { getYear } from 'redux/trainings/trainings-selectors';
 const nextYear = new Date().getFullYear() + 1;
 
+// const token =
+//   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MjlmOWRkNDg4M2VkNmQ5YTI4M2QxMDUiLCJwZXJtaXNzaW9ucyI6W251bGxdLCJpYXQiOjE2NTQ2ODUyOTQsImV4cCI6MTY1NDc3MTY5NH0.cHzHXORYAD00LM2VdotUPVbW6R6EhDPHFLQMhPKoVgs';
+
+// axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
+// axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
 export const TrainingPage = () => {
+  const year = useSelector(getYear);
+  console.log(year);
+
+  // axios.get('/api/trainings').then(res => console.log(res.data));
   return (
     <Section title="Статистика" isHidden>
       <StyledCountdownContainer>
@@ -13,7 +26,7 @@ export const TrainingPage = () => {
           title="До закінчення року залишилось"
         />
         <Countdown
-          deadline={new Date(2022, 7, 1)}
+          deadline={new Date(year)}
           title="До досягнення мети залишилось"
         />
       </StyledCountdownContainer>
