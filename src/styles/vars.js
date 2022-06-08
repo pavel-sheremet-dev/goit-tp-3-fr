@@ -13,6 +13,7 @@ export const getCssVars = () => ({
     reviewBtn: '#6D7A8D',
     disabledBtn: '#B1B5C2',
     numbers: '#091E3F',
+    after: 'rgba(36, 42, 55, 0.5)',
   },
   delay: 200,
   breakPoints: {

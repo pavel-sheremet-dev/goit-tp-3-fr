@@ -1,6 +1,7 @@
 import { GlobalStyle } from 'styles/GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 import { getCssVars } from 'styles/vars';
+import RegistrationPage from './pages/RegistrationPage';
 import Header from 'components/header/Header';
 import Main from 'components/main/Main';
 import Layout from 'components/layout/Layout';
