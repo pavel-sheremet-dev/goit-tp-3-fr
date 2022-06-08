@@ -36,7 +36,7 @@ const responce = {
 
 export const TrainingPage = () => {
   return (
-    <Section title="Статистика" titleLevel={'h1'} isHidden>
+    <Section title="Статистика" titleLevel="h2" isHidden>
       <StyledCountdownContainer>
         <Countdown
           deadline={new Date(nextYear, 0, 1)}
