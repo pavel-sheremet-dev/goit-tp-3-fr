@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 
-import Section from '../common/section/Section'
 import addBook from 'redux/books/books-actions';
 import {
   validationAddFormSchema,
@@ -41,7 +40,6 @@ const LibraryMobileForm = () => {
   });
 
   return (
-    <Section title={'Library Form'} titleLevel={'h2'} isHidden>
     <Form onSubmit={formik.handleSubmit}>
       <TitleLabel>
         <span>Назва книги</span>
@@ -106,8 +104,7 @@ const LibraryMobileForm = () => {
       </Label>
 
       <Button type="submit">Додати</Button>
-      </Form>
-      </Section>
+    </Form>
   );
 };
 

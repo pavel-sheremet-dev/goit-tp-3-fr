@@ -6,7 +6,7 @@ const nextYear = new Date().getFullYear() + 1;
 
 export const TrainingPage = () => {
   return (
-    <Section title="Статистика" isHidden>
+    <Section title="Статистика" titleLevel="h2" isHidden>
       <StyledCountdownContainer>
         <Countdown
           deadline={new Date(nextYear, 0, 1)}

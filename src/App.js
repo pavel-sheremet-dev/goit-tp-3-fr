@@ -39,56 +39,58 @@ const App = () => {
         <Layout>
           <GlobalStyle />
           <Header />
-          <Suspense fallback={<Loader />}>
-            <Routes>
-              <Route
-                index={signUp.absolutePath}
-                element={
-                  <PublicRoute restricted>
-                    <RegistrationPage />
-                  </PublicRoute>
-                }
-              />
-              <Route
-                path={login.absolutePath}
-                element={
-                  <PublicRoute redirectTo={library.absolutePath} restricted>
-                    <LoginPage />
-                  </PublicRoute>
-                }
-              />
-              <Route
-                path={verificate.absolutePath}
-                element={
-                  <PublicRoute>
-                    <VerificatePage />
-                  </PublicRoute>
-                }
-              />
-
-              <Route
-                path={training.absolutePath}
-                element={
-                  <PrivateRoute>
-                    <TrainingPage />
-                  </PrivateRoute>
-                }
-              />
-
-              {
+          <main>
+            <Suspense fallback={<Loader />}>
+              <Routes>
                 <Route
-                  path={library.absolutePath}
+                  index={signUp.absolutePath}
+                  element={
+                    <PublicRoute restricted>
+                      <RegistrationPage />
+                    </PublicRoute>
+                  }
+                />
+                <Route
+                  path={login.absolutePath}
+                  element={
+                    <PublicRoute redirectTo={library.absolutePath} restricted>
+                      <LoginPage />
+                    </PublicRoute>
+                  }
+                />
+                <Route
+                  path={verificate.absolutePath}
+                  element={
+                    <PublicRoute>
+                      <VerificatePage />
+                    </PublicRoute>
+                  }
+                />
+
+                <Route
+                  path={training.absolutePath}
                   element={
                     <PrivateRoute>
-                      <LibraryPage />
+                      <TrainingPage />
                     </PrivateRoute>
                   }
                 />
-              }
 
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </Suspense>
+                {
+                  <Route
+                    path={library.absolutePath}
+                    element={
+                      <PrivateRoute>
+                        <LibraryPage />
+                      </PrivateRoute>
+                    }
+                  />
+                }
+
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </Suspense>
+          </main>
           <Main />
           <Example />
         </Layout>
