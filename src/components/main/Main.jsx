@@ -4,7 +4,7 @@ import TrainingPage from 'pages/TrainingPage';
 import { useState } from 'react';
 
 const Main = () => {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const toggleModal = () => {
     setShowModal(showModal => !showModal);
   };

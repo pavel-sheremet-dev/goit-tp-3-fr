@@ -6,7 +6,7 @@ const initialState = {
   user: { name: null, email: null },
 
   token: null,
-  isLogIn: true,
+  isLogIn: false,
 
   loading: false,
   loadingUser: false,
