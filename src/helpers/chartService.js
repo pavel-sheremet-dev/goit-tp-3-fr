@@ -112,7 +112,7 @@ export const getPagesPerDay = (
 ) => {
   const days =
     (new Date(deadlineDate) -
-      new Date(result.date.split('.').reverse().join('.'))) /
+      new Date(result.date.split('.').reverse().join('-'))) /
     1000 /
     60 /
     60 /
