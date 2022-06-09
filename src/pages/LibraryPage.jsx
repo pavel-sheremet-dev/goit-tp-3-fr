@@ -16,9 +16,7 @@ const LibraryPage = () => {
     <>
       
       <Section title={'Моя пуста бібліотека'} titleLevel={'h1'} isHidden styleContainer = {styleFlex} >
-     
       <EmtpyLibraryText/>
-    
       </Section> 
     
       
