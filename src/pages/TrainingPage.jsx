@@ -1,6 +1,8 @@
 import Section from 'components/common/section/Section';
 import Dashboard from 'components/dashboard/Dashboard';
 import CountdownContainer from 'components/CountdownContainer';
+import CongratsModal from 'components/CongratsModal';
+import WellDoneModal from 'components/WellDoneModal';
 
 const responce = {
   startDate: '2022-06-01',
@@ -31,9 +33,19 @@ const responce = {
   ],
 };
 
+const modalText = {
+  bookRead: 'Ще одна книга прочитана',
+  trainingCompleted: 'Тренування завершено',
+  registration: 'Вам на пошту надійшов лист із підтвердженням реєстрації',
+};
+
 const TrainingPage = () => {
   return (
     <Section title="Статистика" titleLevel="h2" isHidden>
+      <CongratsModal text={modalText.bookRead} />
+      <CongratsModal text={modalText.trainingCompleted} />
+      <CongratsModal text={modalText.registration} />
+      <WellDoneModal />
       <CountdownContainer />
       <Dashboard responce={responce} />
     </Section>
