@@ -32,7 +32,11 @@ export const getCssVars = () => ({
   },
   transition: property => `${property} 200ms linear`,
 });
-
+export const styleFlex = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+};
 // #242A37 - logo, text, deep blue
 // #707375 - google,
 // #FFFFFF - white text

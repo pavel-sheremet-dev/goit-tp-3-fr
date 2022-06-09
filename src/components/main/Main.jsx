@@ -5,7 +5,7 @@ const Main = () => {
   return (
     <main>
       <LibraryPage />
-      <TrainingPage />
+      
     </main>
   );
 };

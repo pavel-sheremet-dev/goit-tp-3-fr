@@ -1,11 +1,28 @@
 import Section from 'components/common/section/Section';
+import EmtpyLibraryText from 'components/emtpyLibraryText/EmtpyLibraryText';
 import LibraryForm from 'components/LibraryForm/LibraryForm';
+import { PageFormatContext, format } from 'context/pageFormatContext';
+import { useContext } from 'react';
+import { styleFlex } from 'styles/vars';
 
 const LibraryPage = () => {
+  const pageFormat = useContext(PageFormatContext);
+  const isTablet = pageFormat === format.tablet;
+  const isDesktop = pageFormat === format.desktop;
+  
+  
+  
   return (
-    <Section title={'Моя бібліотека'} titleLevel={'h1'} isHidden>
-      <LibraryForm />
-    </Section>
+    <>
+      
+      <Section title={'Моя пуста бібліотека'} titleLevel={'h1'} isHidden styleContainer = {styleFlex} >
+     
+      <EmtpyLibraryText/>
+    
+      </Section> 
+    
+      
+    </>
   );
 };
 

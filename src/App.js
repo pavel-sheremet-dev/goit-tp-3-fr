@@ -91,8 +91,6 @@ const App = () => {
               </Routes>
             </Suspense>
           </main>
-          <Main />
-          <Example />
         </Layout>
       </ThemeProvider>
     </div>
