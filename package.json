@@ -8,6 +8,7 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
+    "chart.js": "^3.8.0",
     "date-fns": "^2.28.0",
     "formik": "^2.2.9",
     "modern-normalize": "^1.1.0",
@@ -15,6 +16,7 @@
     "react-chartjs-2": "^4.1.0",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
+    "react-loader-spinner": "^5.1.5",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
@@ -46,9 +48,9 @@
       "not op_mini all"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 3 safari version"
     ]
   },
   "devDependencies": {
@@ -60,5 +62,17 @@
   "lint-staged": {
     "*.js": "eslint --cache --fix",
     "*.{js,css,md}": "prettier --write"
+  },
+  "description": "RB team project",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavel-sheremet-dev/goit-tp-3-fr.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pavel-sheremet-dev/goit-tp-3-fr/issues"
   }
 }

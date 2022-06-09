@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
-
 import Section from '../common/section/Section';
 import addBook from 'redux/books/books-actions';
 import {
@@ -41,22 +40,21 @@ const LibraryMobileForm = () => {
   });
 
   return (
-    <Section title={'Library Form'} titleLevel={'h2'} isHidden>
-      <Form onSubmit={formik.handleSubmit}>
-        <TitleLabel>
-          <span>Назва книги</span>
-          <Input
-            id="title"
-            name="title"
-            type="text"
-            placeholder="..."
-            value={formik.values.title}
-            onChange={formik.handleChange}
-          />
-          {formik.touched.title && formik.errors.title ? (
-            <ErrorContainer>{formik.errors.title}</ErrorContainer>
-          ) : null}
-        </TitleLabel>
+    <Form onSubmit={formik.handleSubmit}>
+      <TitleLabel>
+        <span>Назва книги</span>
+        <Input
+          id="title"
+          name="title"
+          type="text"
+          placeholder="..."
+          value={formik.values.title}
+          onChange={formik.handleChange}
+        />
+        {formik.touched.title && formik.errors.title ? (
+          <ErrorContainer>{formik.errors.title}</ErrorContainer>
+        ) : null}
+      </TitleLabel>
 
         <AuthorLabel>
           <span>Автор книги</span>
@@ -105,9 +103,8 @@ const LibraryMobileForm = () => {
           ) : null}
         </Label>
 
-        <Button type="submit">Додати</Button>
-      </Form>
-    </Section>
+      <Button type="submit">Додати</Button>
+    </Form>
   );
 };
 

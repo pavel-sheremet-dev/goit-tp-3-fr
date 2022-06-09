@@ -1,11 +1,6 @@
 
 const RegistrationPage = () => {
-  return (
-    <>
-      {/* <h1>REGISTRATION</h1> */}
-     
-    </>
-  );
+  return <><p>RegistrationPage</p></>;
 };
 
 // 1.1 Форма регистрации
