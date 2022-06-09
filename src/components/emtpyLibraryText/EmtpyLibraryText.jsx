@@ -1,8 +1,8 @@
 import { StyledItem, StyledList, StyledDescriptionText, StyledStepText, StyledCreateText, StyledLibButton, StyledLibBox, StyledNameBook, StyledEmptyLibBox, StyledWrap, ArrowSvg, BookIcon, FlagIcon } from "./EmtpyLibraryText.styled";
-
 import { useContext, useState } from "react";
 import { PageFormatContext, format } from 'context/pageFormatContext';
-import { useNavigate } from "react-router-dom";
+import LibraryMobileForm from "components/LibraryForm/LibraryForm";
+
 
 
 export default function EmtpyLibraryText() {
@@ -10,15 +10,13 @@ export default function EmtpyLibraryText() {
 const pageFormat = useContext(PageFormatContext);
  const isResponse = pageFormat === format.response;
     const isMobile = pageFormat === format.mobile;
-    let navigate = useNavigate();
-
-  const goToLibrary = () => {
-    navigate("/librarypage");
-  };
-
+   
+  
+console.log(state)
     return (
         <>
-            {(isResponse || isMobile ) &&
+            {!state ?  <>
+                {(isResponse || isMobile) &&
             <StyledNameBook>Назва книги</StyledNameBook>
             }
         <StyledEmptyLibBox>
@@ -43,10 +41,11 @@ const pageFormat = useContext(PageFormatContext);
             </StyledList>
             {(isMobile || isResponse) &&
                     <StyledLibBox>
-                    <StyledLibButton onClick ={state}> Ок</StyledLibButton>
+                    <StyledLibButton onClick={() => setState(!state)}> Ок</StyledLibButton>
                     </StyledLibBox>
        }
-            </StyledEmptyLibBox>
+            </StyledEmptyLibBox> </> : <LibraryMobileForm/> }
+            
             </>
     )
 }
