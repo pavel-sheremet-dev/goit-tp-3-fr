@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const DashBox = styled.div`
-  width: 100%;
+  /* width: 100%; */
   padding: 20px 22px 40px 25px;
   box-shadow: ${({ theme }) => theme.shadows.dashboard};
 
