@@ -1,5 +1,7 @@
 import Section from 'components/common/section/Section';
 import Dashboard from 'components/dashboard/Dashboard';
+import Results from 'components/results/Results';
+import { useState } from 'react';
 import Countdown from '../components/Countdown';
 import { StyledCountdownContainer } from './TrainingPage.styled';
 
@@ -35,6 +37,8 @@ const responce = {
 };
 
 export const TrainingPage = () => {
+  const [results, setResult] = useState([]);
+
   return (
     <Section title="Статистика" titleLevel="h2" isHidden>
       <StyledCountdownContainer>
@@ -48,6 +52,10 @@ export const TrainingPage = () => {
         />
       </StyledCountdownContainer>
       <Dashboard responce={responce} />
+      <Results
+        startDate={responce.startDate}
+        onSubmit={obj => setResult([...results, obj])}
+      />
     </Section>
   );
 };

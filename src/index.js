@@ -5,6 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import 'modern-normalize/modern-normalize.css';
 import 'fonts/stylesheet.css';
+import 'react-datetime/css/react-datetime.css';
 
 import App from './App';
 import { persistor, store } from 'redux/store';
