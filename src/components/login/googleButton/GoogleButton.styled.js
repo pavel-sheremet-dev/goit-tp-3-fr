@@ -4,8 +4,13 @@ export const StyledContainer = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 33px;
+  padding-top: 32px;
   padding-bottom: 28px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+    padding-top: 40px;
+    padding-bottom: 29px;
+  }
 `;
 
 export const StyledGoogleButton = styled.div`
@@ -20,17 +25,16 @@ export const StyledGoogleButton = styled.div`
   height: 40px;
   background-color: ${({ theme }) => theme.colors.iconsHover};
   cursor: pointer;
-  box-shadow: 0px 2px 2px rgba(9, 30, 63, 0.15);
+  box-shadow: ${({ theme }) => theme.shadows.btnGoogle};
   }
 `;
 
 export const StyledRef = styled.a`
-display: block;
-padding-left: 16px;
-font-family: 'Roboto', sans-serif;
-font-weight: 700;
-font-size: 16px;
-line-height: 38px;
-color: ${({ theme }) => theme.colors.googleText};
-  }
+  display: block;
+  padding-left: 16px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 38px;
+  color: ${({ theme }) => theme.colors.googleText};
 `;

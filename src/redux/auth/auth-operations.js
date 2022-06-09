@@ -8,7 +8,9 @@ const GET_USER_ENDPOINT = '/users/current';
 
 const token = {
   set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    // axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    axios.defaults.headers.common.Authorization =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTI0OTI2ZTQ5ZTFlMGMzNTJmYWJhOCIsImlhdCI6MTY1Mzc2MDM3NCwiZXhwIjoxNjUzNzYzOTc0fQ.3APCyLtk0o7_EmD_fUY_zu_rluEk8Q8-9GVDQp6CMCw';
   },
   unset() {
     axios.defaults.headers.common.Authorization = '';
