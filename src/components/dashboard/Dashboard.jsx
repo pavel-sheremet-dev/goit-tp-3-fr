@@ -9,9 +9,17 @@ const Dashboard = ({ responce }) => {
 
   return (
     <DashBox>
-      <p>
-        Кількість сторінок / день<span>{readingPlan}</span>
-      </p>
+      {responce.status === 'active' && (
+        <p>
+          Кількість сторінок / день<span>{readingPlan}</span>
+        </p>
+      )}
+      {responce.status === 'failed' && (
+        <p>
+          Залишилось прочитати сторінок<span>{readingPlan}</span>
+        </p>
+      )}
+
       <StatGraph responce={responce} getReadingPlan={setReadingPlan} />
       <p className="x-axes-label">час</p>
     </DashBox>
