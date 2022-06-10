@@ -32,7 +32,7 @@ export const BoxGoal = styled.div`
     margin: 40px 0 28px 0;
   }
   @media (min-width: 1280px) {
-    margin: 0;
+    margin: 0 0 40px 0;
   }
 `;
 export const UnderGolMyTranny = styled.div`
