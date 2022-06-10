@@ -6,10 +6,11 @@ import { StyledCountdownContainer } from './TrainingPage.styled';
 const nextYear = new Date().getFullYear() + 1;
 
 const responce = {
+  status: 'failed',
   startDate: '2022-06-01',
-  deadlineDate: '2022-06-21',
+  deadlineDate: '2022-06-10',
   totalPages: 200,
-  readedPages: 0,
+  readedPages: 130,
   results: [
     {
       date: '2022-06-01',
@@ -21,18 +22,83 @@ const responce = {
     },
     {
       date: '2022-06-03',
-      pointResult: 15,
+      pointResult: 50,
     },
     {
       date: '2022-06-05',
-      pointResult: 30,
+      pointResult: 50,
     },
     {
-      date: '2022-06-08',
-      pointResult: 30,
+      date: '2022-06-10',
+      pointResult: 0,
     },
   ],
 };
+
+// const responce = {
+//   startDate: '2022-06-09T01:42:27.042Z',
+//   deadlineDate: '2022-06-10T06:18:27.042Z',
+//   totalPages: 300,
+//   readedPages: 106,
+//   results: [
+//     {
+//       date: '2022-06-10T05:42:27.042Z',
+//       pointResult: 0,
+//     },
+//     {
+//       date: '2022-06-10T06:14:22.597Z',
+//       pointResult: 10,
+//     },
+//     {
+//       date: '2022-06-10T06:14:52.649Z',
+//       pointResult: 10,
+//     },
+//     {
+//       date: '2022-06-10T06:15:14.789Z',
+//       pointResult: 10,
+//     },
+//     {
+//       date: '2022-06-10T06:15:34.613Z',
+//       pointResult: 10,
+//     },
+//     {
+//       date: '2022-06-10T06:15:43.743Z',
+//       pointResult: 10,
+//     },
+//     {
+//       date: '2022-06-10T06:16:07.064Z',
+//       pointResult: 10,
+//     },
+//     {
+//       date: '2022-06-10T06:17:39.219Z',
+//       pointResult: 10,
+//     },
+//     {
+//       date: '2022-06-10T06:19:05.170Z',
+//       pointResult: 10,
+//     },
+//     {
+//       date: '2022-06-10T06:20:58.529Z',
+//       pointResult: 10,
+//     },
+//     {
+//       date: '2022-06-10T06:21:17.788Z',
+//       pointResult: 1,
+//     },
+//     {
+//       date: '2022-06-10T06:21:53.573Z',
+//       pointResult: 1,
+//     },
+//     {
+//       date: '2022-06-10T06:23:57.422Z',
+//       pointResult: 1,
+//     },
+//     {
+//       date: '2022-06-10T06:24:03.836Z',
+//       pointResult: 8,
+//     },
+//   ],
+// };
 
 export const TrainingPage = () => {
   return (
