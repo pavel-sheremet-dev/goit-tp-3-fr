@@ -1,26 +1,10 @@
 import Section from 'components/common/section/Section';
 import Dashboard from 'components/dashboard/Dashboard';
-import Countdown from '../components/Countdown';
-import { useContext } from 'react';
-// import { StyledCountdownContainer } from './TrainingPage.styled';
-import { PageFormatContext, format } from 'context/pageFormatContext';
-import {
-  ContainerSection,
-  Goal,
-  BoxCountdown,
-  BoxGoal,
-  Library,
-  BoxLibrary,
-  CountDown,
-  DashBoard,
-  Results,
-  BoxResults,
-  BoxDasboard,
-  UnderGolMyTranny,
-  BoxUnderGolMyTranny,
-} from './styleSection/stylePosition';
-
-const nextYear = new Date().getFullYear() + 1;
+import CountdownContainer from 'components/CountdownContainer';
+import CongratsModal from 'components/CongratsModal';
+import WellDoneModal from 'components/WellDoneModal';
+import AllPositionCStatisticPage from './PositionForSection';
+// import Statistic from 'components/statistic/Statistic';
 
 const responce = {
   status: 'failed',
@@ -30,162 +14,50 @@ const responce = {
   readedPages: 130,
   results: [
     {
-      date: '2022-06-01',
+      date: '2022-06-02T01:42:27.042Z',
       pointResult: 0,
     },
     {
-      date: '2022-06-02',
+      date: '2022-06-04T02:42:27.042Z',
       pointResult: 0,
     },
     {
-      date: '2022-06-03',
+      date: '2022-06-05T14:42:27.042Z',
       pointResult: 50,
     },
     {
-      date: '2022-06-05',
+      date: '2022-06-07T19:42:27.042Z',
       pointResult: 50,
     },
     {
-      date: '2022-06-10',
-      pointResult: 0,
+      date: '2022-06-10T22:42:27.042Z',
+      pointResult: 100,
     },
   ],
 };
 
 const TrainingPage = () => {
-  const pageFormat = useContext(PageFormatContext);
-  const isResponse = pageFormat === format.response;
-  const isMobile = pageFormat === format.mobile;
-  const isTablet = pageFormat === format.tablet;
-  const isDesktop = pageFormat === format.desktop;
+  const modalText = {
+    bookRead: 'Ще одна книга прочитана',
+    trainingCompleted: 'Тренування завершено',
+    registration: 'Вам на пошту надійшов лист із підтвердженням реєстрації',
+  };
 
   return (
-    <>
-      {/* Оббертка для компонента есть Box, внутри которого будет замена   */}
-      {isResponse && <div>Response</div>}
-      {isMobile && (
-        <div>
-          <Section title="Статистика" titleLevel="h2" isHidden>
-            <ContainerSection>
-              <BoxCountdown>
-                <CountDown>Countdown</CountDown>
-                {/* <StyledCountdownContainer>
-          <Countdown
-            deadline={new Date(nextYear, 0, 1)}
-            title="До закінчення року залишилось"
-          />
-          <Countdown
-            deadline={new Date(2022, 7, 1)}
-            title="До досягнення мети залишилось"
-          />
-        </StyledCountdownContainer> */}
-              </BoxCountdown>
+    <Section title="Статистика" titleLevel="h2" isHidden>
+      {/* AllPositionCStatisticPage скопировванная секция TranningPage */}
+      {/* <AllPositionCStatisticPage /> */}
+      <CongratsModal text={modalText.bookRead} />
+      <CongratsModal text={modalText.trainingCompleted} />
+      <CongratsModal text={modalText.registration} />
+      <WellDoneModal />
+      {/* <CountdownContainer /> */}
+      <Dashboard responce={responce} />
 
-              <BoxResults>
-                <Results>Results</Results>
-              </BoxResults>
-
-              <BoxGoal>
-                <Goal>My Goal</Goal>
-              </BoxGoal>
-
-              <BoxLibrary>
-                <Library>Library</Library>
-              </BoxLibrary>
-              <BoxDasboard>
-                <DashBoard>
-                  Dashboard{/* <Dashboard responce={responce} />  */}
-                </DashBoard>
-              </BoxDasboard>
-            </ContainerSection>
-          </Section>
-        </div>
-      )}
-      {isTablet && (
-        <div>
-          <Section title="Статистика" titleLevel="h2" isHidden>
-            <ContainerSection>
-              <BoxCountdown>
-                <CountDown>Countdown</CountDown>
-                {/* <StyledCountdownContainer>
-          <Countdown
-            deadline={new Date(nextYear, 0, 1)}
-            title="До закінчення року залишилось"
-          />
-          <Countdown
-            deadline={new Date(2022, 7, 1)}
-            title="До досягнення мети залишилось"
-          />
-        </StyledCountdownContainer> */}
-              </BoxCountdown>
-
-              <BoxGoal>
-                <Goal>My Goal</Goal>
-              </BoxGoal>
-              <BoxUnderGolMyTranny>
-                <UnderGolMyTranny>UnderGolMyTranny</UnderGolMyTranny>
-              </BoxUnderGolMyTranny>
-
-              <BoxLibrary>
-                <Library>Library</Library>
-              </BoxLibrary>
-              <BoxDasboard>
-                <DashBoard>
-                  Dashboard{/* <Dashboard responce={responce} />  */}
-                </DashBoard>
-              </BoxDasboard>
-
-              <BoxResults>
-                <Results>Results</Results>
-              </BoxResults>
-            </ContainerSection>
-          </Section>
-        </div>
-      )}
-      {isDesktop && (
-        <div>
-          <Section title="Статистика" titleLevel="h2" isHidden>
-            <ContainerSection>
-              <div>
-                <BoxCountdown>
-                  <CountDown>Countdown</CountDown>
-                  {/* <StyledCountdownContainer>
-          <Countdown
-            deadline={new Date(nextYear, 0, 1)}
-            title="До закінчення року залишилось"
-          />
-          <Countdown
-            deadline={new Date(2022, 7, 1)}
-            title="До досягнення мети залишилось"
-          />
-        </StyledCountdownContainer> */}
-                </BoxCountdown>
-                <BoxLibrary>
-                  <Library>Library</Library>
-                </BoxLibrary>
-                <BoxDasboard>
-                  <DashBoard>
-                    Dashboard{/* <Dashboard responce={responce} />  */}
-                  </DashBoard>
-                </BoxDasboard>
-              </div>
-              <div>
-                <BoxGoal>
-                  <Goal>My Goal</Goal>
-                </BoxGoal>
-
-                <BoxResults>
-                  <Results>Results</Results>
-                </BoxResults>
-              </div>
-            </ContainerSection>
-          </Section>
-        </div>
-      )}
-    </>
+      {/* <Statistic results={responce.results} /> */}
+    </Section>
   );
 };
-export default TrainingPage;
 
 // это только основные моменты.
 
@@ -204,3 +76,5 @@ export default TrainingPage;
 
 // Скорее всего будет коллекция тренировок, в которой будет статус тренировки ['успешно пройденная', 'активная', 'неуспешная']
 // 1.1 При загрузке страницы с треннировкой - идёт запрос на бек, бек смотрит есть ли в базе треннировка со статусом - активная - сравнивает текущее время, если время ушло, обновляет статус, возвращает треннировку, неуспешній статус будет означать показ модального окна. В таком случае рендерить формочку с добавлением результатов, думаю, что не стоит, только результирующую статистику.
+
+export default TrainingPage;
