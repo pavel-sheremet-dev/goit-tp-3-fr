@@ -2,24 +2,46 @@ import Section from 'components/common/section/Section';
 import EmtpyLibraryText from 'components/emtpyLibraryText/EmtpyLibraryText';
 import LibraryForm from 'components/LibraryForm/LibraryForm';
 import { PageFormatContext, format } from 'context/pageFormatContext';
-import { useContext } from 'react';
-import { styleFlex } from 'styles/vars';
+import { useContext, useState } from 'react';
+
+const { mobile, response, tablet, desktop } = format;
 
 const LibraryPage = () => {
+  const [showLibraryForm, setShowLibraryForm] = useState(false);
   const pageFormat = useContext(PageFormatContext);
-  const isTablet = pageFormat === format.tablet;
-  const isDesktop = pageFormat === format.desktop;
-  
-  
-  
+  const isMobile = pageFormat === mobile || pageFormat === response;
+
+  const hasBookLibrary = false;
+
+  const showMobileForm = showLibraryForm || hasBookLibrary;
+  const showSteps = !hasBookLibrary && !showLibraryForm;
+
   return (
     <>
-      
-      <Section title={'Моя пуста бібліотека'} titleLevel={'h1'} isHidden styleContainer = {styleFlex} >
-      <EmtpyLibraryText/>
-      </Section> 
-    
-      
+      <Section title={'Моя пуста бібліотека'} titleLevel={'h2'} isHidden>
+        {isMobile && (
+          <>
+            {showMobileForm && <LibraryForm />}
+            {showSteps && (
+              <EmtpyLibraryText
+                isEmptyLibrary={false}
+                onClick={setShowLibraryForm}
+              />
+            )}
+          </>
+        )}
+        {!isMobile && (
+          <>
+            <LibraryForm />
+            {showSteps && (
+              <EmtpyLibraryText
+                isEmptyLibrary={false}
+                onClick={setShowLibraryForm}
+              />
+            )}
+          </>
+        )}
+      </Section>
     </>
   );
 };

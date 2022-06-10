@@ -32,6 +32,7 @@ export const getCssVars = () => ({
   },
   transition: property => `${property} 200ms linear`,
 });
+
 export const styleFlex = {
   display: 'flex',
   alignItems: 'center',

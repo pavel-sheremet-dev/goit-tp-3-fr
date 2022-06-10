@@ -1,32 +1,52 @@
-import { StyledContainer } from 'components/common/container/Container.styled';
 import styled from 'styled-components';
-import { ReactComponent as ArrowIcon } from 'images/svg/arrow.svg';
-import { ReactComponent as BookIc } from 'images/svg/icon-book.svg';
-import { ReactComponent as FlagIc } from 'images/svg/flag.svg';
 
-export const BookIcon = styled(BookIc)`
-  display: inline;
-`;
-export const FlagIcon = styled(FlagIc)`
-  display: inline;
-`;
-
-export const ArrowSvg = styled(ArrowIcon)`
-  display: inline;
-  position: relative;
-  top: 8px;
-`;
 export const StyledList = styled.ul`
+  padding: 20px;
+  background-color: ${({ theme }) => theme.colors.white};
+  box-shadow: ${({ theme }) => theme.shadows.header};
+
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+    padding: 40px;
+  }
+
   margin-bottom: 40px;
   background-color: ${({ theme }) => theme.colors.white};
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     margin-bottom: 0px;
   }
+
+  & li:not(:last-child) {
+    margin-bottom: 24px;
+  }
+
+  & .step-text {
+    display: flex;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.21;
+
+    & svg {
+      margin-right: 12px;
+    }
+  }
+
+  & .sup-step-text {
+    display: flex;
+    align-items: baseline;
+    padding-left: 34px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.21;
+
+    & span {
+      display: block;
+      width: 10px;
+      margin-right: 8px;
+    }
+  }
 `;
-export const StyledItem = styled.li`
-  margin-top: ${props => props.marginTop};
-`;
-export const StyledWrap = styled.br``;
+
 export const StyledStepText = styled.p`
   margin-bottom: 8px;
   font-weight: 600;
@@ -38,42 +58,25 @@ export const StyledStepText = styled.p`
     margin-top: ${props => props.marTopTablet};
   }
 `;
-export const StyledCreateText = styled.span`
-  margin-left: 15px;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 1.21;
-  @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
-    font-size: 16px;
-    margin-left: 12px;
-  }
-`;
-export const StyledDescriptionText = styled.span`
-  position: relative;
-  top: 8px;
-  margin-left: 8px;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.21;
-  color: ${({ theme }) => theme.colors.lightText};
-`;
+
 export const StyledNameBook = styled.p`
-  position: absolute;
-  top: 27px;
-  left: 24px;
+  margin-bottom: 8px;
   font-size: 14px;
   line-height: 1.21;
   color: ${({ theme }) => theme.colors.lightText};
 `;
 
-export const StyledLibraryBox = styled(StyledContainer)`
-  @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-`;
+// export const StyledLibraryBox = styled(StyledContainer)`
+//   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//   }
+// `;
 export const StyledLibButton = styled.button`
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
   height: 40px;
   min-width: 127px;
   padding: 0;
@@ -96,17 +99,15 @@ export const StyledLibButton = styled.button`
   }
 `;
 
-export const StyledLibBox = styled.div`
-  text-align: center;
-`;
-export const StyledEmptyLibBox = styled.div`
-  margin-top: 30px;
-  padding: 20px;
-  background-color: ${({ theme }) => theme.colors.white};
-  box-shadow: ${({ theme }) => theme.shadows.header};
+export const StyledBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     margin-top: 0px;
-    padding: 40px;
     width: 608px;
     height: 272px;
   }
