@@ -54,6 +54,7 @@ export const Label = styled.label`
     position: absolute;
     top: 65%;
     right: 0;
+    margin-top: 0;
     transform: translateY(-50%);
     &:hover,
     :focus,
@@ -90,7 +91,14 @@ export const ButtonDate = styled(Button)`
 export const Wrapper = styled.div`
   margin-top: 25px;
   margin-bottom: 24px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 280px;
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+    width: 100%;
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
-    width: 320px;
+    width: 280px;
   }
 `;

@@ -6,6 +6,7 @@ import Countdown from '../components/Countdown';
 import CountdownContainer from 'components/CountdownContainer';
 import CongratsModal from 'components/CongratsModal';
 import WellDoneModal from 'components/WellDoneModal';
+import Statistic from 'components/statistic/Statistic';
 
 const responce = {
   status: 'failed',
@@ -15,29 +16,31 @@ const responce = {
   readedPages: 130,
   results: [
     {
-      date: '2022-06-01',
+      date: '2022-06-02T01:42:27.042Z',
       pointResult: 0,
     },
     {
-      date: '2022-06-02',
+      date: '2022-06-04T02:42:27.042Z',
       pointResult: 0,
     },
     {
-      date: '2022-06-03',
+      date: '2022-06-05T14:42:27.042Z',
       pointResult: 50,
     },
     {
-      date: '2022-06-05',
+      date: '2022-06-07T19:42:27.042Z',
       pointResult: 50,
     },
     {
-      date: '2022-06-10',
-      pointResult: 0,
+      date: '2022-06-10T22:42:27.042Z',
+      pointResult: 100,
     },
   ],
 };
 
 const TrainingPage = () => {
+  const startDateResult = responce.results[responce.results.length - 1]?.date;
+  console.log(startDateResult);
   const modalText = {
     bookRead: 'Ще одна книга прочитана',
     trainingCompleted: 'Тренування завершено',
@@ -54,9 +57,10 @@ const TrainingPage = () => {
       {/* <CountdownContainer /> */}
       <Dashboard responce={responce} />
       <Results
-        startDate={responce.startDate}
+        startDate={startDateResult}
         onSubmit={obj => setResult([...results, obj])}
       />
+      <Statistic results={responce.results} />
     </Section>
   );
 };
