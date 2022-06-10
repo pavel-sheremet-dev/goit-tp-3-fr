@@ -92,7 +92,6 @@ export const getPlanValues = (deadlineDate, totalPages, normalizeResults) => {
   const arr = normalizeResults.map((result, i) =>
     getPagesPerDay(readPagesStatus[i], deadlineDate, totalPages, result),
   );
-  console.log('arr', arr);
   return arr;
 };
 
@@ -121,8 +120,6 @@ export const getPagesPerDay = (
   const delta = result.pointResult ? 1 : 0;
 
   const leftFullDays = days > 1 ? Math.floor(days - delta) : 1;
-
-  console.log('leftFullDays', leftFullDays);
 
   return Math.round((totalPages - readedPages) / leftFullDays);
 };
