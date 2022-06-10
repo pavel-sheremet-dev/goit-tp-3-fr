@@ -17,7 +17,8 @@ import authReduser from './auth/auth-slice';
 import booksReducer from './books/books-reducer';
 
 const persistAuthConfig = {
-  key: 'local-token',
+  // key: 'local-token',
+  key: 'auth',
   storage,
   whitelist: ['token'],
 };
