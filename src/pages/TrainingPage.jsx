@@ -2,7 +2,7 @@ import Section from 'components/common/section/Section';
 import Dashboard from 'components/dashboard/Dashboard';
 import Countdown from '../components/Countdown';
 import { useContext } from 'react';
-import { StyledCountdownContainer } from './TrainingPage.styled';
+// import { StyledCountdownContainer } from './TrainingPage.styled';
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import {
   ContainerSection,
@@ -21,8 +21,6 @@ import {
 } from './styleSection/stylePosition';
 
 const nextYear = new Date().getFullYear() + 1;
-
-
 
 const responce = {
   status: 'failed',
@@ -54,7 +52,7 @@ const responce = {
   ],
 };
 
-export const TrainingPage = () => {
+const TrainingPage = () => {
   const pageFormat = useContext(PageFormatContext);
   const isResponse = pageFormat === format.response;
   const isMobile = pageFormat === format.mobile;
@@ -105,7 +103,6 @@ export const TrainingPage = () => {
       )}
       {isTablet && (
         <div>
-          {' '}
           <Section title="Статистика" titleLevel="h2" isHidden>
             <ContainerSection>
               <BoxCountdown>
@@ -186,7 +183,9 @@ export const TrainingPage = () => {
         </div>
       )}
     </>
-
+  );
+};
+export default TrainingPage;
 
 // это только основные моменты.
 
@@ -205,5 +204,3 @@ export const TrainingPage = () => {
 
 // Скорее всего будет коллекция тренировок, в которой будет статус тренировки ['успешно пройденная', 'активная', 'неуспешная']
 // 1.1 При загрузке страницы с треннировкой - идёт запрос на бек, бек смотрит есть ли в базе треннировка со статусом - активная - сравнивает текущее время, если время ушло, обновляет статус, возвращает треннировку, неуспешній статус будет означать показ модального окна. В таком случае рендерить формочку с добавлением результатов, думаю, что не стоит, только результирующую статистику.
-
-export default TrainingPage;
