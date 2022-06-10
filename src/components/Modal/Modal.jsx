@@ -4,7 +4,7 @@ import { WrapperModal, WrapperOverlay } from './Modal.styled';
 
 const modalRoot = document.querySelector('#root');
 
-export default function Modal({ onClose, children, style }) {
+export default function Modal({ onClose, children}) {
   useEffect(() => {
     const handleKeydown = e => {
       if (e.code === 'Escape') {
