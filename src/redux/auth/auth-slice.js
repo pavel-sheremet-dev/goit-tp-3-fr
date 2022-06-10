@@ -3,8 +3,8 @@ import { authOperations } from './index';
 const { signUp, signIn, signOut, getUser } = authOperations;
 
 const initialState = {
-  user: { name: null, email: null },
-
+  // user: { name: null, email: null },
+  user: { name: null, email: null, password: null },
   token: null,
   isLogIn: false,
 
@@ -25,11 +25,18 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(signUp.fulfilled, (state, { payload }) => {
+        // state.loading = false;
+        // state.user.email = payload.user.email;
+        // state.user.name = payload.user.name;
+        // state.token = payload.token;
+        // state.isLogIn = true;
+
         state.loading = false;
         state.user.email = payload.user.email;
         state.user.name = payload.user.name;
-        state.token = payload.token;
-        state.isLogIn = true;
+        state.user.password = payload.user.password;
+        // state.token = payload.token;
+        state.isLogIn = false;
       })
       .addCase(signUp.rejected, (state, { payload }) => {
         state.loading = false;

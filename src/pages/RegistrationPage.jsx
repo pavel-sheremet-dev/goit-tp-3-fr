@@ -1,5 +1,14 @@
+import Info from 'components/Info/Info';
+import RegistrationPageContent from 'components/Registration/RegistrationPageContent/RegistrationPageContent';
+import { Container } from './RegistrationPage.styled';
+
 const RegistrationPage = () => {
-  return <><p>RegistrationPage</p></>;
+  return (
+    <Container>
+      <RegistrationPageContent />
+      <Info />
+    </Container>
+  );
 };
 
 // 1.1 Форма регистрации
