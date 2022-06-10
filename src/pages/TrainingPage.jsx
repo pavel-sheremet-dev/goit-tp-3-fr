@@ -22,6 +22,8 @@ import {
 
 const nextYear = new Date().getFullYear() + 1;
 
+
+
 const responce = {
   status: 'failed',
   startDate: '2022-06-01',
@@ -58,6 +60,7 @@ export const TrainingPage = () => {
   const isMobile = pageFormat === format.mobile;
   const isTablet = pageFormat === format.tablet;
   const isDesktop = pageFormat === format.desktop;
+
   return (
     <>
       {/* Оббертка для компонента есть Box, внутри которого будет замена   */}
@@ -183,8 +186,7 @@ export const TrainingPage = () => {
         </div>
       )}
     </>
-  );
-};
+
 
 // это только основные моменты.
 
