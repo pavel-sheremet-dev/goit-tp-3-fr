@@ -1,9 +1,10 @@
 import Section from 'components/common/section/Section';
 import Dashboard from 'components/dashboard/Dashboard';
-import CountdownContainer from 'components/CountdownContainer';
+// import CountdownContainer from 'components/CountdownContainer';
 import CongratsModal from 'components/CongratsModal';
 import WellDoneModal from 'components/WellDoneModal';
 import Statistic from 'components/statistic/Statistic';
+import AllPositionCStatisticPage from './PositionAllPageStatistic';
 
 const responce = {
   status: 'failed',
@@ -44,6 +45,7 @@ const TrainingPage = () => {
 
   return (
     <Section title="Статистика" titleLevel="h2" isHidden>
+      <AllPositionCStatisticPage />
       <CongratsModal text={modalText.bookRead} />
       <CongratsModal text={modalText.trainingCompleted} />
       <CongratsModal text={modalText.registration} />
