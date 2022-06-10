@@ -1,15 +1,15 @@
 import Section from 'components/common/section/Section';
 import Dashboard from 'components/dashboard/Dashboard';
-import Countdown from '../components/Countdown';
-import { StyledCountdownContainer } from './TrainingPage.styled';
-
-const nextYear = new Date().getFullYear() + 1;
+import CountdownContainer from 'components/CountdownContainer';
+import CongratsModal from 'components/CongratsModal';
+import WellDoneModal from 'components/WellDoneModal';
 
 const responce = {
+  status: 'failed',
   startDate: '2022-06-01',
-  deadlineDate: '2022-06-21',
+  deadlineDate: '2022-06-10',
   totalPages: 200,
-  readedPages: 0,
+  readedPages: 130,
   results: [
     {
       date: '2022-06-01',
@@ -21,32 +21,33 @@ const responce = {
     },
     {
       date: '2022-06-03',
-      pointResult: 15,
+      pointResult: 50,
     },
     {
       date: '2022-06-05',
-      pointResult: 30,
+      pointResult: 50,
     },
     {
-      date: '2022-06-08',
-      pointResult: 30,
+      date: '2022-06-10',
+      pointResult: 0,
     },
   ],
 };
 
-export const TrainingPage = () => {
+const TrainingPage = () => {
+  const modalText = {
+    bookRead: 'Ще одна книга прочитана',
+    trainingCompleted: 'Тренування завершено',
+    registration: 'Вам на пошту надійшов лист із підтвердженням реєстрації',
+  };
+
   return (
     <Section title="Статистика" titleLevel="h2" isHidden>
-      <StyledCountdownContainer>
-        <Countdown
-          deadline={new Date(nextYear, 0, 1)}
-          title="До закінчення року залишилось"
-        />
-        <Countdown
-          deadline={new Date(2022, 7, 1)}
-          title="До досягнення мети залишилось"
-        />
-      </StyledCountdownContainer>
+      <CongratsModal text={modalText.bookRead} />
+      <CongratsModal text={modalText.trainingCompleted} />
+      <CongratsModal text={modalText.registration} />
+      <WellDoneModal />
+      {/* <CountdownContainer /> */}
       <Dashboard responce={responce} />
     </Section>
   );

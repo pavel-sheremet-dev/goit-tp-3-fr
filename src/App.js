@@ -92,7 +92,6 @@ const App = () => {
             </Suspense>
           </main>
           <Main />
-          <Example />
         </Layout>
       </ThemeProvider>
     </div>
