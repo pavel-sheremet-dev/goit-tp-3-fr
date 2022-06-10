@@ -57,7 +57,7 @@ export const getOptions = (normalizeResults, maxPoint, labelsQuantity) => ({
   },
   elements: {
     point: {
-      radius: 9,
+      radius: 6,
       hoverRadius: 12,
       borderWidth: 0,
       hoverBorderWidth: 0,

@@ -1,9 +1,8 @@
 import Section from 'components/common/section/Section';
 import Dashboard from 'components/dashboard/Dashboard';
-import Countdown from '../components/Countdown';
-import { StyledCountdownContainer } from './TrainingPage.styled';
-
-const nextYear = new Date().getFullYear() + 1;
+import CountdownContainer from 'components/CountdownContainer';
+import CongratsModal from 'components/CongratsModal';
+import WellDoneModal from 'components/WellDoneModal';
 
 const responce = {
   status: 'failed',
@@ -35,84 +34,20 @@ const responce = {
   ],
 };
 
-// const responce = {
-//   startDate: '2022-06-09T01:42:27.042Z',
-//   deadlineDate: '2022-06-10T06:18:27.042Z',
-//   totalPages: 300,
-//   readedPages: 106,
-//   results: [
-//     {
-//       date: '2022-06-10T05:42:27.042Z',
-//       pointResult: 0,
-//     },
-//     {
-//       date: '2022-06-10T06:14:22.597Z',
-//       pointResult: 10,
-//     },
-//     {
-//       date: '2022-06-10T06:14:52.649Z',
-//       pointResult: 10,
-//     },
-//     {
-//       date: '2022-06-10T06:15:14.789Z',
-//       pointResult: 10,
-//     },
-//     {
-//       date: '2022-06-10T06:15:34.613Z',
-//       pointResult: 10,
-//     },
-//     {
-//       date: '2022-06-10T06:15:43.743Z',
-//       pointResult: 10,
-//     },
-//     {
-//       date: '2022-06-10T06:16:07.064Z',
-//       pointResult: 10,
-//     },
-//     {
-//       date: '2022-06-10T06:17:39.219Z',
-//       pointResult: 10,
-//     },
-//     {
-//       date: '2022-06-10T06:19:05.170Z',
-//       pointResult: 10,
-//     },
-//     {
-//       date: '2022-06-10T06:20:58.529Z',
-//       pointResult: 10,
-//     },
-//     {
-//       date: '2022-06-10T06:21:17.788Z',
-//       pointResult: 1,
-//     },
-//     {
-//       date: '2022-06-10T06:21:53.573Z',
-//       pointResult: 1,
-//     },
-//     {
-//       date: '2022-06-10T06:23:57.422Z',
-//       pointResult: 1,
-//     },
-//     {
-//       date: '2022-06-10T06:24:03.836Z',
-//       pointResult: 8,
-//     },
-//   ],
-// };
+const TrainingPage = () => {
+  const modalText = {
+    bookRead: 'Ще одна книга прочитана',
+    trainingCompleted: 'Тренування завершено',
+    registration: 'Вам на пошту надійшов лист із підтвердженням реєстрації',
+  };
 
-export const TrainingPage = () => {
   return (
     <Section title="Статистика" titleLevel="h2" isHidden>
-      <StyledCountdownContainer>
-        <Countdown
-          deadline={new Date(nextYear, 0, 1)}
-          title="До закінчення року залишилось"
-        />
-        <Countdown
-          deadline={new Date(2022, 7, 1)}
-          title="До досягнення мети залишилось"
-        />
-      </StyledCountdownContainer>
+      <CongratsModal text={modalText.bookRead} />
+      <CongratsModal text={modalText.trainingCompleted} />
+      <CongratsModal text={modalText.registration} />
+      <WellDoneModal />
+      {/* <CountdownContainer /> */}
       <Dashboard responce={responce} />
     </Section>
   );
