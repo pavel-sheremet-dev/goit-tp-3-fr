@@ -7,7 +7,7 @@ import { PageFormatContext, format } from 'context/pageFormatContext';
 import {
   ContainerSection,
   Goal,
-  ContainerCountdown,
+  BoxCountdown,
   BoxGoal,
   Library,
   BoxLibrary,
@@ -18,19 +18,16 @@ import {
   BoxDasboard,
   UnderGolMyTranny,
   BoxUnderGolMyTranny,
-  DesktopGoal,
-  DekstopCountDown,
-  DekstopResults,
-  DekstopLibraryDashboard,
 } from './styleSection/stylePosition';
 
 const nextYear = new Date().getFullYear() + 1;
 
 const responce = {
+  status: 'failed',
   startDate: '2022-06-01',
-  deadlineDate: '2022-06-21',
+  deadlineDate: '2022-06-10',
   totalPages: 200,
-  readedPages: 0,
+  readedPages: 130,
   results: [
     {
       date: '2022-06-01',
@@ -42,23 +39,19 @@ const responce = {
     },
     {
       date: '2022-06-03',
-      pointResult: 15,
+      pointResult: 50,
     },
     {
       date: '2022-06-05',
-      pointResult: 30,
+      pointResult: 50,
     },
     {
-      date: '2022-06-08',
-      pointResult: 30,
+      date: '2022-06-10',
+      pointResult: 0,
     },
   ],
 };
-const styleSec = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-};
+
 export const TrainingPage = () => {
   const pageFormat = useContext(PageFormatContext);
   const isResponse = pageFormat === format.response;
@@ -67,12 +60,13 @@ export const TrainingPage = () => {
   const isDesktop = pageFormat === format.desktop;
   return (
     <>
+      {/* Оббертка для компонента есть Box, внутри которого будет замена   */}
       {isResponse && <div>Response</div>}
       {isMobile && (
         <div>
           <Section title="Статистика" titleLevel="h2" isHidden>
             <ContainerSection>
-              <ContainerCountdown>
+              <BoxCountdown>
                 <CountDown>Countdown</CountDown>
                 {/* <StyledCountdownContainer>
           <Countdown
@@ -84,7 +78,7 @@ export const TrainingPage = () => {
             title="До досягнення мети залишилось"
           />
         </StyledCountdownContainer> */}
-              </ContainerCountdown>
+              </BoxCountdown>
 
               <BoxResults>
                 <Results>Results</Results>
@@ -111,7 +105,7 @@ export const TrainingPage = () => {
           {' '}
           <Section title="Статистика" titleLevel="h2" isHidden>
             <ContainerSection>
-              <ContainerCountdown>
+              <BoxCountdown>
                 <CountDown>Countdown</CountDown>
                 {/* <StyledCountdownContainer>
           <Countdown
@@ -123,13 +117,13 @@ export const TrainingPage = () => {
             title="До досягнення мети залишилось"
           />
         </StyledCountdownContainer> */}
-              </ContainerCountdown>
+              </BoxCountdown>
 
               <BoxGoal>
                 <Goal>My Goal</Goal>
               </BoxGoal>
               <BoxUnderGolMyTranny>
-                <UnderGolMyTranny>My Trenning</UnderGolMyTranny>
+                <UnderGolMyTranny>UnderGolMyTranny</UnderGolMyTranny>
               </BoxUnderGolMyTranny>
 
               <BoxLibrary>
@@ -153,8 +147,7 @@ export const TrainingPage = () => {
           <Section title="Статистика" titleLevel="h2" isHidden>
             <ContainerSection>
               <div>
-                {' '}
-                <ContainerCountdown>
+                <BoxCountdown>
                   <CountDown>Countdown</CountDown>
                   {/* <StyledCountdownContainer>
           <Countdown
@@ -166,7 +159,7 @@ export const TrainingPage = () => {
             title="До досягнення мети залишилось"
           />
         </StyledCountdownContainer> */}
-                </ContainerCountdown>
+                </BoxCountdown>
                 <BoxLibrary>
                   <Library>Library</Library>
                 </BoxLibrary>

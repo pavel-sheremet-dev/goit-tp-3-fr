@@ -5,8 +5,6 @@ export const ContainerSection = styled.div`
   grid-template-columns: auto;
   /* grid-template-rows: 100vh; */
   align-items: center;
-  /* grid-template-rows: 80px 300px; */
-  /* background-color: #2196f3; */
   @media (min-width: 1280px) {
     grid-template-columns: auto 288px;
     grid-template-rows: auto auto;
@@ -47,11 +45,9 @@ export const BoxUnderGolMyTranny = styled.div`
     margin-bottom: 32px;
   }
 `;
-export const ContainerCountdown = styled.div`
+export const BoxCountdown = styled.div`
   @media (min-width: 1280px) {
-    /* height: 200px; */
     padding-right: 32px;
-    /* margin-bottom: 44px; */
   }
 `;
 export const CountDown = styled.div`
@@ -63,7 +59,6 @@ export const Library = styled.div`
   background: teal;
   width: 100%;
   height: 261px;
-  /* height: 100vh; */
 `;
 export const BoxLibrary = styled.div`
   margin-bottom: 32px;
@@ -103,6 +98,5 @@ export const BoxResults = styled.div`
   }
   @media (min-width: 1280px) {
     margin-top: 0;
-    /* padding-top: 40px; */
   }
 `;
