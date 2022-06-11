@@ -1,13 +1,21 @@
 import Info from 'components/Info/Info';
 import RegistrationPageContent from 'components/Registration/RegistrationPageContent/RegistrationPageContent';
 import { Container } from './RegistrationPage.styled';
+import SignUpForm from 'components/auth/SignUpForm';
+// const RegistrationPage = () => {
+//   return (
+    // <Container>
+    //   <RegistrationPageContent />
+    //   <Info />
+    // </Container>
+
+
 
 const RegistrationPage = () => {
   return (
-    <Container>
-      <RegistrationPageContent />
-      <Info />
-    </Container>
+    <>
+      <SignUpForm />
+    </>
   );
 };
 

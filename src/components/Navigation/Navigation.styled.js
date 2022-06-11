@@ -28,9 +28,7 @@ export const StyledSpanFirstLetterName = styled.span`
   background-color: ${({ theme }) => theme.colors.iconsHover};
   border-radius: 50%;
 `;
-export const StyledHeaderButton = styled.button.attrs(props => ({
-  type: 'sumbit',
-}))`
+export const StyledHeaderButton = styled.button`
   display: inline-block;
   margin-left: 14px;
   padding: 0px;
