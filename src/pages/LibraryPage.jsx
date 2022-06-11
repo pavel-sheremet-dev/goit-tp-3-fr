@@ -1,13 +1,84 @@
 import Section from 'components/common/section/Section';
 import EmtpyLibraryText from 'components/emtpyLibraryText/EmtpyLibraryText';
 import LibraryForm from 'components/LibraryForm/LibraryForm';
+
+import FinishedBooks from 'components/LibraryBooks/FinishedBooks';
+import InActionBooks from 'components/LibraryBooks/InActionBooks';
+
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { useContext, useState } from 'react';
+import { getTypeKeys } from 'helpers/libraryService';
+import RatingModal from 'components/RatingModal/RatingModal';
+import Modal from 'components/Modal/Modal';
 
-const { mobile, response, tablet, desktop } = format;
+const Books = {
+  library: {
+    unread: [
+      {
+        _id: '629e6ce821405d7608cd6579',
+        name: 'MastrMa gard Mastrr MMastrMa gard Mastrr MastrMa gard MastrrastrMa gard Mastrr',
+        author:
+          'Bulgakov Bulgakov Bulga Bulgakov Bulgakov Bu Bulgakov Bulgakov Bukov Bulgakov Bulgakov',
+        year: 1967,
+        pages: 384,
+        status: 'unread',
+        rating: null,
+        review: null,
+        owner: {
+          _id: '629e697c5bd58ef02b9a9e9f',
+          email: 'cezarsng@gmail.com',
+        },
+        createdAt: '2022-06-06T21:08:56.103Z',
+        updatedAt: '2022-06-06T21:08:56.103Z',
+        __v: 0,
+      },
+    ],
+    reading: [
+      {
+        _id: '629e6ce821405d7608cd6579',
+        name: 'Master and Margarita',
+        author: 'Bulgakov',
+        year: 1967,
+        pages: 384,
+        status: 'reading',
+        rating: null,
+        review: null,
+        owner: {
+          _id: '629e697c5bd58ef02b9a9e9f',
+          email: 'cezarsng@gmail.com',
+        },
+        createdAt: '2022-06-06T21:08:56.103Z',
+        updatedAt: '2022-06-06T21:08:56.103Z',
+        __v: 0,
+      },
+    ],
+    finished: [
+      {
+        _id: '629e6ce821405d7608cd6579',
+        name: 'Master and Margarita',
+        author: 'Bulgakov',
+        year: 1967,
+        pages: 384,
+        status: 'finished',
+        rating: null,
+        review: null,
+        owner: {
+          _id: '629e697c5bd58ef02b9a9e9f',
+          email: 'cezarsng@gmail.com',
+        },
+        createdAt: '2022-06-06T21:08:56.103Z',
+        updatedAt: '2022-06-06T21:08:56.103Z',
+        __v: 0,
+      },
+    ],
+  },
+};
+
+const { mobile, response } = format;
 
 const LibraryPage = () => {
   const [showLibraryForm, setShowLibraryForm] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const pageFormat = useContext(PageFormatContext);
   const isMobile = pageFormat === mobile || pageFormat === response;
 
@@ -15,6 +86,10 @@ const LibraryPage = () => {
 
   const showMobileForm = showLibraryForm || hasBookLibrary;
   const showSteps = !hasBookLibrary && !showLibraryForm;
+
+  const toggleModal = () => {
+    setShowModal(showModal => !showModal);
+  };
 
   return (
     <>
@@ -39,6 +114,27 @@ const LibraryPage = () => {
                 onClick={setShowLibraryForm}
               />
             )}
+          </>
+        )}
+        <FinishedBooks
+          options={Books.library.finished}
+          toggleModal={toggleModal}
+        />
+        <InActionBooks
+          options={Books.library.reading}
+          type={getTypeKeys().ReadingBooks}
+          title={'Читаю'}
+        />
+        <InActionBooks
+          options={Books.library.unread}
+          type={getTypeKeys().UnreadBooks}
+          title={'Маю намір прочитати'}
+        />
+        {showModal && (
+          <>
+            <Modal onClose={toggleModal}>
+              <RatingModal onClose={toggleModal} />
+            </Modal>
           </>
         )}
       </Section>

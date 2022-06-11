@@ -1,6 +1,6 @@
 import { StyledButton } from './IconButton.styled';
 
-const IconButton = ({ onClick, IconComponent, className, disabled, style }) => {
+const IconButton = ({ onClick, IconComponent, disabled, style, className }) => {
   return (
     <StyledButton
       type="button"
