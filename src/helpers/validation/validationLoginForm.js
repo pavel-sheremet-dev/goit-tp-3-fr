@@ -9,7 +9,7 @@ export const validationLoginSchema = Yup.object({
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
       'Введіть коректну електронну пошту',
     )
-    .required('Поле є обов`язковим')
+    .required('Необхідно заповнити поле')
     .typeError('Введіть електронну пошту в форматі your@email.com'),
 
   password: Yup.string()
@@ -19,7 +19,7 @@ export const validationLoginSchema = Yup.object({
       /^[0-9a-zA-Z_\s'’ʼ-]{5,30}$/,
       'Пароль має бути від 5 до 30 символів',
     )
-    .required('Поле є обов`язковим')
+    .required('Необхідно заповнити поле')
     .typeError('Поле може містити літери латиниці, цифри та знаки'),
 });
 

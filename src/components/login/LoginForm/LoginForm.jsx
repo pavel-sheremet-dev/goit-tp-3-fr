@@ -89,7 +89,7 @@ const LoginForm = () => {
         <Input
           id="password"
           name="password"
-          type="text"
+          type="password"
           onChange={formik.handleChange}
           value={formik.values.password}
           placeholder="Пароль"
@@ -102,7 +102,7 @@ const LoginForm = () => {
           <LoginFormRef type="button">Увійти</LoginFormRef>
         </LoginFormButton>
       </Form>
-      <LoginRef>Реєстрація</LoginRef>
+      <LoginRef href='/signup'>Реєстрація</LoginRef>
     </>
   );
 
