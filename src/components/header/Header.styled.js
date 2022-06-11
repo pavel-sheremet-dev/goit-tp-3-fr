@@ -7,6 +7,7 @@ export const StyledContainerHeader = styled(StyledContainer)`
   align-items: center;
   padding-top: 16px;
   padding-bottom: 17px;
+  background-color: ${({ theme }) => theme.colors.white};
   box-shadow: ${({ theme }) => theme.shadows.header};
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     justify-content: space-between;
