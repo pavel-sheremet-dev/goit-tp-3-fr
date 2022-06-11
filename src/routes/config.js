@@ -27,7 +27,14 @@ export const routes = {
   verificate: {
     id: 5,
     title: 'Verification',
-    path: 'verificate',
-    absolutePath: '/verificate',
+    path: 'api/users/verify',
+    absolutePath: '/api/users/verify',
+  },
+};
+
+export const dinamic = {
+  id: {
+    title: 'verify',
+    path: ':movieId',
   },
 };
