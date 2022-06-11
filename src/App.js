@@ -60,7 +60,10 @@ const App = () => {
             <Suspense fallback={<Loader />}>
               <Routes>
                 {/* PUBLIC */}
-                <Route path={verificate.path} element={<VerificatePage />} />
+                <Route
+                  path={`${verificate.path}/:token`}
+                  element={<VerificatePage />}
+                />
 
                 {/* NOT AUTH */}
                 <Route
