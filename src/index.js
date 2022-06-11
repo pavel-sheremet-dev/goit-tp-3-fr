@@ -7,6 +7,7 @@ import axios from 'axios';
 import 'modern-normalize/modern-normalize.css';
 import 'fonts/stylesheet.css';
 import 'react-datetime/css/react-datetime.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import App from './App';
 import { persistor, store } from 'redux/store';

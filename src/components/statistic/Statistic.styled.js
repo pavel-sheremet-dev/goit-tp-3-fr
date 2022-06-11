@@ -43,7 +43,7 @@ export const Title = styled.h2`
     justify-content: center;
 
     &::before,
-    ::after {
+    &::after {
       content: url(${SmallLine});
       margin-top: -5px;
       margin-left: 4px;

@@ -1,5 +1,6 @@
 import Section from 'components/common/section/Section';
 import Dashboard from 'components/dashboard/Dashboard';
+import { ToastContainer } from 'react-toastify';
 import Results from 'components/results/Results';
 import { useState } from 'react';
 import Countdown from '../components/Countdown';
@@ -32,7 +33,7 @@ const responce = {
       pointResult: 50,
     },
     {
-      date: '2022-06-10T22:42:27.042Z',
+      date: '2022-06-09T08:42:27.042Z',
       pointResult: 100,
     },
   ],
@@ -47,14 +48,15 @@ const TrainingPage = () => {
   const [results, setResult] = useState([]);
 
   const getStartDay = (deadlineDate, results) => {
-    if (new Date() < deadlineDate) return results[results.length - 1].date;
-    if (new Date() > deadlineDate) {
+    if (Date.now() < Date.parse(deadlineDate)) {
+      return results[results.length - 1].date;
+    }
+    if (Date.now() > Date.parse(deadlineDate)) {
       const prevDay = new Date(new Date() - 1000 * 60 * 60 * 24);
       const lastResult = results[results.length - 1].date;
       return lastResult < prevDay ? prevDay : lastResult;
     }
   };
-
   const startDay = getStartDay(responce.deadlineDate, responce.results);
 
   return (
@@ -67,9 +69,19 @@ const TrainingPage = () => {
       <Dashboard responce={responce} />
       <Results
         startDate={startDay}
+        finishDate={responce.deadlineDate}
         onSubmit={obj => setResult([...results, obj])}
       />
       <Statistic results={responce.results} />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+      />
     </Section>
   );
 };

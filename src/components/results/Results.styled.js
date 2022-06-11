@@ -57,8 +57,8 @@ export const Label = styled.label`
     margin-top: 0;
     transform: translateY(-50%);
     &:hover,
-    :focus,
-    :active {
+    &:focus,
+    &:active {
       background-color: transparent;
     }
   }
@@ -76,6 +76,16 @@ export const ButtonDate = styled(Button)`
   outline-color: transparent;
   color: ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors.mainBrandColor};
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.hover};
+    outline: 1px solid ${({ theme }) => theme.colors.hover};
+    box-shadow: ${({ theme }) => theme.shadows.btnShadow};
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     margin-bottom: 0;
     margin-top: 17px;

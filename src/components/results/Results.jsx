@@ -1,4 +1,5 @@
 import Datetime from 'react-datetime';
+import { toast } from 'react-toastify';
 import 'moment/locale/uk';
 import {
   Title,
@@ -12,9 +13,18 @@ import { ReactComponent as CalendarIconDown } from 'images/svg/calendar-icon-dow
 import IconButton from 'components/common/button/IconButton';
 import { useState } from 'react';
 
-const DateTimeInput = ({ selectedDate, onChange, startDate }) => {
+const DateTimeInput = ({
+  selectedDate,
+  onChange,
+  startDate,
+  finishDate,
+  date,
+}) => {
   const valid = current => {
-    return current.isAfter(startDate);
+    return current.isAfter(startDate) && current.isAfter(finishDate) - 1;
+  };
+  const inputProps = {
+    value: '',
   };
   const renderInput = (props, openCalendar) => {
     return (
@@ -32,6 +42,7 @@ const DateTimeInput = ({ selectedDate, onChange, startDate }) => {
 
   return (
     <Datetime
+      inputProps={!date ? inputProps : selectedDate}
       renderInput={renderInput}
       value={selectedDate}
       dateFormat="DD.MM.YYYY"
@@ -40,17 +51,22 @@ const DateTimeInput = ({ selectedDate, onChange, startDate }) => {
       closeOnClickOutside
       closeOnSelect
       locale="uk"
-      onChange={date => onChange(date._d)}
+      onChange={date => {
+        onChange(date._d);
+      }}
     />
   );
 };
-const Results = ({ startDate, onSubmit }) => {
+const Results = ({ startDate, finishDate, onSubmit }) => {
   const [date, setDate] = useState('');
   const [pages, setPages] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
-    onSubmit({ date: Date.parse(date), pages });
+    if (!date || !pages) {
+      return toast.error('Поля дати та сторінок мають бути заповнені');
+    }
+    onSubmit({ date: date.toJSON(), pages });
     setDate('');
     setPages('');
   };
@@ -62,14 +78,17 @@ const Results = ({ startDate, onSubmit }) => {
           selectedDate={date}
           onChange={setDate}
           startDate={startDate}
+          finishDate={finishDate}
+          date={date}
         />
         <Label>
           <span>Кількість сторінок</span>
           <InputDate
             name="number"
-            type="text"
+            type="number"
             placeholder="..."
-            maxLength="4"
+            min={1}
+            max={9999}
             value={pages}
             onChange={e => setPages(e.target.value)}
           />
