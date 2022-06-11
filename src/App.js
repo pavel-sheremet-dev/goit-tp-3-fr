@@ -6,24 +6,17 @@ import Layout from 'components/layout/Layout';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authOperations, authSelectors } from 'redux/auth';
-import Modal from 'components/Modal/Modal';
-import RatingModal from 'components/RatingModal/RatingModal';
-import { useState } from 'react';
 import MainComponent from 'components/main/MainComponent';
 import { Loader } from 'components/Loader/Loader';
 
 const App = () => {
   const dispatch = useDispatch();
-  const [showModal, setShowModal] = useState(false);
+
   const isLoadingUser = useSelector(authSelectors.getLoadingUser);
 
   useEffect(() => {
     dispatch(authOperations.getUser());
   }, [dispatch]);
-
-  const toggleModal = () => {
-    setShowModal(showModal => !showModal);
-  };
 
   return (
     <div>
@@ -39,11 +32,6 @@ const App = () => {
             </>
           )}
           {/* <Main /> */}
-          {showModal && (
-            <Modal onClose={toggleModal}>
-              <RatingModal onClose={toggleModal} />
-            </Modal>
-          )}
         </Layout>
       </ThemeProvider>
     </div>
