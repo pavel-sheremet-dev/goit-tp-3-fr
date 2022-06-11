@@ -39,14 +39,23 @@ const responce = {
 };
 
 const TrainingPage = () => {
-  const startDateResult = responce.results[responce.results.length - 1]?.date;
-  console.log(startDateResult);
   const modalText = {
     bookRead: 'Ще одна книга прочитана',
     trainingCompleted: 'Тренування завершено',
     registration: 'Вам на пошту надійшов лист із підтвердженням реєстрації',
   };
   const [results, setResult] = useState([]);
+
+  const getStartDay = (deadlineDate, results) => {
+    if (new Date() < deadlineDate) return results[results.length - 1].date;
+    if (new Date() > deadlineDate) {
+      const prevDay = new Date(new Date() - 1000 * 60 * 60 * 24);
+      const lastResult = results[results.length - 1].date;
+      return lastResult < prevDay ? prevDay : lastResult;
+    }
+  };
+
+  const startDay = getStartDay(responce.deadlineDate, responce.results);
 
   return (
     <Section title="Статистика" titleLevel="h2" isHidden>
@@ -57,7 +66,7 @@ const TrainingPage = () => {
       {/* <CountdownContainer /> */}
       <Dashboard responce={responce} />
       <Results
-        startDate={startDateResult}
+        startDate={startDay}
         onSubmit={obj => setResult([...results, obj])}
       />
       <Statistic results={responce.results} />
