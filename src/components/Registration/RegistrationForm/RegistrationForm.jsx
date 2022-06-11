@@ -106,7 +106,7 @@ const LoginForm = () => {
         {formik.touched.repassword && formik.errors.repassword ? (
           <Error>{formik.errors.repassword}</Error>
         ) : null}
-
+  </Form>
         <LoginFormButton>
           <LoginFormRef type="button">Зареєструватися</LoginFormRef>
           <NavLink to="/training"></NavLink>
@@ -115,7 +115,7 @@ const LoginForm = () => {
           <Appeal> Вже з нами?</Appeal>
           <LoginRef href="/login">Увійти</LoginRef>
         </Question>
-      </Form>
+    
     </>
   );
 };
