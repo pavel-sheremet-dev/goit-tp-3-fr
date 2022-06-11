@@ -25,8 +25,7 @@ const signUp = createAsyncThunk(
       toast.info('Супер! Перевірте свою пошту та підтвердіть реєстрацію.');
       return res.data;
     } catch (error) {
-      const { status, data } = error.response;
-      toast.error(getSignupError(status, data.message));
+      toast.error(getSignupError(error.response.status));
       return thunkAPI.rejectWithValue(error.message);
     }
   },
@@ -39,8 +38,7 @@ const signIn = createAsyncThunk('auth/logIn', async (credentials, thunkAPI) => {
     toast.success('Ви успішно увійшли.');
     return res.data;
   } catch (error) {
-    const { status, data } = error.response;
-    toast.error(getLoginError(status, data.message));
+    toast.error(getLoginError(error.response.status));
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -51,7 +49,7 @@ const signOut = createAsyncThunk('auth/signOut', async (_, thunkAPI) => {
     token.unset();
     toast.success('Ви успішно вийшли.');
   } catch (error) {
-    toast.error(error.response.data.message);
+    toast.error('Упс, щось пішло не так, спробуйте пізніше повторити :)');
     return thunkAPI.rejectWithValue(error.message);
   }
 });

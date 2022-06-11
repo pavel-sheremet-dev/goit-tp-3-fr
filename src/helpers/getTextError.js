@@ -9,8 +9,8 @@ const statusLoginMapping = {
   412: 'Ви не підтвердили реєстрацію. Будь ласка, перевірте пошту в папці вхідні або папку спам.',
 };
 
-export const getLoginError = (status, defaultMessage) =>
-  statusLoginMapping[status] || defaultMessage;
+const getTextError = errors => status =>
+  errors[status] || 'Упс, щось пішло не так, спробуйте пізніше повторити :)';
 
-export const getSignupError = (status, defaultMessage) =>
-  statusSignupMapping[status] || defaultMessage;
+export const getSignupError = getTextError(statusSignupMapping);
+export const getLoginError = getTextError(statusLoginMapping);
