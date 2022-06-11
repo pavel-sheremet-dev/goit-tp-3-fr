@@ -83,10 +83,10 @@ const TrainingForm = () => {
       deadlineDate: '',
       books: initialBook,
     },
-    onSubmit: (values) => {
+    onSubmit: values => {
       const { startDate, deadlineDate, books } = values;
       dispatch(addTraining({ startDate, deadlineDate, books }));
-console.log(books)
+      console.log(books);
     },
     enableReinitialize: true,
   });

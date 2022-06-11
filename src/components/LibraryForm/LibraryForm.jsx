@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 
-import {addBook} from 'redux/books/books-operations';
+import { addBook } from 'redux/books/books-operations';
 import {
   validationAddFormSchema,
   validateForm,

@@ -49,10 +49,10 @@ const TrainingPage = () => {
       <CongratsModal text={modalText.trainingCompleted} />
       <CongratsModal text={modalText.registration} />
       <WellDoneModal />
-      {/* <CountdownContainer /> */}
+      <CountdownContainer />
 
       <TrainingForm />
-      
+
       <Dashboard responce={responce} />
 
       <Statistic results={responce.results} />

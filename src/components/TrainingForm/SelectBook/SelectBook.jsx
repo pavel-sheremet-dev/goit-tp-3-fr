@@ -22,7 +22,7 @@ const SelectBook = ({ options, onChange }) => {
   const chooseItem = ({ _id, name, author, year, pages }) => {
     setSelectedBook(name);
     setOpenSelect(false);
-    onChange([...choosedBooks, { _id, name, author, year, pages } ]);
+    onChange([...choosedBooks, { _id, name, author, year, pages }]);
 
     setbooksIds(state => [...state, _id]);
     setChoosedBooks(state => [...state, { _id, name, author, year, pages }]);
