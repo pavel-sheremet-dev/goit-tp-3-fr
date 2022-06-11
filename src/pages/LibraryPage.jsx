@@ -1,6 +1,10 @@
 import Section from 'components/common/section/Section';
 import EmtpyLibraryText from 'components/emtpyLibraryText/EmtpyLibraryText';
 import LibraryForm from 'components/LibraryForm/LibraryForm';
+
+import FinishedBooks from 'components/LibraryBooks/FinishedBooks';
+import InActionBooks from 'components/LibraryBooks/InActionBooks';
+
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { useContext, useState } from 'react';
 
@@ -41,6 +45,9 @@ const LibraryPage = () => {
             )}
           </>
         )}
+        <FinishedBooks />
+        <InActionBooks type={'ReadingBooks'} title={'Читаю'} />
+        <InActionBooks type={'UnreadBooks'} title={'Маю намір прочитати'} />
       </Section>
     </>
   );
