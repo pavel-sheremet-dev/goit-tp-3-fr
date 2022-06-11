@@ -1,3 +1,5 @@
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { GlobalStyle } from 'styles/GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 import { getCssVars } from 'styles/vars';
@@ -113,6 +115,7 @@ const App = () => {
               <RatingModal onClose={toggleModal} />
             </Modal>
           )}
+          <ToastContainer position="top-center" autoClose={4000} />
         </Layout>
       </ThemeProvider>
     </div>
