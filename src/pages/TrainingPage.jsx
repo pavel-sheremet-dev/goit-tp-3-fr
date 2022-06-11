@@ -4,6 +4,7 @@ import CountdownContainer from 'components/CountdownContainer';
 import CongratsModal from 'components/CongratsModal';
 import WellDoneModal from 'components/WellDoneModal';
 import Statistic from 'components/statistic/Statistic';
+import PlanTimer from 'components/PlanTimer';
 
 const responce = {
   status: 'failed',
@@ -44,13 +45,13 @@ const TrainingPage = () => {
 
   return (
     <Section title="Статистика" titleLevel="h2" isHidden>
+      <PlanTimer />
       <CongratsModal text={modalText.bookRead} />
       <CongratsModal text={modalText.trainingCompleted} />
       <CongratsModal text={modalText.registration} />
       <WellDoneModal />
       {/* <CountdownContainer /> */}
       <Dashboard responce={responce} />
-
       <Statistic results={responce.results} />
     </Section>
   );
