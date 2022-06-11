@@ -4,6 +4,7 @@ import CountdownContainer from 'components/CountdownContainer';
 import CongratsModal from 'components/CongratsModal';
 import WellDoneModal from 'components/WellDoneModal';
 import Statistic from 'components/statistic/Statistic';
+import TrainingForm from 'components/TrainingForm/TrainingForm';
 
 const responce = {
   status: 'failed',
@@ -49,6 +50,9 @@ const TrainingPage = () => {
       <CongratsModal text={modalText.registration} />
       <WellDoneModal />
       {/* <CountdownContainer /> */}
+
+      <TrainingForm />
+      
       <Dashboard responce={responce} />
 
       <Statistic results={responce.results} />
