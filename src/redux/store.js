@@ -14,7 +14,8 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import authReduser from './auth/auth-slice';
-import booksReducer from './books/books-reducer';
+import booksReducer from './books/books-slice';
+import trainingReducer from './training/training-slice';
 
 const persistAuthConfig = {
   // key: 'local-token',
@@ -24,8 +25,15 @@ const persistAuthConfig = {
 };
 
 const persistRootConfig = {
-  key: 'books',
+  key: 'local-books',
   storage,
+  whitelist: [],
+};
+
+const persistTrainingConfig = {
+  key: 'local-training',
+  storage,
+  whitelist: [],
 };
 
 // const persistRootConfig = {
@@ -37,6 +45,8 @@ const persistRootConfig = {
 const rootReducer = combineReducers({
   auth: persistReducer(persistAuthConfig, authReduser),
   books: persistReducer(persistRootConfig, booksReducer),
+  training: persistReducer(persistTrainingConfig, trainingReducer),
+
   // ... other reducers
 });
 

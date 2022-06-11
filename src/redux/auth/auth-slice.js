@@ -32,8 +32,8 @@ const authSlice = createSlice({
         // state.isLogIn = true;
 
         state.loading = false;
-        state.user.email = payload.user.email;
-        state.user.name = payload.user.name;
+        state.user.email = payload.email;
+        state.user.name = payload.name;
       })
       .addCase(signUp.rejected, (state, { payload }) => {
         state.loading = false;

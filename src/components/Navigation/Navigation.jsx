@@ -16,6 +16,7 @@ import {
 } from './Navigation.styled';
 
 const Navigation = () => {
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn);
   const pageFormat = useContext(PageFormatContext);
   const isResponse = pageFormat === format.response;
@@ -23,8 +24,7 @@ const Navigation = () => {
   const isTablet = pageFormat === format.tablet;
   const isDesktop = pageFormat === format.desktop;
   const name = useSelector(getUserName) ?? '';
-  const dispatch = useDispatch();
-  const iconName = name[0];
+  const iconName = name[0]?.toUpperCase();
 
   const handleClick = () => {
     dispatch(authOperations.signOut());
