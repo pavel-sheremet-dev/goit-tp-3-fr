@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 
-import addBook from 'redux/books/books-actions';
+import {addBook} from 'redux/books/books-operations';
 import {
   validationAddFormSchema,
   validateForm,
@@ -23,7 +23,7 @@ const LibraryMobileForm = () => {
 
   const formik = useFormik({
     initialValues: {
-      title: '',
+      name: '',
       author: '',
       year: '',
       pages: '',
@@ -33,8 +33,8 @@ const LibraryMobileForm = () => {
     onSubmit: (values, { resetForm }) => {
       alert(JSON.stringify(values, null, 2));
 
-      const { title, author, year, pages } = values;
-      dispatch(addBook({ title, author, year, pages }));
+      const { name, author, year, pages } = values;
+      dispatch(addBook({ name, author, year, pages }));
       resetForm();
     },
   });
@@ -44,15 +44,15 @@ const LibraryMobileForm = () => {
       <TitleLabel>
         <span>Назва книги</span>
         <Input
-          id="title"
-          name="title"
+          id="name"
+          name="name"
           type="text"
           placeholder="..."
-          value={formik.values.title}
+          value={formik.values.name}
           onChange={formik.handleChange}
         />
-        {formik.touched.title && formik.errors.title ? (
-          <ErrorContainer>{formik.errors.title}</ErrorContainer>
+        {formik.touched.name && formik.errors.name ? (
+          <ErrorContainer>{formik.errors.name}</ErrorContainer>
         ) : null}
       </TitleLabel>
 
