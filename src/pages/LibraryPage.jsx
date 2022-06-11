@@ -8,6 +8,8 @@ import InActionBooks from 'components/LibraryBooks/InActionBooks';
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { useContext, useState } from 'react';
 import { getTypeKeys } from 'helpers/libraryService';
+import RatingModal from 'components/RatingModal/RatingModal';
+import Modal from 'components/Modal/Modal';
 
 const Books = {
   library: {
@@ -76,6 +78,7 @@ const { mobile, response } = format;
 
 const LibraryPage = () => {
   const [showLibraryForm, setShowLibraryForm] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const pageFormat = useContext(PageFormatContext);
   const isMobile = pageFormat === mobile || pageFormat === response;
 
@@ -83,6 +86,10 @@ const LibraryPage = () => {
 
   const showMobileForm = showLibraryForm || hasBookLibrary;
   const showSteps = !hasBookLibrary && !showLibraryForm;
+
+  const toggleModal = () => {
+    setShowModal(showModal => !showModal);
+  };
 
   return (
     <>
@@ -109,7 +116,10 @@ const LibraryPage = () => {
             )}
           </>
         )}
-        <FinishedBooks options={Books.library.finished} />
+        <FinishedBooks
+          options={Books.library.finished}
+          toggleModal={toggleModal}
+        />
         <InActionBooks
           options={Books.library.reading}
           type={getTypeKeys().ReadingBooks}
@@ -120,6 +130,13 @@ const LibraryPage = () => {
           type={getTypeKeys().UnreadBooks}
           title={'Маю намір прочитати'}
         />
+        {showModal && (
+          <>
+            <Modal onClose={toggleModal}>
+              <RatingModal onClose={toggleModal} />
+            </Modal>
+          </>
+        )}
       </Section>
     </>
   );

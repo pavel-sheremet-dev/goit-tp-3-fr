@@ -23,7 +23,7 @@ import {
   ContentBox,
 } from 'components/LibraryBooks/library.styled';
 
-const FinishedBooks = ({ options = [] }) => {
+const FinishedBooks = ({ options = [], toggleModal }) => {
   const pageFormat = useContext(PageFormatContext);
 
   const { mobile, response, tablet, desktop } = format;
@@ -32,7 +32,9 @@ const FinishedBooks = ({ options = [] }) => {
   const isTablet = pageFormat === tablet;
   const isDesktop = pageFormat === desktop;
 
-  const onHandleChange = () => {};
+  const handleClick = () => {
+    console.log('click');
+  };
 
   return (
     <>
@@ -115,7 +117,9 @@ const FinishedBooks = ({ options = [] }) => {
                           </List>
                         </FlexTitle>
                       </div>
-                      <Button type="button">Резюме</Button>
+                      <Button type="button" onClick={toggleModal}>
+                        Резюме
+                      </Button>
                     </>
                   )}
                   {isTablet && (
@@ -170,7 +174,9 @@ const FinishedBooks = ({ options = [] }) => {
                           </List>
                         </FlexTitle>
                       </div>
-                      <Button type="button">Резюме</Button>
+                      <Button type="button" onClick={toggleModal}>
+                        Резюме
+                      </Button>
                     </>
                   )}
                   {isDesktop && (
@@ -220,7 +226,7 @@ const FinishedBooks = ({ options = [] }) => {
                           </List>
                         </FlexTitle>
                       </ContentBox>
-                      <Button type="button" onClick={onHandleChange}>
+                      <Button type="button" onClick={toggleModal}>
                         Резюме
                       </Button>
                     </>
