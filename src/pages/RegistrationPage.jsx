@@ -1,5 +1,12 @@
+
+import SignUpForm from 'components/auth/SignUpForm';
+
 const RegistrationPage = () => {
-  return <><p>RegistrationPage</p></>;
+  return (
+    <>
+      <SignUpForm />
+    </>
+  );
 };
 
 // 1.1 Форма регистрации
