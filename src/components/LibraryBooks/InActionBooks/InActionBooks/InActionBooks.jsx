@@ -1,12 +1,9 @@
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { nanoid } from '@reduxjs/toolkit';
 
 import validationWordLength from 'helpers/validation/validationWordLength';
-import fetchLibBooksCollections from 'helpers/libraryService';
 import { ReactComponent as ExampleIcon } from 'images/svg/example-svg.svg';
-
-import data from 'data/data1.json';
 
 import {
   BookIcon,
@@ -24,8 +21,7 @@ import {
   Book,
 } from 'components/LibraryBooks/library.styled';
 
-const InActionBooks = ({ type, title }) => {
-  const [options, setOptions] = useState([]);
+const InActionBooks = ({ type, title, options = [] }) => {
   const pageFormat = useContext(PageFormatContext);
 
   const { mobile, response, tablet, desktop } = format;
@@ -33,22 +29,6 @@ const InActionBooks = ({ type, title }) => {
   const isMobile = pageFormat === mobile;
   const isTablet = pageFormat === tablet;
   const isDesktop = pageFormat === desktop;
-
-  useEffect(() => {
-    fetchLibBooksCollections()
-      .then(books => {
-        if (type === 'ReadingBooks') {
-          setOptions(books.reading);
-        }
-        if (type === 'UnreadBooks') {
-          setOptions(books.unread);
-        }
-      })
-      .catch(e => {
-        console.log(e.message);
-      });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <>

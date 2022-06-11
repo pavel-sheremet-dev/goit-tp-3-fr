@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { ReactComponent as Star } from 'images/svg/star-full.svg';
 import { ReactComponent as Example } from 'images/svg/example-svg.svg';
+import { getTypeKeys } from 'helpers/libraryService';
 
 export const PosContainer = styled.div`
   width: 280px;
@@ -71,7 +72,7 @@ export const BookTitle = styled.p`
     line-height: 17px;
 
     width: ${props =>
-      props.type === 'FinishedBooks' ? props.width : props.wid};
+      props.type === getTypeKeys().FinishedBooks ? props.width : props.wid};
     height: ${props => (props.length > props.string ? props.height : 'auto')};
     margin: 0;
   }
@@ -107,7 +108,7 @@ export const BookText = styled.li`
     line-height: 17px;
 
     margin: ${props =>
-      props.fn === 'FinishedBooks' ? props.margin : props.more};
+      props.fn === getTypeKeys().FinishedBooks ? props.margin : props.more};
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
     position: unset;
@@ -191,7 +192,7 @@ export const BookIcon = styled.span`
 export const Book = styled(Example)`
   width: 22px;
   fill: ${props =>
-    props.fill === 'ReadingBooks'
+    props.fill === getTypeKeys().ReadingBooks
       ? ({ theme }) => theme.colors.mainBrandColor
       : ({ theme }) => theme.colors.placeholder};
 

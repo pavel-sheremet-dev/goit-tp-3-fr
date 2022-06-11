@@ -1,12 +1,9 @@
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { nanoid } from '@reduxjs/toolkit';
 
 import validationWordLength from 'helpers/validation/validationWordLength';
-import fetchLibBooksCollections from 'helpers/libraryService';
 import GetBookRating from '../GetBookRating';
-
-import data from 'data/data1.json';
 
 import { ReactComponent as ExampleIcon } from 'images/svg/example-svg.svg';
 import {
@@ -26,8 +23,7 @@ import {
   ContentBox,
 } from 'components/LibraryBooks/library.styled';
 
-const FinishedBooks = () => {
-  const [options, setOptions] = useState([]);
+const FinishedBooks = ({ options = [] }) => {
   const pageFormat = useContext(PageFormatContext);
 
   const { mobile, response, tablet, desktop } = format;
@@ -35,16 +31,6 @@ const FinishedBooks = () => {
   const isMobile = pageFormat === mobile;
   const isTablet = pageFormat === tablet;
   const isDesktop = pageFormat === desktop;
-
-  useEffect(() => {
-    fetchLibBooksCollections()
-      .then(books => {
-        setOptions(books.finished);
-      })
-      .catch(e => {
-        console.log(e.message);
-      });
-  }, []);
 
   const onHandleChange = () => {};
 
