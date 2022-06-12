@@ -46,7 +46,7 @@
         "year": 1967,
         "pages": 384,
         "status": "finished",
-        "rating": null,
+        "rating": 3,
         "review": null,
         "owner": {
           "_id": "629e697c5bd58ef02b9a9e9f",

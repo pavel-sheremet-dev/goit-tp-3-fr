@@ -32,7 +32,7 @@ const InActionBooks = ({ type, title, options = [] }) => {
 
   return (
     <>
-      {options.length >= 1 ? (
+      {options?.length > 0 ? (
         <PosContainer>
           <Title>{title}</Title>
           {isTablet && (
@@ -41,21 +41,21 @@ const InActionBooks = ({ type, title, options = [] }) => {
               <BookText
                 margin="0 0 0 125px"
                 more="0 0 0 275px"
-                fn={InActionBooks.name}
+                fn={InActionBooks?.name}
               >
                 Автор
               </BookText>
               <BookText
                 margin="0 0 0 85px"
                 more="0 0 0 170px"
-                fn={InActionBooks.name}
+                fn={InActionBooks?.name}
               >
                 Рік
               </BookText>
               <BookText
                 margin="0 0 0 35px"
                 more="0 0 0 40px"
-                fn={InActionBooks.name}
+                fn={InActionBooks?.name}
               >
                 Стор.
               </BookText>
@@ -67,28 +67,28 @@ const InActionBooks = ({ type, title, options = [] }) => {
               <BookText
                 margin="0 0 0 270px"
                 more="0 0 0 550px"
-                fn={InActionBooks.name}
+                fn={InActionBooks?.name}
               >
                 Автор
               </BookText>
               <BookText
                 margin="0 0 0 225px"
                 more="0 0 0 345px"
-                fn={InActionBooks.name}
+                fn={InActionBooks?.name}
               >
                 Рік
               </BookText>
               <BookText
                 margin="0 0 0 70px"
                 more="0 0 0 80px"
-                fn={InActionBooks.name}
+                fn={InActionBooks?.name}
               >
                 Стор.
               </BookText>
             </List>
           )}
           <CollectionBox>
-            {options.map(({ name, author, year, pages }) => {
+            {options?.map(({ name, author, year, pages }) => {
               return (
                 <LibraryBox key={nanoid()}>
                   {(isResponse || isMobile) && (
@@ -102,7 +102,7 @@ const InActionBooks = ({ type, title, options = [] }) => {
                             {validationWordLength(65, name)}
                           </BookTitle>
                           <List>
-                            <BookText length={author.length} string={26}>
+                            <BookText length={author?.length} string={26}>
                               <BooksTextSentence>Автор:</BooksTextSentence>
                               <BooksGetContent left="75px" width="110px">
                                 {validationWordLength(26, author)}
@@ -131,11 +131,11 @@ const InActionBooks = ({ type, title, options = [] }) => {
                         <BookIcon color={InActionBooks.name} height="37px">
                           <Book fill={type} />
                         </BookIcon>
-                        <FlexTitle length={name.length} string={30}>
+                        <FlexTitle length={name?.length} string={30}>
                           <BookTitle
                             type={type}
                             wid="295px"
-                            length={name.length}
+                            length={name?.length}
                             string={30}
                           >
                             {validationWordLength(38, name)}

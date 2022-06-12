@@ -4,6 +4,7 @@ import { Loader } from 'components/Loader/Loader';
 import { routes } from 'routes';
 import AuthRoute from 'routes/AuthRoute';
 import NotAuthRoute from 'routes/NotAuthRoute';
+import LibButton from 'components/LibButton';
 
 const { signUp, login, training, library, verificate } = routes.routes;
 
@@ -17,7 +18,7 @@ const RegistrationPage = lazy(() =>
   import('pages/RegistrationPage' /* webpackChunkName: "RegistrationPage" */),
 );
 const LibraryPage = lazy(() =>
-  import('pages/LibraryPage' /* webpackChunkName: "LibraryPage" */),
+  import('pages/LibraryPage/LibraryPage' /* webpackChunkName: "LibraryPage" */),
 );
 const TrainingPage = lazy(() =>
   import('pages/TrainingPage' /* webpackChunkName: "TrainingPage" */),

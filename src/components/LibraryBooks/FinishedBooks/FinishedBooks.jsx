@@ -17,7 +17,6 @@ import {
   StarContainer,
   Button,
   LibraryBox,
-  CollectionBox,
   PosContainer,
   Title,
   ContentBox,
@@ -75,166 +74,162 @@ const FinishedBooks = ({ options = [], toggleModal }) => {
               </BookText>
             </List>
           )}
-          <CollectionBox>
-            {options.map(({ name, author, year, pages, rating }) => {
-              return (
-                <LibraryBox key={nanoid()}>
-                  {(isResponse || isMobile) && (
-                    <>
-                      <div style={{ display: 'flex' }}>
-                        <BookIcon>
-                          <ExampleIcon />
-                        </BookIcon>
-                        <FlexTitle>
-                          <BookTitle>
-                            {validationWordLength(65, name)}
-                          </BookTitle>
-                          <List>
-                            <BookText length={author.length} string={26}>
-                              <BooksTextSentence>Автор:</BooksTextSentence>
-                              <BooksGetContent left="75px" width="110px">
-                                {validationWordLength(26, author)}
-                              </BooksGetContent>
-                            </BookText>
-                            <BookText>
-                              <BooksTextSentence>Рік:</BooksTextSentence>
-                              <BooksGetContent left="75px">
-                                {year}
-                              </BooksGetContent>
-                            </BookText>
-                            <BookText>
-                              <BooksTextSentence>Стор.:</BooksTextSentence>
-                              <BooksGetContent left="75px">
-                                {pages}
-                              </BooksGetContent>
-                            </BookText>
-                            <BookText>
-                              <BooksTextSentence>Рейтинг:</BooksTextSentence>
-                              <StarContainer left="75px">
-                                <GetBookRating rating={rating} />
-                              </StarContainer>
-                            </BookText>
-                          </List>
-                        </FlexTitle>
-                      </div>
-                      <Button type="button" onClick={toggleModal}>
-                        Резюме
-                      </Button>
-                    </>
-                  )}
-                  {isTablet && (
-                    <>
-                      <div style={{ display: 'flex' }}>
-                        <BookIcon>
-                          <ExampleIcon />
-                        </BookIcon>
-                        <FlexTitle length={name.length} string={30}>
-                          <BookTitle
-                            type={FinishedBooks.name}
-                            width="145px"
-                            length={name.length}
-                            string={30}
-                          >
-                            {validationWordLength(30, name)}
-                          </BookTitle>
-                          <List>
-                            <BookText>
-                              <BooksGetContent
-                                size="14px"
-                                height="17px"
-                                left="10px"
-                                width="115px"
-                              >
-                                {validationWordLength(23, author)}
-                              </BooksGetContent>
-                            </BookText>
-                            <BookText>
-                              <BooksGetContent
-                                size="14px"
-                                height="17px"
-                                left="134px"
-                              >
-                                {year}
-                              </BooksGetContent>
-                            </BookText>
-                            <BookText>
-                              <BooksGetContent
-                                size="14px"
-                                height="17px"
-                                left="210px"
-                              >
-                                {pages}
-                              </BooksGetContent>
-                            </BookText>
-                            <BookText>
-                              <StarContainer left="270px">
-                                <GetBookRating rating={rating} />
-                              </StarContainer>
-                            </BookText>
-                          </List>
-                        </FlexTitle>
-                      </div>
-                      <Button type="button" onClick={toggleModal}>
-                        Резюме
-                      </Button>
-                    </>
-                  )}
-                  {isDesktop && (
-                    <>
-                      <ContentBox>
-                        <BookIcon>
-                          <ExampleIcon />
-                        </BookIcon>
-                        <FlexTitle length={name.length} string={35}>
-                          <BookTitle length={name.length} string={35}>
-                            {validationWordLength(37, name)}
-                          </BookTitle>
-                          <List>
-                            <BookText>
-                              <BooksGetContent
-                                size="14px"
-                                height="17px"
-                                left="360px"
-                                width="250px"
-                              >
-                                {validationWordLength(31, author)}
-                              </BooksGetContent>
-                            </BookText>
-                            <BookText>
-                              <BooksGetContent
-                                size="14px"
-                                height="17px"
-                                left="623px"
-                              >
-                                {year}
-                              </BooksGetContent>
-                            </BookText>
-                            <BookText>
-                              <BooksGetContent
-                                size="14px"
-                                height="17px"
-                                left="745px"
-                              >
-                                {pages}
-                              </BooksGetContent>
-                            </BookText>
-                            <BookText>
-                              <StarContainer left="870px">
-                                <GetBookRating rating={rating} />
-                              </StarContainer>
-                            </BookText>
-                          </List>
-                        </FlexTitle>
-                      </ContentBox>
-                      <Button type="button" onClick={toggleModal}>
-                        Резюме
-                      </Button>
-                    </>
-                  )}
-                </LibraryBox>
-              );
-            })}
-          </CollectionBox>
+          {options.map(({ name, author, year, pages, rating }) => {
+            return (
+              <LibraryBox key={nanoid()} id="height-root">
+                {(isResponse || isMobile) && (
+                  <>
+                    <div style={{ display: 'flex' }}>
+                      <BookIcon>
+                        <ExampleIcon />
+                      </BookIcon>
+                      <FlexTitle>
+                        <BookTitle>{validationWordLength(65, name)}</BookTitle>
+                        <List>
+                          <BookText length={author.length} string={26}>
+                            <BooksTextSentence>Автор:</BooksTextSentence>
+                            <BooksGetContent left="75px" width="110px">
+                              {validationWordLength(26, author)}
+                            </BooksGetContent>
+                          </BookText>
+                          <BookText>
+                            <BooksTextSentence>Рік:</BooksTextSentence>
+                            <BooksGetContent left="75px">
+                              {year}
+                            </BooksGetContent>
+                          </BookText>
+                          <BookText>
+                            <BooksTextSentence>Стор.:</BooksTextSentence>
+                            <BooksGetContent left="75px">
+                              {pages}
+                            </BooksGetContent>
+                          </BookText>
+                          <BookText>
+                            <BooksTextSentence>Рейтинг:</BooksTextSentence>
+                            <StarContainer left="75px">
+                              <GetBookRating rating={rating} />
+                            </StarContainer>
+                          </BookText>
+                        </List>
+                      </FlexTitle>
+                    </div>
+                    <Button type="button" onClick={toggleModal}>
+                      Резюме
+                    </Button>
+                  </>
+                )}
+                {isTablet && (
+                  <>
+                    <div style={{ display: 'flex' }}>
+                      <BookIcon>
+                        <ExampleIcon />
+                      </BookIcon>
+                      <FlexTitle length={name.length} string={30}>
+                        <BookTitle
+                          type={FinishedBooks.name}
+                          width="145px"
+                          length={name.length}
+                          string={30}
+                        >
+                          {validationWordLength(30, name)}
+                        </BookTitle>
+                        <List>
+                          <BookText>
+                            <BooksGetContent
+                              size="14px"
+                              height="17px"
+                              left="10px"
+                              width="115px"
+                            >
+                              {validationWordLength(23, author)}
+                            </BooksGetContent>
+                          </BookText>
+                          <BookText>
+                            <BooksGetContent
+                              size="14px"
+                              height="17px"
+                              left="134px"
+                            >
+                              {year}
+                            </BooksGetContent>
+                          </BookText>
+                          <BookText>
+                            <BooksGetContent
+                              size="14px"
+                              height="17px"
+                              left="210px"
+                            >
+                              {pages}
+                            </BooksGetContent>
+                          </BookText>
+                          <BookText>
+                            <StarContainer left="270px">
+                              <GetBookRating rating={rating} />
+                            </StarContainer>
+                          </BookText>
+                        </List>
+                      </FlexTitle>
+                    </div>
+                    <Button type="button" onClick={toggleModal}>
+                      Резюме
+                    </Button>
+                  </>
+                )}
+                {isDesktop && (
+                  <>
+                    <ContentBox>
+                      <BookIcon>
+                        <ExampleIcon />
+                      </BookIcon>
+                      <FlexTitle length={name.length} string={35}>
+                        <BookTitle length={name.length} string={35}>
+                          {validationWordLength(37, name)}
+                        </BookTitle>
+                        <List>
+                          <BookText>
+                            <BooksGetContent
+                              size="14px"
+                              height="17px"
+                              left="360px"
+                              width="250px"
+                            >
+                              {validationWordLength(31, author)}
+                            </BooksGetContent>
+                          </BookText>
+                          <BookText>
+                            <BooksGetContent
+                              size="14px"
+                              height="17px"
+                              left="623px"
+                            >
+                              {year}
+                            </BooksGetContent>
+                          </BookText>
+                          <BookText>
+                            <BooksGetContent
+                              size="14px"
+                              height="17px"
+                              left="735px"
+                            >
+                              {pages}
+                            </BooksGetContent>
+                          </BookText>
+                          <BookText>
+                            <StarContainer left="870px">
+                              <GetBookRating rating={rating} />
+                            </StarContainer>
+                          </BookText>
+                        </List>
+                      </FlexTitle>
+                    </ContentBox>
+                    <Button type="button" onClick={toggleModal}>
+                      Резюме
+                    </Button>
+                  </>
+                )}
+              </LibraryBox>
+            );
+          })}
         </PosContainer>
       ) : null}
     </>

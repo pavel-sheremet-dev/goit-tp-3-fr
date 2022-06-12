@@ -18,7 +18,7 @@ import {
   ErrorContainer,
 } from './LibraryForm.styled';
 
-const LibraryMobileForm = () => {
+const LibraryMobileForm = ({ isArrayFull }) => {
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -40,7 +40,7 @@ const LibraryMobileForm = () => {
   });
 
   return (
-    <Form onSubmit={formik.handleSubmit}>
+    <Form onSubmit={formik.handleSubmit} isarray={isArrayFull}>
       <TitleLabel>
         <span>Назва книги</span>
         <Input
