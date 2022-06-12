@@ -15,6 +15,7 @@ export const getCssVars = () => ({
     numbers: '#091E3F',
     error: '#ff0000',
     borderColor: '#e0e5eb',
+    hover: '#DC5309',
   },
   delay: 200,
   breakPoints: {
