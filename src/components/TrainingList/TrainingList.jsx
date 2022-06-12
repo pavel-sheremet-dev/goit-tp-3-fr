@@ -22,10 +22,7 @@ import {
   Placeholder,
 } from './TrainingList.styled';
 
-const TrainingList = () => {
-  const books = useSelector(trainingSelectors.getBooks);
-  const dispatch = useDispatch();
-
+const TrainingList = ({ books = [], handleUpdateBook }) => {
   return (
     <Wrapper>
       <HeaderList>
@@ -37,8 +34,8 @@ const TrainingList = () => {
 
       <ListBooks>
         {books.length ? (
-          books.map(({ _id, name, author, year, pages }) => (
-            <ItemBooks key={_id}>
+          books.map(({ id, name, author, year, pages }) => (
+            <ItemBooks key={id}>
               <BookIcon style={{ fill: '#A6ABB9' }} className={'someClass'} />
               <Item style={{ width: '180px' }}>
                 <EllipsisText text={name} length={30} className={'titleBook'} />
@@ -63,7 +60,7 @@ const TrainingList = () => {
                 type="button"
                 className={'iconDelete'}
                 IconComponent={DeleteIcon}
-                onClick={() => dispatch(deleteBook(_id))}
+                onClick={() => handleUpdateBook(id)}
               />
             </ItemBooks>
           ))

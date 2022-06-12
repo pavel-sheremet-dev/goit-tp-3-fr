@@ -54,31 +54,32 @@ export const Form = styled.form`
 export const InputWrapper = styled.div`
   position: relative;
   display: flex;
-  justify-content: center;
-  height: 42px;
+  justify-content: start;
   margin-bottom: 20px;
+
+  &.error {
+    min-height: 60px;
+    margin-bottom: 5px;
+  }
 
   &:last-of-type {
     margin-bottom: 32px;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+    flex-direction: column;
+
     &:first-of-type {
       margin-right: 40px;
-    }
-
-    &:last-of-type {
-      margin-bottom: 0;
-      margin-right: 0;
     }
   }
 `;
 
-export const ErrorContainer = styled.div`
-  display: flex;
+export const ErrorMessage = styled.div`
   font-size: 10px;
   line-height: 1.5;
   color: ${({ theme }) => theme.colors.error};
+  text-align: center;
 `;
 
 export const Button = styled.button`
@@ -88,7 +89,7 @@ export const Button = styled.button`
   height: 42px;
   min-width: 170px;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
 
   font-weight: 500;
   font-size: 14px;
@@ -124,6 +125,7 @@ export const WrapperTrainingList = styled.div`
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     margin-bottom: 40px;
+    margin-top: 20px;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {

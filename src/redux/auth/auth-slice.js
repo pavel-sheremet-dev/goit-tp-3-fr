@@ -4,7 +4,6 @@ const { signUp, signIn, signOut, getUser } = authOperations;
 
 const initialState = {
   user: { name: null, email: null },
-
   token: null,
   isLogIn: false,
 

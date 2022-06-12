@@ -80,6 +80,51 @@ const SignInForm = () => {
       </Formik>
     </>
   );
+
+  // return (
+  //   <>
+  //     <Formik
+  //       initialValues={{ ...initialValues, password: '' }}
+  //       validationSchema={Yup.object({
+  //         email: Yup.string().email().required('Обов`язкове поле'),
+  //         password: Yup.string()
+  //           .matches(
+  //             /^[0-9a-zA-Z_-]{8,20}$/,
+  //             '0-9a-zA-Z Від 8 до 20 символів, знаки _ -',
+  //           )
+  //           .required('Обов`язкове поле'),
+  //       })}
+  //       onSubmit={(values, obj) => {
+  //         const { email, password } = values;
+  //         dispatch(authOperations.signIn({ email, password }));
+  //         obj.setSubmitting(false);
+  //         sessionStorage.setItem('auth-form', null);
+  //         setInitialValues(getInitialValues());
+  //         obj.resetForm();
+  //       }}
+  //       enableReinitialize
+  //     >
+  //       <Form>
+  //         <InputField
+  //           label="Електронна адреса *"
+  //           name="email"
+  //           type="text"
+  //           placeholder="your@email.com"
+  //         />
+
+  //         <InputField
+  //           label="Пароль *"
+  //           name="password"
+  //           type="password"
+  //           placeholder="..."
+  //         />
+
+  //         <button type="submit">Увійти</button>
+  //         <FormState />
+  //       </Form>
+  //     </Formik>
+  //   </>
+  // );
 };
 
 export default SignInForm;

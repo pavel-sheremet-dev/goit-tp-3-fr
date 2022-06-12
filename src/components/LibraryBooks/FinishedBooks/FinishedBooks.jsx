@@ -31,10 +31,6 @@ const FinishedBooks = ({ options = [], toggleModal }) => {
   const isTablet = pageFormat === tablet;
   const isDesktop = pageFormat === desktop;
 
-  const handleClick = () => {
-    console.log('click');
-  };
-
   return (
     <>
       {options.length >= 1 ? (
