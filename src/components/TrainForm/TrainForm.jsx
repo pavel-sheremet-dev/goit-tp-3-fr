@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
-import DateTimeInput from './DateTime/DateTime';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import moment from 'moment';
 
+import DateTimeInput from './DateTime/DateTime';
+import SelectBook from './SelectBook/SelectBook';
 import TrainingList from '../TrainingList/TrainingList';
+import { trainingOperations } from 'redux/training';
 
 import {
   Wrapper,
+  Form,
   Title,
   InputWrapper,
   WrapperTrainingList,
+  ErrorMessage,
   Button,
 } from './TrainForm.styled';
-
-import { useDispatch } from 'react-redux';
-import { addTraining } from 'redux/training/training-slice';
-import SelectBook from './SelectBook';
 
 const TrainForm = ({ unreadBooks }) => {
   const dispatch = useDispatch();
@@ -23,15 +25,29 @@ const TrainForm = ({ unreadBooks }) => {
   const [booksIds, setBooksIds] = useState([]);
   const [error, setError] = useState(false);
 
+  useEffect(() => {
+    dispatch(trainingOperations.getActiveTraining());
+  }, [dispatch]);
+
   const getBooksIds = id => {
     setBooksIds(state => [...state, id]);
-    const upd = unreadBooks.filter(book => book._id === id);
-    setBooks(prev => [...prev, ...upd]);
+    const books = unreadBooks.filter(book => book.id === id);
+    setBooks(prev => [...prev, ...books]);
   };
 
   const handleUpdateBook = id => {
     setBooksIds(booksIds.filter(bookId => bookId !== id));
-    setBooks(books.filter(book => book._id !== id));
+    setBooks(books.filter(book => book.id !== id));
+  };
+
+  const handleStartDate = date => {
+    const normalizedDate = moment(date).format('YYYY-MM-DD');
+    setStartDate(normalizedDate);
+  };
+
+  const handleDeadlineDate = date => {
+    const normalizedDate = moment(date).format('YYYY-MM-DD');
+    setDeadlineDate(normalizedDate);
   };
 
   const handleSubmit = e => {
@@ -41,18 +57,29 @@ const TrainForm = ({ unreadBooks }) => {
       setError(true);
       return;
     }
-    dispatch(addTraining({ startDate, deadlineDate, books }));
+
+    dispatch(
+      trainingOperations.addTraining({ startDate, deadlineDate, books }),
+    );
+    resetForm();
+  };
+
+  const resetForm = () => {
+    setError(false);
+    setStartDate('');
+    setDeadlineDate('');
+    setBooks('');
   };
 
   return (
     <Wrapper>
       <Title>Моє тренування</Title>
-      <form onSubmit={handleSubmit} autoComplete="off">
+      <Form onSubmit={handleSubmit} autoComplete="off">
         <InputWrapper>
           <DateTimeInput
             name="startDate"
             selectedDate={startDate}
-            onChange={setStartDate}
+            onChange={handleStartDate}
             placeholderText="Початок"
           />
         </InputWrapper>
@@ -61,7 +88,7 @@ const TrainForm = ({ unreadBooks }) => {
           <DateTimeInput
             name="deadLineDate"
             selectedDate={deadlineDate}
-            onChange={setDeadlineDate}
+            onChange={handleDeadlineDate}
             placeholderText="Завершення"
           />
         </InputWrapper>
@@ -72,6 +99,9 @@ const TrainForm = ({ unreadBooks }) => {
             getBooksIds={getBooksIds}
             booksIds={booksIds}
           />
+          {error && (
+            <ErrorMessage>Оберіть дати або книгу з бібліотеки</ErrorMessage>
+          )}
         </InputWrapper>
 
         <WrapperTrainingList>
@@ -79,7 +109,7 @@ const TrainForm = ({ unreadBooks }) => {
         </WrapperTrainingList>
 
         <Button type="submit">Почати тренування</Button>
-      </form>
+      </Form>
     </Wrapper>
   );
 };

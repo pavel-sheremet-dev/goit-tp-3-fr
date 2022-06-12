@@ -6,10 +6,14 @@ import FinishedBooks from 'components/LibraryBooks/FinishedBooks';
 import InActionBooks from 'components/LibraryBooks/InActionBooks';
 
 import { PageFormatContext, format } from 'context/pageFormatContext';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { getTypeKeys } from 'helpers/libraryService';
 import RatingModal from 'components/RatingModal/RatingModal';
 import Modal from 'components/Modal/Modal';
+import { useDispatch } from 'react-redux';
+import { getBooks } from 'redux/books/books-operations';
+import { useSelector } from 'react-redux';
+import { booksSelectors } from 'redux/books';
 
 const Books = {
   library: {
@@ -81,6 +85,15 @@ const LibraryPage = () => {
   const [showModal, setShowModal] = useState(false);
   const pageFormat = useContext(PageFormatContext);
   const isMobile = pageFormat === mobile || pageFormat === response;
+  const books = useSelector(booksSelectors.getAllBooks);
+
+  console.log('books', books);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getBooks());
+  }, [dispatch]);
 
   const hasBookLibrary = false;
 

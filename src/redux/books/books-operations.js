@@ -1,30 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const FETCH_BOOK_ENDPOINT = '/api/books/';
 const ADD_BOOK_ENDPOINT = '/api/books';
-
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
-};
-
-export const fetchBooks = createAsyncThunk(
-  'books/fetchBooks',
-  async (_, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.get(FETCH_BOOK_ENDPOINT);
-      token.set(data.token);
-      return data;
-    } catch (error) {
-      return rejectWithValue(error);
-    }
-  },
-);
+const GET_BOOK_ENDPOINT = '/api/books';
 
 export const addBook = createAsyncThunk(
   'books/addBook',
@@ -33,7 +11,43 @@ export const addBook = createAsyncThunk(
       const { data } = await axios.post(ADD_BOOK_ENDPOINT, book);
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const getBooks = createAsyncThunk(
+  'books/getBooks',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(GET_BOOK_ENDPOINT);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const getUnreadBooks = createAsyncThunk(
+  'books/getUnreadBooks',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(`${GET_BOOK_ENDPOINT}?status=unread`);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const updateBookReview = createAsyncThunk(
+  'books/updateBookReview',
+  async (body, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.patch(GET_BOOK_ENDPOINT, body);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
   },
 );

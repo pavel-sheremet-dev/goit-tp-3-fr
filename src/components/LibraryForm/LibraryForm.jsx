@@ -32,7 +32,6 @@ const LibraryMobileForm = () => {
     validate: validateForm,
     onSubmit: (values, { resetForm }) => {
       alert(JSON.stringify(values, null, 2));
-
       const { name, author, year, pages } = values;
       dispatch(addBook({ name, author, year, pages }));
       resetForm();

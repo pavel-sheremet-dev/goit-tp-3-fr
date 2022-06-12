@@ -140,9 +140,7 @@ const LoginForm = () => {
         {formik.touched.repassword && formik.errors.repassword ? (
           <Error>{formik.errors.repassword}</Error>
         ) : null}
-        <LoginFormButton>
-          <LoginFormRef type="button">Зареєструватися</LoginFormRef>
-        </LoginFormButton>
+        <LoginFormButton type="submit">Зареєструватися</LoginFormButton>
       </Form>
 
       <Question>

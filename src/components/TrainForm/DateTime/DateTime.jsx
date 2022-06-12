@@ -15,6 +15,10 @@ const DateTimeInput = ({ selectedDate, onChange, placeholderText }) => {
     return current.isAfter(yesterday);
   };
 
+  const inputProps = {
+    value: '',
+  };
+
   const renderDateInput = (props, openCalendar) => {
     return (
       <Label>
@@ -35,6 +39,7 @@ const DateTimeInput = ({ selectedDate, onChange, placeholderText }) => {
 
   return (
     <Datetime
+      inputProps={!selectedDate ? inputProps : selectedDate}
       locale="uk"
       renderInput={renderDateInput}
       value={selectedDate}

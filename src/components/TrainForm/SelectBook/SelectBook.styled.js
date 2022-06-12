@@ -1,33 +1,11 @@
-import { ReactComponent as CalendarIconDowm } from 'images/svg/calendar-icon-down.svg';
-
 import styled from 'styled-components';
 
-const SelectBook = ({ unreadBooks = [], getBooksIds, booksIds }) => {
-  const filteredBooks = unreadBooks.filter(
-    book => !booksIds.includes(book._id),
-  );
-
-  return (
-    <Label>
-      <CalendarIconDowm />
-      <select name="book" onChange={e => getBooksIds(e.target.value)}>
-        <option value="">Обрати книги з бібліотеки</option>
-        {filteredBooks.map(book => (
-          <option value={book._id} key={book._id}>
-            {book.name}
-          </option>
-        ))}
-      </select>
-    </Label>
-  );
-};
-
-export default SelectBook;
-
 export const Label = styled.label`
-  display: relative;
+  display: flex;
+  position: relative;
   width: 280px;
   height: 42px;
+  margin-bottom: 5px;
 
   & #dropdown {
     appearance: none;
@@ -42,7 +20,7 @@ export const Label = styled.label`
   & select {
     appearance: none;
     width: 100%;
-    height: 100%;
+    height: 42px;
     padding: 10px 40px 10px 12px;
     font-size: 14px;
     font-weight: 500;
@@ -51,6 +29,7 @@ export const Label = styled.label`
     outline: none;
     border: none;
     box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
+    cursor: pointer;
 
     &::-ms-expand {
       display: none;
