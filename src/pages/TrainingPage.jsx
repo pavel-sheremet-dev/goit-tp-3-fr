@@ -8,12 +8,11 @@ import CountdownContainer from 'components/CountdownContainer';
 import CongratsModal from 'components/CongratsModal';
 import WellDoneModal from 'components/WellDoneModal';
 import Statistic from 'components/statistic/Statistic';
-import TrainingForm from 'components/TrainingForm/TrainingForm';
 import TrainForm from 'components/TrainForm/TrainForm';
 
 const unreadBooks = [
   {
-    _id: '62a21382a6468598d2c0f0f7',
+    id: '62a21382a6468598d2c0f0f7',
     name: 'Дюна',
     author: 'Френк Герберт',
     year: 1965,
@@ -21,7 +20,7 @@ const unreadBooks = [
     status: 'unread',
   },
   {
-    _id: '62a21314a6468598d2c0f0f0',
+    id: '62a21314a6468598d2c0f0f0',
     name: 'Маленький принц',
     author: 'Антуант де Сент-Екзюпері',
     year: 1943,
@@ -29,7 +28,7 @@ const unreadBooks = [
     status: 'unread',
   },
   {
-    _id: '629ce5f830f87f7fb279b2a0',
+    id: '629ce5f830f87f7fb279b2a0',
     name: 'Жінка, яка має план',
     author: 'Мей Маск',
     year: 2021,
@@ -37,7 +36,7 @@ const unreadBooks = [
     status: 'unread',
   },
   {
-    _id: '629ce5f830f87f8fb279b2a1',
+    id: '629ce5f830f87f8fb279b2a1',
     name: '11/22/63',
     author: 'Стівен Кінг',
     year: 2011,
@@ -45,7 +44,7 @@ const unreadBooks = [
     status: 'unread',
   },
   {
-    _id: '629ce5f860f87f7fb279b2a2',
+    id: '629ce5f860f87f7fb279b2a2',
     name: 'Ігри, у які грають люди',
     author: 'Ерік Берн',
     year: 2016,
@@ -53,7 +52,7 @@ const unreadBooks = [
     status: 'unread',
   },
   {
-    _id: '629ce5f830f87f7fс279b2a3',
+    id: '629ce5f830f87f7fс279b2a3',
     name: 'Правда про справу Гаррі Квеберта',
     author: 'Жоель Діккер',
     year: 2017,
