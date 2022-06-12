@@ -8,13 +8,14 @@ import {
   List,
   ListHelp,
   Buttons,
-  Button,
+  Link,
   TextButton,
   SpanIcon,
+  LinkLogin,
 } from './Info.styled';
 import { ReactComponent as ListIcon } from 'images/svg/icon-list.svg';
 
-const Info = () => {
+const Info = ({ handleBackClick }) => {
   const pageFormat = useContext(PageFormatContext);
 
   const isResponse = pageFormat === format.response;
@@ -75,12 +76,13 @@ const Info = () => {
       </Container>
       {isMobile || isResponse ? (
         <Buttons>
-          <Button href="/login">
+          <LinkLogin to="/">
             <TextButton>Увійти</TextButton>
-          </Button>
-          <Button href="/">
+          </LinkLogin>
+          {/* <Link to="signup"> */}
+          <Link onClick={handleBackClick}>
             <TextButton>Реєстрація</TextButton>
-          </Button>
+          </Link>
         </Buttons>
       ) : null}
     </>

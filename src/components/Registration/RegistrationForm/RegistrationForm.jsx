@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUp } from 'redux/auth/auth-operations';
 import { authOperations, authSelectors } from 'redux/auth';
@@ -144,8 +144,8 @@ const LoginForm = () => {
       </Form>
 
       <Question>
-        <Appeal>Вже з нами?</Appeal>
-        <LoginRef href="/">Увійти</LoginRef>
+        <Appeal> Вже з нами?</Appeal>
+        <LoginRef to="/">Увійти</LoginRef>
       </Question>
     </>
   );

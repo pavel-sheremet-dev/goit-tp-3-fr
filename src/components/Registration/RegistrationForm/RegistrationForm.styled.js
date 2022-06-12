@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Form = styled.form`
@@ -5,11 +6,7 @@ export const Form = styled.form`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding-bottom: 32px;
-
-  @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
-    padding-bottom: 40px;
-  }
+  padding-bottom: 20px;
 `;
 
 export const RegistrationFormTitle = styled.p`
@@ -76,20 +73,19 @@ export const LoginFormButton = styled.button`
   width: 280px;
   max-width: 100%;
   height: 60px;
-  margin-bottom: 16px;
   cursor: pointer;
   background-color: ${({ theme }) => theme.colors.mainBrandColor};
   color: ${({ theme }) => theme.colors.white};
-  transition: background-color 200ms linear;
+  transition: ${({ theme }) => theme.transition('background-color')};
 
   &:hover,
-  &:focus {
+  &:focus,
+  &:active {
     background-color: ${({ theme }) => theme.colors.hover};
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     width: 320px;
-    margin-bottom: 20px;
   }
 `;
 
@@ -102,7 +98,7 @@ export const LoginFormRef = styled.span`
   line-height: 1.25;
 `;
 
-export const LoginRef = styled.a`
+export const LoginRef = styled(NavLink)`
   display: block;
   /* margin: 0 auto; */
   font-family: 'Montserrat', sans-serif;
@@ -111,6 +107,15 @@ export const LoginRef = styled.a`
   line-height: 1.23;
   text-decoration: underline;
   color: ${({ theme }) => theme.colors.mainBrandColor};
+  transition: ${({ theme }) => theme.transition('color')},
+    ${({ theme }) => theme.transition('font-weight')};
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: ${({ theme }) => theme.colors.hover};
+    font-weight: 520;
+  }
 `;
 
 export const Error = styled.p`
@@ -146,4 +151,8 @@ export const Question = styled.div`
   align-items: center;
   justify-content: center;
   padding-bottom: 44px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+    padding-bottom: 40px;
+  }
 `;

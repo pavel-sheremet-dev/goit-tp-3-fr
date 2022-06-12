@@ -9,7 +9,7 @@ export const Form = styled.form`
   padding-bottom: 16px;
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
-    padding-bottom: 40px;
+    padding-bottom: 20px;
   }
 `;
 
@@ -75,23 +75,26 @@ export const LoginFormButton = styled.button`
   width: 280px;
   max-width: 100%;
   height: 60px;
-  margin-bottom: 16px;
-  background-color: ${({ theme }) => theme.colors.mainBrandColor};
-  color: ${({ theme }) => theme.colors.white};
 
-  @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
-    width: 320px;
-    margin-bottom: 20px;
-  }
-`;
-
-export const LoginFormRef = styled(NavLink)`
-  display: block;
-  margin: 0 auto;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   font-size: 16px;
   line-height: 1.25;
+  cursor: pointer;
+
+  background-color: ${({ theme }) => theme.colors.mainBrandColor};
+  color: ${({ theme }) => theme.colors.white};
+  transition: ${({ theme }) => theme.transition(' background-color')};
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: ${({ theme }) => theme.colors.hover};
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+    width: 320px;
+  }
 `;
 
 export const LoginRef = styled(NavLink)`
@@ -105,6 +108,15 @@ export const LoginRef = styled(NavLink)`
   line-height: 1.23;
   text-decoration: underline;
   color: ${({ theme }) => theme.colors.mainBrandColor};
+  transition: ${({ theme }) => theme.transition('color')},
+    ${({ theme }) => theme.transition('font-weight')};
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: ${({ theme }) => theme.colors.hover};
+    font-weight: 520;
+  }
 `;
 
 export const Error = styled.p`
