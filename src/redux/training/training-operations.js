@@ -29,7 +29,7 @@ export const getActiveTraining = createAsyncThunk(
       const { data } = await axios.get(GET_ACTIVE_TRAINING_ENDPOINT);
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );

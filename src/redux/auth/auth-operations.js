@@ -57,11 +57,15 @@ const signOut = createAsyncThunk('auth/signOut', async (_, thunkAPI) => {
 const getUser = createAsyncThunk('auth/getUser', async (_, thunkAPI) => {
   const savedToken = thunkAPI.getState().auth.token;
 
+  console.log('savedToken', savedToken);
+
   if (!savedToken) {
     return thunkAPI.rejectWithValue();
   }
 
   token.set(savedToken);
+
+  console.log('savedToken', savedToken);
 
   try {
     const res = await axios.get(GET_USER_ENDPOINT);
