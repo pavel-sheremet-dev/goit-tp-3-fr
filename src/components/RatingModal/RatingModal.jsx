@@ -22,7 +22,6 @@ const RatingModal = ({ onClose }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log(rating / 20);
     setTextarea('');
     setRating(0);
   };

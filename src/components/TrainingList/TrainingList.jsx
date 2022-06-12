@@ -22,10 +22,7 @@ import {
   Placeholder,
 } from './TrainingList.styled';
 
-const TrainingList = () => {
-  const books = useSelector(trainingSelectors.getBooks);
-  const dispatch = useDispatch();
-
+const TrainingList = ({ books = [], handleUpdateBook }) => {
   return (
     <Wrapper>
       <HeaderList>
@@ -63,7 +60,7 @@ const TrainingList = () => {
                 type="button"
                 className={'iconDelete'}
                 IconComponent={DeleteIcon}
-                onClick={() => dispatch(deleteBook(_id))}
+                onClick={() => handleUpdateBook(_id)}
               />
             </ItemBooks>
           ))
