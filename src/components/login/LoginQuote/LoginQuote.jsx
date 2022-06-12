@@ -13,10 +13,10 @@ export default function LoginQuote() {
         <QuoteIcon style={{ margin: '0 auto', marginBottom: '7px' }} />
       </StyledIcon>
       <StyledQuote>
-        Книги — это корабли мысли, странствующие по волнам времени и бережно
-        несущие свой драгоценный груз от поколения к поколению.
+        Книги - кораблі думки, що мандрують хвилями часу і дбайливо несуть свій
+        дорогоцінний вантаж від покоління до покоління.
       </StyledQuote>
-      <StyledTitle>Бэкон Ф.</StyledTitle>
+      <StyledTitle>Бейкон Ф.</StyledTitle>
     </SectionQuote>
   );
 }

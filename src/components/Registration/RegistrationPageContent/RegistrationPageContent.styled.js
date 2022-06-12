@@ -10,6 +10,8 @@ export const StyledSection = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  width: 100%;
   background-color: ${({ theme }) => theme.colors.overlay};
 
   background-image: linear-gradient(
@@ -32,8 +34,12 @@ export const StyledSection = styled.div`
       ),
       url(${imagesMobileForIOS});
   }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.response}) {
+    max-width: 479px;
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+    max-width: 768px;
     background-image: linear-gradient(
         to right,
         ${({ theme }) => theme.colors.overlay},

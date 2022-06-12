@@ -23,7 +23,7 @@ export const Label = styled.label`
   flex-direction: column;
   margin-bottom: 5px;
   width: 280px;
-  min-height: 82px;
+  height: 82px;
   color: ${({ theme }) => theme.colors.lightText};
 
   & span {
@@ -108,14 +108,6 @@ export const Button = styled.button`
     ${({ theme }) => theme.transition('color')},
     ${({ theme }) => theme.transition('outline-color')};
   cursor: pointer;
-
-  &:hover,
-  &:focus {
-    color: ${({ theme }) => theme.colors.white};
-    background-color: ${({ theme }) => theme.colors.mainBrandColor};
-    outline: 1px solid ${({ theme }) => theme.colors.mainBrandColor};
-    box-shadow: ${({ theme }) => theme.shadows.btnShadow};
-  }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     margin-top: 20px;

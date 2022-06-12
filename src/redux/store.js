@@ -14,29 +14,38 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import authReduser from './auth/auth-slice';
-import booksReducer from './books/books-reducer';
+import booksReducer from './books/books-slice';
+import trainingReducer from './training/training-slice';
 
 const persistAuthConfig = {
-  // key: 'local-token',
-  key: 'auth',
+  key: 'local-token',
   storage,
   whitelist: ['token'],
 };
 
-const persistRootConfig = {
-  key: 'books',
+const persistBooksConfig = {
+  key: 'local-books',
   storage,
+  whitelist: [],
 };
 
-// const persistRootConfig = {
-//   key: '',
-//   storage,
-//   whitelist: [],
-// };
+const persistTrainingConfig = {
+  key: 'local-training',
+  storage,
+  whitelist: [],
+};
+
+const persistRootConfig = {
+  key: 'root',
+  storage,
+  whitelist: [],
+};
 
 const rootReducer = combineReducers({
   auth: persistReducer(persistAuthConfig, authReduser),
-  books: persistReducer(persistRootConfig, booksReducer),
+  books: persistReducer(persistBooksConfig, booksReducer),
+  training: persistReducer(persistTrainingConfig, trainingReducer),
+
   // ... other reducers
 });
 
@@ -47,7 +56,7 @@ const logger = createLogger({
 });
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistReducer(persistRootConfig, rootReducer),
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
       serializableCheck: {

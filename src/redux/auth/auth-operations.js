@@ -1,18 +1,17 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { getLoginError, getSignupError } from 'helpers/getTextError';
 
-const SIGN_UP_ENDPOINT = '/api/users/signup';
-const SIGN_IN_ENDPOINT = '/users/login';
-const SIGN_OUT_ENDPOINT = '/users/logout';
-const GET_USER_ENDPOINT = '/users/current';
+const SIGN_UP_ENDPOINT = 'api/users/signup';
+const SIGN_IN_ENDPOINT = 'api/users/login';
+const SIGN_OUT_ENDPOINT = 'api/users/logout';
+const GET_USER_ENDPOINT = 'api/users/current';
 
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
-  // set(token) {
-  //   axios.defaults.headers.common.Authorization = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MmEyMzU2MWE2YTViOTAyODU4ZWYwZDAiLCJwZXJtaXNzaW9ucyI6W251bGxdLCJpYXQiOjE2NTQ4NjYzMzMsImV4cCI6MTY1NDk1MjczM30.j7tVcwUTROBNU7-s_N6hHEWGKQAHyHmOWim8V6_Cj6c";
-  // },
   unset() {
     axios.defaults.headers.common.Authorization = '';
   },
@@ -23,34 +22,34 @@ const signUp = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await axios.post(SIGN_UP_ENDPOINT, credentials);
-      console.log(res.data);
-      // token.set(res.data.token);
+      toast.info('Супер! Перевірте свою пошту та підтвердіть реєстрацію.');
       return res.data;
     } catch (error) {
-      console.log(error);
+      toast.error(getSignupError(error.response.status));
       return thunkAPI.rejectWithValue(error.message);
     }
   },
 );
 
-const signIn = createAsyncThunk(
-  'auth/signIn',
-  async (credentials, thunkAPI) => {
-    try {
-      const res = await axios.post(SIGN_IN_ENDPOINT, credentials);
-      token.set(res.data.token);
-      return res.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  },
-);
+const signIn = createAsyncThunk('auth/logIn', async (credentials, thunkAPI) => {
+  try {
+    const res = await axios.post(SIGN_IN_ENDPOINT, credentials);
+    token.set(res.data.token);
+    // toast.success('Ви успішно увійшли.');
+    return res.data;
+  } catch (error) {
+    toast.error(getLoginError(error.response.status));
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
 
 const signOut = createAsyncThunk('auth/signOut', async (_, thunkAPI) => {
   try {
     await axios.post(SIGN_OUT_ENDPOINT);
     token.unset();
+    // toast.success('Ви успішно вийшли.');
   } catch (error) {
+    toast.error('Упс, щось пішло не так, спробуйте пізніше повторити :)');
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -65,8 +64,8 @@ const getUser = createAsyncThunk('auth/getUser', async (_, thunkAPI) => {
   token.set(savedToken);
 
   try {
-    const res = await axios.get(GET_USER_ENDPOINT);
-    return res.data;
+    const { data } = await axios.get(GET_USER_ENDPOINT);
+    return data;
   } catch (error) {
     token.unset();
     return thunkAPI.rejectWithValue(error.message);

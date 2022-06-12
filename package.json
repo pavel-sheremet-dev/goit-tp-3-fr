@@ -12,16 +12,19 @@
     "date-fns": "^2.28.0",
     "formik": "^2.2.9",
     "modern-normalize": "^1.1.0",
+    "moment": "^2.29.3",
     "react": "^17.0.2",
     "react-chartjs-2": "^4.1.0",
+    "react-datetime": "^3.1.1",
     "react-dom": "^17.0.2",
+    "react-ellipsis-text": "^1.2.1",
     "react-helmet": "^6.1.0",
     "react-loader-spinner": "^5.1.5",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-simple-star-rating": "^4.0.5",
-    "react-toastify": "^9.0.3",
+    "react-toastify": "^9.0.4",
     "redux": "^4.2.0",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
@@ -61,8 +64,8 @@
     "prettier": "^2.6.2"
   },
   "lint-staged": {
-    "*.js": "eslint --cache --fix",
-    "*.{js,css,md}": "prettier --write"
+    "*.jsx": "eslint --cache --fix",
+    "*.{js,jsx,css,md}": "prettier --write"
   },
   "description": "RB team project",
   "main": "index.js",
