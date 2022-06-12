@@ -7,7 +7,6 @@ axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 
 const fetchLibBooksCollections = async () => {
   const response = await axios.get('/api/books');
-  // console.log(response.data.library);
   return response.data.library;
 };
 
