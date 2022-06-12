@@ -1,16 +1,16 @@
 import styled from 'styled-components';
+import { StyledContainer } from 'components/common/container/Container.styled';
 
-export const Section = styled.div`
+export const Section = styled(StyledContainer)`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  padding: 0;
+
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
-    width: 768px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
     flex-direction: row;
-    width: 1280px;
   }
 `;

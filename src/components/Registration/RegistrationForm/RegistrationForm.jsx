@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUp } from 'redux/auth/auth-operations';
 import { authOperations, authSelectors } from 'redux/auth';
-import { useFormik, useField, useFormikContext } from 'formik';
+import { useFormik, useFormikContext } from 'formik';
 import {
   Form,
   RegistrationFormTitle,
@@ -140,11 +140,11 @@ const LoginForm = () => {
         {formik.touched.repassword && formik.errors.repassword ? (
           <Error>{formik.errors.repassword}</Error>
         ) : null}
+        <LoginFormButton>
+          <LoginFormRef type="button">Зареєструватися</LoginFormRef>
+        </LoginFormButton>
       </Form>
-      <LoginFormButton>
-        <LoginFormRef type="button">Зареєструватися</LoginFormRef>
-        {/* <NavLink to="/training"></NavLink> */}
-      </LoginFormButton>
+
       <Question>
         <Appeal> Вже з нами?</Appeal>
         <LoginRef href="/">Увійти</LoginRef>

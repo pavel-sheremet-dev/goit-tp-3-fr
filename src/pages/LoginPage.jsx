@@ -8,7 +8,6 @@ const LoginPage = () => {
     <Section>
       <LoginPageContent />
       <LoginQuote />
-      {/* <SignInForm /> */}
     </Section>
   );
 };

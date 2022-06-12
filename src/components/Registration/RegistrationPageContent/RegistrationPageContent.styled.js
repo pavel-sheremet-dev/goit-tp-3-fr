@@ -10,6 +10,7 @@ export const StyledSection = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
   width: 100%;
   background-color: ${({ theme }) => theme.colors.overlay};
 
