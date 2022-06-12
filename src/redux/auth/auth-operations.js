@@ -12,6 +12,9 @@ const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
+  // set(token) {
+  //   axios.defaults.headers.common.Authorization = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MmEyMzU2MWE2YTViOTAyODU4ZWYwZDAiLCJwZXJtaXNzaW9ucyI6W251bGxdLCJpYXQiOjE2NTQ4NjYzMzMsImV4cCI6MTY1NDk1MjczM30.j7tVcwUTROBNU7-s_N6hHEWGKQAHyHmOWim8V6_Cj6c";
+  // },
   unset() {
     axios.defaults.headers.common.Authorization = '';
   },

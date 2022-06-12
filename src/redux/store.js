@@ -18,7 +18,8 @@ import booksReducer from './books/books-slice';
 import trainingReducer from './training/training-slice';
 
 const persistAuthConfig = {
-  key: 'local-token',
+  // key: 'local-token',
+  key: 'auth',
   storage,
   whitelist: ['token'],
 };
