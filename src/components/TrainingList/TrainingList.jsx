@@ -34,8 +34,8 @@ const TrainingList = ({ books = [], handleUpdateBook }) => {
 
       <ListBooks>
         {books.length ? (
-          books.map(({ _id, name, author, year, pages }) => (
-            <ItemBooks key={_id}>
+          books.map(({ id, name, author, year, pages }) => (
+            <ItemBooks key={id}>
               <BookIcon style={{ fill: '#A6ABB9' }} className={'someClass'} />
               <Item style={{ width: '180px' }}>
                 <EllipsisText text={name} length={30} className={'titleBook'} />
@@ -60,7 +60,7 @@ const TrainingList = ({ books = [], handleUpdateBook }) => {
                 type="button"
                 className={'iconDelete'}
                 IconComponent={DeleteIcon}
-                onClick={() => handleUpdateBook(_id)}
+                onClick={() => handleUpdateBook(id)}
               />
             </ItemBooks>
           ))
