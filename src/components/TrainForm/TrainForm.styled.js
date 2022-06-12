@@ -54,8 +54,13 @@ export const Form = styled.form`
 export const InputWrapper = styled.div`
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   margin-bottom: 20px;
+
+  &.error {
+    min-height: 60px;
+    margin-bottom: 5px;
+  }
 
   &:last-of-type {
     margin-bottom: 32px;
