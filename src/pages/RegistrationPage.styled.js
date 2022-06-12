@@ -7,6 +7,7 @@ export const Section = styled(StyledContainer)`
   justify-content: center;
   align-items: center;
   padding: 0;
+  outline: -1px transparent;
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
   }

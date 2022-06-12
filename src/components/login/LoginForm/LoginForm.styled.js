@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Form = styled.form`
@@ -75,24 +76,28 @@ export const LoginFormButton = styled.button`
   max-width: 100%;
   height: 60px;
 
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+  cursor: pointer;
+
   background-color: ${({ theme }) => theme.colors.mainBrandColor};
   color: ${({ theme }) => theme.colors.white};
+  transition: ${({ theme }) => theme.transition(' background-color')};
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: ${({ theme }) => theme.colors.hover};
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     width: 320px;
   }
 `;
 
-export const LoginFormRef = styled.span`
-  display: block;
-  margin: 0 auto;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 1.25;
-`;
-
-export const LoginRef = styled.a`
+export const LoginRef = styled(NavLink)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -103,6 +108,15 @@ export const LoginRef = styled.a`
   line-height: 1.23;
   text-decoration: underline;
   color: ${({ theme }) => theme.colors.mainBrandColor};
+  transition: ${({ theme }) => theme.transition('color')},
+    ${({ theme }) => theme.transition('font-weight')};
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: ${({ theme }) => theme.colors.hover};
+    font-weight: 520;
+  }
 `;
 
 export const Error = styled.p`

@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -75,7 +76,7 @@ export const Buttons = styled.div`
   margin-bottom: 40px;
 `;
 
-export const Button = styled.a`
+export const Link = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,12 +85,47 @@ export const Button = styled.a`
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   background-color: ${({ theme }) => theme.colors.mainBrandColor};
   color: ${({ theme }) => theme.colors.white};
+  transition: ${({ theme }) => theme.transition('background-color')};
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: ${({ theme }) => theme.colors.hover};
+  }
+`;
+
+export const LinkLogin = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  height: 40px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  background-color: ${({ theme }) => theme.colors.mainBrandColor};
+  color: ${({ theme }) => theme.colors.white};
+  transition: ${({ theme }) => theme.transition('background-color')};
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: ${({ theme }) => theme.colors.hover};
+  }
+
   :not(:last-child) {
     margin-right: 20px;
     box-shadow: none;
     border: 1px solid #000000;
     background-color: transparent;
     color: ${({ theme }) => theme.colors.defaultFont};
+    transition: ${({ theme }) => theme.transition('background-color')},
+      ${({ theme }) => theme.transition('border')};
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: ${({ theme }) => theme.colors.mainBrandColor};
+      border: transparent;
+    }
   }
 `;
 

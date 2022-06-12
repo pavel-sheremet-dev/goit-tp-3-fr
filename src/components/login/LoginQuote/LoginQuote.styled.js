@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const SectionQuote = styled.div`
-  width: 768px;
   padding-top: 20px;
   padding-bottom: 20px;
   padding-bottom: 20px;

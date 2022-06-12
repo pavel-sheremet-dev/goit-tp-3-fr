@@ -1,13 +1,20 @@
+import { useRef } from 'react';
 import Info from 'components/Info/Info';
 import RegistrationPageContent from 'components/Registration/RegistrationPageContent/RegistrationPageContent';
 import { Section } from './RegistrationPage.styled';
 import SignUpForm from 'components/auth/SignUpForm';
 
 const RegistrationPage = () => {
+  const titleRef = useRef();
+
+  function handleBackClick() {
+    titleRef.current.scrollIntoView({ behavior: 'smooth' });
+  }
+
   return (
     <Section>
-      <RegistrationPageContent />
-      <Info />
+      <RegistrationPageContent titleRef={titleRef} />
+      <Info handleBackClick={handleBackClick} />
     </Section>
   );
 };
