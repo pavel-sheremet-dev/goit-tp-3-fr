@@ -1,7 +1,7 @@
-export const getAllBooks = state => state.library;
+export const getAllBooks = state => state.books.library;
 
-export const getUnreadBooks = state => state.library['unread'];
+export const getUnreadBooks = state => state.books.library.unread;
 
-export const getLoading = state => state.loading;
+export const getLoading = state => state.books.loading;
 
-export const getError = state => state.error;
+export const getError = state => state.books.error;
