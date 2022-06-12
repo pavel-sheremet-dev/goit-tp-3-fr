@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
 
@@ -23,11 +23,29 @@ const TrainForm = ({ unreadBooks }) => {
   const [deadlineDate, setDeadlineDate] = useState(null);
   const [books, setBooks] = useState([]);
   const [booksIds, setBooksIds] = useState([]);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
+  const isValidate = useRef(false);
 
   useEffect(() => {
     dispatch(trainingOperations.getActiveTraining());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (!isValidate.current) return;
+    if (!startDate) {
+      setError('Вкажіть дату початку тренування');
+      return;
+    }
+    if (!deadlineDate) {
+      setError('Вкажіть дату завершення тренування');
+      return;
+    }
+    if (!books.length) {
+      setError('Оберіть хоча б одну книгу');
+      return;
+    }
+    setError(false);
+  }, [books.length, deadlineDate, startDate]);
 
   const getBooksIds = id => {
     setBooksIds(state => [...state, id]);
@@ -53,10 +71,7 @@ const TrainForm = ({ unreadBooks }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    if (!startDate || !deadlineDate || !books.length) {
-      setError(true);
-      return;
-    }
+    isValidate.current = true;
 
     dispatch(
       trainingOperations.addTraining({ startDate, deadlineDate, books }),
@@ -93,15 +108,13 @@ const TrainForm = ({ unreadBooks }) => {
           />
         </InputWrapper>
 
-        <InputWrapper>
+        <InputWrapper className="error">
           <SelectBook
             unreadBooks={unreadBooks}
             getBooksIds={getBooksIds}
             booksIds={booksIds}
           />
-          {error && (
-            <ErrorMessage>Оберіть дати або книгу з бібліотеки</ErrorMessage>
-          )}
+          {error && <ErrorMessage>{error}</ErrorMessage>}
         </InputWrapper>
 
         <WrapperTrainingList>

@@ -87,8 +87,6 @@ const LibraryPage = () => {
   const isMobile = pageFormat === mobile || pageFormat === response;
   const books = useSelector(booksSelectors.getAllBooks);
 
-  console.log('books', books);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -129,17 +127,14 @@ const LibraryPage = () => {
             )}
           </>
         )}
-        <FinishedBooks
-          options={Books.library.finished}
-          toggleModal={toggleModal}
-        />
+        <FinishedBooks options={books.finished} toggleModal={toggleModal} />
         <InActionBooks
-          options={Books.library.reading}
+          options={books.reading}
           type={getTypeKeys().ReadingBooks}
           title={'Читаю'}
         />
         <InActionBooks
-          options={Books.library.unread}
+          options={books.unread}
           type={getTypeKeys().UnreadBooks}
           title={'Маю намір прочитати'}
         />

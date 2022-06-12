@@ -64,8 +64,8 @@ const getUser = createAsyncThunk('auth/getUser', async (_, thunkAPI) => {
   token.set(savedToken);
 
   try {
-    const res = await axios.get(GET_USER_ENDPOINT);
-    return res.data;
+    const { data } = await axios.get(GET_USER_ENDPOINT);
+    return data;
   } catch (error) {
     token.unset();
     return thunkAPI.rejectWithValue(error.message);
