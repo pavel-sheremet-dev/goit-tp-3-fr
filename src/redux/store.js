@@ -23,7 +23,7 @@ const persistAuthConfig = {
   whitelist: ['token'],
 };
 
-const persistRootConfig = {
+const persistBooksConfig = {
   key: 'local-books',
   storage,
   whitelist: [],
@@ -35,15 +35,15 @@ const persistTrainingConfig = {
   whitelist: [],
 };
 
-// const persistRootConfig = {
-//   key: '',
-//   storage,
-//   whitelist: [],
-// };
+const persistRootConfig = {
+  key: 'root',
+  storage,
+  whitelist: [],
+};
 
 const rootReducer = combineReducers({
   auth: persistReducer(persistAuthConfig, authReduser),
-  books: persistReducer(persistRootConfig, booksReducer),
+  books: persistReducer(persistBooksConfig, booksReducer),
   training: persistReducer(persistTrainingConfig, trainingReducer),
 
   // ... other reducers
@@ -56,7 +56,7 @@ const logger = createLogger({
 });
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistReducer(persistRootConfig, rootReducer),
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
       serializableCheck: {
