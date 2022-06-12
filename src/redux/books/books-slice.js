@@ -1,55 +1,39 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getBooks, getUnreadBooks } from './books-operations';
+import {
+  addBook,
+  getBooks,
+  getUnreadBooks,
+  updateBookReview,
+} from './books-operations';
 
 const initialState = {
   library: {
-    unread: [
-      {
-        id: null,
-        name: null,
-        author: null,
-        year: null,
-        status: null,
-        pages: null,
-        rating: null,
-        review: null,
-      },
-    ],
-    reading: [
-      {
-        id: null,
-        name: null,
-        author: null,
-        year: null,
-        status: null,
-        pages: null,
-        rating: null,
-        review: null,
-      },
-    ],
-    finished: [
-      {
-        id: null,
-        name: null,
-        author: null,
-        year: null,
-        status: null,
-        pages: null,
-        rating: null,
-        review: null,
-      },
-    ],
+    unread: [],
+    reading: [],
+    finished: [],
   },
   loading: false,
   error: false,
 };
 
-const itemsSlice = createSlice({
+const booksSlice = createSlice({
   name: 'books',
   initialState,
   reducers: {},
   extraReducers: builder => {
     builder
+      .addCase(addBook.pending, state => {
+        state.error = null;
+        state.loading = true;
+      })
+      .addCase(addBook.fulfilled, (state, { payload }) => {
+        state.library.unread = [...state.library.unread, payload];
+        state.loading = false;
+      })
+      .addCase(addBook.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.loading = false;
+      })
       .addCase(getBooks.pending, state => {
         state.error = null;
         state.loading = true;
@@ -61,24 +45,41 @@ const itemsSlice = createSlice({
         state.loading = false;
       })
       .addCase(getBooks.rejected, (state, { payload }) => {
-        state.data.error = payload;
-        state.data.loading = false;
+        state.error = payload;
+        state.loading = false;
       })
       .addCase(getUnreadBooks.pending, state => {
         state.error = null;
         state.loading = true;
       })
       .addCase(getUnreadBooks.fulfilled, (state, { payload }) => {
-        state.data.items = [payload, ...state.data.items];
-        state.data.loading = false;
+        state.library.unread = payload.library.unread;
+        state.library.reading = initialState.library.reading;
+        state.library.finished = initialState.library.finished;
+        state.loading = false;
       })
       .addCase(getUnreadBooks.rejected, (state, { payload }) => {
-        state.data.error = payload;
-        state.data.loading = false;
+        state.error = payload;
+        state.loading = false;
+      })
+      .addCase(updateBookReview.pending, state => {
+        state.error = null;
+        state.loading = true;
+      })
+      .addCase(updateBookReview.fulfilled, (state, { payload }) => {
+        state.library[payload.status] = state.library[payload.status].map(
+          book =>
+            book.id === payload.id
+              ? { ...book, rating: payload.rating, review: payload.review }
+              : book,
+        );
+        state.loading = false;
+      })
+      .addCase(updateBookReview.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.loading = false;
       });
   },
 });
 
-export const { changeFilter } = itemsSlice.actions;
-
-export default itemsSlice.reducer;
+export default booksSlice.reducer;
