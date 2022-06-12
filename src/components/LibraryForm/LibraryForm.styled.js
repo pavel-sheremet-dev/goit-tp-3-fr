@@ -23,7 +23,7 @@ export const Label = styled.label`
   flex-direction: column;
   margin-bottom: 5px;
   width: 280px;
-  min-height: 82px;
+  height: 82px;
   color: ${({ theme }) => theme.colors.lightText};
 
   & span {
