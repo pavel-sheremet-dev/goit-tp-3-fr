@@ -10,6 +10,7 @@ import WellDoneModal from 'components/WellDoneModal';
 import Statistic from 'components/statistic/Statistic';
 import TrainingForm from 'components/TrainingForm/TrainingForm';
 import TrainForm from 'components/TrainForm/TrainForm';
+import PlanTimer from 'components/PlanTimer';
 
 const unreadBooks = [
   {
@@ -114,6 +115,7 @@ const TrainingPage = () => {
 
   return (
     <Section title="Статистика" titleLevel="h2" isHidden>
+      <PlanTimer />
       <CongratsModal text={modalText.bookRead} />
       <CongratsModal text={modalText.trainingCompleted} />
       <CongratsModal text={modalText.registration} />
@@ -128,6 +130,8 @@ const TrainingPage = () => {
         finishDate={responce.deadlineDate}
         onSubmit={obj => setResult([...results, obj])}
       />
+      {/* <CountdownContainer /> */}
+      <Dashboard responce={responce} />
       <Statistic results={responce.results} />
       <ToastContainer
         position="top-right"
