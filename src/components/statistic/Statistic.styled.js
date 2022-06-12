@@ -23,7 +23,7 @@ export const Title = styled.h2`
     align-items: start;
     font-size: 14px;
     margin: 7px;
-    margin-left: 0%;
+    margin-left: 96px;
     &::before {
       content: none;
     }
@@ -37,8 +37,13 @@ export const Title = styled.h2`
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
     font-size: 12px;
+    margin-top: 0;
+    margin-bottom: 4px;
+    margin-left: 0;
+    justify-content: center;
+
     &::before,
-    ::after {
+    &::after {
       content: url(${SmallLine});
       margin-top: -5px;
       margin-left: 4px;
@@ -52,7 +57,10 @@ export const List = styled.ul`
   height: 115px;
   margin: 0 auto;
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
-    margin: 0;
+    margin-left: 96px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
+    margin: 0 auto;
   }
 `;
 

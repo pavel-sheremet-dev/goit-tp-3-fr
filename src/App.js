@@ -1,3 +1,5 @@
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { GlobalStyle } from 'styles/GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 import { getCssVars } from 'styles/vars';
@@ -8,9 +10,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { authOperations, authSelectors } from 'redux/auth';
 import MainComponent from 'components/main/MainComponent';
 import { Loader } from 'components/Loader/Loader';
+import { useRef } from 'react';
 
 const App = () => {
   const dispatch = useDispatch();
+  const firstLoading = useRef(true);
+
+  useEffect(() => {
+    if (firstLoading.current) {
+      firstLoading.current = false;
+      return;
+    }
+  }, []);
 
   const isLoadingUser = useSelector(authSelectors.getLoadingUser);
 
@@ -23,7 +34,7 @@ const App = () => {
       <ThemeProvider theme={getCssVars()}>
         <Layout>
           <GlobalStyle />
-          {isLoadingUser ? (
+          {isLoadingUser || firstLoading.current ? (
             <Loader />
           ) : (
             <>
@@ -32,6 +43,7 @@ const App = () => {
             </>
           )}
           {/* <Main /> */}
+          <ToastContainer position="top-center" autoClose={4000} />
         </Layout>
       </ThemeProvider>
     </div>

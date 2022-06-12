@@ -109,14 +109,6 @@ export const Button = styled.button`
     ${({ theme }) => theme.transition('outline-color')};
   cursor: pointer;
 
-  &:hover,
-  &:focus {
-    color: ${({ theme }) => theme.colors.white};
-    background-color: ${({ theme }) => theme.colors.mainBrandColor};
-    outline: 1px solid ${({ theme }) => theme.colors.mainBrandColor};
-    box-shadow: ${({ theme }) => theme.shadows.btnShadow};
-  }
-
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     margin-top: 20px;
     line-height: 1.21;
