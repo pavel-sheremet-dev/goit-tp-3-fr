@@ -98,11 +98,9 @@ const LoginForm = () => {
           <Error>{formik.errors.password}</Error>
         ) : null}
 
-        <LoginFormButton>
-          <LoginFormRef type="button">Увійти</LoginFormRef>
-        </LoginFormButton>
+        <LoginFormButton>Увійти</LoginFormButton>
       </Form>
-      <LoginRef href='/signup'>Реєстрація</LoginRef>
+      <LoginRef to={'signup'}>Реєстрація</LoginRef>
     </>
   );
 

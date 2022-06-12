@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Form = styled.form`
@@ -84,7 +85,7 @@ export const LoginFormButton = styled.button`
   }
 `;
 
-export const LoginFormRef = styled.span`
+export const LoginFormRef = styled(NavLink)`
   display: block;
   margin: 0 auto;
   font-family: 'Montserrat', sans-serif;
@@ -93,7 +94,7 @@ export const LoginFormRef = styled.span`
   line-height: 1.25;
 `;
 
-export const LoginRef = styled.a`
+export const LoginRef = styled(NavLink)`
   display: flex;
   align-items: center;
   justify-content: center;

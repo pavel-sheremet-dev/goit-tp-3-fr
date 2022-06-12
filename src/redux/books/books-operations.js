@@ -37,3 +37,27 @@ export const addBook = createAsyncThunk(
     }
   },
 );
+
+export const getBooks = createAsyncThunk(
+  'books/addBook',
+  async (book, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post(ADD_BOOK_ENDPOINT, book);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const getUnreadBooks = createAsyncThunk(
+  'books/addBook',
+  async (book, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post(ADD_BOOK_ENDPOINT, book);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);

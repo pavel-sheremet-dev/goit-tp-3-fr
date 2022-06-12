@@ -1,42 +1,78 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchBooks, addBook } from './books-operations';
+import { getBooks, getUnreadBooks } from './books-operations';
 
 const initialState = {
-  data: { items: [], loading: false, error: null },
-  filter: '',
+  library: {
+    unread: [
+      {
+        id: null,
+        name: null,
+        author: null,
+        year: null,
+        status: null,
+        pages: null,
+        rating: null,
+        review: null,
+      },
+    ],
+    reading: [
+      {
+        id: null,
+        name: null,
+        author: null,
+        year: null,
+        status: null,
+        pages: null,
+        rating: null,
+        review: null,
+      },
+    ],
+    finished: [
+      {
+        id: null,
+        name: null,
+        author: null,
+        year: null,
+        status: null,
+        pages: null,
+        rating: null,
+        review: null,
+      },
+    ],
+  },
+  loading: false,
+  error: false,
 };
 
 const itemsSlice = createSlice({
-  name: 'items',
+  name: 'books',
   initialState,
-  reducers: {
-    changeFilter: (state, { payload }) => {
-      state.filter = payload;
-    },
-  },
+  reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(fetchBooks.pending, state => {
-        state.data.error = null;
-        state.data.loading = true;
+      .addCase(getBooks.pending, state => {
+        state.error = null;
+        state.loading = true;
       })
-      .addCase(fetchBooks.fulfilled, (state, { payload }) => {
-        state.data.items = payload;
-        state.data.loading = false;
+      .addCase(getBooks.fulfilled, (state, { payload }) => {
+        state.library.unread = payload.library.unread;
+        state.library.reading = payload.library.reading;
+        state.library.finished = payload.library.finished;
+        state.loading = false;
       })
-      .addCase(fetchBooks.rejected, (state, { payload }) => {
+      .addCase(getBooks.rejected, (state, { payload }) => {
         state.data.error = payload;
         state.data.loading = false;
       })
-      .addCase(addBook.pending, state => {
-        state.data.error = null;
-        state.data.loading = true;
+      .addCase(getUnreadBooks.pending, state => {
+        state.error = null;
+        state.loading = true;
       })
-      .addCase(addBook.fulfilled, (state, { payload }) => {
+      .addCase(getUnreadBooks.fulfilled, (state, { payload }) => {
         state.data.items = [payload, ...state.data.items];
         state.data.loading = false;
       })
-      .addCase(addBook.rejected, (state, { payload }) => {
+      .addCase(getUnreadBooks.rejected, (state, { payload }) => {
         state.data.error = payload;
         state.data.loading = false;
       });
