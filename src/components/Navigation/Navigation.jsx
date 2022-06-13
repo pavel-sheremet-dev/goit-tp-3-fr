@@ -49,7 +49,7 @@ const Navigation = () => {
               </StyledBox>
             </StyledNav>
             {(isResponse || isMobile) && (
-              <StyledSpanFirstLetterName> {iconName}</StyledSpanFirstLetterName>
+              <StyledSpanFirstLetterName>{iconName}</StyledSpanFirstLetterName>
             )}
             <StyledHeaderButton onClick={handleClick}>Вихід</StyledHeaderButton>
           </StyledBox>

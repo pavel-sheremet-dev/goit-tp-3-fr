@@ -17,7 +17,7 @@ const RegistrationPage = lazy(() =>
   import('pages/RegistrationPage' /* webpackChunkName: "RegistrationPage" */),
 );
 const LibraryPage = lazy(() =>
-  import('pages/LibraryPage' /* webpackChunkName: "LibraryPage" */),
+  import('pages/LibraryPage/LibraryPage' /* webpackChunkName: "LibraryPage" */),
 );
 const TrainingPage = lazy(() =>
   import('pages/TrainingPage' /* webpackChunkName: "TrainingPage" */),
