@@ -30,6 +30,12 @@ export const routes = {
     path: 'api/users/verify',
     absolutePath: '/api/users/verify',
   },
+  OAuth: {
+    id: 6,
+    title: 'OAuth',
+    path: 'api/users/oauth',
+    absolutePath: '/api/users/oauth',
+  },
 };
 
 export const dinamic = {
