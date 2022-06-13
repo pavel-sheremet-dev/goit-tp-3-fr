@@ -16,6 +16,7 @@ import { SvgEmptyStar, SvgFullStar } from './RatingModal.styled';
 const RatingModal = ({ onClose }) => {
   const [textarea, setTextarea] = useState('');
   const [rating, setRating] = useState(0);
+
   const handleRating = rate => {
     setRating(rate);
   };
@@ -25,6 +26,7 @@ const RatingModal = ({ onClose }) => {
     setTextarea('');
     setRating(0);
   };
+
   const handleChange = event => {
     setTextarea(event.target.value);
   };
