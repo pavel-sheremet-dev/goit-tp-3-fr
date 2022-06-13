@@ -6,19 +6,24 @@ import {
 } from './training-operations';
 
 const initialState = {
-  startDate: null,
-  deadlineDate: null,
-  books: { id: null, pages: null },
-
-  date: null,
-  pointResult: null,
+  training: {
+    id: null,
+    status: null,
+    startDate: null,
+    deadlineDate: null,
+    totalPages: null,
+    readedPages: null,
+    books: [],
+    results: [],
+    owner: null,
+  },
 
   loading: false,
   error: null,
 };
 
 const trainingSlice = createSlice({
-  name: 'trainings',
+  name: 'training',
   initialState,
   reducers: {},
   extraReducers: builder => {
@@ -29,10 +34,7 @@ const trainingSlice = createSlice({
         state.error = null;
       })
       .addCase(addTraining.fulfilled, (state, { payload }) => {
-        state.startDate = payload.startDate;
-        state.deadlineDate = payload.deadlineDate;
-        state.books.id = payload.books.id;
-        state.books.pages = payload.books.pages;
+        state.training = payload;
         state.loading = false;
       })
       .addCase(addTraining.rejected, (state, { payload }) => {
@@ -45,10 +47,11 @@ const trainingSlice = createSlice({
         state.error = null;
       })
       .addCase(getActiveTraining.fulfilled, (state, { payload }) => {
-        state.books = payload;
+        state.training = payload;
         state.loading = false;
       })
       .addCase(getActiveTraining.rejected, (state, { payload }) => {
+        state.training = initialState.training;
         state.loading = false;
         state.error = payload;
       })
@@ -58,8 +61,7 @@ const trainingSlice = createSlice({
         state.error = null;
       })
       .addCase(updateActiveTraining.fulfilled, (state, { payload }) => {
-        state.date = payload.date;
-        state.pointResult = payload.pointResult;
+        state.training = payload;
         state.loading = false;
       })
       .addCase(updateActiveTraining.rejected, (state, { payload }) => {
