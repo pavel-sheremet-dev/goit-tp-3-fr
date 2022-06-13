@@ -129,6 +129,7 @@ const LoginForm = () => {
           Підтвердити пароль <LoginFormIcon>*</LoginFormIcon>
         </RegistrationFormTitle>
         <Input
+          className="password"
           id="repassword"
           name="repassword"
           type="password"
