@@ -8,7 +8,7 @@ import RadialButton from 'components/LibraryRadialButton';
 import LibButton from 'components/LibButton';
 
 import { PageFormatContext, format } from 'context/pageFormatContext';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -21,7 +21,8 @@ import {
   LibCollectionLogicPosition,
 } from './LibraryPage.styled';
 
-import data from 'data/data1.json';
+import { getBooks } from 'redux/books/books-operations';
+import { booksSelectors } from 'redux/books';
 
 const { mobile, response } = format;
 
@@ -30,29 +31,24 @@ const LibraryPage = () => {
   const [showModal, setShowModal] = useState(false);
   const pageFormat = useContext(PageFormatContext);
   const dispatch = useDispatch();
+  const allBooks = useSelector(booksSelectors.getAllBooks);
 
-  const finishedBooksCollection = [
-    ...data.library.finished,
-    ...data.library.finished,
-    ...data.library.finished,
-    ...data.library.finished,
-    ...data.library.finished,
-    ...data.library.finished,
-  ]; /* const finishedBooksCollection = useSelector(Selector.getFinishedCollection); */
-  const readingBooksCollection = [
-    ...data.library.finished,
-    ...data.library.finished,
-  ]; /* const readingBooksCollection = useSelector(Selector.getReadingCollection); */
-  const unreadBooksCollection = [
-    ...data.library.finished,
-    ...data.library.finished,
-    ...data.library.finished,
-  ]; /* const unreadBooksCollection = useSelector(Selector.getUnreadCollection); */
+  const { unread, reading, finished } = allBooks;
+
+  console.log('allBooks', allBooks);
+
+  useEffect(() => {
+    dispatch(getBooks());
+  }, [dispatch]);
 
   const isMobile = pageFormat === mobile || pageFormat === response;
-  const hasBookLibrary = unreadBooksCollection?.length > 0;
+
+  const hasBookLibrary = !!(unread.length || reading.length || finished.length);
+
   const showMobileForm = showLibraryForm || hasBookLibrary;
-  const showSteps = !hasBookLibrary && !showLibraryForm;
+
+  const showSteps =
+    !isMobile || (!hasBookLibrary && !showLibraryForm) || !unread.length;
 
   // const toggleModal = () => {
   //   setShowModal(showModal => !showModal);
@@ -65,6 +61,12 @@ const LibraryPage = () => {
   const onRadialClick = () => {
     console.log('onRadialClick button');
   };
+
+  console.log('hasBookLibrary', hasBookLibrary);
+  console.log(
+    'isMobile && hasBookLibrary && unread?.length > 2',
+    isMobile && hasBookLibrary && unread?.length > 2,
+  );
 
   return (
     <>
@@ -94,32 +96,29 @@ const LibraryPage = () => {
           )}
         </LibFormLogicPosition>
         <LibCollectionLogicPosition>
-          {finishedBooksCollection?.length > 0 ? (
-            <FinishedBooks
-              options={finishedBooksCollection}
-              toggleModal={toggleModal}
-            />
+          {finished?.length > 0 ? (
+            <FinishedBooks options={finished} toggleModal={toggleModal} />
           ) : null}
-          {readingBooksCollection?.length > 0 ? (
+          {reading?.length > 0 ? (
             <InActionBooks
-              options={readingBooksCollection}
+              options={reading}
               type={getTypeKeys().ReadingBooks}
               title={'Читаю'}
             />
           ) : null}
-          {unreadBooksCollection?.length > 0 ? (
+          {unread?.length > 0 ? (
             <InActionBooks
-              options={unreadBooksCollection}
+              options={unread}
               type={getTypeKeys().UnreadBooks}
               title={'Маю намір прочитати'}
             />
           ) : null}
         </LibCollectionLogicPosition>
         {hasBookLibrary && <LibButton />}
-        {isMobile && hasBookLibrary && unreadBooksCollection?.length > 2 && (
+        {isMobile && hasBookLibrary && unread?.length > 2 && (
           <RadialButton
             onRadialClick={onRadialClick}
-            important={finishedBooksCollection?.length}
+            important={finished?.length}
           />
         )}
         {/* The radial button does activate, if Array.length > 2 it is normal for UX */}
