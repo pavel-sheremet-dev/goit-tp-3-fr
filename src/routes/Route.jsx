@@ -5,7 +5,7 @@ import { routes } from 'routes';
 import AuthRoute from 'routes/AuthRoute';
 import NotAuthRoute from 'routes/NotAuthRoute';
 
-const { signUp, login, training, library, verificate } = routes.routes;
+const { signUp, login, training, library, verificate, OAuth } = routes.routes;
 
 const LoginPage = lazy(() =>
   import('pages/LoginPage' /* webpackChunkName: "LoginPage" */),
@@ -35,6 +35,7 @@ const RoutesComponent = () => {
           path={`${verificate.path}/:token`}
           element={<VerificatePage />}
         />
+        <Route path={`${OAuth.path}/:token`} element={<VerificatePage />} />
 
         {/* NOT AUTH */}
         <Route
