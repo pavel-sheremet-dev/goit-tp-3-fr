@@ -1,9 +1,6 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
 import EllipsisText from 'react-ellipsis-text';
 
-import { trainingSelectors } from 'redux/training';
-import { deleteBook } from 'redux/training/training-slice';
 import IconButton from '../common/button/IconButton';
 import { ReactComponent as BookIcon } from 'images/svg/icon-book.svg';
 import { ReactComponent as DeleteIcon } from 'images/svg/icon-delete.svg';

@@ -1,10 +1,11 @@
 // Adding training
-export const getStartDate = state => state.training.startDate;
-export const getDeadlineDate = state => state.training.deadlineDate;
-export const getBooks = state => state.training.books;
-export const getIdBook = state => state.training.books.id;
-export const getPagesBook = state => state.training.books.pages;
-export const getTraining = state => state;
+export const getId = state => state.training.training.id;
+export const getStatus = state => state.training.training.status;
+export const getStartDate = state => state.training.training.startDate;
+export const getDeadlineDate = state => state.training.training.deadlineDate;
+export const getBooks = state => state.training.training.books;
+
+export const getTraining = state => state.training.training;
 
 // Training result
 export const getDate = state => state.training.date;

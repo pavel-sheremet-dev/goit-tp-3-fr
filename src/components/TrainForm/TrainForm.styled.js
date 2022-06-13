@@ -6,11 +6,19 @@ export const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
-  margin: 32px 0;
+  margin-top: 20px;
+  margin-bottom: 32px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+    margin-top: 28px;
+    margin-bottom: 0;
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
     justify-content: start;
     width: 928px;
+    margin-top: 0;
+    margin-right: 32px;
   }
 `;
 
@@ -54,8 +62,9 @@ export const Form = styled.form`
 export const InputWrapper = styled.div`
   position: relative;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 
   &.error {
     min-height: 60px;
@@ -80,6 +89,7 @@ export const ErrorMessage = styled.div`
   line-height: 1.5;
   color: ${({ theme }) => theme.colors.error};
   text-align: center;
+  width: 100%;
 `;
 
 export const Button = styled.button`
