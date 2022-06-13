@@ -1,22 +1,10 @@
-import Navigation from 'components/Navigation/Navigation';
-import { StyledContainerHeader } from './Header.styled';
-import { getIsLoggedIn } from '../../redux/auth/auth-selectors';
-import { useSelector } from 'react-redux';
+import Container from "components/common/container/Container";
 
 const Header = () => {
-  const isLoggedIn = useSelector(getIsLoggedIn);
   return (
-    <>
-      {isLoggedIn ? (
-        <StyledContainerHeader style={{ justifyContent: 'space-between' }}>
-          <Navigation />
-        </StyledContainerHeader>
-      ) : (
-        <StyledContainerHeader>
-          <Navigation />
-        </StyledContainerHeader>
-      )}
-    </>
+    <header>
+      <Container>Your code</Container>
+    </header>
   );
 };
 

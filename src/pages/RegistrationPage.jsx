@@ -1,39 +1,5 @@
-import { useRef } from 'react';
-import Info from 'components/Info/Info';
-import RegistrationPageContent from 'components/Registration/RegistrationPageContent/RegistrationPageContent';
-import { Section } from './RegistrationPage.styled';
-import { useState } from 'react';
-import { PageFormatContext, format } from 'context/pageFormatContext';
-import { useContext } from 'react';
-const { response, mobile } = format;
-
 const RegistrationPage = () => {
-  const [showInfoLocalStorage] = useState(() => localStorage.getItem('info'));
-  const [showInfo, setShowInfo] = useState(true);
-  const titleRef = useRef();
-
-  const pageFormat = useContext(PageFormatContext);
-
-  const isMobile = pageFormat === response || pageFormat === mobile;
-
-  return (
-    <Section>
-      {isMobile && (
-        <>
-          {!showInfo && <RegistrationPageContent titleRef={titleRef} />}
-          {!showInfoLocalStorage && showInfo && (
-            <Info handleClick={setShowInfo} />
-          )}
-        </>
-      )}
-      {!isMobile && (
-        <>
-          <RegistrationPageContent titleRef={titleRef} />
-          <Info handleClick={setShowInfo} />
-        </>
-      )}
-    </Section>
-  );
+  return <></>;
 };
 
 // 1.1 Форма регистрации

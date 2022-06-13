@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
 body {
   color: ${({ theme }) => theme.colors.defaultFont};
-  background-color: ${({ theme }) => theme.colors.lightBackground};
+  background-color: ${({ theme }) => theme.colors.white};
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   font-size: 11pt;

@@ -4,6 +4,7 @@ const { signUp, signIn, signOut, getUser } = authOperations;
 
 const initialState = {
   user: { name: null, email: null },
+
   token: null,
   isLogIn: false,
 
@@ -25,8 +26,10 @@ const authSlice = createSlice({
       })
       .addCase(signUp.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.user.email = payload.email;
-        state.user.name = payload.name;
+        state.user.email = payload.user.email;
+        state.user.name = payload.user.name;
+        state.token = payload.token;
+        state.isLogIn = true;
       })
       .addCase(signUp.rejected, (state, { payload }) => {
         state.loading = false;

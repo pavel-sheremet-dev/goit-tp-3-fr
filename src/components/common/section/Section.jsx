@@ -8,11 +8,10 @@ const Section = ({
   titleLevel,
   isHidden = false,
   style = {},
-  styleContainer = {},
 }) => {
   return (
     <section style={style}>
-      <Container style={styleContainer}>
+      <Container>
         {title && (
           <Title as={titleLevel} isHidden={isHidden}>
             {title}

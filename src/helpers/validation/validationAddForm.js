@@ -1,23 +1,23 @@
 import * as Yup from 'yup';
 
 export const validationAddFormSchema = Yup.object({
-  name: Yup.string()
+  title: Yup.string()
     .min(1)
     .max(50)
-    .required('Це обов‘язкове поле')
-    .typeError('Має бути рядок'),
+    .required('Title is required')
+    .typeError('Must be a string.'),
   author: Yup.string()
     .min(1)
-    .required('Це обов‘язкове поле')
-    .typeError('Має бути рядок'),
+    .required('Author is required')
+    .typeError('Must be a string.'),
   year: Yup.number()
     .integer()
-    .required('Це обов‘язкове поле')
-    .typeError('Може містити лише цифри'),
+    .required('Year is required')
+    .typeError('Must be a number.'),
   pages: Yup.number()
-    .min(1, 'Мінімум 1 сторінка')
-    .required('Це обов‘язкове поле')
-    .typeError('Може містити лише цифри'),
+    .min(1, 'Minimum 1 page')
+    .required('Pages are required')
+    .typeError('Must be a number.'),
 });
 
 export const validateForm = values => {
@@ -25,24 +25,14 @@ export const validateForm = values => {
   const today = new Date();
   const date = today.getFullYear();
 
-  if (values.name === ' ' || values.name === '-') {
-    errors.name = 'Поле не може починатися з пробілу або дефісу';
-  } else if (values.name.startsWith(' ') || values.name.startsWith('-')) {
-    errors.name = 'Поле не може починатися з пробілу або дефісу';
+  if (values.title === ' ' || values.title === '-') {
+    errors.title = 'The field should not start with a space or hyphen';
   } else if (Number(values.author) || /\d/.test(values.author)) {
-    errors.author = 'Поле не може містити в собі цифри';
+    errors.author = 'The field should not contain number';
   } else if (values.author === ' ' || values.author === '-') {
-    errors.author = 'Поле не може починатися з пробілу або дефісу';
-  } else if (values.author.startsWith(' ') || values.author.startsWith('-')) {
-    errors.author = 'Поле не може починатися з пробілу або дефісу';
+    errors.author = 'The field should not start with a space or hyphen';
   } else if (values.year > date) {
-    errors.year = 'Рік не повинен бути майбутнім';
-  } else if (values.year.length <= 3) {
-    errors.year = 'Рік повинен складатися з 4 цифр';
-  } else if (values.year.startsWith(0)) {
-    errors.year = 'Рік не може починатися із 0';
-  } else if (values.pages.startsWith(0)) {
-    errors.pages = 'Кількість сторінок не може починатися із 0';
+    errors.year = 'The year should not a future';
   }
   return errors;
 };

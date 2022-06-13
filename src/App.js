@@ -1,49 +1,21 @@
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { GlobalStyle } from 'styles/GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 import { getCssVars } from 'styles/vars';
 import Header from 'components/header/Header';
+import Main from 'components/main/Main';
 import Layout from 'components/layout/Layout';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { authOperations, authSelectors } from 'redux/auth';
-import MainComponent from 'components/main/MainComponent';
-import { Loader } from 'components/Loader/Loader';
-import { useRef } from 'react';
-
+import Example from 'components/Example';
+import BooksReadng from 'components/BooksReadng/BooksReadng';
 const App = () => {
-  const dispatch = useDispatch();
-  const firstLoading = useRef(true);
-
-  useEffect(() => {
-    if (firstLoading.current) {
-      firstLoading.current = false;
-      return;
-    }
-  }, []);
-
-  const isLoadingUser = useSelector(authSelectors.getLoadingUser);
-
-  useEffect(() => {
-    dispatch(authOperations.getUser());
-  }, [dispatch]);
-
   return (
     <div>
       <ThemeProvider theme={getCssVars()}>
         <Layout>
           <GlobalStyle />
-          {isLoadingUser || firstLoading.current ? (
-            <Loader />
-          ) : (
-            <>
-              <Header />
-              <MainComponent />
-            </>
-          )}
-          {/* <Main /> */}
-          <ToastContainer position="top-center" autoClose={4000} />
+          <Header />
+          <Main />
+          <BooksReadng />
+          <Example />
         </Layout>
       </ThemeProvider>
     </div>

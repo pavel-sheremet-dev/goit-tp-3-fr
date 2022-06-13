@@ -2,7 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 
-import { addBook } from 'redux/books/books-operations';
+import Section from '../common/section/Section'
+import addBook from 'redux/books/books-actions';
 import {
   validationAddFormSchema,
   validateForm,
@@ -23,7 +24,7 @@ const LibraryMobileForm = () => {
 
   const formik = useFormik({
     initialValues: {
-      name: '',
+      title: '',
       author: '',
       year: '',
       pages: '',
@@ -32,26 +33,28 @@ const LibraryMobileForm = () => {
     validate: validateForm,
     onSubmit: (values, { resetForm }) => {
       alert(JSON.stringify(values, null, 2));
-      const { name, author, year, pages } = values;
-      dispatch(addBook({ name, author, year, pages }));
+
+      const { title, author, year, pages } = values;
+      dispatch(addBook({ title, author, year, pages }));
       resetForm();
     },
   });
 
   return (
+    <Section title={'Library Form'} titleLevel={'h2'} isHidden>
     <Form onSubmit={formik.handleSubmit}>
       <TitleLabel>
         <span>Назва книги</span>
         <Input
-          id="name"
-          name="name"
+          id="title"
+          name="title"
           type="text"
           placeholder="..."
-          value={formik.values.name}
+          value={formik.values.title}
           onChange={formik.handleChange}
         />
-        {formik.touched.name && formik.errors.name ? (
-          <ErrorContainer>{formik.errors.name}</ErrorContainer>
+        {formik.touched.title && formik.errors.title ? (
+          <ErrorContainer>{formik.errors.title}</ErrorContainer>
         ) : null}
       </TitleLabel>
 
@@ -103,7 +106,8 @@ const LibraryMobileForm = () => {
       </Label>
 
       <Button type="submit">Додати</Button>
-    </Form>
+      </Form>
+      </Section>
   );
 };
 
