@@ -17,6 +17,7 @@ import {
   validationLoginSchema,
   validate,
 } from 'helpers/validation/validationLoginForm';
+import { routes } from 'routes/config';
 
 const getInitialValues = () =>
   JSON.parse(sessionStorage.getItem('auth-form')) ?? {
@@ -64,6 +65,7 @@ const LoginForm = () => {
       obj.resetForm();
     },
   });
+
   return (
     <>
       <Form onSubmit={formik.handleSubmit}>
@@ -86,6 +88,7 @@ const LoginForm = () => {
           Пароль <LoginFormIcon>*</LoginFormIcon>
         </LoginFormTitle>
         <Input
+          className="password"
           id="password"
           name="password"
           type="password"
@@ -97,9 +100,9 @@ const LoginForm = () => {
           <Error>{formik.errors.password}</Error>
         ) : null}
 
-        <LoginFormButton>Увійти</LoginFormButton>
+        <LoginFormButton type="submit">Увійти</LoginFormButton>
       </Form>
-      <LoginRef to="signup">Реєстрація</LoginRef>
+      <LoginRef to={routes.signUp.path}>Реєстрація</LoginRef>
     </>
   );
 };

@@ -15,8 +15,12 @@ export const TimerContainer = styled.div`
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
     padding: 0;
-    width: 300px;
+    width: 288px;
+    height: 329px;
     flex-direction: column;
+    position: absolute;
+    right: 0;
+    top: 40px;
   }
 `;
 

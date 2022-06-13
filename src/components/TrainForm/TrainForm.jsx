@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
 import DateTimeInput from './DateTime/DateTime';
 import SelectBook from './SelectBook/SelectBook';
 import TrainingList from '../TrainingList/TrainingList';
-import { trainingOperations } from 'redux/training';
+import { trainingSelectors, trainingOperations } from 'redux/training';
+import { booksSelectors } from 'redux/books';
 
 import {
   Wrapper,
@@ -17,7 +18,7 @@ import {
   Button,
 } from './TrainForm.styled';
 
-const TrainForm = ({ unreadBooks }) => {
+const TrainForm = () => {
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(null);
   const [deadlineDate, setDeadlineDate] = useState(null);
@@ -25,6 +26,8 @@ const TrainForm = ({ unreadBooks }) => {
   const [booksIds, setBooksIds] = useState([]);
   const [error, setError] = useState('');
   const isValidate = useRef(false);
+  const unreadBooks = useSelector(booksSelectors.getUnreadBooks);
+  const isStatusTraining = useSelector(trainingSelectors.getStatus);
 
   useEffect(() => {
     dispatch(trainingOperations.getActiveTraining());
@@ -59,13 +62,13 @@ const TrainForm = ({ unreadBooks }) => {
   };
 
   const handleStartDate = date => {
-    const normalizedDate = moment(date).format('YYYY-MM-DD');
-    setStartDate(normalizedDate);
+    // const normalizedDate = moment(date).format('YYYY-MM-DD');
+    setStartDate(date);
   };
 
   const handleDeadlineDate = date => {
-    const normalizedDate = moment(date).format('YYYY-MM-DD');
-    setDeadlineDate(normalizedDate);
+    // const normalizedDate = moment(date).format('YYYY-MM-DD');
+    setDeadlineDate(date);
   };
 
   const handleSubmit = e => {
@@ -121,7 +124,7 @@ const TrainForm = ({ unreadBooks }) => {
           <TrainingList books={books} handleUpdateBook={handleUpdateBook} />
         </WrapperTrainingList>
 
-        <Button type="submit">Почати тренування</Button>
+        {!isStatusTraining && <Button type="submit">Почати тренування</Button>}
       </Form>
     </Wrapper>
   );

@@ -1,16 +1,14 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const ADD_TRAINING_ENDPOINT = '/api/trainings';
-const GET_ACTIVE_TRAINING_ENDPOINT = '/api/trainings/';
-const UPDATE_ACTIVE_TRAINING_ENDPOINT = '/api/trainings//';
+const TRAINING_ENDPOINT = 'api/trainings';
 
 export const addTraining = createAsyncThunk(
-  'training/addTraining',
+  'trainings/addTraining',
   async ({ startDate, deadlineDate, books: book }, { rejectWithValue }) => {
     const books = book.map(({ id, pages }) => ({ id, pages }));
     try {
-      const { data } = await axios.post(ADD_TRAINING_ENDPOINT, {
+      const { data } = await axios.post(TRAINING_ENDPOINT, {
         startDate,
         deadlineDate,
         books,
@@ -23,10 +21,10 @@ export const addTraining = createAsyncThunk(
 );
 
 export const getActiveTraining = createAsyncThunk(
-  'training/getActiveTraining',
+  'trainings/getActiveTraining',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(GET_ACTIVE_TRAINING_ENDPOINT);
+      const { data } = await axios.get(TRAINING_ENDPOINT);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -35,10 +33,10 @@ export const getActiveTraining = createAsyncThunk(
 );
 
 export const updateActiveTraining = createAsyncThunk(
-  'training/updateActiveTraining',
+  'trainings/updateActiveTraining',
   async ({ date, pointResult }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.patch(UPDATE_ACTIVE_TRAINING_ENDPOINT, {
+      const { data } = await axios.patch(TRAINING_ENDPOINT, {
         date,
         pointResult,
       });
