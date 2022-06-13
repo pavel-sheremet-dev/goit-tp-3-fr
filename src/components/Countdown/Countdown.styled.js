@@ -29,6 +29,7 @@ export const TimeList = styled.div`
   display: flex;
   justify-content: center;
   padding: 1px 0 8px 0;
+  background-color: ${({ theme }) => theme.colors.white};
   box-shadow: ${({ theme }) => theme.shadows.counter};
 `;
 

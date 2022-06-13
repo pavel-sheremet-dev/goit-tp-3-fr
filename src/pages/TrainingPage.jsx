@@ -1,8 +1,11 @@
+import { useState, useEffect, useContext } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { PageFormatContext, format } from 'context/pageFormatContext';
+import { ToastContainer } from 'react-toastify';
+
 import Section from 'components/common/section/Section';
 import Dashboard from 'components/dashboard/Dashboard';
-import { ToastContainer } from 'react-toastify';
 import Results from 'components/results/Results';
-import { useState } from 'react';
 import Countdown from '../components/Countdown';
 import CountdownContainer from 'components/CountdownContainer';
 import CongratsModal from 'components/CongratsModal';
@@ -10,57 +13,14 @@ import WellDoneModal from 'components/WellDoneModal';
 import Statistic from 'components/statistic/Statistic';
 import TrainForm from 'components/TrainForm/TrainForm';
 import PlanTimer from 'components/PlanTimer';
+import TrainingList from 'components/TrainingList/TrainingList';
+import IconButton from 'components/common/button/IconButton';
+import { ReactComponent as PlusBtnIcon } from 'images/svg/icon-plus.svg';
+import TrainFormModal from 'components/TrainFormModal/TrainFormModal';
 
-const unreadBooks = [
-  {
-    id: '62a21382a6468598d2c0f0f7',
-    name: 'Дюна',
-    author: 'Френк Герберт',
-    year: 1965,
-    pages: 656,
-    status: 'unread',
-  },
-  {
-    id: '62a21314a6468598d2c0f0f0',
-    name: 'Маленький принц',
-    author: 'Антуант де Сент-Екзюпері',
-    year: 1943,
-    pages: 160,
-    status: 'unread',
-  },
-  {
-    id: '629ce5f830f87f7fb279b2a0',
-    name: 'Жінка, яка має план',
-    author: 'Мей Маск',
-    year: 2021,
-    pages: 224,
-    status: 'unread',
-  },
-  {
-    id: '629ce5f830f87f8fb279b2a1',
-    name: '11/22/63',
-    author: 'Стівен Кінг',
-    year: 2011,
-    pages: 976,
-    status: 'unread',
-  },
-  {
-    id: '629ce5f860f87f7fb279b2a2',
-    name: 'Ігри, у які грають люди',
-    author: 'Ерік Берн',
-    year: 2016,
-    pages: 256,
-    status: 'unread',
-  },
-  {
-    id: '629ce5f830f87f7fс279b2a3',
-    name: 'Правда про справу Гаррі Квеберта',
-    author: 'Жоель Діккер',
-    year: 2017,
-    pages: 704,
-    status: 'unread',
-  },
-];
+import { trainingSelectors } from 'redux/training';
+import { getUnreadBooks } from 'redux/books/books-operations';
+import { WrapperNotActiveTrain, WrapperDesktop } from './TrainingPage.styled';
 
 const responce = {
   status: 'failed',
@@ -93,12 +53,24 @@ const responce = {
 };
 
 const TrainingPage = () => {
+  const [results, setResult] = useState([]);
+  const pageFormat = useContext(PageFormatContext);
+
+  const isStatusTraining = useSelector(trainingSelectors.getStatus);
+  const [isShowTrainingModal, setIsShowTrainingModal] = useState(false);
+  console.log('isStatusTraining:', isStatusTraining);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUnreadBooks());
+  }, [dispatch]);
+
   const modalText = {
     bookRead: 'Ще одна книга прочитана',
     trainingCompleted: 'Тренування завершено',
     registration: 'Вам на пошту надійшов лист із підтвердженням реєстрації',
   };
-  const [results, setResult] = useState([]);
 
   const getStartDay = (deadlineDate, results) => {
     if (Date.now() < Date.parse(deadlineDate)) {
@@ -112,26 +84,100 @@ const TrainingPage = () => {
   };
   const startDay = getStartDay(responce.deadlineDate, responce.results);
 
+  const openTrainingForm = () => {
+    setIsShowTrainingModal(!isShowTrainingModal);
+  };
+
+  const isResponse = pageFormat === format.response;
+  const isMobile = pageFormat === format.mobile;
+  const isTablet = pageFormat === format.tablet;
+  const isDesktop = pageFormat === format.desktop;
+
   return (
     <Section title="Статистика" titleLevel="h2" isHidden>
-      <PlanTimer />
-      <CongratsModal text={modalText.bookRead} />
+      {/* <CongratsModal text={modalText.bookRead} />
       <CongratsModal text={modalText.trainingCompleted} />
       <CongratsModal text={modalText.registration} />
-      <WellDoneModal />
-      <CountdownContainer />
+    <WellDoneModal /> */}
 
-      <TrainForm unreadBooks={unreadBooks} />
+      {(isResponse || isMobile) && (
+        <>
+          {isStatusTraining ? (
+            <>
+              <CountdownContainer />
+              <PlanTimer />
+              <TrainForm />
+              <Dashboard responce={responce} />
+              <Results
+                startDate={startDay}
+                finishDate={responce.deadlineDate}
+                onSubmit={obj => setResult([...results, obj])}
+              />
+              <Statistic results={responce.results} />
+            </>
+          ) : (
+            <WrapperNotActiveTrain>
+              {!isShowTrainingModal ? (
+                <>
+                  <PlanTimer />
+                  <TrainingList />
+                  <Dashboard responce={responce} />
+                  <IconButton
+                    IconComponent={PlusBtnIcon}
+                    className={'iconPlus'}
+                    onClick={openTrainingForm}
+                  />
+                </>
+              ) : (
+                <>
+                  <TrainFormModal
+                    isShowTrainingModal={isShowTrainingModal}
+                    setIsShowTrainingModal={setIsShowTrainingModal}
+                  >
+                    <TrainForm />
+                  </TrainFormModal>
+                </>
+              )}
+            </WrapperNotActiveTrain>
+          )}
+        </>
+      )}
 
-      <Dashboard responce={responce} />
-      <Results
-        startDate={startDay}
-        finishDate={responce.deadlineDate}
-        onSubmit={obj => setResult([...results, obj])}
-      />
+      {(isTablet || isDesktop) && (
+        <>
+          {isStatusTraining ? (
+            <>
+
+              <CountdownContainer />
+              <WrapperDesktop>
+                <PlanTimer />
+                <TrainForm />
+              </WrapperDesktop>
+
+              <WrapperDesktop>
+                <Dashboard responce={responce} />
+                <div>
+                  <Results
+                    startDate={startDay}
+                    finishDate={responce.deadlineDate}
+                    onSubmit={obj => setResult([...results, obj])}
+                  />
+                  <Statistic results={responce.results} />
+                </div>
+              </WrapperDesktop>
+            </>
+          ) : (
+            <>
+              <PlanTimer />
+              <TrainForm />
+
+              <Dashboard responce={responce} />
+            </>
+          )}
+        </>
+      )}
+
       {/* <CountdownContainer /> */}
-      <Dashboard responce={responce} />
-      <Statistic results={responce.results} />
       <ToastContainer
         position="top-right"
         autoClose={3000}
