@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { signUp } from 'redux/auth/auth-operations';
 import { authOperations, authSelectors } from 'redux/auth';
 import { useFormik, useFormikContext } from 'formik';
 import {
@@ -9,7 +8,6 @@ import {
   LoginFormIcon,
   Input,
   LoginFormButton,
-  LoginFormRef,
   LoginRef,
   Error,
   Appeal,
@@ -19,6 +17,7 @@ import {
   validationRegistrationSchema,
   validate,
 } from 'helpers/validation/validationRegistrationForm';
+import { routes } from 'routes/config';
 
 export const getValueFromLocalStorage = key => localStorage.getItem(key) ?? '';
 
@@ -63,11 +62,11 @@ const LoginForm = () => {
     validationSchema: validationRegistrationSchema,
     validate,
     onSubmit: (values, obj) => {
-      // alert(JSON.stringify(values, null, 2));
       const { name, email, password } = values;
       const credentials = { name, email, password };
       dispatch(authOperations.signUp(credentials));
       obj.setSubmitting(false);
+      localStorage.setItem('info', true);
       sessionStorage.setItem('auth-form', null);
       setInitialValues(getInitialValues());
       obj.resetForm();
@@ -113,6 +112,7 @@ const LoginForm = () => {
           Пароль <LoginFormIcon>*</LoginFormIcon>
         </RegistrationFormTitle>
         <Input
+          className="password"
           id="password"
           name="password"
           type="password"
@@ -145,7 +145,7 @@ const LoginForm = () => {
 
       <Question>
         <Appeal> Вже з нами?</Appeal>
-        <LoginRef to="/">Увійти</LoginRef>
+        <LoginRef to={routes.login.path}>Увійти</LoginRef>
       </Question>
     </>
   );

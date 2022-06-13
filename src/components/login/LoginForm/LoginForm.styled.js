@@ -42,16 +42,29 @@ export const LoginFormIcon = styled.span`
 `;
 
 export const Input = styled.input`
+  padding-left: 8px;
   margin-bottom: 25px;
   width: 280px;
   max-width: 100%;
   height: 42px;
   border: none;
+  outline: none;
   background-color: ${({ theme }) => theme.colors.iconsHover};
   box-shadow: ${({ theme }) => theme.shadows.inputShadow};
+  transition: ${({ theme }) => theme.transition('background-color')};
+
+  &.password {
+    font-family: Verdana;
+    letter-spacing: 0.125em;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: ${({ theme }) => theme.colors.white};
+  }
 
   ::placeholder {
-    padding-left: 8px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     font-size: 14px;
@@ -80,6 +93,7 @@ export const LoginFormButton = styled.button`
   font-weight: 600;
   font-size: 16px;
   line-height: 1.25;
+  outline: none;
   cursor: pointer;
 
   background-color: ${({ theme }) => theme.colors.mainBrandColor};
