@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledContainer = styled.section`
+export const StyledContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,7 +14,7 @@ export const StyledContainer = styled.section`
 `;
 
 export const StyledGoogleButton = styled.div`
-   display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   padding-left: 14px;
@@ -26,15 +26,20 @@ export const StyledGoogleButton = styled.div`
   background-color: ${({ theme }) => theme.colors.iconsHover};
   cursor: pointer;
   box-shadow: ${({ theme }) => theme.shadows.btnGoogle};
-  }
 `;
 
 export const StyledRef = styled.a`
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding-left: 16px;
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
   font-size: 16px;
   line-height: 38px;
   color: ${({ theme }) => theme.colors.googleText};
+`;
+
+export const ContainerGoogleIcon = styled.div`
+  padding-right: 16px;
 `;

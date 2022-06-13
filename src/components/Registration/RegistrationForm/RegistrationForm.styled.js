@@ -68,13 +68,13 @@ export const Input = styled.input`
     color: ${({ theme }) => theme.colors.placeholder};
   }
   :last-of-type {
-    margin-bottom: 24px;
+    margin-bottom: 26px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     margin-bottom: 25px;
     width: 320px;
     :last-of-type {
-      margin-bottom: 32px;
+      margin-bottom: 34px;
     }
   }
 `;
@@ -114,7 +114,6 @@ export const LoginFormRef = styled.span`
 
 export const LoginRef = styled(NavLink)`
   display: block;
-  /* margin: 0 auto; */
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   font-size: 13px;

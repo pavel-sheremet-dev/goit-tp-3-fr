@@ -2,19 +2,20 @@ import {
   StyledGoogleButton,
   StyledRef,
   StyledContainer,
+  ContainerGoogleIcon,
 } from './GoogleButton.styled';
 import { ReactComponent as GoogleIcon } from '../../../images/svg/google-icon.svg';
 
 export default function GoogleButton({ onClick, style }) {
+  const url = process.env.REACT_APP_API_BASE_URL;
+
   return (
     <StyledContainer>
       <StyledGoogleButton onClick={onClick} style={style}>
-        <GoogleIcon />
-        <StyledRef
-          href="
-          http://localhost:7778/users/google
-          "
-        >
+        <StyledRef href={`${url}/api/users/google`}>
+          <ContainerGoogleIcon>
+            <GoogleIcon />
+          </ContainerGoogleIcon>
           Google
         </StyledRef>
       </StyledGoogleButton>
