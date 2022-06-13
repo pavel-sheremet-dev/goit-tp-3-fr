@@ -15,7 +15,6 @@ const VerificatePage = () => {
 
   useEffect(() => {
     if (location.pathname.includes('oauth')) {
-      console.log(token);
       dispatch(setToken(token));
       dispatch(getUser());
       navigate('/', { replace: true });

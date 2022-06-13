@@ -19,6 +19,7 @@ import { ReactComponent as PlusBtnIcon } from 'images/svg/icon-plus.svg';
 import TrainFormModal from 'components/TrainFormModal/TrainFormModal';
 
 import { trainingSelectors } from 'redux/training';
+import { updateActiveTraining } from 'redux/training/training-operations';
 import { getUnreadBooks } from 'redux/books/books-operations';
 import { WrapperNotActiveTrain, WrapperDesktop } from './TrainingPage.styled';
 
@@ -54,6 +55,8 @@ const responce = {
 
 const TrainingPage = () => {
   const [results, setResult] = useState([]);
+  const deadlineDate = useSelector(trainingSelectors.getDeadlineDate);
+  const traningResults = useSelector(trainingSelectors.getResult);
   const pageFormat = useContext(PageFormatContext);
 
   const isStatusTraining = useSelector(trainingSelectors.getStatus);
@@ -65,6 +68,11 @@ const TrainingPage = () => {
   useEffect(() => {
     dispatch(getUnreadBooks());
   }, [dispatch]);
+  useEffect(() => {
+    if (results) {
+      dispatch(updateActiveTraining(results));
+    }
+  }, [dispatch, results]);
 
   const modalText = {
     bookRead: 'Ще одна книга прочитана',
@@ -82,7 +90,7 @@ const TrainingPage = () => {
       return lastResult < prevDay ? prevDay : lastResult;
     }
   };
-  const startDay = getStartDay(responce.deadlineDate, responce.results);
+  const startDay = getStartDay(deadlineDate, traningResults);
 
   const openTrainingForm = () => {
     setIsShowTrainingModal(!isShowTrainingModal);
@@ -110,10 +118,10 @@ const TrainingPage = () => {
               <Dashboard responce={responce} />
               <Results
                 startDate={startDay}
-                finishDate={responce.deadlineDate}
+                finishDate={deadlineDate}
                 onSubmit={obj => setResult([...results, obj])}
               />
-              <Statistic results={responce.results} />
+              <Statistic results={traningResults} />
             </>
           ) : (
             <WrapperNotActiveTrain>
@@ -147,7 +155,6 @@ const TrainingPage = () => {
         <>
           {isStatusTraining ? (
             <>
-
               <CountdownContainer />
               <WrapperDesktop>
                 <PlanTimer />
@@ -159,10 +166,10 @@ const TrainingPage = () => {
                 <div>
                   <Results
                     startDate={startDay}
-                    finishDate={responce.deadlineDate}
+                    finishDate={deadlineDate}
                     onSubmit={obj => setResult([...results, obj])}
                   />
-                  <Statistic results={responce.results} />
+                  <Statistic results={traningResults} />
                 </div>
               </WrapperDesktop>
             </>
