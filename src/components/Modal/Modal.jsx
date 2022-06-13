@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { WrapperModal, WrapperOverlay } from './Modal.styled';
 
 const modalRoot = document.querySelector('#root');
 
-export default function Modal({ onClose, children}) {
+export default function Modal({ onClose, children }) {
   useEffect(() => {
     const handleKeydown = e => {
       if (e.code === 'Escape') {
@@ -16,6 +16,7 @@ export default function Modal({ onClose, children}) {
       window.removeEventListener('keydown', handleKeydown);
     };
   }, [onClose]);
+
   const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
       onClose();
@@ -23,9 +24,7 @@ export default function Modal({ onClose, children}) {
   };
 
   return createPortal(
-    <WrapperOverlay onClick={handleBackdropClick}>
-      {children}
-    </WrapperOverlay>,
+    <WrapperOverlay onClick={handleBackdropClick}>{children}</WrapperOverlay>,
     modalRoot,
   );
 }

@@ -41,7 +41,7 @@ const LibraryPage = () => {
 
   return (
     <>
-      <Section title={'Моя пуста бібліотека'} titleLevel={'h2'} isHidden>
+      <Section title={'Моя бібліотека'} titleLevel={'h2'} isHidden>
         {isMobile && (
           <>
             {showMobileForm && <LibraryForm />}

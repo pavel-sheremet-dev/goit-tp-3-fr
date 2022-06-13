@@ -10,11 +10,13 @@ export const Form = styled.form`
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     flex-direction: row;
     justify-content: space-between;
+    margin: ${props => (props.isarray ? '0' : '0 0 40px 0')};
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
     align-items: end;
     justify-content: start;
+    margin: ${props => (props.isarray ? '0' : '0 0 40px 0')};
   }
 `;
 

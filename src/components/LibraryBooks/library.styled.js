@@ -18,10 +18,7 @@ export const PosContainer = styled.div`
 `;
 
 export const CollectionBox = styled.div`
-  padding: 0 0 20px 0;
-
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
-    padding: 0 0 40px 0;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
   }
