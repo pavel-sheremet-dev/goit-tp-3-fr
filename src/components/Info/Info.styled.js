@@ -76,7 +76,7 @@ export const Buttons = styled.div`
   margin-bottom: 40px;
 `;
 
-export const Link = styled.a`
+export const Link = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,6 +86,7 @@ export const Link = styled.a`
   background-color: ${({ theme }) => theme.colors.mainBrandColor};
   color: ${({ theme }) => theme.colors.white};
   transition: ${({ theme }) => theme.transition('background-color')};
+  cursor: pointer;
 
   &:hover,
   &:focus,
@@ -112,29 +113,36 @@ export const LinkLogin = styled(NavLink)`
   }
 
   :not(:last-child) {
+    height: 38px;
     margin-right: 20px;
     box-shadow: none;
-    border: 1px solid #000000;
+    outline: 1px solid #000000;
     background-color: transparent;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     color: ${({ theme }) => theme.colors.defaultFont};
     transition: ${({ theme }) => theme.transition('background-color')},
-      ${({ theme }) => theme.transition('border')};
+      ${({ theme }) => theme.transition('outline-color')},
+      ${({ theme }) => theme.transition('color')};
 
     &:hover,
     &:focus,
     &:active {
       background-color: ${({ theme }) => theme.colors.mainBrandColor};
-      border: transparent;
+      outline-color: ${({ theme }) => theme.colors.mainBrandColor};
+      color: ${({ theme }) => theme.colors.white};
     }
   }
 `;
 
-export const TextButton = styled.span`
+export const TextButton = styled.button`
+  background-color: transparent;
+  padding: 0;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   font-size: 14px;
   line-height: 1.21;
   text-align: center;
+  cursor: pointer;
 `;
 
 export const SpanIcon = styled.span`
