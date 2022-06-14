@@ -17,9 +17,9 @@ import TrainingList from 'components/TrainingList/TrainingList';
 import IconButton from 'components/common/button/IconButton';
 import { ReactComponent as PlusBtnIcon } from 'images/svg/icon-plus.svg';
 import TrainFormModal from 'components/TrainFormModal/TrainFormModal';
-
-import { trainingSelectors } from 'redux/training';
 import { getUnreadBooks } from 'redux/books/books-operations';
+
+import { trainingSelectors, trainingOperations } from 'redux/training';
 import { WrapperNotActiveTrain, WrapperDesktop } from './TrainingPage.styled';
 
 const responce = {
@@ -55,16 +55,21 @@ const responce = {
 const TrainingPage = () => {
   const [results, setResult] = useState([]);
   const pageFormat = useContext(PageFormatContext);
-
   const isStatusTraining = useSelector(trainingSelectors.getStatus);
+  const firstLoading = useSelector(trainingSelectors.getFirstLoading);
   const [isShowTrainingModal, setIsShowTrainingModal] = useState(false);
-  console.log('isStatusTraining:', isStatusTraining);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUnreadBooks());
+    dispatch(trainingOperations.getActiveTraining());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (isStatusTraining || firstLoading) return;
+
+    dispatch(getUnreadBooks());
+  }, [dispatch, isStatusTraining, firstLoading]);
 
   const modalText = {
     bookRead: 'Ще одна книга прочитана',
@@ -99,10 +104,9 @@ const TrainingPage = () => {
       <CongratsModal text={modalText.trainingCompleted} />
       <CongratsModal text={modalText.registration} />
     <WellDoneModal /> */}
-
-      {(isResponse || isMobile) && (
+      {firstLoading && (
         <>
-          {isStatusTraining ? (
+          {(isResponse || isMobile) && (
             <>
               <CountdownContainer />
               <PlanTimer />
@@ -114,40 +118,37 @@ const TrainingPage = () => {
                 onSubmit={obj => setResult([...results, obj])}
               />
               <Statistic results={responce.results} />
-            </>
-          ) : (
-            <WrapperNotActiveTrain>
-              {!isShowTrainingModal ? (
-                <>
-                  <PlanTimer />
-                  <TrainingList />
-                  <Dashboard responce={responce} />
-                  <IconButton
-                    IconComponent={PlusBtnIcon}
-                    className={'iconPlus'}
-                    onClick={openTrainingForm}
-                  />
-                </>
-              ) : (
-                <>
-                  <TrainFormModal
-                    isShowTrainingModal={isShowTrainingModal}
-                    setIsShowTrainingModal={setIsShowTrainingModal}
-                  >
-                    <TrainForm />
-                  </TrainFormModal>
-                </>
+
+              {!isStatusTraining && (
+                <WrapperNotActiveTrain>
+                  {!isShowTrainingModal ? (
+                    <>
+                      <PlanTimer />
+                      <TrainingList />
+                      <Dashboard responce={responce} />
+                      <IconButton
+                        IconComponent={PlusBtnIcon}
+                        className={'iconPlus'}
+                        onClick={openTrainingForm}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <TrainFormModal
+                        isShowTrainingModal={isShowTrainingModal}
+                        setIsShowTrainingModal={setIsShowTrainingModal}
+                      >
+                        <TrainForm />
+                      </TrainFormModal>
+                    </>
+                  )}
+                </WrapperNotActiveTrain>
               )}
-            </WrapperNotActiveTrain>
+            </>
           )}
-        </>
-      )}
 
-      {(isTablet || isDesktop) && (
-        <>
-          {isStatusTraining ? (
+          {(isTablet || isDesktop) && (
             <>
-
               <CountdownContainer />
               <WrapperDesktop>
                 <PlanTimer />
@@ -165,13 +166,14 @@ const TrainingPage = () => {
                   <Statistic results={responce.results} />
                 </div>
               </WrapperDesktop>
-            </>
-          ) : (
-            <>
-              <PlanTimer />
-              <TrainForm />
 
-              <Dashboard responce={responce} />
+              {!isStatusTraining && (
+                <>
+                  <PlanTimer />
+                  <TrainForm />
+                  <Dashboard responce={responce} />
+                </>
+              )}
             </>
           )}
         </>

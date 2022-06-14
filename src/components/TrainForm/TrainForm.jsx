@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import moment from 'moment';
 
 import DateTimeInput from './DateTime/DateTime';
 import SelectBook from './SelectBook/SelectBook';
 import TrainingList from '../TrainingList/TrainingList';
+import ActiveTrainList from '../ActiveTrainList/ActiveTrainList';
 import { trainingSelectors, trainingOperations } from 'redux/training';
-import {booksSelectors} from 'redux/books'
+import { booksSelectors } from 'redux/books';
 
 import {
   Wrapper,
@@ -26,14 +26,9 @@ const TrainForm = () => {
   const [booksIds, setBooksIds] = useState([]);
   const [error, setError] = useState('');
   const isValidate = useRef(false);
-  const unreadBooks = useSelector(booksSelectors.getUnreadBooks)
   const isStatusTraining = useSelector(trainingSelectors.getStatus);
+  const unreadBooks = useSelector(booksSelectors.getUnreadBooks);
 
-  
-  useEffect(() => {
-    dispatch(trainingOperations.getActiveTraining());
-  }, [dispatch]);
-  
   useEffect(() => {
     if (!isValidate.current) return;
     if (!startDate) {
@@ -50,7 +45,7 @@ const TrainForm = () => {
     }
     setError(false);
   }, [books.length, deadlineDate, startDate]);
-  
+
   const getBooksIds = id => {
     setBooksIds(state => [...state, id]);
     const books = unreadBooks.filter(book => book.id === id);
@@ -87,7 +82,6 @@ const TrainForm = () => {
     setError(false);
     setStartDate('');
     setDeadlineDate('');
-    setBooks('');
   };
 
   return (
@@ -122,10 +116,12 @@ const TrainForm = () => {
         </InputWrapper>
 
         <WrapperTrainingList>
+          {isStatusTraining && <ActiveTrainList />}
+
           <TrainingList books={books} handleUpdateBook={handleUpdateBook} />
         </WrapperTrainingList>
 
-       {!isStatusTraining && <Button type="submit">Почати тренування</Button>}
+        {!isStatusTraining && <Button type="submit">Почати тренування</Button>}
       </Form>
     </Wrapper>
   );
