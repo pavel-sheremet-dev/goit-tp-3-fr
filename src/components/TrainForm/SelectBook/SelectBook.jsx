@@ -1,7 +1,11 @@
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { getUnreadBooks } from 'redux/books/books-operations';
 import { ReactComponent as CalendarIconDowm } from 'images/svg/calendar-icon-down.svg';
 import { Label } from './SelectBook.styled';
 
-const SelectBook = ({ unreadBooks = [], getBooksIds, booksIds }) => {
+const SelectBook = ({ unreadBooks, getBooksIds, booksIds }) => {
   const filteredBooks = unreadBooks.filter(book => !booksIds.includes(book.id));
 
   return (

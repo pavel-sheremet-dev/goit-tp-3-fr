@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
-  margin-top: 20px;
+  margin-top: 25px;
   margin-bottom: 32px;
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
@@ -123,6 +123,7 @@ export const Button = styled.button`
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 40px;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
