@@ -8,6 +8,7 @@ export const getBooks = state => state.training.training.books;
 export const getTraining = state => state.training.training;
 
 // Training result
+export const getResult = state => state.training.training.results;
 export const getDate = state => state.training.date;
 export const getPointResult = state => state.training.pointResult;
 
