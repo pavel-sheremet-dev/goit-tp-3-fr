@@ -2,14 +2,14 @@ export const routes = {
   signUp: {
     id: 1,
     title: 'Registration',
-    path: 'signup',
-    absolutePath: '/signup',
+    path: '/',
+    absolutePath: '/',
   },
   login: {
     id: 2,
     title: 'Login',
-    path: '/',
-    absolutePath: '/',
+    path: '/login',
+    absolutePath: '/login',
   },
 
   training: {

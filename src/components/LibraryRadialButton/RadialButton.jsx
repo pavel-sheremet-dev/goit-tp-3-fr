@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 const radialButtonRoot = document.querySelector('#root');
 
-const RadialButton = ({ onRadialClick, important }) => {
+export const RadialButton = ({ onRadialClick, important }) => {
   const [offset, setOffset] = useState(0);
   const actionAmout = important * 250;
 
@@ -26,4 +26,10 @@ const RadialButton = ({ onRadialClick, important }) => {
     radialButtonRoot,
   );
 };
-export default RadialButton;
+export const AddButton = ({ onBtnClick }) => {
+  return (
+    <button type="button" onClick={() => onBtnClick(true)}>
+      <LibAddButton />
+    </button>
+  );
+};

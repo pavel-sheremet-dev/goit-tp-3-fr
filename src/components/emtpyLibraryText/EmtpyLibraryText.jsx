@@ -15,7 +15,7 @@ import { ReactComponent as ArrowIcon } from 'images/svg/arrow.svg';
 import { ReactComponent as BookIcon } from 'images/svg/icon-book.svg';
 import { ReactComponent as FlagIcon } from 'images/svg/flag.svg';
 
-export default function EmtpyLibraryText({ isEmptyLibrary, onClick }) {
+export default function EmtpyLibraryText({ isEmptyLibrary, onClick, style }) {
   const pageFormat = useContext(PageFormatContext);
   const isResponse = pageFormat === format.response;
   const isMobile = pageFormat === format.mobile;
@@ -23,7 +23,7 @@ export default function EmtpyLibraryText({ isEmptyLibrary, onClick }) {
   return (
     <>
       {!isEmptyLibrary && (
-        <StyledBox>
+        <StyledBox style={style}>
           {(isResponse || isMobile) && (
             <StyledNameBook>Назва книги</StyledNameBook>
           )}

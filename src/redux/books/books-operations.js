@@ -42,9 +42,12 @@ export const getUnreadBooks = createAsyncThunk(
 
 export const updateBookReview = createAsyncThunk(
   'books/updateBookReview',
-  async (body, { rejectWithValue }) => {
+  async (reqparams, { rejectWithValue }) => {
     try {
-      const { data } = await axios.patch(GET_BOOK_ENDPOINT, body);
+      const { data } = await axios.patch(
+        `${GET_BOOK_ENDPOINT}/${reqparams.index}`,
+        reqparams.body,
+      );
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

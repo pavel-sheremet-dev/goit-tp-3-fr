@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 
@@ -18,28 +18,57 @@ import {
   ErrorContainer,
 } from './LibraryForm.styled';
 
-const LibraryMobileForm = ({ isArrayFull }) => {
+const getDataFromLS = key => sessionStorage.getItem(key) ?? '';
+
+const getInitialObject = initObj => {
+  return Object.keys(initObj).reduce(
+    (acc, item) => ({ ...acc, [item]: getDataFromLS(`add-book-${item}`) }),
+    {},
+  );
+};
+
+const removeValuesFromLS = initObj => {
+  Object.keys(initObj).forEach(item =>
+    sessionStorage.removeItem(`add-book-${item}`),
+  );
+};
+
+const initBook = {
+  name: '',
+  author: '',
+  year: '',
+  pages: '',
+};
+
+const LibraryMobileForm = ({ isArrayFull, style, closeForm }) => {
+  const [initialValues, setInitialValues] = useState(() =>
+    getInitialObject(initBook),
+  );
+
   const dispatch = useDispatch();
 
   const formik = useFormik({
-    initialValues: {
-      name: '',
-      author: '',
-      year: '',
-      pages: '',
-    },
+    initialValues,
     validationSchema: validationAddFormSchema,
     validate: validateForm,
     onSubmit: (values, { resetForm }) => {
-      alert(JSON.stringify(values, null, 2));
       const { name, author, year, pages } = values;
       dispatch(addBook({ name, author, year, pages }));
       resetForm();
+      setInitialValues(initBook);
+      removeValuesFromLS(initBook);
+      closeForm(false);
     },
+    enableReinitialize: true,
   });
 
+  const handleChange = e => {
+    sessionStorage.setItem(`add-book-${e.target.id}`, e.target.value);
+    formik.handleChange(e);
+  };
+
   return (
-    <Form onSubmit={formik.handleSubmit} isarray={isArrayFull}>
+    <Form onSubmit={formik.handleSubmit} isarray={isArrayFull} style={style}>
       <TitleLabel>
         <span>Назва книги</span>
         <Input
@@ -48,7 +77,7 @@ const LibraryMobileForm = ({ isArrayFull }) => {
           type="text"
           placeholder="..."
           value={formik.values.name}
-          onChange={formik.handleChange}
+          onChange={handleChange}
         />
         {formik.touched.name && formik.errors.name ? (
           <ErrorContainer>{formik.errors.name}</ErrorContainer>
@@ -63,7 +92,7 @@ const LibraryMobileForm = ({ isArrayFull }) => {
           type="text"
           placeholder="..."
           value={formik.values.author}
-          onChange={formik.handleChange}
+          onChange={handleChange}
         />
         {formik.touched.author && formik.errors.author ? (
           <ErrorContainer>{formik.errors.author}</ErrorContainer>
@@ -79,7 +108,7 @@ const LibraryMobileForm = ({ isArrayFull }) => {
           placeholder="..."
           maxLength="4"
           value={formik.values.year}
-          onChange={formik.handleChange}
+          onChange={handleChange}
         />
         {formik.touched.year && formik.errors.year ? (
           <ErrorContainer>{formik.errors.year}</ErrorContainer>
@@ -95,7 +124,7 @@ const LibraryMobileForm = ({ isArrayFull }) => {
           placeholder="..."
           maxLength="4"
           value={formik.values.pages}
-          onChange={formik.handleChange}
+          onChange={handleChange}
         />
         {formik.touched.pages && formik.errors.pages ? (
           <ErrorContainer>{formik.errors.pages}</ErrorContainer>

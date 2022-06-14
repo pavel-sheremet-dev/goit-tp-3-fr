@@ -54,7 +54,6 @@ const SignUpForm = () => {
 
   useEffect(() => {
     if (!error) return;
-    console.log('error', error);
   }, [error]);
 
   return (

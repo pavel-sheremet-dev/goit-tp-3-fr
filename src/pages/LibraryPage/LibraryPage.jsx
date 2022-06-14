@@ -1,138 +1,177 @@
+import { PageFormatContext, format } from 'context/pageFormatContext';
+import { useContext, useEffect, useRef, useState } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { getBooks } from 'redux/books/books-operations';
+
+import { getTypeKeys } from 'helpers/libraryService';
+
 import Section from 'components/common/section/Section';
 import EmtpyLibraryText from 'components/emtpyLibraryText/EmtpyLibraryText';
 import LibraryForm from 'components/LibraryForm/LibraryForm';
-
 import FinishedBooks from 'components/LibraryBooks/FinishedBooks';
 import InActionBooks from 'components/LibraryBooks/InActionBooks';
-import RadialButton from 'components/LibraryRadialButton';
 import LibButton from 'components/LibButton';
-
-import { PageFormatContext, format } from 'context/pageFormatContext';
-import { useContext, useState } from 'react';
-
-import { useDispatch, useSelector } from 'react-redux';
-
-import { getTypeKeys } from 'helpers/libraryService';
+import BackButton from './BackButton';
 import RatingModal from 'components/RatingModal/RatingModal';
 import Modal from 'components/Modal/Modal';
 
-import {
-  LibFormLogicPosition,
-  LibCollectionLogicPosition,
-} from './LibraryPage.styled';
-
-import data from 'data/data1.json';
+import { LibCollectionLogicPosition } from './LibraryPage.styled';
+import { Loader } from 'components/Loader/Loader';
+import { booksSelectors } from 'redux/books';
+import { AddButton } from 'components/LibraryRadialButton/RadialButton';
 
 const { mobile, response } = format;
 
 const LibraryPage = () => {
-  const [showLibraryForm, setShowLibraryForm] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [index, setIndex] = useState('');
   const pageFormat = useContext(PageFormatContext);
   const dispatch = useDispatch();
+  const allBooks = useSelector(booksSelectors.getAllBooks);
+  const loading = useSelector(booksSelectors.getLoading);
+  const isFirstLoaded = useSelector(booksSelectors.getIsFirstLoaded);
 
-  const finishedBooksCollection = [
-    ...data.library.finished,
-    ...data.library.finished,
-    ...data.library.finished,
-    ...data.library.finished,
-    ...data.library.finished,
-    ...data.library.finished,
-  ]; /* const finishedBooksCollection = useSelector(Selector.getFinishedCollection); */
-  const readingBooksCollection = [
-    ...data.library.finished,
-    ...data.library.finished,
-  ]; /* const readingBooksCollection = useSelector(Selector.getReadingCollection); */
-  const unreadBooksCollection = [
-    ...data.library.finished,
-    ...data.library.finished,
-    ...data.library.finished,
-  ]; /* const unreadBooksCollection = useSelector(Selector.getUnreadCollection); */
+  const { unread, reading, finished } = allBooks;
+
+  useEffect(() => {
+    dispatch(getBooks());
+  }, [dispatch]);
 
   const isMobile = pageFormat === mobile || pageFormat === response;
-  const hasBookLibrary = unreadBooksCollection?.length > 0;
-  const showMobileForm = showLibraryForm || hasBookLibrary;
-  const showSteps = !hasBookLibrary && !showLibraryForm;
 
-  // const toggleModal = () => {
-  //   setShowModal(showModal => !showModal);
-  // };
+  const hasBookLibrary = !!(unread.length || reading.length || finished.length);
 
-  const toggleModal = () => {
-    setShowModal(showModal => !showModal);
+  const [showLibraryForm, setShowLibraryForm] = useState(false);
+
+  const getId = id => {
+    setIndex(id);
+    setShowModal(true);
   };
 
-  const onRadialClick = () => {
-    console.log('onRadialClick button');
+  const closeModal = () => {
+    setShowModal(false);
   };
 
-  return (
-    <>
-      <Section title={'Моя пуста бібліотека'} titleLevel={'h2'} isHidden>
-        <LibFormLogicPosition>
-          {isMobile && (
+  switch (true) {
+    case isMobile:
+      return (
+        <Section title={'Моя бібліотека'} titleLevel={'h2'} isHidden>
+          {!isFirstLoaded ? (
             <>
-              {showMobileForm && <LibraryForm />}
-              {showSteps && (
-                <EmtpyLibraryText
-                  isEmptyLibrary={false}
-                  onClick={setShowLibraryForm}
-                />
+              {!hasBookLibrary ? (
+                <div>
+                  {showLibraryForm && (
+                    <>
+                      <BackButton onBtnClick={setShowLibraryForm} />
+                      <LibraryForm closeForm={setShowLibraryForm} />
+                    </>
+                  )}
+                  {!showLibraryForm && (
+                    <EmtpyLibraryText
+                      isEmptyLibrary={false}
+                      onClick={setShowLibraryForm}
+                    />
+                  )}
+                </div>
+              ) : (
+                <>
+                  {showLibraryForm && (
+                    <>
+                      <BackButton onBtnClick={setShowLibraryForm} />
+                      <LibraryForm closeForm={setShowLibraryForm} />
+                    </>
+                  )}
+                  {!showLibraryForm && (
+                    <>
+                      <LibCollectionLogicPosition>
+                        {!!finished.length && (
+                          <FinishedBooks getId={getId} options={finished} />
+                        )}
+                        {!!reading.length && (
+                          <InActionBooks
+                            options={reading}
+                            type={getTypeKeys().ReadingBooks}
+                            title={'Читаю'}
+                          />
+                        )}
+                        {!!unread.length && (
+                          <InActionBooks
+                            options={unread}
+                            type={getTypeKeys().UnreadBooks}
+                            title={'Маю намір прочитати'}
+                          />
+                        )}
+                      </LibCollectionLogicPosition>
+                      {!!unread.length && <LibButton />}
+                      <AddButton onBtnClick={setShowLibraryForm} />
+                    </>
+                  )}
+                </>
               )}
             </>
+          ) : (
+            <Loader />
           )}
-          {!isMobile && (
-            <>
-              <LibraryForm isArrayFull={hasBookLibrary} />
-              {showSteps && (
-                <EmtpyLibraryText
-                  isEmptyLibrary={false}
-                  onClick={setShowLibraryForm}
-                />
-              )}
-            </>
-          )}
-        </LibFormLogicPosition>
-        <LibCollectionLogicPosition>
-          {finishedBooksCollection?.length > 0 ? (
-            <FinishedBooks
-              options={finishedBooksCollection}
-              toggleModal={toggleModal}
-            />
-          ) : null}
-          {readingBooksCollection?.length > 0 ? (
-            <InActionBooks
-              options={readingBooksCollection}
-              type={getTypeKeys().ReadingBooks}
-              title={'Читаю'}
-            />
-          ) : null}
-          {unreadBooksCollection?.length > 0 ? (
-            <InActionBooks
-              options={unreadBooksCollection}
-              type={getTypeKeys().UnreadBooks}
-              title={'Маю намір прочитати'}
-            />
-          ) : null}
-        </LibCollectionLogicPosition>
-        {hasBookLibrary && <LibButton />}
-        {isMobile && hasBookLibrary && unreadBooksCollection?.length > 2 && (
-          <RadialButton
-            onRadialClick={onRadialClick}
-            important={finishedBooksCollection?.length}
-          />
-        )}
-        {/* The radial button does activate, if Array.length > 2 it is normal for UX */}
-        {showModal && (
-          <>
-            <Modal onClose={toggleModal}>
-              <RatingModal onClose={toggleModal} />
+          {showModal && (
+            <Modal onClose={closeModal}>
+              <RatingModal onClose={closeModal} index={index} />
             </Modal>
-          </>
-        )}
-      </Section>
-    </>
-  );
+          )}
+          {loading && <Loader />}
+        </Section>
+      );
+    case !isMobile:
+      return (
+        <Section title={'Моя бібліотека'} titleLevel={'h2'} isHidden>
+          {!isFirstLoaded ? (
+            <>
+              <LibraryForm closeForm={setShowLibraryForm} />
+              {!hasBookLibrary && (
+                <EmtpyLibraryText
+                  isEmptyLibrary={false}
+                  onClick={setShowLibraryForm}
+                />
+              )}
+              {hasBookLibrary && (
+                <>
+                  <LibCollectionLogicPosition>
+                    {!!finished.length && (
+                      <FinishedBooks getId={getId} options={finished} />
+                    )}
+                    {!!reading.length && (
+                      <InActionBooks
+                        options={reading}
+                        type={getTypeKeys().ReadingBooks}
+                        title={'Читаю'}
+                      />
+                    )}
+                    {!!unread.length && (
+                      <InActionBooks
+                        options={unread}
+                        type={getTypeKeys().UnreadBooks}
+                        title={'Маю намір прочитати'}
+                      />
+                    )}
+                  </LibCollectionLogicPosition>
+                  {!!unread.length && <LibButton />}
+                </>
+              )}
+            </>
+          ) : (
+            <Loader />
+          )}
+          {showModal && (
+            <Modal onClose={closeModal}>
+              <RatingModal onClose={closeModal} index={index} />
+            </Modal>
+          )}
+          {loading && <Loader />}
+        </Section>
+      );
+    default:
+      return;
+  }
 };
 
 // При отсутвии библиотеки рендерить модальное окно с шагами, по сути это не модальное окно
