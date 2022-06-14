@@ -87,18 +87,28 @@ const TrainingPage = () => {
     registration: 'Вам на пошту надійшов лист із підтвердженням реєстрації',
   };
 
+  const traningResultNormalize = traningResults.filter(
+    item => item.pointResult,
+  );
   const getStartDay = (deadlineDate, results) => {
     if (Date.now() < Date.parse(deadlineDate)) {
-      return results[results.length - 1].date;
+      return results[results.length - 1]?.date;
     }
     if (Date.now() > Date.parse(deadlineDate)) {
       const prevDay = new Date(new Date() - 1000 * 60 * 60 * 24);
-      const lastResult = results[results.length - 1].date;
+      const lastResult = results[results.length - 1]?.date;
       return lastResult < prevDay ? prevDay : lastResult;
     }
   };
-  const startDay = getStartDay(deadlineDate, traningResults);
+  const getFinishDay = deadlineDate => {
+    if (Date.now() < Date.parse(deadlineDate)) {
+      return new Date();
+    }
+    return deadlineDate;
+  };
 
+  const startDay = getStartDay(deadlineDate, traningResultNormalize);
+  const finishDay = getFinishDay(deadlineDate);
   const openTrainingForm = () => {
     setIsShowTrainingModal(!isShowTrainingModal);
   };
@@ -124,10 +134,10 @@ const TrainingPage = () => {
               <Dashboard responce={responce} />
               <Results
                 startDate={startDay}
-                finishDate={deadlineDate}
+                finishDate={finishDay}
                 onSubmit={obj => setResult([...results, obj])}
               />
-              <Statistic results={responce.results} />
+              <Statistic results={traningResultNormalize} />
 
               {!isStatusTraining && (
                 <WrapperNotActiveTrain>
@@ -170,10 +180,10 @@ const TrainingPage = () => {
                 <div>
                   <Results
                     startDate={startDay}
-                    finishDate={deadlineDate}
+                    finishDate={finishDay}
                     onSubmit={obj => setResult([...results, obj])}
                   />
-                  <Statistic results={traningResults} />
+                  <Statistic results={traningResultNormalize} />
                 </div>
               </WrapperDesktop>
 
