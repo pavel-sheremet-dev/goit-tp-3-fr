@@ -42,8 +42,8 @@ const App = () => {
               <MainComponent />
             </>
           )}
-          <div class="body-frame"></div>
           <ToastContainer position="top-center" autoClose={4000} />
+          <div className="body-frame"></div>
         </Layout>
       </ThemeProvider>
     </>
