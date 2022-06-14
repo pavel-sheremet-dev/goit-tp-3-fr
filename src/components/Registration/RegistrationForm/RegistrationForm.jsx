@@ -82,6 +82,7 @@ const LoginForm = () => {
           id="name"
           name="name"
           type="text"
+          maxLength={100}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.name}
