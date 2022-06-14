@@ -29,7 +29,7 @@ export const validationRegistrationSchema = Yup.object({
 });
 
 export const validate = values => {
-  const reg = new RegExp('[0-9a-zA-Z]');
+  const reg = new RegExp('[0-9A-Za-zА-Яа-яґҐЁёІіЇїЄє]');
   const сyrillic = new RegExp('[А-Яа-яґҐЁёІіЇїЄє]');
 
   const errors = {};
@@ -37,8 +37,6 @@ export const validate = values => {
     errors.name = 'Необхідно заповнити поле*';
   } else if (values.name.length < 2 || values.name.length > 99) {
     errors.name = 'Поле може містити від 3 до 100 символів включно';
-  } else if (сyrillic.test(values.name)) {
-    errors.name = 'Поле може містити літери латиниці, цифри та знаки';
   } else if (!reg.test(values.name[0])) {
     errors.name = 'Поле може починатися з літери або цифри';
   }
