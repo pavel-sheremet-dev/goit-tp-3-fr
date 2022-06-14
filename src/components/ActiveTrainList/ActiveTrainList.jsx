@@ -11,8 +11,13 @@ import {
   HeaderListItem,
   ItemBooks,
   Item,
+<<<<<<< HEAD
   TextItem,
   TitleItem
+=======
+  TitleItem,
+  TextItem,
+>>>>>>> dev
 } from './ActiveTrainList.styled';
 
 const ActiveTrainList = () => {
@@ -32,7 +37,11 @@ const ActiveTrainList = () => {
           getTrainingBooks.map(({ id, name, author, year, pages }) => (
             <ItemBooks key={id}>
               <span className="checkIcon">
+<<<<<<< HEAD
                 {getTrainingBooks.status === 'finished' && <CheckIcon />}
+=======
+                <CheckIcon />
+>>>>>>> dev
               </span>
 
               <Item className={'titleBook'}>

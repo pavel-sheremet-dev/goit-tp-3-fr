@@ -13,7 +13,8 @@ const initialState = {
     finished: [],
   },
   loading: false,
-  error: false,
+  isFirstLoaded: false,
+  error: null,
 };
 
 const booksSlice = createSlice({
@@ -36,20 +37,25 @@ const booksSlice = createSlice({
       })
       .addCase(getBooks.pending, state => {
         state.error = null;
+        state.isFirstLoaded = false;
         state.loading = true;
       })
       .addCase(getBooks.fulfilled, (state, { payload }) => {
         state.library.unread = payload.library.unread;
         state.library.reading = payload.library.reading;
         state.library.finished = payload.library.finished;
+        state.isFirstLoaded = true;
         state.loading = false;
       })
       .addCase(getBooks.rejected, (state, { payload }) => {
         state.error = payload;
+        state.isFirstLoaded = true;
         state.loading = false;
       })
       .addCase(getUnreadBooks.pending, state => {
         state.error = null;
+        state.isFirstLoaded = false;
+        state.isFirstLoaded = true;
         state.loading = true;
       })
       .addCase(getUnreadBooks.fulfilled, (state, { payload }) => {
@@ -60,6 +66,7 @@ const booksSlice = createSlice({
       })
       .addCase(getUnreadBooks.rejected, (state, { payload }) => {
         state.error = payload;
+        state.isFirstLoaded = true;
         state.loading = false;
       })
       .addCase(updateBookReview.pending, state => {

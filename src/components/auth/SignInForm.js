@@ -43,10 +43,10 @@ const SignInForm = () => {
         validationSchema={Yup.object({
           email: Yup.string().email().required('Обов`язкове поле'),
           password: Yup.string()
-            .matches(
-              /^[0-9a-zA-Z_-]{8,20}$/,
-              '0-9a-zA-Z Від 8 до 20 символів, знаки _ -',
-            )
+            // .matches(
+            //   /^[0-9a-zA-Z_-]{8,20}$/,
+            //   '0-9a-zA-Z Від 8 до 20 символів, знаки _ -',
+            // )
             .required('Обов`язкове поле'),
         })}
         onSubmit={(values, obj) => {

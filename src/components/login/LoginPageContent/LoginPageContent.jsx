@@ -6,8 +6,8 @@ export default function LoginPageContent() {
   return (
     <StyledSection>
       <StyledTablet>
-      <GoogleButton />
-      <LoginForm />
+        <GoogleButton />
+        <LoginForm />
       </StyledTablet>
     </StyledSection>
   );

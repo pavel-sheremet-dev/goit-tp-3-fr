@@ -55,7 +55,6 @@ export const Input = styled.input`
 
   &.password {
     font-family: Verdana;
-    letter-spacing: 0.125em;
   }
 
   &:hover,
@@ -76,7 +75,7 @@ export const Input = styled.input`
     margin-bottom: 25px;
     width: 320px;
     :last-of-type {
-      margin-bottom: 32px;
+      margin-bottom: 34px;
     }
   }
 `;
@@ -145,7 +144,7 @@ export const Error = styled.p`
   color: ${({ theme }) => theme.colors.error};
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     margin-top: -20px;
-    padding-bottom: 5px;
+    padding-bottom: 15px;
     :last-of-type {
       margin-top: -30px;
       padding-bottom: 15px;

@@ -9,6 +9,7 @@ export const getTraining = state => state.training.training;
 export const getFirstLoading = state => state.training.firstLoading;
 
 // Training result
+export const getResult = state => state.training.training.results;
 export const getDate = state => state.training.date;
 export const getPointResult = state => state.training.pointResult;
 

@@ -1,5 +1,7 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { getTrainingError } from 'helpers/getTextError';
 
 const TRAINING_ENDPOINT = 'api/trainings';
 
@@ -15,6 +17,7 @@ export const addTraining = createAsyncThunk(
       });
       return data;
     } catch (error) {
+      toast.error('Упс, щось пішло не так, спробуйте повторити пізніше :)');
       return rejectWithValue(error.message);
     }
   },
@@ -27,6 +30,8 @@ export const getActiveTraining = createAsyncThunk(
       const { data } = await axios.get(TRAINING_ENDPOINT);
       return data;
     } catch (error) {
+      const { status } = error.response;
+      status !== 404 && toast.error(getTrainingError(status));
       return rejectWithValue(error.message);
     }
   },
@@ -42,6 +47,9 @@ export const updateActiveTraining = createAsyncThunk(
       });
       return data;
     } catch (error) {
+      const { status } = error.response;
+      console.log('status', status);
+      status !== 404 && toast.error(getTrainingError(status));
       return rejectWithValue(error.message);
     }
   },

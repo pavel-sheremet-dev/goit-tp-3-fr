@@ -21,6 +21,8 @@ import { ReactComponent as PlusBtnIcon } from 'images/svg/icon-plus.svg';
 import TrainFormModal from 'components/TrainFormModal/TrainFormModal';
 import { Loader } from 'components/Loader/Loader';
 
+
+import { getUnreadBooks } from 'redux/books/books-operations';
 import { WrapperNotActiveTrain, WrapperDesktop } from './TrainingPage.styled';
 
 const responce = {
@@ -55,8 +57,10 @@ const responce = {
 
 const TrainingPage = () => {
   const dispatch = useDispatch();
-  const pageFormat = useContext(PageFormatContext);
   const [results, setResult] = useState([]);
+  const deadlineDate = useSelector(trainingSelectors.getDeadlineDate);
+  const traningResults = useSelector(trainingSelectors.getResult);
+  const pageFormat = useContext(PageFormatContext);
   const [isShowTrainingModal, setIsShowTrainingModal] = useState(false);
 
   const isStatusTraining = useSelector(trainingSelectors.getStatus);
@@ -72,6 +76,12 @@ const TrainingPage = () => {
     dispatch(trainingOperations.getActiveTraining());
   }, [dispatch]);
 
+  // useEffect(() => {
+  //   if (results) {
+  //     dispatch(updateActiveTraining(results));
+  //   }
+  // }, [dispatch, results]);
+
   useEffect(() => {
     if (isFirstLoading || isStatusTraining) return;
 
@@ -84,18 +94,28 @@ const TrainingPage = () => {
     registration: 'Вам на пошту надійшов лист із підтвердженням реєстрації',
   };
 
+  const traningResultNormalize = traningResults.filter(
+    item => item.pointResult,
+  );
   const getStartDay = (deadlineDate, results) => {
     if (Date.now() < Date.parse(deadlineDate)) {
-      return results[results.length - 1].date;
+      return results[results.length - 1]?.date;
     }
     if (Date.now() > Date.parse(deadlineDate)) {
       const prevDay = new Date(new Date() - 1000 * 60 * 60 * 24);
-      const lastResult = results[results.length - 1].date;
+      const lastResult = results[results.length - 1]?.date;
       return lastResult < prevDay ? prevDay : lastResult;
     }
   };
-  const startDay = getStartDay(responce.deadlineDate, responce.results);
+  const getFinishDay = deadlineDate => {
+    if (Date.now() < Date.parse(deadlineDate)) {
+      return new Date();
+    }
+    return deadlineDate;
+  };
 
+  const startDay = getStartDay(deadlineDate, traningResultNormalize);
+  const finishDay = getFinishDay(deadlineDate);
   const openTrainingForm = () => {
     setIsShowTrainingModal(!isShowTrainingModal);
   };
@@ -136,12 +156,12 @@ const TrainingPage = () => {
                   <PlanTimer />
                   <TrainForm />
                   <Dashboard responce={responce} />
-                  <Results
-                    startDate={startDay}
-                    finishDate={responce.deadlineDate}
-                    onSubmit={obj => setResult([...results, obj])}
-                  />
-                  <Statistic results={responce.results} />
+                 <Results
+                startDate={startDay}
+                finishDate={finishDay}
+                onSubmit={obj => setResult([...results, obj])}
+              />
+              <Statistic results={traningResultNormalize} />
                 </>
               )}
             </>
@@ -181,12 +201,12 @@ const TrainingPage = () => {
                   <WrapperDesktop>
                     <Dashboard responce={responce} />
                     <div>
-                      <Results
-                        startDate={startDay}
-                        finishDate={responce.deadlineDate}
-                        onSubmit={obj => setResult([...results, obj])}
-                      />
-                      <Statistic results={responce.results} />
+                  <Results
+                    startDate={startDay}
+                    finishDate={finishDay}
+                    onSubmit={obj => setResult([...results, obj])}
+                  />
+                  <Statistic results={traningResultNormalize} />
                     </div>
                   </WrapperDesktop>
                 </>
@@ -209,7 +229,6 @@ const TrainingPage = () => {
     default:
       return;
   }
-};
 
 {
   /* <CongratsModal text={modalText.bookRead} />

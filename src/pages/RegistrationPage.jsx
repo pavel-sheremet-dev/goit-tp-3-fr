@@ -8,7 +8,9 @@ import { useContext } from 'react';
 const { response, mobile } = format;
 
 const RegistrationPage = () => {
-  const [showInfoLocalStorage] = useState(() => localStorage.getItem('info'));
+  const [showInfoLocalStorage] = useState(() =>
+    Boolean(localStorage.getItem('info')),
+  );
   const [showInfo, setShowInfo] = useState(true);
   const titleRef = useRef();
 
@@ -20,7 +22,9 @@ const RegistrationPage = () => {
     <Section>
       {isMobile && (
         <>
-          {!showInfo && <RegistrationPageContent titleRef={titleRef} />}
+          {(!showInfo || showInfoLocalStorage) && (
+            <RegistrationPageContent titleRef={titleRef} />
+          )}
           {!showInfoLocalStorage && showInfo && (
             <Info handleClick={setShowInfo} />
           )}

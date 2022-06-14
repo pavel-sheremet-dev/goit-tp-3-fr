@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+
 import {
   StyledBox,
   StyledRatingBox,
@@ -12,23 +14,41 @@ import {
 } from './RatingModal.styled';
 import { Rating } from 'react-simple-star-rating';
 import { SvgEmptyStar, SvgFullStar } from './RatingModal.styled';
+import { useDispatch } from 'react-redux';
+import { updateBookReview } from 'redux/books/books-operations';
+import { useSelector } from 'react-redux';
+import { booksSelectors } from 'redux/books';
 
-const RatingModal = ({ onClose }) => {
-  const [textarea, setTextarea] = useState('');
-  const [rating, setRating] = useState(0);
+const RatingModal = ({ onClose, index }) => {
+  const books = useSelector(booksSelectors.getFinishedBooks);
+  const book = books.find(book => book.id === index);
+  const [review, setReview] = useState(() => book.review ?? '');
+  const [rating, setRating] = useState(() => Number(book.rating * 20) || 0);
+
+  const dispatch = useDispatch();
 
   const handleRating = rate => {
-    setRating(rate);
+    console.log('first');
+    setRating(rate / 20);
+  };
+
+  const handleChange = event => {
+    console.log('handleChange', handleChange);
+    setReview(event.target.value);
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    setTextarea('');
-    setRating(0);
-  };
-
-  const handleChange = event => {
-    setTextarea(event.target.value);
+    if (!review) {
+      toast.info('Заповніть відгук');
+      return;
+    }
+    if (!rating) {
+      toast.info('Вкажіть рейтинг');
+      return;
+    }
+    dispatch(updateBookReview({ index, body: { rating, review } }));
+    onClose();
   };
 
   return (
@@ -47,7 +67,7 @@ const RatingModal = ({ onClose }) => {
           <StyledRatingResumeText>Резюме</StyledRatingResumeText>
 
           <StyledRatingTextArea
-            value={textarea}
+            value={review}
             onChange={handleChange}
           ></StyledRatingTextArea>
         </StyledRatingLabel>

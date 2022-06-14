@@ -4,8 +4,10 @@ import { Loader } from 'components/Loader/Loader';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { getUser } from 'redux/auth/auth-operations';
 import { setToken } from 'redux/auth/auth-slice';
+import { routes } from 'routes/config';
 
 const VerificatePage = () => {
   const location = useLocation();
@@ -15,19 +17,18 @@ const VerificatePage = () => {
 
   useEffect(() => {
     if (location.pathname.includes('oauth')) {
-      console.log(token);
       dispatch(setToken(token));
       dispatch(getUser());
-      navigate('/', { replace: true });
+      navigate(routes.login.absolutePath, { replace: true });
       return;
     }
     const verifyUser = async () => {
       try {
-        console.log(location.pathname);
         await axios.get(location.pathname);
-        navigate('/', { replace: true });
+        navigate(routes.login.absolutePath, { replace: true });
       } catch (error) {
-        navigate('/', { replace: true });
+        toast.error('Верифікація вже пройдена або посилання вже не дійне');
+        navigate(routes.login.absolutePath, { replace: true });
       }
     };
     verifyUser();

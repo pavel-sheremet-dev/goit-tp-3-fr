@@ -7,6 +7,7 @@ import { ReactComponent as CalendarIconDowm } from 'images/svg/calendar-icon-dow
 import { Label } from './SelectBook.styled';
 
 const SelectBook = ({ unreadBooks, getBooksIds, booksIds }) => {
+<<<<<<< HEAD
   const isStatusTraining = useSelector(trainingSelectors.getStatus);
 
   // const savedBooks = sessionStorage.getItem(storageKey) ?? [];
@@ -21,6 +22,9 @@ const SelectBook = ({ unreadBooks, getBooksIds, booksIds }) => {
   const filteredBooks = unreadBooks.filter(
     book => !booksIds.includes(book.id),
   );
+=======
+  const filteredBooks = unreadBooks.filter(book => !booksIds.includes(book.id));
+>>>>>>> dev
 
   return (
     <Label>
