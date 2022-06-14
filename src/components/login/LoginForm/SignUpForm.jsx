@@ -66,17 +66,17 @@ const SignUpForm = () => {
         }}
         validationSchema={Yup.object({
           name: Yup.string()
-            .matches(
-              /^[A-Za-zА-Яа-яґҐЁёІіЇїЄє'’ʼ\s-]{3,30}$/,
-              'A-Za-zА-Яа-яґҐЁёІіЇїЄє 3-30 символів, апострофи, дефіси та пробіли',
-            )
+            // .matches(
+            //   /^[A-Za-zА-Яа-яґҐЁёІіЇїЄє'’ʼ\s-]{3,30}$/,
+            //   'A-Za-zА-Яа-яґҐЁёІіЇїЄє 3-30 символів, апострофи, дефіси та пробіли',
+            // )
             .required('Обов`язкове поле'),
           email: Yup.string().email().required('Обов`язкове поле'),
           password: Yup.string()
-            .matches(
-              /^[0-9a-zA-Z_-]{8,20}$/,
-              '0-9a-zA-Z Від 8 до 20 символів, знаки _ -',
-            )
+            // .matches(
+            //   /^[0-9a-zA-Z_-]{8,20}$/,
+            //   '0-9a-zA-Z Від 8 до 20 символів, знаки _ -',
+            // )
             .required('Обов`язкове поле'),
           passwordConfirmation: Yup.string()
             .oneOf([Yup.ref('password'), null], 'Має співпадати з паролем')

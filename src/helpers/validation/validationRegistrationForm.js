@@ -18,68 +18,30 @@ export const validationRegistrationSchema = Yup.object({
   password: Yup.string()
     .min(5)
     .max(30)
-    .matches(
-      /^[0-9a-zA-Z_\s'’ʼ-]{5,30}$/,
-      'Пароль має бути від 5 до 30 символів',
-    )
     .required('Необхідно заповнити поле')
     .typeError('Поле може містити літери латиниці, цифри та знаки'),
 
   repassword: Yup.string()
     .min(5)
     .max(30)
-    .matches(
-      /^[0-9a-zA-Z_\s'’ʼ-]{5,30}$/,
-      'Пароль має бути від 5 до 30 символів',
-    )
     .required('Необхідно заповнити поле')
     .typeError('Дані відрізняються від даних поля пароль'),
 });
 
 export const validate = values => {
+  const reg = new RegExp('[0-9a-zA-Z]');
+  const сyrillic = new RegExp('[А-Яа-яґҐЁёІіЇїЄє]');
+
   const errors = {};
   if (!values.name) {
     errors.name = 'Необхідно заповнити поле*';
   } else if (values.name.length < 2 || values.name.length > 99) {
     errors.name = 'Поле може містити від 3 до 100 символів включно';
-  } else if (
-    values.name.startsWith(
-      ' ',
-      // ||
-      //   '!' ||
-      //   '@' ||
-      //    '№'
-      // '"' &&
-      // '№' &&
-      // '$' &&
-      // ';' &&
-      // '%' &&
-      // '^' &&
-      // ':' &&
-      // '&' &&
-      // '?' &&
-      // '*' &&
-      // '(' &&
-      // ')' &&
-      // '-' &&
-      // '_' &&
-      // '=' &&
-      // '+' &&
-      // '{' &&
-      // '}' &&
-      // '|' &&
-      // '/' &&
-      // ',' &&
-      // '.' &&
-      // '`' &&
-      // '~'
-    )
-  ) {
+  } else if (сyrillic.test(values.name)) {
+    errors.name = 'Поле може містити літери латиниці, цифри та знаки';
+  } else if (!reg.test(values.name[0])) {
     errors.name = 'Поле може починатися з літери або цифри';
   }
-  // else if (values.name.length[0] ==== [^0-9\.\,]/g) {
-  //   errors.name = 'Поле може починатися з літери або цифри';
-  // }
 
   if (!values.email) {
     errors.email = 'Необхідно заповнити поле*';
@@ -87,6 +49,8 @@ export const validate = values => {
     errors.email = 'Поле може містити від 7 до 63 символів включно';
   } else if (values.email.startsWith('-') || values.email.slice(-1) === '-') {
     errors.email = 'Поле не може починатися з дефісу або закінчуватися дефісом';
+  } else if (сyrillic.test(values.email)) {
+    errors.email = 'Поле може містити літери латиниці, цифри та знаки';
   }
 
   if (!values.password) {
@@ -95,7 +59,8 @@ export const validate = values => {
     errors.password = 'Поле може містити від 5 до 30 символів включно';
   } else if (
     values.password.startsWith('-') ||
-    values.password.startsWith('.')
+    values.password.startsWith('.') ||
+    сyrillic.test(values.password)
   ) {
     errors.password = 'Поле може містити літери латиниці, цифри та знаки';
   }
