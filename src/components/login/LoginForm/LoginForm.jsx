@@ -56,7 +56,8 @@ const LoginForm = () => {
     validationSchema: validationLoginSchema,
     validate,
     onSubmit: (values, obj) => {
-      const { email, password } = values;
+      const { email: e, password } = values;
+      const email = e.toLowerCase();
       dispatch(authOperations.signIn({ email, password }));
       obj.setSubmitting(false);
       sessionStorage.setItem('auth-form', null);
@@ -75,7 +76,7 @@ const LoginForm = () => {
           name="email"
           type="text"
           onChange={formik.handleChange}
-          value={formik.values.email}
+          value={formik.values.email.trim()}
           placeholder="your@email.com"
         />
         {formik.touched.email && formik.errors.email ? (
@@ -91,7 +92,7 @@ const LoginForm = () => {
           name="password"
           type="password"
           onChange={formik.handleChange}
-          value={formik.values.password}
+          value={formik.values.password.trim()}
           placeholder="Пароль"
         />
         {formik.touched.password && formik.errors.password ? (
