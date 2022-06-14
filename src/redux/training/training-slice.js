@@ -18,6 +18,7 @@ const initialState = {
     owner: null,
   },
 
+  firstLoading: false,
   loading: false,
   error: null,
 };
@@ -45,15 +46,18 @@ const trainingSlice = createSlice({
       .addCase(getActiveTraining.pending, (state, _) => {
         state.loading = true;
         state.error = null;
+        state.firstLoading = false;
       })
       .addCase(getActiveTraining.fulfilled, (state, { payload }) => {
         state.training = payload;
         state.loading = false;
+        state.firstLoading = true;
       })
       .addCase(getActiveTraining.rejected, (state, { payload }) => {
         state.training = initialState.training;
         state.loading = false;
         state.error = payload;
+        state.firstLoading = true;
       })
       // updateActiveTraining
       .addCase(updateActiveTraining.pending, (state, _) => {

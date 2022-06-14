@@ -56,7 +56,6 @@ const RoutesComponent = () => {
         />
 
         {/* PRIVATE */}
-
         <Route
           path={library.path}
           element={

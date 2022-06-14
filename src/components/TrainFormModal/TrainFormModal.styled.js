@@ -10,6 +10,7 @@ export const Backdrop = styled.div`
   & .iconBackBtn {
     position: absolute;
     margin: 0;
-    left: 0;
+    left: 10px;
+    width: 40px;
   }
 `;
