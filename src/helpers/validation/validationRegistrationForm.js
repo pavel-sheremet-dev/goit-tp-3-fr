@@ -37,49 +37,20 @@ export const validationRegistrationSchema = Yup.object({
 });
 
 export const validate = values => {
+  const regNumber = new RegExp('[0-9]');
+  //const regLetter = new RegExp('[0-9A-Za-zА-Яа-яґҐЁёІіЇїЄє]');
+
   const errors = {};
   if (!values.name) {
     errors.name = 'Необхідно заповнити поле*';
   } else if (values.name.length < 2 || values.name.length > 99) {
     errors.name = 'Поле може містити від 3 до 100 символів включно';
   } else if (
-    values.name.startsWith(
-      ' ',
-      // ||
-      //   '!' ||
-      //   '@' ||
-      //    '№'
-      // '"' &&
-      // '№' &&
-      // '$' &&
-      // ';' &&
-      // '%' &&
-      // '^' &&
-      // ':' &&
-      // '&' &&
-      // '?' &&
-      // '*' &&
-      // '(' &&
-      // ')' &&
-      // '-' &&
-      // '_' &&
-      // '=' &&
-      // '+' &&
-      // '{' &&
-      // '}' &&
-      // '|' &&
-      // '/' &&
-      // ',' &&
-      // '.' &&
-      // '`' &&
-      // '~'
-    )
+    // !regNumber.test(values.name[0]) ||
+    !regNumber.test(values.name[0])
   ) {
     errors.name = 'Поле може починатися з літери або цифри';
   }
-  // else if (values.name.length[0] ==== [^0-9\.\,]/g) {
-  //   errors.name = 'Поле може починатися з літери або цифри';
-  // }
 
   if (!values.email) {
     errors.email = 'Необхідно заповнити поле*';

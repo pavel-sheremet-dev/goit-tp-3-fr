@@ -115,6 +115,7 @@ const LoginForm = () => {
           id="password"
           name="password"
           type="password"
+          minLength={5}
           maxLength={30}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -133,6 +134,7 @@ const LoginForm = () => {
           id="repassword"
           name="repassword"
           type="password"
+          minLength={5}
           maxLength={30}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
