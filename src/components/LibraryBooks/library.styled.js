@@ -41,9 +41,15 @@ export const LibraryBox = styled.div`
     margin: 0 0 8px 0;
     justify-content: start;
     display: flex;
+    &.nonreview {
+      padding: 10px 20px;
+    }
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
     padding: 10px 80px 10px 20px;
+    &.nonreview {
+      padding: 10px 80px 10px 20px;
+    }
     position: relative;
   }
 `;
