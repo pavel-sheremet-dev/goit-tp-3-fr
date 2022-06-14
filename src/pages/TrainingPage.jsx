@@ -21,8 +21,6 @@ import { ReactComponent as PlusBtnIcon } from 'images/svg/icon-plus.svg';
 import TrainFormModal from 'components/TrainFormModal/TrainFormModal';
 import { Loader } from 'components/Loader/Loader';
 
-
-import { getUnreadBooks } from 'redux/books/books-operations';
 import { WrapperNotActiveTrain, WrapperDesktop } from './TrainingPage.styled';
 
 const responce = {
@@ -65,7 +63,7 @@ const TrainingPage = () => {
 
   const isStatusTraining = useSelector(trainingSelectors.getStatus);
   const isFirstLoading = useSelector(trainingSelectors.getFirstLoading);
-  const loading = useSelector(trainingSelectors.getLoading)
+  const loading = useSelector(trainingSelectors.getLoading);
 
   const isMobile =
     pageFormat === format.response || pageFormat === format.mobile;
@@ -156,12 +154,12 @@ const TrainingPage = () => {
                   <PlanTimer />
                   <TrainForm />
                   <Dashboard responce={responce} />
-                 <Results
-                startDate={startDay}
-                finishDate={finishDay}
-                onSubmit={obj => setResult([...results, obj])}
-              />
-              <Statistic results={traningResultNormalize} />
+                  <Results
+                    startDate={startDay}
+                    finishDate={finishDay}
+                    onSubmit={obj => setResult([...results, obj])}
+                  />
+                  <Statistic results={traningResultNormalize} />
                 </>
               )}
             </>
@@ -175,7 +173,7 @@ const TrainingPage = () => {
             rtl={false}
             pauseOnFocusLoss
           />
-           {loading && <Loader />}
+          {loading && <Loader />}
         </Section>
       );
 
@@ -201,12 +199,12 @@ const TrainingPage = () => {
                   <WrapperDesktop>
                     <Dashboard responce={responce} />
                     <div>
-                  <Results
-                    startDate={startDay}
-                    finishDate={finishDay}
-                    onSubmit={obj => setResult([...results, obj])}
-                  />
-                  <Statistic results={traningResultNormalize} />
+                      <Results
+                        startDate={startDay}
+                        finishDate={finishDay}
+                        onSubmit={obj => setResult([...results, obj])}
+                      />
+                      <Statistic results={traningResultNormalize} />
                     </div>
                   </WrapperDesktop>
                 </>
@@ -222,22 +220,21 @@ const TrainingPage = () => {
             rtl={false}
             pauseOnFocusLoss
           />
-           {loading && <Loader />}
+          {loading && <Loader />}
         </Section>
       );
 
     default:
       return;
   }
-
-{
-  /* <CongratsModal text={modalText.bookRead} />
+};
+export default TrainingPage;
+/* <CongratsModal text={modalText.bookRead} />
 <CongratsModal text={modalText.trainingCompleted} />
 <CongratsModal text={modalText.registration} />
 <WellDoneModal />
 
 <CountdownContainer /> */
-}
 
 // это только основные моменты.
 
@@ -256,5 +253,3 @@ const TrainingPage = () => {
 
 // Скорее всего будет коллекция тренировок, в которой будет статус тренировки ['успешно пройденная', 'активная', 'неуспешная']
 // 1.1 При загрузке страницы с треннировкой - идёт запрос на бек, бек смотрит есть ли в базе треннировка со статусом - активная - сравнивает текущее время, если время ушло, обновляет статус, возвращает треннировку, неуспешній статус будет означать показ модального окна. В таком случае рендерить формочку с добавлением результатов, думаю, что не стоит, только результирующую статистику.
-
-export default TrainingPage;
