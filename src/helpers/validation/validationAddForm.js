@@ -38,11 +38,30 @@ export const validateForm = values => {
   } else if (values.year > date) {
     errors.year = 'Рік не повинен бути майбутнім';
   } else if (values.year.length <= 3) {
-    errors.year = 'Рік повинен складатися з 4 цифр';
+    errors.year = 'Рік має складатися з 4 цифр';
   } else if (values.year.startsWith(0)) {
     errors.year = 'Рік не може починатися із 0';
   } else if (values.pages.startsWith(0)) {
     errors.pages = 'Кількість сторінок не може починатися із 0';
   }
   return errors;
+};
+
+export const isValidNumberInputRegex = new RegExp('[0-9]');
+export const isValidNameInputRegex = new RegExp(
+  "[0-9A-Za-zА-Яа-яґҐЁёІіЇїЄє'’ʼ\\s-]",
+);
+
+export const normalizeNumber = (value, regexp) => {
+  return value
+    .split('')
+    .filter((item, id) => (!id && !Number(item) ? false : regexp.test(item)))
+    .join('');
+};
+
+export const normalizeTexValues = (value, regexp) => {
+  return value
+    .split('')
+    .filter(item => regexp.test(item))
+    .join('');
 };

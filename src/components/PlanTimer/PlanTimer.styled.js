@@ -5,6 +5,7 @@ export const TimerContainer = styled.div`
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
   width: 280px;
   margin: 0 auto;
+  margin-bottom: 32px;
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     width: 100%;

@@ -48,6 +48,7 @@ export const updateActiveTraining = createAsyncThunk(
       return data;
     } catch (error) {
       const { status } = error.response;
+      console.log('status', status);
       status !== 404 && toast.error(getTrainingError(status));
       return rejectWithValue(error.message);
     }

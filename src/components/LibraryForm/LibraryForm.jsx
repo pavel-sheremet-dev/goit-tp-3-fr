@@ -6,6 +6,10 @@ import { addBook } from 'redux/books/books-operations';
 import {
   validationAddFormSchema,
   validateForm,
+  normalizeTexValues,
+  isValidNameInputRegex,
+  normalizeNumber,
+  isValidNumberInputRegex,
 } from 'helpers/validation/validationAddForm';
 
 import {
@@ -76,7 +80,7 @@ const LibraryMobileForm = ({ isArrayFull, style, closeForm }) => {
           name="name"
           type="text"
           placeholder="..."
-          value={formik.values.name}
+          value={normalizeTexValues(formik.values.name, isValidNameInputRegex)}
           onChange={handleChange}
         />
         {formik.touched.name && formik.errors.name ? (
@@ -91,7 +95,10 @@ const LibraryMobileForm = ({ isArrayFull, style, closeForm }) => {
           name="author"
           type="text"
           placeholder="..."
-          value={formik.values.author}
+          value={normalizeTexValues(
+            formik.values.author,
+            isValidNameInputRegex,
+          )}
           onChange={handleChange}
         />
         {formik.touched.author && formik.errors.author ? (
@@ -107,7 +114,7 @@ const LibraryMobileForm = ({ isArrayFull, style, closeForm }) => {
           type="text"
           placeholder="..."
           maxLength="4"
-          value={formik.values.year}
+          value={normalizeNumber(formik.values.year, isValidNumberInputRegex)}
           onChange={handleChange}
         />
         {formik.touched.year && formik.errors.year ? (
@@ -123,7 +130,7 @@ const LibraryMobileForm = ({ isArrayFull, style, closeForm }) => {
           type="text"
           placeholder="..."
           maxLength="4"
-          value={formik.values.pages}
+          value={normalizeNumber(formik.values.pages, isValidNumberInputRegex)}
           onChange={handleChange}
         />
         {formik.touched.pages && formik.errors.pages ? (

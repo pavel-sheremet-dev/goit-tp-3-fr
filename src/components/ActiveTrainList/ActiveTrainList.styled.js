@@ -2,11 +2,6 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 100%;
-  margin-bottom: 32px;
-
-  @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
-    margin-bottom: 0;
-  }
 `;
 
 export const HeaderList = styled.div`
@@ -56,14 +51,8 @@ export const ItemBooks = styled.li`
   padding-bottom: 20px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
 
-  & .someClass {
-    position: absolute;
-    left: 0;
-  }
-
   & .checkIcon {
-    position: absolute;
-    margin-top: 0;
+    position: relative;
     border: 1px solid #a6abb9;
     border-radius: 1px;
     padding: 5px;
@@ -73,27 +62,9 @@ export const ItemBooks = styled.li`
 
     & svg {
       position: absolute;
-    }
-  }
-
-  & .iconDelete {
-    position: absolute;
-    right: 0;
-    margin-top: 0;
-    fill: ${({ theme }) => theme.colors.placeholder};
-    transition: ${({ theme }) => theme.transition('background-color')},
-      ${({ theme }) => theme.transition('fill')};
-
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: transparent;
-    }
-
-    &:hover svg,
-    &:focus svg,
-    &:active svg {
-      fill: ${({ theme }) => theme.colors.mainBrandColor};
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
     }
   }
 
@@ -105,10 +76,6 @@ export const ItemBooks = styled.li`
     /* padding-top: 12px;
     padding-bottom: 12px; */
     justify-content: space-around;
-
-    & .checkIcon {
-      position: relative;
-    }
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
@@ -130,10 +97,6 @@ export const Item = styled.p`
     margin-bottom: 14px;
   }
 
-  & .titleBook {
-    display: none;
-  }
-
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     flex-direction: column;
     font-size: 14px;
@@ -146,10 +109,6 @@ export const Item = styled.p`
 
     &:first-of-type {
       margin-left: 34px;
-    }
-
-    & .titleBook {
-      display: block;
     }
   }
 `;
@@ -187,11 +146,6 @@ export const EmptyItem = styled.li`
   padding-bottom: 32px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
 
-  & .someClass {
-    position: absolute;
-    left: 0;
-  }
-
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     display: flex;
     flex-direction: row;
@@ -202,8 +156,8 @@ export const EmptyItem = styled.li`
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
     width: 100%;
-    /* padding-top: 23px;
-    padding-bottom: 23px; */
+    padding-top: 23px;
+    padding-bottom: 23px;
   }
 `;
 
@@ -214,10 +168,6 @@ export const EmptyTextItem = styled.p`
   font-weight: 500;
   font-size: 12px;
   line-height: 1.25;
-
-  &:not(:last-child) {
-    /* margin-bottom: 15px; */
-  }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     &.isHiddenItem {
