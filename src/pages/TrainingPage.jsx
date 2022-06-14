@@ -58,7 +58,6 @@ const TrainingPage = () => {
 
   const isStatusTraining = useSelector(trainingSelectors.getStatus);
   const [isShowTrainingModal, setIsShowTrainingModal] = useState(false);
-  console.log('isStatusTraining:', isStatusTraining);
 
   const dispatch = useDispatch();
 
@@ -147,7 +146,6 @@ const TrainingPage = () => {
         <>
           {isStatusTraining ? (
             <>
-
               <CountdownContainer />
               <WrapperDesktop>
                 <PlanTimer />

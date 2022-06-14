@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import { PageFormatContext, format } from 'context/pageFormatContext';
-import { nanoid } from '@reduxjs/toolkit';
 
 import validationWordLength from 'helpers/validation/validationWordLength';
 import GetBookRating from '../GetBookRating';
@@ -22,7 +21,7 @@ import {
   ContentBox,
 } from 'components/LibraryBooks/library.styled';
 
-const FinishedBooks = ({ options = [], toggleModal }) => {
+const FinishedBooks = ({ options = [], getId }) => {
   const pageFormat = useContext(PageFormatContext);
 
   const { mobile, response, tablet, desktop } = format;
@@ -30,6 +29,10 @@ const FinishedBooks = ({ options = [], toggleModal }) => {
   const isMobile = pageFormat === mobile;
   const isTablet = pageFormat === tablet;
   const isDesktop = pageFormat === desktop;
+
+  const handleClick = e => {
+    getId(e.target.id);
+  };
 
   return (
     <>
@@ -70,9 +73,9 @@ const FinishedBooks = ({ options = [], toggleModal }) => {
               </BookText>
             </List>
           )}
-          {options.map(({ name, author, year, pages, rating }) => {
+          {options.map(({ id, name, author, year, pages, rating }) => {
             return (
-              <LibraryBox key={nanoid()} id="height-root">
+              <LibraryBox key={id}>
                 {(isResponse || isMobile) && (
                   <>
                     <div style={{ display: 'flex' }}>
@@ -109,7 +112,7 @@ const FinishedBooks = ({ options = [], toggleModal }) => {
                         </List>
                       </FlexTitle>
                     </div>
-                    <Button type="button" onClick={toggleModal}>
+                    <Button id={id} type="button" onClick={handleClick}>
                       Резюме
                     </Button>
                   </>
@@ -166,7 +169,7 @@ const FinishedBooks = ({ options = [], toggleModal }) => {
                         </List>
                       </FlexTitle>
                     </div>
-                    <Button type="button" onClick={toggleModal}>
+                    <Button id={id} type="button" onClick={handleClick}>
                       Резюме
                     </Button>
                   </>
@@ -218,7 +221,7 @@ const FinishedBooks = ({ options = [], toggleModal }) => {
                         </List>
                       </FlexTitle>
                     </ContentBox>
-                    <Button type="button" onClick={toggleModal}>
+                    <Button id={id} type="button" onClick={handleClick}>
                       Резюме
                     </Button>
                   </>

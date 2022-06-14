@@ -15,7 +15,6 @@ const VerificatePage = () => {
 
   useEffect(() => {
     if (location.pathname.includes('oauth')) {
-      console.log(token);
       dispatch(setToken(token));
       dispatch(getUser());
       navigate('/', { replace: true });
@@ -23,7 +22,6 @@ const VerificatePage = () => {
     }
     const verifyUser = async () => {
       try {
-        console.log(location.pathname);
         await axios.get(location.pathname);
         navigate('/', { replace: true });
       } catch (error) {

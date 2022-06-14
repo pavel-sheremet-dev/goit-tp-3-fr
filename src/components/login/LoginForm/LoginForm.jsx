@@ -46,7 +46,6 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (!error) return;
-    console.log('error', error);
   }, [error]);
 
   const formik = useFormik({

@@ -39,18 +39,18 @@ const RoutesComponent = () => {
 
         {/* NOT AUTH */}
         <Route
-          index={login.path}
+          index={signUp.path}
           element={
             <NotAuthRoute redirectPath={library.absolutePath}>
-              <LoginPage />
+              <RegistrationPage />
             </NotAuthRoute>
           }
         />
         <Route
-          path={signUp.path}
+          path={login.path}
           element={
             <NotAuthRoute redirectPath={library.absolutePath}>
-              <RegistrationPage />
+              <LoginPage />
             </NotAuthRoute>
           }
         />
