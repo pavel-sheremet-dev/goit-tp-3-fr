@@ -52,7 +52,7 @@ export const ItemBooks = styled.li`
   border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
 
   & .checkIcon {
-    position: relative;
+    position: absolute;
     border: 1px solid #a6abb9;
     border-radius: 1px;
     padding: 5px;
@@ -66,6 +66,10 @@ export const ItemBooks = styled.li`
       left: 0;
       transform: translateY(-50%);
     }
+
+    @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+      position: relative;
+    }
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
@@ -73,8 +77,6 @@ export const ItemBooks = styled.li`
     flex-direction: row;
     align-items: center;
     width: 704px;
-    /* padding-top: 12px;
-    padding-bottom: 12px; */
     justify-content: space-around;
   }
 
@@ -97,6 +99,31 @@ export const Item = styled.p`
     margin-bottom: 14px;
   }
 
+  &.titleBook {
+    width: 250px;
+  }
+
+  &.authorBook {
+    width: 165px;
+    @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+      width: 180px;
+    }
+  }
+
+  &.yearBook {
+    width: 145px;
+    @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+      width: 160px;
+    }
+  }
+
+  &.pagesBook {
+    width: 80px;
+    @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+      width: 90px;
+    }
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     flex-direction: column;
     font-size: 14px;
@@ -105,10 +132,6 @@ export const Item = styled.p`
 
     &:not(:last-child) {
       margin-bottom: 0;
-    }
-
-    &:first-of-type {
-      margin-left: 34px;
     }
   }
 `;

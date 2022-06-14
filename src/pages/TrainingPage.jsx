@@ -2,6 +2,8 @@ import { useState, useEffect, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { ToastContainer } from 'react-toastify';
+import { getUnreadBooks } from 'redux/books/books-operations';
+import { trainingSelectors, trainingOperations } from 'redux/training';
 
 import Section from 'components/common/section/Section';
 import Dashboard from 'components/dashboard/Dashboard';
@@ -17,9 +19,8 @@ import TrainingList from 'components/TrainingList/TrainingList';
 import IconButton from 'components/common/button/IconButton';
 import { ReactComponent as PlusBtnIcon } from 'images/svg/icon-plus.svg';
 import TrainFormModal from 'components/TrainFormModal/TrainFormModal';
-import { getUnreadBooks } from 'redux/books/books-operations';
+import { Loader } from 'components/Loader/Loader';
 
-import { trainingSelectors, trainingOperations } from 'redux/training';
 import { WrapperNotActiveTrain, WrapperDesktop } from './TrainingPage.styled';
 
 const responce = {
@@ -53,23 +54,29 @@ const responce = {
 };
 
 const TrainingPage = () => {
-  const [results, setResult] = useState([]);
+  const dispatch = useDispatch();
   const pageFormat = useContext(PageFormatContext);
-  const isStatusTraining = useSelector(trainingSelectors.getStatus);
-  const firstLoading = useSelector(trainingSelectors.getFirstLoading);
+  const [results, setResult] = useState([]);
   const [isShowTrainingModal, setIsShowTrainingModal] = useState(false);
 
-  const dispatch = useDispatch();
+  const isStatusTraining = useSelector(trainingSelectors.getStatus);
+  const isFirstLoading = useSelector(trainingSelectors.getFirstLoading);
+  const loading = useSelector(trainingSelectors.getLoading)
+
+  const isMobile =
+    pageFormat === format.response || pageFormat === format.mobile;
+  const isTabletAndDesktop =
+    pageFormat === format.tablet || pageFormat === format.desktop;
 
   useEffect(() => {
     dispatch(trainingOperations.getActiveTraining());
   }, [dispatch]);
 
   useEffect(() => {
-    if (isStatusTraining || firstLoading) return;
+    if (isFirstLoading || isStatusTraining) return;
 
     dispatch(getUnreadBooks());
-  }, [dispatch, isStatusTraining, firstLoading]);
+  }, [dispatch, isFirstLoading, isStatusTraining]);
 
   const modalText = {
     bookRead: 'Ще одна книга прочитана',
@@ -93,38 +100,18 @@ const TrainingPage = () => {
     setIsShowTrainingModal(!isShowTrainingModal);
   };
 
-  const isResponse = pageFormat === format.response;
-  const isMobile = pageFormat === format.mobile;
-  const isTablet = pageFormat === format.tablet;
-  const isDesktop = pageFormat === format.desktop;
-
-  return (
-    <Section title="Статистика" titleLevel="h2" isHidden>
-      {/* <CongratsModal text={modalText.bookRead} />
-      <CongratsModal text={modalText.trainingCompleted} />
-      <CongratsModal text={modalText.registration} />
-    <WellDoneModal /> */}
-      {firstLoading && (
-        <>
-          {(isResponse || isMobile) && (
+  switch (true) {
+    case isMobile:
+      return (
+        <Section title="Статистика" titleLevel="h2" isHidden>
+          {isFirstLoading && (
             <>
-              <CountdownContainer />
-              <PlanTimer />
-              <TrainForm />
-              <Dashboard responce={responce} />
-              <Results
-                startDate={startDay}
-                finishDate={responce.deadlineDate}
-                onSubmit={obj => setResult([...results, obj])}
-              />
-              <Statistic results={responce.results} />
-
-              {!isStatusTraining && (
+              {!isStatusTraining ? (
                 <WrapperNotActiveTrain>
                   {!isShowTrainingModal ? (
                     <>
                       <PlanTimer />
-                      <TrainingList />
+                      <TrainingList style={{ marginBottom: '32px' }} />
                       <Dashboard responce={responce} />
                       <IconButton
                         IconComponent={PlusBtnIcon}
@@ -143,55 +130,95 @@ const TrainingPage = () => {
                     </>
                   )}
                 </WrapperNotActiveTrain>
-              )}
-            </>
-          )}
-
-          {(isTablet || isDesktop) && (
-            <>
-              <CountdownContainer />
-              <WrapperDesktop>
-                <PlanTimer />
-                <TrainForm />
-              </WrapperDesktop>
-
-              <WrapperDesktop>
-                <Dashboard responce={responce} />
-                <div>
+              ) : (
+                <>
+                  <CountdownContainer />
+                  <PlanTimer />
+                  <TrainForm />
+                  <Dashboard responce={responce} />
                   <Results
                     startDate={startDay}
                     finishDate={responce.deadlineDate}
                     onSubmit={obj => setResult([...results, obj])}
                   />
                   <Statistic results={responce.results} />
-                </div>
-              </WrapperDesktop>
+                </>
+              )}
+            </>
+          )}
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+          />
+           {loading && <Loader />}
+        </Section>
+      );
 
-              {!isStatusTraining && (
+    case isTabletAndDesktop:
+      return (
+        <Section title="Статистика" titleLevel="h2" isHidden>
+          {isFirstLoading && (
+            <>
+              {!isStatusTraining ? (
                 <>
                   <PlanTimer />
                   <TrainForm />
                   <Dashboard responce={responce} />
                 </>
+              ) : (
+                <>
+                  <CountdownContainer />
+                  <WrapperDesktop>
+                    <PlanTimer />
+                    <TrainForm />
+                  </WrapperDesktop>
+
+                  <WrapperDesktop>
+                    <Dashboard responce={responce} />
+                    <div>
+                      <Results
+                        startDate={startDay}
+                        finishDate={responce.deadlineDate}
+                        onSubmit={obj => setResult([...results, obj])}
+                      />
+                      <Statistic results={responce.results} />
+                    </div>
+                  </WrapperDesktop>
+                </>
               )}
             </>
           )}
-        </>
-      )}
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+          />
+           {loading && <Loader />}
+        </Section>
+      );
 
-      {/* <CountdownContainer /> */}
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-      />
-    </Section>
-  );
+    default:
+      return;
+  }
 };
+
+{
+  /* <CongratsModal text={modalText.bookRead} />
+<CongratsModal text={modalText.trainingCompleted} />
+<CongratsModal text={modalText.registration} />
+<WellDoneModal />
+
+<CountdownContainer /> */
+}
 
 // это только основные моменты.
 

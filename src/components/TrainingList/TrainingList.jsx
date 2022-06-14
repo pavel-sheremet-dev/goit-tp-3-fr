@@ -19,7 +19,7 @@ import {
   Placeholder,
 } from './TrainingList.styled';
 
-const TrainingList = ({ books = [], handleUpdateBook }) => {
+const TrainingList = ({ books = [], handleUpdateBook, style }) => {
   return (
     <Wrapper>
       <HeaderList>
@@ -29,7 +29,7 @@ const TrainingList = ({ books = [], handleUpdateBook }) => {
         <HeaderListItem>Стор.</HeaderListItem>
       </HeaderList>
 
-      <ListBooks>
+      <ListBooks style={style}>
         {!books.length ? (
           <EmptyItem>
             <BookIcon style={{ fill: '#A6ABB9' }} className={'someClass'} />
@@ -52,8 +52,8 @@ const TrainingList = ({ books = [], handleUpdateBook }) => {
               <Placeholder>...</Placeholder>
             </EmptyTextItem>
           </EmptyItem>
-        ): (
-             books.map(({ id, name, author, year, pages }) => (
+        ) : (
+          books.map(({ id, name, author, year, pages }) => (
             <ItemBooks key={id}>
               <BookIcon style={{ fill: '#A6ABB9' }} className={'someClass'} />
               <Item style={{ width: '180px' }}>
@@ -83,7 +83,6 @@ const TrainingList = ({ books = [], handleUpdateBook }) => {
               />
             </ItemBooks>
           ))
-         
         )}
       </ListBooks>
     </Wrapper>
