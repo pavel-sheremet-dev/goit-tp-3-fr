@@ -6,6 +6,7 @@ export const getDeadlineDate = state => state.training.training.deadlineDate;
 export const getBooks = state => state.training.training.books;
 
 export const getTraining = state => state.training.training;
+export const getFirstLoading = state => state.training.firstLoading;
 
 // Training result
 export const getResult = state => state.training.training.results;

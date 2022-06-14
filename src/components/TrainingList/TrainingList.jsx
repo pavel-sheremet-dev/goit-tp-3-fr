@@ -30,7 +30,29 @@ const TrainingList = ({ books = [], handleUpdateBook }) => {
       </HeaderList>
 
       <ListBooks>
-        {books.length ? (
+        {!books.length ? (
+          <EmptyItem>
+            <BookIcon style={{ fill: '#A6ABB9' }} className={'someClass'} />
+            <EmptyTextItem>
+              <Placeholder>...</Placeholder>
+            </EmptyTextItem>
+
+            <EmptyTextItem className="isHiddenItem">
+              <TitleItem>Автор:</TitleItem>
+              <Placeholder>...</Placeholder>
+            </EmptyTextItem>
+
+            <EmptyTextItem className="isHiddenItem">
+              <TitleItem>Рік: </TitleItem>
+              <Placeholder>...</Placeholder>
+            </EmptyTextItem>
+
+            <EmptyTextItem className="isHiddenItem">
+              <TitleItem>Стор: </TitleItem>
+              <Placeholder>...</Placeholder>
+            </EmptyTextItem>
+          </EmptyItem>
+        ) : (
           books.map(({ id, name, author, year, pages }) => (
             <ItemBooks key={id}>
               <BookIcon style={{ fill: '#A6ABB9' }} className={'someClass'} />
@@ -61,28 +83,6 @@ const TrainingList = ({ books = [], handleUpdateBook }) => {
               />
             </ItemBooks>
           ))
-        ) : (
-          <EmptyItem>
-            <BookIcon style={{ fill: '#A6ABB9' }} className={'someClass'} />
-            <EmptyTextItem>
-              <Placeholder>...</Placeholder>
-            </EmptyTextItem>
-
-            <EmptyTextItem className="isHiddenItem">
-              <TitleItem>Автор:</TitleItem>
-              <Placeholder>...</Placeholder>
-            </EmptyTextItem>
-
-            <EmptyTextItem className="isHiddenItem">
-              <TitleItem>Рік: </TitleItem>
-              <Placeholder>...</Placeholder>
-            </EmptyTextItem>
-
-            <EmptyTextItem className="isHiddenItem">
-              <TitleItem>Стор: </TitleItem>
-              <Placeholder>...</Placeholder>
-            </EmptyTextItem>
-          </EmptyItem>
         )}
       </ListBooks>
     </Wrapper>
