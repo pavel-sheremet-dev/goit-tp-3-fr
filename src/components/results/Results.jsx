@@ -1,4 +1,5 @@
 import Datetime from 'react-datetime';
+import moment from 'moment';
 import { toast } from 'react-toastify';
 import 'moment/locale/uk';
 import {
@@ -20,8 +21,14 @@ const DateTimeInput = ({
   finishDate,
   date,
 }) => {
+  const yesterday = moment().subtract(1, 'day');
   const valid = current => {
-    return current.isAfter(startDate) && current.isAfter(finishDate) - 1;
+    if (!startDate) {
+      return current.isAfter(yesterday) && current.isBefore(finishDate);
+    }
+    return (
+      current.isSameOrAfter(startDate) && current.isSameOrBefore(finishDate)
+    );
   };
   const inputProps = {
     value: '',
@@ -70,6 +77,9 @@ const Results = ({ startDate, finishDate, onSubmit }) => {
     setDate('');
     setPages('');
   };
+
+  console.log(startDate);
+  console.log(finishDate);
   return (
     <Wrapper>
       <Title>РЕЗУЛЬТАТИ</Title>
