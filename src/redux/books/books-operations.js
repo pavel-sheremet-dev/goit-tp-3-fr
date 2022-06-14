@@ -30,7 +30,8 @@ export const getBooks = createAsyncThunk(
       const { data } = await axios.get(GET_BOOK_ENDPOINT);
       return data;
     } catch (error) {
-      toast.error(getBooksError(error.response.status));
+      const { status } = error.response;
+      status !== 404 && toast.error(getBooksError(status));
       return rejectWithValue(error.message);
     }
   },
@@ -43,7 +44,8 @@ export const getUnreadBooks = createAsyncThunk(
       const { data } = await axios.get(`${GET_BOOK_ENDPOINT}?status=unread`);
       return data;
     } catch (error) {
-      toast.error(getBooksError(error.response.status));
+      const { status } = error.response;
+      status !== 404 && toast.error(getBooksError(status));
       return rejectWithValue(error.message);
     }
   },

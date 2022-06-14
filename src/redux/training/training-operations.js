@@ -30,7 +30,8 @@ export const getActiveTraining = createAsyncThunk(
       const { data } = await axios.get(TRAINING_ENDPOINT);
       return data;
     } catch (error) {
-      toast.error(getTrainingError(error.response.status));
+      const { status } = error.response;
+      status !== 404 && toast.error(getTrainingError(status));
       return rejectWithValue(error.message);
     }
   },
@@ -46,7 +47,8 @@ export const updateActiveTraining = createAsyncThunk(
       });
       return data;
     } catch (error) {
-      toast.error(getTrainingError(error.response.status));
+      const { status } = error.response;
+      status !== 404 && toast.error(getTrainingError(status));
       return rejectWithValue(error.message);
     }
   },

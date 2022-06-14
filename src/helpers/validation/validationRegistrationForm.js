@@ -43,7 +43,7 @@ export const validate = values => {
   } else if (values.name.length < 2 || values.name.length > 99) {
     errors.name = 'Поле може містити від 3 до 100 символів включно';
   } else if (
-    values.name(
+    values.name.startsWith(
       ' ',
       // ||
       //   '!' ||
