@@ -2,6 +2,8 @@ import { useState, useEffect, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { ToastContainer } from 'react-toastify';
+import { getUnreadBooks } from 'redux/books/books-operations';
+import { trainingSelectors, trainingOperations } from 'redux/training';
 
 import Section from 'components/common/section/Section';
 import Dashboard from 'components/dashboard/Dashboard';
@@ -17,11 +19,8 @@ import TrainingList from 'components/TrainingList/TrainingList';
 import IconButton from 'components/common/button/IconButton';
 import { ReactComponent as PlusBtnIcon } from 'images/svg/icon-plus.svg';
 import TrainFormModal from 'components/TrainFormModal/TrainFormModal';
+import { Loader } from 'components/Loader/Loader';
 
-import { updateActiveTraining } from 'redux/training/training-operations';
-import { getUnreadBooks } from 'redux/books/books-operations';
-
-import { trainingSelectors, trainingOperations } from 'redux/training';
 import { WrapperNotActiveTrain, WrapperDesktop } from './TrainingPage.styled';
 
 const responce = {
@@ -55,15 +54,21 @@ const responce = {
 };
 
 const TrainingPage = () => {
+  const dispatch = useDispatch();
   const [results, setResult] = useState([]);
   const deadlineDate = useSelector(trainingSelectors.getDeadlineDate);
   const traningResults = useSelector(trainingSelectors.getResult);
   const pageFormat = useContext(PageFormatContext);
-  const isStatusTraining = useSelector(trainingSelectors.getStatus);
-  const firstLoading = useSelector(trainingSelectors.getFirstLoading);
   const [isShowTrainingModal, setIsShowTrainingModal] = useState(false);
 
-  const dispatch = useDispatch();
+  const isStatusTraining = useSelector(trainingSelectors.getStatus);
+  const isFirstLoading = useSelector(trainingSelectors.getFirstLoading);
+  const loading = useSelector(trainingSelectors.getLoading);
+
+  const isMobile =
+    pageFormat === format.response || pageFormat === format.mobile;
+  const isTabletAndDesktop =
+    pageFormat === format.tablet || pageFormat === format.desktop;
 
   useEffect(() => {
     dispatch(trainingOperations.getActiveTraining());
@@ -76,10 +81,10 @@ const TrainingPage = () => {
   // }, [dispatch, results]);
 
   useEffect(() => {
-    if (isStatusTraining || firstLoading) return;
+    if (isFirstLoading || isStatusTraining) return;
 
     dispatch(getUnreadBooks());
-  }, [dispatch, isStatusTraining, firstLoading]);
+  }, [dispatch, isFirstLoading, isStatusTraining]);
 
   const modalText = {
     bookRead: 'Ще одна книга прочитана',
@@ -113,38 +118,18 @@ const TrainingPage = () => {
     setIsShowTrainingModal(!isShowTrainingModal);
   };
 
-  const isResponse = pageFormat === format.response;
-  const isMobile = pageFormat === format.mobile;
-  const isTablet = pageFormat === format.tablet;
-  const isDesktop = pageFormat === format.desktop;
-
-  return (
-    <Section title="Статистика" titleLevel="h2" isHidden>
-      {/* <CongratsModal text={modalText.bookRead} />
-      <CongratsModal text={modalText.trainingCompleted} />
-      <CongratsModal text={modalText.registration} />
-    <WellDoneModal /> */}
-      {firstLoading && (
-        <>
-          {(isResponse || isMobile) && (
+  switch (true) {
+    case isMobile:
+      return (
+        <Section title="Статистика" titleLevel="h2" isHidden>
+          {isFirstLoading && (
             <>
-              <CountdownContainer />
-              <PlanTimer />
-              <TrainForm />
-              <Dashboard responce={responce} />
-              <Results
-                startDate={startDay}
-                finishDate={finishDay}
-                onSubmit={obj => setResult([...results, obj])}
-              />
-              <Statistic results={traningResultNormalize} />
-
-              {!isStatusTraining && (
+              {!isStatusTraining ? (
                 <WrapperNotActiveTrain>
                   {!isShowTrainingModal ? (
                     <>
                       <PlanTimer />
-                      <TrainingList />
+                      <TrainingList style={{ marginBottom: '32px' }} />
                       <Dashboard responce={responce} />
                       <IconButton
                         IconComponent={PlusBtnIcon}
@@ -163,55 +148,93 @@ const TrainingPage = () => {
                     </>
                   )}
                 </WrapperNotActiveTrain>
-              )}
-            </>
-          )}
-
-          {(isTablet || isDesktop) && (
-            <>
-              <CountdownContainer />
-              <WrapperDesktop>
-                <PlanTimer />
-                <TrainForm />
-              </WrapperDesktop>
-
-              <WrapperDesktop>
-                <Dashboard responce={responce} />
-                <div>
+              ) : (
+                <>
+                  <CountdownContainer />
+                  <PlanTimer />
+                  <TrainForm />
+                  <Dashboard responce={responce} />
                   <Results
                     startDate={startDay}
                     finishDate={finishDay}
                     onSubmit={obj => setResult([...results, obj])}
                   />
                   <Statistic results={traningResultNormalize} />
-                </div>
-              </WrapperDesktop>
+                </>
+              )}
+            </>
+          )}
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+          />
+          {loading && <Loader />}
+        </Section>
+      );
 
-              {!isStatusTraining && (
+    case isTabletAndDesktop:
+      return (
+        <Section title="Статистика" titleLevel="h2" isHidden>
+          {isFirstLoading && (
+            <>
+              {!isStatusTraining ? (
                 <>
                   <PlanTimer />
                   <TrainForm />
                   <Dashboard responce={responce} />
                 </>
+              ) : (
+                <>
+                  <CountdownContainer />
+                  <WrapperDesktop>
+                    <PlanTimer />
+                    <TrainForm />
+                  </WrapperDesktop>
+
+                  <WrapperDesktop>
+                    <Dashboard responce={responce} />
+                    <div>
+                      <Results
+                        startDate={startDay}
+                        finishDate={finishDay}
+                        onSubmit={obj => setResult([...results, obj])}
+                      />
+                      <Statistic results={traningResultNormalize} />
+                    </div>
+                  </WrapperDesktop>
+                </>
               )}
             </>
           )}
-        </>
-      )}
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+          />
+          {loading && <Loader />}
+        </Section>
+      );
 
-      {/* <CountdownContainer /> */}
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-      />
-    </Section>
-  );
+    default:
+      return;
+  }
 };
+export default TrainingPage;
+/* <CongratsModal text={modalText.bookRead} />
+<CongratsModal text={modalText.trainingCompleted} />
+<CongratsModal text={modalText.registration} />
+<WellDoneModal />
+
+<CountdownContainer /> */
 
 // это только основные моменты.
 
@@ -230,5 +253,3 @@ const TrainingPage = () => {
 
 // Скорее всего будет коллекция тренировок, в которой будет статус тренировки ['успешно пройденная', 'активная', 'неуспешная']
 // 1.1 При загрузке страницы с треннировкой - идёт запрос на бек, бек смотрит есть ли в базе треннировка со статусом - активная - сравнивает текущее время, если время ушло, обновляет статус, возвращает треннировку, неуспешній статус будет означать показ модального окна. В таком случае рендерить формочку с добавлением результатов, думаю, что не стоит, только результирующую статистику.
-
-export default TrainingPage;

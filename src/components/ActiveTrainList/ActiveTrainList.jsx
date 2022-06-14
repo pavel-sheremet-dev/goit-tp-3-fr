@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import EllipsisText from 'react-ellipsis-text';
 
 import { trainingSelectors } from 'redux/training';
-import IconButton from '../common/button/IconButton';
 import { ReactComponent as CheckIcon } from 'images/svg/icon-check.svg';
 import {
   Wrapper,
@@ -12,8 +11,8 @@ import {
   HeaderListItem,
   ItemBooks,
   Item,
-  TitleItem,
   TextItem,
+  TitleItem,
 } from './ActiveTrainList.styled';
 
 const ActiveTrainList = () => {
@@ -33,24 +32,24 @@ const ActiveTrainList = () => {
           getTrainingBooks.map(({ id, name, author, year, pages }) => (
             <ItemBooks key={id}>
               <span className="checkIcon">
-                <CheckIcon />
+                {getTrainingBooks.status === 'finished' && <CheckIcon />}
               </span>
 
-              <Item style={{ width: '200px' }}>
-                <EllipsisText text={name} length={30} className={'titleBook'} />
+              <Item className={'titleBook'}>
+                <EllipsisText text={name} length={30} />
               </Item>
 
-              <Item style={{ width: '200px' }}>
+              <Item className={'authorBook'}>
                 <TitleItem className="isHiddenItem">Автор:</TitleItem>
                 <TextItem> {author}</TextItem>
               </Item>
 
-              <Item style={{ width: '170px' }}>
+              <Item className={'yearBook'}>
                 <TitleItem className="isHiddenItem">Рік:</TitleItem>
                 <TextItem> {year}</TextItem>
               </Item>
 
-              <Item style={{ width: '30px', marginRight: '55px' }}>
+              <Item className={'pagesBook'}>
                 <TitleItem className="isHiddenItem">Стор.:</TitleItem>
                 <TextItem> {pages}</TextItem>
               </Item>
