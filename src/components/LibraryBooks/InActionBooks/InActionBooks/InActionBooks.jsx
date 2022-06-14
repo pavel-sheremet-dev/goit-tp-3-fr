@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import { PageFormatContext, format } from 'context/pageFormatContext';
-import { nanoid } from '@reduxjs/toolkit';
 
 import validationWordLength from 'helpers/validation/validationWordLength';
 import { ReactComponent as ExampleIcon } from 'images/svg/example-svg.svg';
@@ -88,9 +87,9 @@ const InActionBooks = ({ type, title, options = [] }) => {
             </List>
           )}
           <CollectionBox>
-            {options?.map(({ name, author, year, pages }) => {
+            {options?.map(({ id, name, author, year, pages }) => {
               return (
-                <LibraryBox key={nanoid()}>
+                <LibraryBox key={id} className="nonreview">
                   {(isResponse || isMobile) && (
                     <>
                       <div style={{ display: 'flex' }}>

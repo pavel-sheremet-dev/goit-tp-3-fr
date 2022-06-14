@@ -49,11 +49,13 @@ const booksSlice = createSlice({
       })
       .addCase(getBooks.rejected, (state, { payload }) => {
         state.error = payload;
-        state.isFirstLoaded = false;
+        state.isFirstLoaded = true;
         state.loading = false;
       })
       .addCase(getUnreadBooks.pending, state => {
         state.error = null;
+        state.isFirstLoaded = false;
+        state.isFirstLoaded = true;
         state.loading = true;
       })
       .addCase(getUnreadBooks.fulfilled, (state, { payload }) => {
@@ -64,6 +66,7 @@ const booksSlice = createSlice({
       })
       .addCase(getUnreadBooks.rejected, (state, { payload }) => {
         state.error = payload;
+        state.isFirstLoaded = true;
         state.loading = false;
       })
       .addCase(updateBookReview.pending, state => {

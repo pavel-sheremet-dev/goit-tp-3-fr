@@ -9,6 +9,7 @@ export const getCssVars = () => ({
     overlay: 'rgba(9, 30, 63, 0.8)',
     modalBackground: 'rgba(43, 43, 43, 0.1)',
     lightBackground: '#F6F7FB',
+    bodyBackground: '#fed8bf',
     iconsHover: '#F5F7FA',
     reviewBtn: '#6D7A8D',
     disabledBtn: '#B1B5C2',

@@ -1,5 +1,5 @@
 import { PageFormatContext, format } from 'context/pageFormatContext';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getBooks } from 'redux/books/books-operations';
@@ -57,7 +57,7 @@ const LibraryPage = () => {
     case isMobile:
       return (
         <Section title={'Моя бібліотека'} titleLevel={'h2'} isHidden>
-          {!isFirstLoaded ? (
+          {isFirstLoaded ? (
             <>
               {!hasBookLibrary ? (
                 <div>
@@ -124,7 +124,7 @@ const LibraryPage = () => {
     case !isMobile:
       return (
         <Section title={'Моя бібліотека'} titleLevel={'h2'} isHidden>
-          {!isFirstLoaded ? (
+          {isFirstLoaded ? (
             <>
               <LibraryForm closeForm={setShowLibraryForm} />
               {!hasBookLibrary && (
