@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
 body {
   color: ${({ theme }) => theme.colors.defaultFont};
-  background-color: ${({ theme }) => theme.colors.lightBackground};
+  background-color: ${({ theme }) => theme.colors.bodyBackground};
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   font-size: 11pt;
@@ -69,4 +69,27 @@ a {
     clip: rect(0 0 0 0);
     overflow: hidden;
 }
+
+.body-frame {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100vh;
+  width: 100vw;
+  background-color: ${({ theme }) => theme.colors.lightBackground};
+
+
+  @media screen and (min-width: 480px) {
+    width: 480px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 768px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 1280px;
+  }
+}
+
 `;

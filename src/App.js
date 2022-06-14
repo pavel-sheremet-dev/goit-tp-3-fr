@@ -30,7 +30,7 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <>
       <ThemeProvider theme={getCssVars()}>
         <Layout>
           <GlobalStyle />
@@ -42,11 +42,11 @@ const App = () => {
               <MainComponent />
             </>
           )}
-          {/* <Main /> */}
+          <div class="body-frame"></div>
           <ToastContainer position="top-center" autoClose={4000} />
         </Layout>
       </ThemeProvider>
-    </div>
+    </>
   );
 };
 

@@ -27,6 +27,9 @@ export const CollectionBox = styled.div`
 export const LibraryBox = styled.div`
   padding: 23px 26px;
   margin: 0 0 15px 0;
+  &.nonreview {
+    padding: 23px 26px 0px 26px;
+  }
   &:last-child {
     margin: 0;
   }
