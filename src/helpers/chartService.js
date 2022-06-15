@@ -1,5 +1,6 @@
 export const getOptions = (normalizeResults, maxPoint, labelsQuantity) => ({
   responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       align: 'start',

@@ -9,6 +9,7 @@ const Dashboard = ({ responce }) => {
 
   return (
     <DashBox>
+      <div className="lineyka"></div>
       {responce.status === 'active' && (
         <p>
           Кількість сторінок / день<span>{readingPlan}</span>

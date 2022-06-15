@@ -17,6 +17,7 @@ import {
   getOptions,
   getPlanValues,
 } from 'helpers/chartService';
+import { ChartContainer } from './Dashboard.styled';
 
 ChartJS.register(
   CategoryScale,
@@ -68,10 +69,12 @@ const StatGraph = ({ responce, getReadingPlan }) => {
   const normalizeLabels = normalizeResults.map(p => p.date);
 
   return (
-    <Line
-      options={getOptions(normalizeResults, maxPoint, labelsQuantity)}
-      data={getData(plan, points, normalizeLabels)}
-    />
+    <ChartContainer>
+      <Line
+        options={getOptions(normalizeResults, maxPoint, labelsQuantity)}
+        data={getData(plan, points, normalizeLabels)}
+      />
+    </ChartContainer>
   );
 };
 
