@@ -12,7 +12,7 @@ import {
   StyledRatingText,
   StyledRatingTextArea,
 } from './RatingModal.styled';
-import { Rating } from 'react-simple-star-rating';
+import Rating from 'react-rating';
 import { SvgEmptyStar, SvgFullStar } from './RatingModal.styled';
 import { useDispatch } from 'react-redux';
 import { updateBookReview } from 'redux/books/books-operations';
@@ -23,12 +23,12 @@ const RatingModal = ({ onClose, index }) => {
   const books = useSelector(booksSelectors.getFinishedBooks);
   const book = books.find(book => book.id === index);
   const [review, setReview] = useState(() => book.review ?? '');
-  const [rating, setRating] = useState(() => Number(book.rating * 20) || 0);
+  const [rating, setRating] = useState(() => Number(book.rating) || 0);
 
   const dispatch = useDispatch();
 
   const handleRating = rate => {
-    setRating(rate / 20);
+    setRating(rate);
   };
 
   const handleChange = event => {
@@ -55,10 +55,9 @@ const RatingModal = ({ onClose, index }) => {
         <StyledRatingText>Обрати рейтинг книги</StyledRatingText>
         <Rating
           onClick={handleRating}
-          ratingValue={rating}
-          fullIcon={<SvgFullStar />}
-          emptyIcon={<SvgEmptyStar />}
-          allowHalfIcon={false}
+          initialRating={rating}
+          fullSymbol={<SvgFullStar />}
+          emptySymbol={<SvgEmptyStar />}
         />
 
         <StyledRatingLabel>

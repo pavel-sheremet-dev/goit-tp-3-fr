@@ -4,8 +4,8 @@ export const WellDoneModalStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  outline: auto;
   padding: 40px 20px;
+  background-color: ${({ theme }) => theme.colors.white};
 
   @media screen and (max-width: 767px) {
     width: 280px;
@@ -43,6 +43,16 @@ export const ButtonWhite = styled.button`
   border: 1px solid #000000;
   background: ${({ theme }) => theme.colors.white};
   box-shadow: ${({ theme }) => theme.shadows.btnShadow};
+  transition: ${({ theme }) => theme.transition('background-color')},
+    ${({ theme }) => theme.transition('color')},
+    ${({ theme }) => theme.transition('border')};
+
+  &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.hover};
+    border: none;
+  }
 `;
 
 export const ButtonOrange = styled(ButtonWhite)`

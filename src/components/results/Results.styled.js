@@ -76,22 +76,18 @@ export const Label = styled.label`
 export const ButtonDate = styled(Button)`
   width: 240px;
   margin-top: 28px;
-  outline-color: transparent;
   color: ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors.mainBrandColor};
+  outline: none;
   cursor: pointer;
 
   &:hover,
   &:focus {
-    color: ${({ theme }) => theme.colors.white};
     background-color: ${({ theme }) => theme.colors.hover};
-    outline: 1px solid ${({ theme }) => theme.colors.hover};
-    box-shadow: ${({ theme }) => theme.shadows.btnShadow};
   }
 
   &:disabled {
     background-color: ${({ theme }) => theme.colors.disabledBtn};
-    outline: 1px solid ${({ theme }) => theme.colors.disabledBtn};
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
