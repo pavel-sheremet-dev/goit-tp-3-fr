@@ -8,6 +8,7 @@ export const Section = styled(StyledContainer)`
   align-items: center;
   padding: 0;
   outline: -1px transparent;
+  background-color: ${({ theme }) => theme.colors.body};
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
   }
