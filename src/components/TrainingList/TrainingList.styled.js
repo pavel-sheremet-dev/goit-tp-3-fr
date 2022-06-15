@@ -16,6 +16,7 @@ export const HeaderList = styled.div`
     padding-top: 12px;
     padding-bottom: 12px;
     border-top: 1px solid ${({ theme }) => theme.colors.borderColor};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
   }
 `;
 
@@ -29,16 +30,25 @@ export const HeaderListItem = styled.p`
 `;
 
 export const ListBooks = styled.ul`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width: 280px;
   margin: 0 auto;
   border-top: 1px solid ${({ theme }) => theme.colors.borderColor};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     width: 704px;
+    max-height: 182px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-top: none;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+      background-color: ${({ theme }) => theme.colors.scroll};
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: ${({ theme }) => theme.colors.disabledBtn};
+    }
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
@@ -53,7 +63,10 @@ export const ItemBooks = styled.li`
   width: 280px;
   padding-top: 20px;
   padding-bottom: 20px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
+
+  &:not(:last-child) {
+    border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
+  }
 
   & .someClass {
     position: absolute;

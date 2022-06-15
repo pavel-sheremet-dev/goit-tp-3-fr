@@ -10,7 +10,7 @@ export const TimerContainer = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     width: 100%;
     display: flex;
-    padding: 22px 28px;
+    padding: ${props => (props.active ? '22px 28px 50px 28px' : '22px 28px')};
     margin: 0;
   }
 
@@ -46,27 +46,25 @@ export const TimerTitle = styled.p`
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
-    margin: 0 0 80px 0;
+    margin: ${props => (props.active ? '0 0 80px 0' : '0 0 50px 0')};
   }
 `;
 
 export const TimerFlex = styled.ul`
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     align-items: center;
-    margin: 0 28px 0 0;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
-    margin: 0 0 80px 0;
   }
 `;
 
 export const TimerBg = styled.div`
-  width: 100px;
-  height: 100px;
+  width: ${props => (props.active ? '63px' : '100px')};
+  height: ${props => (props.active ? '63px' : '100px')};
   background: ${({ theme }) => theme.colors.iconsHover};
   box-shadow: ${({ theme }) => theme.shadows.counter};
   margin: 0 0 15px 0;
@@ -81,9 +79,8 @@ export const TimerBg = styled.div`
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
-    width: 66px;
-    height: 66px;
     margin: 0 0 15px 0;
+    height: ${props => (props.active ? '63px' : '100px')};
   }
 `;
 
@@ -93,21 +90,17 @@ export const BoxTimer = styled.li`
   align-items: center;
   margin: 0 0 45px 0;
 
-  &:first-child {
-    margin: 0 20px 0 0;
-  }
-
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     margin: 0;
     position: relative;
     &:not(:last-child) {
-      margin: 0 12px 0 0;
+      margin: ${props => (props.active ? '0 20px 0 0' : '0 40px 0 0')};
     }
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
     &:not(:last-child) {
-      margin: 0 20px 0 0;
+      margin: 0;
     }
   }
 `;
@@ -116,18 +109,16 @@ export const TimerAmout = styled.span`
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;
-  font-size: 45px;
+  font-size: ${props => (props.active ? '35px' : '45px')};
   line-height: 38px;
   color: ${({ theme }) => theme.colors.numbers};
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     font-size: 40px;
-    line-height: 38px;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
-    font-size: 36px;
-    line-height: 38px;
+    font-size: ${props => (props.active ? '36px' : '45px')};
   }
 `;
 
@@ -139,8 +130,8 @@ export const TimerText = styled.span`
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: ${props => (props.active ? '11px' : '14px')};
+  line-height: ${props => (props.active ? '13px' : '17px')};
   text-align: center;
   display: flex;
   white-space: pre-wrap;
@@ -148,18 +139,17 @@ export const TimerText = styled.span`
   color: ${({ theme }) => theme.colors.lightText};
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
-    width: 100%;
-    white-space: nowrap;
-    position: absolute;
-    top: 65px;
-
     font-size: 11px;
     line-height: 13px;
+    position: absolute;
+    top: 65px;
+    white-space: ${props => (props.active ? 'pre-warp' : 'nowrap')};
+    width: ${props => (props.active ? 'min-content' : '100%')};
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
-    font-size: 12px;
-    line-height: 15px;
+    font-size: ${props => (props.active ? '11px' : '14px')};
+    line-height: ${props => (props.active ? '13px' : '17px')};
     position: unset;
     white-space: pre-wrap;
     width: min-content;

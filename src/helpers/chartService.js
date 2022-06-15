@@ -3,7 +3,7 @@ export const getOptions = (normalizeResults, maxPoint, labelsQuantity) => ({
   maintainAspectRatio: false,
   plugins: {
     legend: {
-      align: 'end',
+      align: 'start',
       position: 'top',
       labels: {
         padding: 15,
@@ -72,17 +72,17 @@ export const getOptions = (normalizeResults, maxPoint, labelsQuantity) => ({
 });
 
 export const getData = (plan, points, labels) => ({
-  labels: labels.length === 1 ? ['start', ...labels] : labels,
+  labels: ['start', ...labels],
   datasets: [
     {
       label: 'План',
-      data: plan.length === 1 ? [0, ...plan] : plan,
+      data: [0, ...plan],
       borderColor: '#091E3F',
       backgroundColor: '#091E3F',
     },
     {
       label: 'Факт',
-      data: points.length === 1 ? [0, ...points] : points,
+      data: [0, ...points],
       borderColor: '#FF6B08',
       backgroundColor: '#FF6B08',
     },

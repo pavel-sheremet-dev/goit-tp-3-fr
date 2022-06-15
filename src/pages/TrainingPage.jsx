@@ -20,6 +20,7 @@ import IconButton from 'components/common/button/IconButton';
 import { ReactComponent as PlusBtnIcon } from 'images/svg/icon-plus.svg';
 import TrainFormModal from 'components/TrainFormModal/TrainFormModal';
 import { Loader } from 'components/Loader/Loader';
+import AddButton from 'components/TrainRadialButton/RadialButton';
 
 import {
   WrapperNotActiveTrain,
@@ -102,11 +103,7 @@ const TrainingPage = () => {
                       />
                       <TrainingList style={{ marginBottom: '32px' }} />
                       <Dashboard responce={training} />
-                      <IconButton
-                        IconComponent={PlusBtnIcon}
-                        className={'iconPlus'}
-                        onClick={openTrainingForm}
-                      />
+                      <AddButton onBtnClick={openTrainingForm} />
                     </>
                   ) : (
                     <>
@@ -152,13 +149,13 @@ const TrainingPage = () => {
           {loading && <Loader />}
           {isShowTrainingModal && (
             <>
-              <Modal onClose={openTrainingForm}>
-                <WellDoneModal>
-                  {/* <CongratsModal text={modalText.bookRead} /> */}
-                  {/* <CongratsModal text={modalText.trainingCompleted} /> */}
-                  {/* <CongratsModal text={modalText.registration} /> */}
-                </WellDoneModal>
-              </Modal>
+              {/* <Modal onClose={openTrainingForm}>
+                <WellDoneModal> */}
+              {/* <CongratsModal text={modalText.bookRead} /> */}
+              {/* <CongratsModal text={modalText.trainingCompleted} /> */}
+              {/* <CongratsModal text={modalText.registration} /> */}
+              {/* </WellDoneModal>
+              </Modal> */}
             </>
           )}
         </Section>
