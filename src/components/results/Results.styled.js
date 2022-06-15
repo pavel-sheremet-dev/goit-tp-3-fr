@@ -4,15 +4,17 @@ import { Input, Button } from '../LibraryForm/LibraryForm.styled';
 export const Form = styled.form`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     align-items: center;
     justify-content: center;
+    margin-left: 40px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
+    margin-left: 0;
   }
 `;
 export const Title = styled.h2`
@@ -34,7 +36,7 @@ export const Title = styled.h2`
 
 export const InputDate = styled(Input)`
   width: 110px;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.21;
 `;
 
@@ -55,6 +57,7 @@ export const Label = styled.label`
     top: 65%;
     right: 0;
     margin-top: 0;
+    background-color: ${({ theme }) => theme.colors.lightBackground};
     transform: translateY(-50%);
     &:hover,
     &:focus,
@@ -104,16 +107,15 @@ export const ButtonDate = styled(Button)`
 `;
 
 export const Wrapper = styled.div`
-  margin-top: 25px;
   margin-bottom: 24px;
-  margin-right: auto;
+  width: 240px;
   margin-left: auto;
-  width: 280px;
+  margin-right: auto;
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     width: 100%;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
-    width: 280px;
+    width: 240px;
   }
 `;
