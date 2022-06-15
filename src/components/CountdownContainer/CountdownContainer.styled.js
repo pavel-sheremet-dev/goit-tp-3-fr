@@ -14,7 +14,7 @@ export const StyledCountdownContainer = styled.div`
     margin-bottom: 36px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
-    /* margin-right: -74px; */
     margin-bottom: 44px;
+    margin-right: 230px;
   }
 `;
