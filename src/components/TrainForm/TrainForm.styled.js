@@ -58,6 +58,7 @@ export const Form = styled.form`
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     flex-direction: row;
     padding-bottom: 0;
+    width: 100%;
   }
 `;
 

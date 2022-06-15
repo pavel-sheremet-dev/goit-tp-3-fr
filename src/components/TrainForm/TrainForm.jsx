@@ -121,34 +121,40 @@ const TrainForm = () => {
     <Wrapper>
       <Title>Моє тренування</Title>
       <Form onSubmit={handleSubmit} autoComplete="off">
-        <InputWrapper>
-          <DateTimeInput
-            name="startDate"
-            selectedDate={startDate}
-            onChange={handleStartDate}
-            placeholderText="Початок"
-            disabled={isActiveTraining === 'active'}
-          />
-        </InputWrapper>
+        {!isActiveTraining ? (
+          <>
+            <InputWrapper>
+              <DateTimeInput
+                name="startDate"
+                selectedDate={startDate}
+                onChange={handleStartDate}
+                placeholderText="Початок"
+                disabled={isActiveTraining === 'active'}
+              />
+            </InputWrapper>
 
-        <InputWrapper>
-          <DateTimeInput
-            name="deadLineDate"
-            selectedDate={deadlineDate}
-            onChange={handleDeadlineDate}
-            placeholderText="Завершення"
-            disabled={isActiveTraining === 'active'}
-          />
-        </InputWrapper>
+            <InputWrapper>
+              <DateTimeInput
+                name="deadLineDate"
+                selectedDate={deadlineDate}
+                onChange={handleDeadlineDate}
+                placeholderText="Завершення"
+                disabled={isActiveTraining === 'active'}
+              />
+            </InputWrapper>
 
-        <InputWrapper className="error">
-          <SelectBook
-            unreadBooks={unreadBooks}
-            getBooksIds={getBooksIds}
-            booksIds={booksIds}
-          />
-          {error && <ErrorMessage>{error}</ErrorMessage>}
-        </InputWrapper>
+            <InputWrapper className="error">
+              <SelectBook
+                unreadBooks={unreadBooks}
+                getBooksIds={getBooksIds}
+                booksIds={booksIds}
+              />
+              {error && <ErrorMessage>{error}</ErrorMessage>}
+            </InputWrapper>
+          </>
+        ) : (
+          <></>
+        )}
 
         <WrapperTrainingList>
           {!isActiveTraining ? (
