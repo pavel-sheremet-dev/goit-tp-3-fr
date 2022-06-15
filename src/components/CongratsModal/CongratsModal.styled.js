@@ -4,8 +4,8 @@ export const CongratsModalStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  outline: auto;
   padding: 40px 20px;
+  background-color: ${({ theme }) => theme.colors.white};
 
   @media screen and (max-width: 767px) {
     width: 280px;
@@ -34,6 +34,13 @@ export const Button = styled.button`
   line-height: 1.21;
   color: ${({ theme }) => theme.colors.white};
 
+  transition: ${({ theme }) => theme.transition('background-color')};
+
   background: ${({ theme }) => theme.colors.mainBrandColor};
   box-shadow: ${({ theme }) => theme.shadows.btnShadow};
+
+  &:hover,
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.hover};
+  }
 `;
