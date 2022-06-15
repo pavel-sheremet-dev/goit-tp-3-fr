@@ -76,7 +76,7 @@ const DateTimeInput = ({
       renderInput={renderInput}
       value={selectedDate}
       dateFormat="DD.MM.YYYY"
-      timeFormat={false}
+      timeFormat={true}
       isValidDate={valid}
       closeOnClickOutside
       closeOnSelect
@@ -108,7 +108,6 @@ const Results = () => {
     if (!date || !pages) {
       return toast.error('Поля дати та сторінок мають бути заповнені');
     }
-
     dispatch(updateActiveTraining({ date, pointResult: pages }));
 
     setDate('');

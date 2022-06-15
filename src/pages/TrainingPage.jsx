@@ -21,38 +21,12 @@ import { ReactComponent as PlusBtnIcon } from 'images/svg/icon-plus.svg';
 import TrainFormModal from 'components/TrainFormModal/TrainFormModal';
 import { Loader } from 'components/Loader/Loader';
 
-import { WrapperNotActiveTrain, WrapperDesktop } from './TrainingPage.styled';
+import {
+  WrapperNotActiveTrain,
+  WrapperDesktop,
+  ResultsWrapper,
+} from './TrainingPage.styled';
 import Modal from 'components/Modal/Modal';
-
-const responce = {
-  status: 'failed',
-  startDate: '2022-06-01',
-  deadlineDate: '2022-06-10',
-  totalPages: 200,
-  readedPages: 130,
-  results: [
-    {
-      date: '2022-06-02T01:42:27.042Z',
-      pointResult: 0,
-    },
-    {
-      date: '2022-06-04T02:42:27.042Z',
-      pointResult: 0,
-    },
-    {
-      date: '2022-06-05T14:42:27.042Z',
-      pointResult: 50,
-    },
-    {
-      date: '2022-06-07T19:42:27.042Z',
-      pointResult: 50,
-    },
-    {
-      date: '2022-06-09T08:42:27.042Z',
-      pointResult: 100,
-    },
-  ],
-};
 
 const countDays = (startDate = 0, deadlineDate = 0) => {
   const diff = new Date(deadlineDate) - new Date(startDate);
@@ -158,8 +132,10 @@ const TrainingPage = () => {
                   />
                   <TrainForm />
                   <Dashboard responce={training} />
-                  <Results />
-                  <Statistic results={traningResultNormalize} />
+                  <ResultsWrapper>
+                    <Results />
+                    <Statistic results={traningResultNormalize} />
+                  </ResultsWrapper>
                 </>
               )}
             </>
@@ -220,10 +196,10 @@ const TrainingPage = () => {
 
                   <WrapperDesktop>
                     <Dashboard responce={training} />
-                    <div>
+                    <ResultsWrapper>
                       <Results />
                       <Statistic results={traningResultNormalize} />
-                    </div>
+                    </ResultsWrapper>
                   </WrapperDesktop>
                 </>
               )}

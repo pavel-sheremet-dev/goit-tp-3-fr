@@ -19,3 +19,17 @@ export const WrapperDesktop = styled.div`
     display: flex;
   }
 `;
+export const ResultsWrapper = styled.div`
+  background-color: ${({ theme }) => theme.colors.white};
+  box-shadow: ${({ theme }) => theme.shadows.dashboard};
+  padding: 20px;
+  margin-top: 32px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+    margin-top: 40px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
+    margin-top: 0;
+    height: 340px;
+  }
+`;
