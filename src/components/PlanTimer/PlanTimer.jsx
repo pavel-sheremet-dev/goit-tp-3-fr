@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
-
 import { useContext } from 'react';
 import { PageFormatContext, format } from 'context/pageFormatContext';
+import { useSelector } from 'react-redux';
+import { getStatus } from 'redux/training/training-selectors';
 
 import {
   TimerContainer,
@@ -16,6 +17,10 @@ import {
 
 const PlanTimer = ({ booksAmout = 0, days = 0, booksLeft = 0 }) => {
   const pageFormat = useContext(PageFormatContext);
+  const isActiveTraining = Boolean(useSelector(getStatus));
+
+  console.log(isActiveTraining);
+
   const { mobile, response, tablet, desktop } = format;
   const isResponse = pageFormat === response;
   const isMobile = pageFormat === mobile;
@@ -29,67 +34,89 @@ const PlanTimer = ({ booksAmout = 0, days = 0, booksLeft = 0 }) => {
           <TimerTitle>Моя мета прочитати</TimerTitle>
           <TimerFlex>
             <BoxTimer>
-              <TimerBg>
-                <TimerAmout>{booksAmout}</TimerAmout>
+              <TimerBg active={isActiveTraining}>
+                <TimerAmout active={isActiveTraining}>{booksAmout}</TimerAmout>
               </TimerBg>
-              <TimerText>Кількість книжок</TimerText>
+              <TimerText active={isActiveTraining}>Кількість книжок</TimerText>
             </BoxTimer>
             <BoxTimer>
-              <TimerBg>
-                <TimerAmout>{days}</TimerAmout>
+              <TimerBg active={isActiveTraining}>
+                <TimerAmout active={isActiveTraining}>{days}</TimerAmout>
               </TimerBg>
-              <TimerText>Кількість днів</TimerText>
+              <TimerText active={isActiveTraining}>Кількість днів</TimerText>
             </BoxTimer>
+            {isActiveTraining && (
+              <BoxTimer>
+                <TimerBg active={isActiveTraining}>
+                  <ColoredTimer active={isActiveTraining}>
+                    {booksLeft}
+                  </ColoredTimer>
+                </TimerBg>
+                <TimerText active={isActiveTraining}>
+                  Залишилось книжок
+                </TimerText>
+              </BoxTimer>
+            )}
           </TimerFlex>
         </TimerContainer>
       )}
       {isTablet && (
-        <TimerContainer>
+        <TimerContainer active={isActiveTraining}>
           <TimerTitle>Моя мета прочитати</TimerTitle>
           <TimerFlex>
-            <BoxTimer>
+            <BoxTimer active={isActiveTraining}>
               <TimerBg>
                 <TimerAmout>{booksAmout}</TimerAmout>
               </TimerBg>
-              <TimerText>Кількість книжок</TimerText>
+              <TimerText active={isActiveTraining}>Кількість книжок</TimerText>
             </BoxTimer>
-            <BoxTimer>
+            <BoxTimer active={isActiveTraining}>
               <TimerBg>
                 <TimerAmout>{days}</TimerAmout>
               </TimerBg>
-              <TimerText>Кількість днів</TimerText>
+              <TimerText active={isActiveTraining}>Кількість днів</TimerText>
             </BoxTimer>
-            <BoxTimer>
-              <TimerBg>
-                <ColoredTimer>{booksLeft}</ColoredTimer>
-              </TimerBg>
-              <TimerText>Залишилось книжок</TimerText>
-            </BoxTimer>
+            {isActiveTraining && (
+              <BoxTimer active={isActiveTraining}>
+                <TimerBg>
+                  <ColoredTimer>{booksLeft}</ColoredTimer>
+                </TimerBg>
+                <TimerText active={isActiveTraining}>
+                  Залишилось книжок
+                </TimerText>
+              </BoxTimer>
+            )}
           </TimerFlex>
         </TimerContainer>
       )}
       {isDesktop && (
         <TimerContainer>
-          <TimerTitle>Моя мета прочитати</TimerTitle>
+          <TimerTitle active={isActiveTraining}>Моя мета прочитати</TimerTitle>
           <TimerFlex>
             <BoxTimer>
-              <TimerBg>
-                <TimerAmout>{booksAmout}</TimerAmout>
+              <TimerBg active={isActiveTraining}>
+                <TimerAmout active={isActiveTraining}>{booksAmout}</TimerAmout>
               </TimerBg>
-              <TimerText>Кількість книжок</TimerText>
+              <TimerText active={isActiveTraining}>Кількість книжок</TimerText>
             </BoxTimer>
             <BoxTimer>
-              <TimerBg>
-                <TimerAmout>{days}</TimerAmout>
+              <TimerBg active={isActiveTraining}>
+                <TimerAmout active={isActiveTraining}>{days}</TimerAmout>
               </TimerBg>
-              <TimerText>Кількість днів</TimerText>
+              <TimerText active={isActiveTraining}>Кількість днів</TimerText>
             </BoxTimer>
-            <BoxTimer>
-              <TimerBg>
-                <ColoredTimer>{booksLeft}</ColoredTimer>
-              </TimerBg>
-              <TimerText>Залишилось книжок</TimerText>
-            </BoxTimer>
+            {isActiveTraining && (
+              <BoxTimer>
+                <TimerBg active={isActiveTraining}>
+                  <ColoredTimer active={isActiveTraining}>
+                    {booksLeft}
+                  </ColoredTimer>
+                </TimerBg>
+                <TimerText active={isActiveTraining}>
+                  Залишилось книжок
+                </TimerText>
+              </BoxTimer>
+            )}
           </TimerFlex>
         </TimerContainer>
       )}
