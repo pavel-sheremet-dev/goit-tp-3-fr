@@ -53,14 +53,17 @@ export const Title = styled.h2`
 `;
 
 export const List = styled.ul`
-  width: 240px;
-  height: 115px;
+  width: 245px;
+  padding-right: 7px;
   margin: 0 auto;
+
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     margin-left: 96px;
+    height: 127px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
     margin: 0 auto;
+    height: 107px;
   }
 `;
 
@@ -70,6 +73,8 @@ export const Item = styled.li`
   font-weight: 400;
   font-size: 14px;
   line-height: 1.2;
+  margin-top: 4px;
+  margin-bottom: 4px;
 `;
 
 export const Date = styled.span`
@@ -87,12 +92,13 @@ export const Time = styled.span`
 export const Page = styled.span`
   display: inline-block;
   margin-right: 5px;
-  min-width: 24px;
   text-align: end;
   color: ${({ theme }) => theme.colors.defaultFont};
 `;
 
 export const PagesName = styled.span`
-  width: 65px;
+  width: 85px;
+
+  text-align: end;
   color: ${({ theme }) => theme.colors.lightText};
 `;

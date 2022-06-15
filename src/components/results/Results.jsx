@@ -13,6 +13,27 @@ import {
 import { ReactComponent as CalendarIconDown } from 'images/svg/calendar-icon-down.svg';
 import IconButton from 'components/common/button/IconButton';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { trainingSelectors } from 'redux/training';
+import { useDispatch } from 'react-redux';
+import { updateActiveTraining } from 'redux/training/training-operations';
+
+const getStartDay = (deadlineDate, results) => {
+  if (Date.now() < Date.parse(deadlineDate)) {
+    return results[results.length - 1]?.date;
+  }
+  if (Date.now() > Date.parse(deadlineDate)) {
+    const prevDay = new Date(new Date() - 1000 * 60 * 60 * 24);
+    const lastResult = results[results.length - 1]?.date;
+    return lastResult < prevDay ? prevDay : lastResult;
+  }
+};
+const getFinishDay = deadlineDate => {
+  if (Date.now() < Date.parse(deadlineDate)) {
+    return new Date();
+  }
+  return deadlineDate;
+};
 
 const DateTimeInput = ({
   selectedDate,
@@ -21,6 +42,7 @@ const DateTimeInput = ({
   finishDate,
   date,
 }) => {
+  const status = useSelector(trainingSelectors.getStatus);
   const yesterday = moment().subtract(1, 'day');
   const valid = current => {
     if (!startDate) {
@@ -32,6 +54,7 @@ const DateTimeInput = ({
   };
   const inputProps = {
     value: '',
+    disabled: status !== 'active',
   };
   const renderInput = (props, openCalendar) => {
     return (
@@ -53,7 +76,7 @@ const DateTimeInput = ({
       renderInput={renderInput}
       value={selectedDate}
       dateFormat="DD.MM.YYYY"
-      timeFormat={false}
+      timeFormat={true}
       isValidDate={valid}
       closeOnClickOutside
       closeOnSelect
@@ -64,22 +87,33 @@ const DateTimeInput = ({
     />
   );
 };
-const Results = ({ startDate, finishDate, onSubmit }) => {
+// const Results = ({ startDate, finishDate }) => {
+const Results = () => {
   const [date, setDate] = useState('');
   const [pages, setPages] = useState('');
+  const dispatch = useDispatch();
+  const status = useSelector(trainingSelectors.getStatus);
+  const deadlineDate = useSelector(trainingSelectors.getDeadlineDate);
+  const traningResults = useSelector(trainingSelectors.getResult);
+
+  const traningResultNormalize = traningResults.filter(
+    item => item.pointResult,
+  );
+
+  const startDate = getStartDay(deadlineDate, traningResultNormalize);
+  const finishDate = getFinishDay(deadlineDate);
 
   const handleSubmit = e => {
     e.preventDefault();
     if (!date || !pages) {
       return toast.error('Поля дати та сторінок мають бути заповнені');
     }
-    onSubmit({ date: date.toJSON(), pages });
+    dispatch(updateActiveTraining({ date, pointResult: pages }));
+
     setDate('');
     setPages('');
   };
 
-  console.log(startDate);
-  console.log(finishDate);
   return (
     <Wrapper>
       <Title>РЕЗУЛЬТАТИ</Title>
@@ -99,11 +133,14 @@ const Results = ({ startDate, finishDate, onSubmit }) => {
             placeholder="..."
             min={1}
             max={9999}
-            value={pages}
+            value={status !== 'successDone' ? pages : ''}
             onChange={e => setPages(e.target.value)}
+            disabled={status !== 'active'}
           />
         </Label>
-        <ButtonDate type="submit">Додати результат</ButtonDate>
+        <ButtonDate type="submit" disabled={status !== 'active'}>
+          Додати результат
+        </ButtonDate>
       </Form>
     </Wrapper>
   );

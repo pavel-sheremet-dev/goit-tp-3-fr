@@ -2,6 +2,8 @@ import { useState, useEffect, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { ToastContainer } from 'react-toastify';
+import { getUnreadBooks } from 'redux/books/books-operations';
+import { trainingSelectors, trainingOperations } from 'redux/training';
 
 import Section from 'components/common/section/Section';
 import Dashboard from 'components/dashboard/Dashboard';
@@ -17,69 +19,57 @@ import TrainingList from 'components/TrainingList/TrainingList';
 import IconButton from 'components/common/button/IconButton';
 import { ReactComponent as PlusBtnIcon } from 'images/svg/icon-plus.svg';
 import TrainFormModal from 'components/TrainFormModal/TrainFormModal';
+import { Loader } from 'components/Loader/Loader';
 
-import { updateActiveTraining } from 'redux/training/training-operations';
-import { getUnreadBooks } from 'redux/books/books-operations';
+import {
+  WrapperNotActiveTrain,
+  WrapperDesktop,
+  ResultsWrapper,
+} from './TrainingPage.styled';
+import Modal from 'components/Modal/Modal';
 
-import { trainingSelectors, trainingOperations } from 'redux/training';
-import { WrapperNotActiveTrain, WrapperDesktop } from './TrainingPage.styled';
-
-const responce = {
-  status: 'failed',
-  startDate: '2022-06-01',
-  deadlineDate: '2022-06-10',
-  totalPages: 200,
-  readedPages: 130,
-  results: [
-    {
-      date: '2022-06-02T01:42:27.042Z',
-      pointResult: 0,
-    },
-    {
-      date: '2022-06-04T02:42:27.042Z',
-      pointResult: 0,
-    },
-    {
-      date: '2022-06-05T14:42:27.042Z',
-      pointResult: 50,
-    },
-    {
-      date: '2022-06-07T19:42:27.042Z',
-      pointResult: 50,
-    },
-    {
-      date: '2022-06-09T08:42:27.042Z',
-      pointResult: 100,
-    },
-  ],
+const countDays = (startDate = 0, deadlineDate = 0) => {
+  const diff = new Date(deadlineDate) - new Date(startDate);
+  return Math.round(diff / 1000 / 60 / 60 / 24);
 };
 
 const TrainingPage = () => {
-  const [results, setResult] = useState([]);
-  const deadlineDate = useSelector(trainingSelectors.getDeadlineDate);
-  const traningResults = useSelector(trainingSelectors.getResult);
-  const pageFormat = useContext(PageFormatContext);
-  const isStatusTraining = useSelector(trainingSelectors.getStatus);
-  const firstLoading = useSelector(trainingSelectors.getFirstLoading);
   const [isShowTrainingModal, setIsShowTrainingModal] = useState(false);
+  const pageFormat = useContext(PageFormatContext);
+
+  const isFirstLoading = useSelector(trainingSelectors.getFirstLoading);
+  const loading = useSelector(trainingSelectors.getLoading);
+  const isActiveTraining = useSelector(trainingSelectors.getStatus);
+  const training = useSelector(trainingSelectors.getTraining);
+  const traningResults = useSelector(trainingSelectors.getResult);
+
+  const days = countDays(training.startDate, training.deadlineDate);
+
+  const leftBooks = training.books.filter(
+    book => book.status === 'nowReading',
+  ).length;
 
   const dispatch = useDispatch();
+
+  const isMobile =
+    pageFormat === format.response || pageFormat === format.mobile;
+  const isTabletAndDesktop =
+    pageFormat === format.tablet || pageFormat === format.desktop;
 
   useEffect(() => {
     dispatch(trainingOperations.getActiveTraining());
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   if (results) {
-  //     dispatch(updateActiveTraining(results));
-  //   }
-  // }, [dispatch, results]);
-
   useEffect(() => {
-    if (isStatusTraining || firstLoading) return;
+    if (isFirstLoading || isActiveTraining) return;
 
     dispatch(getUnreadBooks());
-  }, [dispatch, isStatusTraining, firstLoading]);
+  }, [dispatch, isFirstLoading, isActiveTraining]);
+
+  useEffect(() => {
+    if (training.status === 'finished') {
+    }
+  }, []);
 
   const modalText = {
     bookRead: 'Ще одна книга прочитана',
@@ -90,62 +80,28 @@ const TrainingPage = () => {
   const traningResultNormalize = traningResults.filter(
     item => item.pointResult,
   );
-  const getStartDay = (deadlineDate, results) => {
-    if (Date.now() < Date.parse(deadlineDate)) {
-      return results[results.length - 1]?.date;
-    }
-    if (Date.now() > Date.parse(deadlineDate)) {
-      const prevDay = new Date(new Date() - 1000 * 60 * 60 * 24);
-      const lastResult = results[results.length - 1]?.date;
-      return lastResult < prevDay ? prevDay : lastResult;
-    }
-  };
-  const getFinishDay = deadlineDate => {
-    if (Date.now() < Date.parse(deadlineDate)) {
-      return new Date();
-    }
-    return deadlineDate;
-  };
 
-  const startDay = getStartDay(deadlineDate, traningResultNormalize);
-  const finishDay = getFinishDay(deadlineDate);
   const openTrainingForm = () => {
-    setIsShowTrainingModal(!isShowTrainingModal);
+    setIsShowTrainingModal(prev => !prev);
   };
 
-  const isResponse = pageFormat === format.response;
-  const isMobile = pageFormat === format.mobile;
-  const isTablet = pageFormat === format.tablet;
-  const isDesktop = pageFormat === format.desktop;
-
-  return (
-    <Section title="Статистика" titleLevel="h2" isHidden>
-      {/* <CongratsModal text={modalText.bookRead} />
-      <CongratsModal text={modalText.trainingCompleted} />
-      <CongratsModal text={modalText.registration} />
-    <WellDoneModal /> */}
-      {firstLoading && (
-        <>
-          {(isResponse || isMobile) && (
+  switch (true) {
+    case isMobile:
+      return (
+        <Section title="Статистика" titleLevel="h2" isHidden>
+          {isFirstLoading && (
             <>
-              <CountdownContainer />
-              <PlanTimer />
-              <TrainForm />
-              <Dashboard responce={responce} />
-              <Results
-                startDate={startDay}
-                finishDate={finishDay}
-                onSubmit={obj => setResult([...results, obj])}
-              />
-              <Statistic results={traningResultNormalize} />
-
-              {!isStatusTraining && (
+              {!(isActiveTraining === 'active') ? (
                 <WrapperNotActiveTrain>
                   {!isShowTrainingModal ? (
                     <>
-                      <PlanTimer />
-                      <TrainingList />
-                      <Dashboard responce={responce} />
+                      <PlanTimer
+                        booksAmout={training.books.length}
+                        days={days}
+                        booksLeft={leftBooks}
+                      />
+                      <TrainingList style={{ marginBottom: '32px' }} />
+                      <Dashboard responce={training} />
                       <IconButton
                         IconComponent={PlusBtnIcon}
                         className={'iconPlus'}
@@ -163,55 +119,121 @@ const TrainingPage = () => {
                     </>
                   )}
                 </WrapperNotActiveTrain>
-              )}
-            </>
-          )}
-
-          {(isTablet || isDesktop) && (
-            <>
-              <CountdownContainer />
-              <WrapperDesktop>
-                <PlanTimer />
-                <TrainForm />
-              </WrapperDesktop>
-
-              <WrapperDesktop>
-                <Dashboard responce={responce} />
-                <div>
-                  <Results
-                    startDate={startDay}
-                    finishDate={finishDay}
-                    onSubmit={obj => setResult([...results, obj])}
-                  />
-                  <Statistic results={traningResultNormalize} />
-                </div>
-              </WrapperDesktop>
-
-              {!isStatusTraining && (
+              ) : (
                 <>
-                  <PlanTimer />
+                  <CountdownContainer
+                    isWaiting={loading}
+                    deadline={training.deadlineDate}
+                  />
+                  <PlanTimer
+                    booksAmout={training.books.length}
+                    days={days}
+                    booksLeft={leftBooks}
+                  />
                   <TrainForm />
-                  <Dashboard responce={responce} />
+                  <Dashboard responce={training} />
+                  <ResultsWrapper>
+                    <Results />
+                    <Statistic results={traningResultNormalize} />
+                  </ResultsWrapper>
                 </>
               )}
             </>
           )}
-        </>
-      )}
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+          />
+          {loading && <Loader />}
+          {isShowTrainingModal && (
+            <>
+              <Modal onClose={openTrainingForm}>
+                <WellDoneModal>
+                  {/* <CongratsModal text={modalText.bookRead} /> */}
+                  {/* <CongratsModal text={modalText.trainingCompleted} /> */}
+                  {/* <CongratsModal text={modalText.registration} /> */}
+                </WellDoneModal>
+              </Modal>
+            </>
+          )}
+        </Section>
+      );
 
-      {/* <CountdownContainer /> */}
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-      />
-    </Section>
-  );
+    case isTabletAndDesktop:
+      return (
+        <Section title="Статистика" titleLevel="h2" isHidden>
+          {isFirstLoading && (
+            <>
+              {!(isActiveTraining === 'active') ? (
+                <>
+                  <PlanTimer
+                    booksAmout={training.books.length}
+                    days={days}
+                    booksLeft={leftBooks}
+                  />
+                  <TrainForm />
+                  <Dashboard responce={training} />
+                </>
+              ) : (
+                <>
+                  <CountdownContainer
+                    isWaiting={loading}
+                    deadline={training.deadlineDate}
+                  />
+                  <WrapperDesktop>
+                    <PlanTimer
+                      booksAmout={training.books.length}
+                      days={days}
+                      booksLeft={leftBooks}
+                    />
+                    <TrainForm />
+                  </WrapperDesktop>
+
+                  <WrapperDesktop>
+                    <Dashboard responce={training} />
+                    <ResultsWrapper>
+                      <Results />
+                      <Statistic results={traningResultNormalize} />
+                    </ResultsWrapper>
+                  </WrapperDesktop>
+                </>
+              )}
+            </>
+          )}
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+          />
+          {loading && <Loader />}
+          {!isShowTrainingModal && (
+            <>
+              <Modal onClose={openTrainingForm}>
+                <WellDoneModal>
+                  {/* <CongratsModal text={modalText.bookRead} /> */}
+                  {/* <CongratsModal text={modalText.trainingCompleted} /> */}
+                  {/* <CongratsModal text={modalText.registration} /> */}
+                </WellDoneModal>
+              </Modal>
+            </>
+          )}
+        </Section>
+      );
+
+    default:
+      return;
+  }
 };
+export default TrainingPage;
 
 // это только основные моменты.
 
@@ -230,5 +252,3 @@ const TrainingPage = () => {
 
 // Скорее всего будет коллекция тренировок, в которой будет статус тренировки ['успешно пройденная', 'активная', 'неуспешная']
 // 1.1 При загрузке страницы с треннировкой - идёт запрос на бек, бек смотрит есть ли в базе треннировка со статусом - активная - сравнивает текущее время, если время ушло, обновляет статус, возвращает треннировку, неуспешній статус будет означать показ модального окна. В таком случае рендерить формочку с добавлением результатов, думаю, что не стоит, только результирующую статистику.
-
-export default TrainingPage;

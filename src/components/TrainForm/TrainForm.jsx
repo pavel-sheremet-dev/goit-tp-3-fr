@@ -18,15 +18,28 @@ import {
   Button,
 } from './TrainForm.styled';
 
+// export const storageKey = 'choose-training-books';
+
+// const getInitialBooks = key => {
+//   try {
+//     const stringifyInitialBooks = sessionStorage.getItem(key);
+//     const initialBooks = JSON.parse(stringifyInitialBooks) ?? [];
+//     return initialBooks;
+//   } catch (error) {
+//     return [];
+//   }
+// };
+
 const TrainForm = () => {
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(null);
   const [deadlineDate, setDeadlineDate] = useState(null);
   const [books, setBooks] = useState([]);
+  // const [books, setBooks] = useState(() => getInitialBooks(storageKey));
   const [booksIds, setBooksIds] = useState([]);
   const [error, setError] = useState('');
   const isValidate = useRef(false);
-  const isStatusTraining = useSelector(trainingSelectors.getStatus);
+  const isActiveTraining = useSelector(trainingSelectors.getStatus);
   const unreadBooks = useSelector(booksSelectors.getUnreadBooks);
 
   useEffect(() => {
@@ -46,10 +59,17 @@ const TrainForm = () => {
     setError(false);
   }, [books.length, deadlineDate, startDate]);
 
+  // useEffect(() => {
+  //   if (!books.length) return
+
+  //   const stringifyBooks = JSON.stringify(books);
+  //   sessionStorage.setItem(storageKey, stringifyBooks);
+  // }, [books, books.length]);
+
   const getBooksIds = id => {
     setBooksIds(state => [...state, id]);
-    const books = unreadBooks.filter(book => book.id === id);
-    setBooks(prev => [...prev, ...books]);
+    const book = unreadBooks.filter(book => book.id === id);
+    setBooks(prev => [...prev, ...book]);
   };
 
   const handleUpdateBook = id => {
@@ -58,12 +78,10 @@ const TrainForm = () => {
   };
 
   const handleStartDate = date => {
-    // const normalizedDate = moment(date).format('YYYY-MM-DD');
     setStartDate(date);
   };
 
   const handleDeadlineDate = date => {
-    // const normalizedDate = moment(date).format('YYYY-MM-DD');
     setDeadlineDate(date);
   };
 
@@ -71,10 +89,25 @@ const TrainForm = () => {
     e.preventDefault();
 
     isValidate.current = true;
+    if (!isValidate.current) return;
+    if (!startDate) {
+      setError('Вкажіть дату початку тренування');
+      return;
+    }
+    if (!deadlineDate) {
+      setError('Вкажіть дату завершення тренування');
+      return;
+    }
+    if (!books.length) {
+      setError('Оберіть хоча б одну книгу');
+      return;
+    }
+    setError(false);
 
     dispatch(
       trainingOperations.addTraining({ startDate, deadlineDate, books }),
     );
+    // sessionStorage.removeItem(storageKey)
     resetForm();
   };
 
@@ -94,6 +127,7 @@ const TrainForm = () => {
             selectedDate={startDate}
             onChange={handleStartDate}
             placeholderText="Початок"
+            disabled={isActiveTraining === 'active'}
           />
         </InputWrapper>
 
@@ -103,6 +137,7 @@ const TrainForm = () => {
             selectedDate={deadlineDate}
             onChange={handleDeadlineDate}
             placeholderText="Завершення"
+            disabled={isActiveTraining === 'active'}
           />
         </InputWrapper>
 
@@ -116,12 +151,20 @@ const TrainForm = () => {
         </InputWrapper>
 
         <WrapperTrainingList>
-          {isStatusTraining && <ActiveTrainList />}
-
-          <TrainingList books={books} handleUpdateBook={handleUpdateBook} />
+          {!isActiveTraining ? (
+            <TrainingList books={books} handleUpdateBook={handleUpdateBook} />
+          ) : (
+            <ActiveTrainList />
+          )}
         </WrapperTrainingList>
 
-        {!isStatusTraining && <Button type="submit">Почати тренування</Button>}
+        {unreadBooks.length === 0 || isActiveTraining ? (
+          <Button style={{ display: 'none' }} type="submit">
+            Почати тренування
+          </Button>
+        ) : (
+          <Button type="submit">Почати тренування</Button>
+        )}
       </Form>
     </Wrapper>
   );

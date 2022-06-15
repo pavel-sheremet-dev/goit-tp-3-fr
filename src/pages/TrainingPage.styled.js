@@ -6,7 +6,7 @@ export const WrapperNotActiveTrain = styled.div`
     height: 52px;
     position: absolute;
     left: 50%;
-    bottom: 0;
+    bottom: 5px;
     transform: translateX(-50%);
     background-color: ${({ theme }) => theme.colors.mainBrandColor};
     border-radius: 50%;
@@ -17,6 +17,19 @@ export const WrapperNotActiveTrain = styled.div`
 export const WrapperDesktop = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
     display: flex;
-    /* position: relative; */
+  }
+`;
+export const ResultsWrapper = styled.div`
+  background-color: ${({ theme }) => theme.colors.white};
+  box-shadow: ${({ theme }) => theme.shadows.dashboard};
+  padding: 20px;
+  margin-top: 32px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+    margin-top: 40px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
+    margin-top: 0;
+    height: 340px;
   }
 `;

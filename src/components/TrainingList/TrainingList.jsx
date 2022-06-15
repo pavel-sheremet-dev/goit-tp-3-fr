@@ -19,7 +19,7 @@ import {
   Placeholder,
 } from './TrainingList.styled';
 
-const TrainingList = ({ books = [], handleUpdateBook }) => {
+const TrainingList = ({ books = [], handleUpdateBook, style }) => {
   return (
     <Wrapper>
       <HeaderList>
@@ -29,7 +29,7 @@ const TrainingList = ({ books = [], handleUpdateBook }) => {
         <HeaderListItem>Стор.</HeaderListItem>
       </HeaderList>
 
-      <ListBooks>
+      <ListBooks style={style}>
         {!books.length ? (
           <EmptyItem>
             <BookIcon style={{ fill: '#A6ABB9' }} className={'someClass'} />

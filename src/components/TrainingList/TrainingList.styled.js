@@ -2,10 +2,9 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 100%;
-  margin-bottom: 32px;
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
-    margin-bottom: 0;
+    margin-bottom: 40px;
   }
 `;
 

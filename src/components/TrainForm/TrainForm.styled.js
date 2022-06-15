@@ -7,11 +7,11 @@ export const Wrapper = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   margin-top: 25px;
-  margin-bottom: 32px;
+  margin-bottom: 0;
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     margin-top: 28px;
-    margin-bottom: 0;
+    margin-bottom: 32px;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
@@ -53,9 +53,11 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 20px;
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     flex-direction: row;
+    padding-bottom: 0;
   }
 `;
 
@@ -104,9 +106,10 @@ export const Button = styled.button`
   font-weight: 500;
   font-size: 14px;
   line-height: 1.21;
-  background-color: ${({ theme }) => theme.colors.lightBackground};
+  color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.mainBrandColor};
   border: none;
-  outline: 1px solid ${({ theme }) => theme.colors.defaultFont};
+  outline: 1px solid ${({ theme }) => theme.colors.mainBrandColor};
   transition: ${({ theme }) => theme.transition('background-color')},
     ${({ theme }) => theme.transition('color')},
     ${({ theme }) => theme.transition('outline-color')};
@@ -115,15 +118,15 @@ export const Button = styled.button`
   &:hover,
   &:focus {
     color: ${({ theme }) => theme.colors.white};
-    background-color: ${({ theme }) => theme.colors.mainBrandColor};
-    outline: 1px solid ${({ theme }) => theme.colors.mainBrandColor};
+    background-color: ${({ theme }) => theme.colors.hover};
+    outline: 1px solid ${({ theme }) => theme.colors.hover};
     box-shadow: ${({ theme }) => theme.shadows.btnShadow};
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 40px;
+    margin-bottom: 8px;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
@@ -135,7 +138,7 @@ export const WrapperTrainingList = styled.div`
   margin-bottom: 32px;
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
-    margin-bottom: 40px;
+    margin-bottom: 0;
     margin-top: 20px;
   }
 
