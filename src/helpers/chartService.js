@@ -120,16 +120,16 @@ export const getPagesPerDay = (
   const delta = result.pointResult ? 1 : 0;
 
   const leftFullDays = days > 1 ? Math.floor(days - delta) : 1;
-
-  return Math.round((totalPages - readedPages) / leftFullDays);
+  const leftPages = totalPages > readedPages ? totalPages - readedPages : 0;
+  return Math.round(leftPages / leftFullDays);
 };
 
 export const getNormalizeResults = (results, startDate) => {
   const updateResults = [
     { date: startDate, pointResult: 0 },
     ...results,
-    { date: new Date(), pointResult: 0 },
-  ];
+    { date: new Date().toDateString(), pointResult: 0 },
+  ].sort((a, b) => new Date(a.date) - new Date(b.date));
 
   const allDatePoints = updateResults.map(p =>
     new Date(p.date).toLocaleDateString(),

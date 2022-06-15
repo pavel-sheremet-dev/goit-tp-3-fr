@@ -9,7 +9,12 @@ import { ReactComponent as CalendarIcon } from 'images/svg/calendar-form.svg';
 import { ReactComponent as CalendarIconDowm } from 'images/svg/calendar-icon-down.svg';
 import { Label, Input } from './DateTime.styled';
 
-const DateTimeInput = ({ selectedDate, onChange, placeholderText }) => {
+const DateTimeInput = ({
+  selectedDate,
+  onChange,
+  placeholderText,
+  disabled,
+}) => {
   const yesterday = moment().subtract(1, 'day');
   const disablePastDt = current => {
     return current.isAfter(yesterday);
@@ -26,9 +31,11 @@ const DateTimeInput = ({ selectedDate, onChange, placeholderText }) => {
           className={'iconInput'}
           IconComponent={CalendarIcon}
           onClick={openCalendar}
+          disabled={disabled}
         />
-        <Input {...props} placeholder={placeholderText} />
+        <Input {...props} disabled={disabled} placeholder={placeholderText} />
         <IconButton
+          disabled={disabled}
           className={'iconDownInput'}
           IconComponent={CalendarIconDowm}
           onClick={openCalendar}
@@ -49,6 +56,7 @@ const DateTimeInput = ({ selectedDate, onChange, placeholderText }) => {
       closeOnSelect
       onChange={date => onChange(date._d)}
       isValidDate={disablePastDt}
+      utc={true}
     />
   );
 };

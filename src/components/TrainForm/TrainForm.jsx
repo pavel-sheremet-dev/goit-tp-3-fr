@@ -39,7 +39,7 @@ const TrainForm = () => {
   const [booksIds, setBooksIds] = useState([]);
   const [error, setError] = useState('');
   const isValidate = useRef(false);
-  const isStatusTraining = useSelector(trainingSelectors.getStatus);
+  const isActiveTraining = useSelector(trainingSelectors.getStatus);
   const unreadBooks = useSelector(booksSelectors.getUnreadBooks);
 
   useEffect(() => {
@@ -89,6 +89,21 @@ const TrainForm = () => {
     e.preventDefault();
 
     isValidate.current = true;
+    if (!isValidate.current) return;
+    if (!startDate) {
+      setError('Вкажіть дату початку тренування');
+      return;
+    }
+    if (!deadlineDate) {
+      setError('Вкажіть дату завершення тренування');
+      return;
+    }
+    if (!books.length) {
+      setError('Оберіть хоча б одну книгу');
+      return;
+    }
+    setError(false);
+
     dispatch(
       trainingOperations.addTraining({ startDate, deadlineDate, books }),
     );
@@ -112,6 +127,7 @@ const TrainForm = () => {
             selectedDate={startDate}
             onChange={handleStartDate}
             placeholderText="Початок"
+            disabled={isActiveTraining === 'active'}
           />
         </InputWrapper>
 
@@ -121,6 +137,7 @@ const TrainForm = () => {
             selectedDate={deadlineDate}
             onChange={handleDeadlineDate}
             placeholderText="Завершення"
+            disabled={isActiveTraining === 'active'}
           />
         </InputWrapper>
 
@@ -134,14 +151,14 @@ const TrainForm = () => {
         </InputWrapper>
 
         <WrapperTrainingList>
-          {!isStatusTraining ? (
+          {!isActiveTraining ? (
             <TrainingList books={books} handleUpdateBook={handleUpdateBook} />
           ) : (
             <ActiveTrainList />
           )}
         </WrapperTrainingList>
 
-        {unreadBooks.length === 0 || isStatusTraining ? (
+        {unreadBooks.length === 0 || isActiveTraining ? (
           <Button style={{ display: 'none' }} type="submit">
             Почати тренування
           </Button>

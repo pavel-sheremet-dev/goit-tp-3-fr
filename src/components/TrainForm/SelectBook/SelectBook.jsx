@@ -7,7 +7,7 @@ import { ReactComponent as CalendarIconDowm } from 'images/svg/calendar-icon-dow
 import { Label } from './SelectBook.styled';
 
 const SelectBook = ({ unreadBooks, getBooksIds, booksIds }) => {
-  const isStatusTraining = useSelector(trainingSelectors.getStatus);
+  const isActiveTraining = useSelector(trainingSelectors.getStatus);
 
   // const savedBooks = sessionStorage.getItem(storageKey) ?? [];
   // console.log(savedBooks);
@@ -22,7 +22,7 @@ const SelectBook = ({ unreadBooks, getBooksIds, booksIds }) => {
   return (
     <Label>
       <CalendarIconDowm />
-      {!isStatusTraining ? (
+      {!isActiveTraining ? (
         <select name="book" onChange={e => getBooksIds(e.target.value)}>
           <option defaultValue="" hidden>
             Обрати книги з бібліотеки
@@ -35,7 +35,7 @@ const SelectBook = ({ unreadBooks, getBooksIds, booksIds }) => {
         </select>
       ) : (
         <select
-          desabled="true"
+          disabled={true}
           name="book"
           style={{ backgroundColor: 'transparent' }}
           onChange={e => getBooksIds(e.target.value)}

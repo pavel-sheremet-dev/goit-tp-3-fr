@@ -28,12 +28,10 @@ const RatingModal = ({ onClose, index }) => {
   const dispatch = useDispatch();
 
   const handleRating = rate => {
-    console.log('first');
     setRating(rate / 20);
   };
 
   const handleChange = event => {
-    console.log('handleChange', handleChange);
     setReview(event.target.value);
   };
 

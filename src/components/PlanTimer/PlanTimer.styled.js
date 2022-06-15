@@ -20,7 +20,7 @@ export const TimerContainer = styled.div`
     height: 329px;
     flex-direction: column;
     position: absolute;
-    right: 0;
+    right: 16px;
     top: 40px;
   }
 `;
@@ -100,8 +100,8 @@ export const BoxTimer = styled.li`
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     margin: 0;
     position: relative;
-    &:first-child {
-      margin: 0 40px 0 0;
+    &:not(:last-child) {
+      margin: 0 12px 0 0;
     }
   }
 

@@ -28,13 +28,7 @@ const FormState = () => {
 const SignInForm = () => {
   const [initialValues, setInitialValues] = useState(() => getInitialValues());
   const dispatch = useDispatch();
-  const error = useSelector(authSelectors.getError);
   // const loading = useSelector(authSelectors.getLoading);
-
-  useEffect(() => {
-    if (!error) return;
-    console.log('error', error);
-  }, [error]);
 
   return (
     <>

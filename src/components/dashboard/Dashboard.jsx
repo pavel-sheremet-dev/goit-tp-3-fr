@@ -19,6 +19,9 @@ const Dashboard = ({ responce }) => {
           Залишилось прочитати сторінок<span>{readingPlan}</span>
         </p>
       )}
+      {responce.status === 'successDone' && (
+        <p>Ви успішно виконали тренування</p>
+      )}
 
       <StatGraph responce={responce} getReadingPlan={setReadingPlan} />
       <p className="x-axes-label">час</p>

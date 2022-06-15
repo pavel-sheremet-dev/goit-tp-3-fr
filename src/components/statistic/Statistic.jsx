@@ -9,7 +9,7 @@ const Statistic = ({ results }) => {
     <>
       <Title>СТАТИСТИКА</Title>
       <List>
-        {results.map(({ date, pointResult }) => {
+        {results.map(({ date, pointResult }, id) => {
           const currentDate = new Date(date);
           const day = pad(currentDate.getDate());
           const month = pad(currentDate.getMonth());
@@ -21,7 +21,7 @@ const Statistic = ({ results }) => {
           const time = `${hours}:${minutes}:${seconds}`;
           return (
             <StatisticItem
-              key={date}
+              key={id}
               date={dateResult}
               time={time}
               pages={pointResult}
