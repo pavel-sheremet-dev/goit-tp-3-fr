@@ -25,6 +25,18 @@ export const HeaderListItem = styled.p`
 `;
 
 export const ListBooks = styled.ul`
+  max-height: 100px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: grey;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: black;
+  }
+
   display: flex;
   flex-direction: column;
   justify-content: center;
