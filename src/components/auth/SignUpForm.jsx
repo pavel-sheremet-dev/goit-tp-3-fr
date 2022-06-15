@@ -52,11 +52,6 @@ const SignUpForm = () => {
   const error = useSelector(authSelectors.getError);
   // const loading = useSelector(authSelectors.getLoading);
 
-  useEffect(() => {
-    if (!error) return;
-    console.log('error', error);
-  }, [error]);
-
   return (
     <>
       <Formik

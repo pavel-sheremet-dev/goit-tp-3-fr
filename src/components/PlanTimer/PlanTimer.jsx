@@ -59,6 +59,12 @@ const PlanTimer = ({ booksAmout = 0, days = 0, booksLeft = 0 }) => {
               </TimerBg>
               <TimerText>Кількість днів</TimerText>
             </BoxTimer>
+            <BoxTimer>
+              <TimerBg>
+                <ColoredTimer>{booksLeft}</ColoredTimer>
+              </TimerBg>
+              <TimerText>Залишилось книжок</TimerText>
+            </BoxTimer>
           </TimerFlex>
         </TimerContainer>
       )}

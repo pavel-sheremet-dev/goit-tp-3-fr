@@ -86,6 +86,11 @@ export const ButtonDate = styled(Button)`
     box-shadow: ${({ theme }) => theme.shadows.btnShadow};
   }
 
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.disabledBtn};
+    outline: 1px solid ${({ theme }) => theme.colors.disabledBtn};
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     margin-bottom: 0;
     margin-top: 17px;

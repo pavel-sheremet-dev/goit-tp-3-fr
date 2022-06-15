@@ -29,10 +29,10 @@ const ActiveTrainList = () => {
 
       <ListBooks>
         {getTrainingBooks.length &&
-          getTrainingBooks.map(({ id, name, author, year, pages }) => (
+          getTrainingBooks.map(({ id, name, author, year, pages, status }) => (
             <ItemBooks key={id}>
               <span className="checkIcon">
-                {getTrainingBooks.status === 'finished' && <CheckIcon />}
+                {status === 'finished' && <CheckIcon />}
               </span>
 
               <Item className={'titleBook'}>
