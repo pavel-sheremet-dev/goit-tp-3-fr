@@ -62,7 +62,6 @@ const countDays = (startDate = 0, deadlineDate = 0) => {
 const TrainingPage = () => {
   const [isShowTrainingModal, setIsShowTrainingModal] = useState(false);
   const pageFormat = useContext(PageFormatContext);
-
   const isFirstLoading = useSelector(trainingSelectors.getFirstLoading);
   const loading = useSelector(trainingSelectors.getLoading);
   const isActiveTraining = useSelector(trainingSelectors.getStatus);
@@ -177,11 +176,12 @@ const TrainingPage = () => {
           {isShowTrainingModal && (
             <>
               <Modal onClose={openTrainingForm}>
-                <WellDoneModal>
-                  {/* <CongratsModal text={modalText.bookRead} /> */}
-                  {/* <CongratsModal text={modalText.trainingCompleted} /> */}
-                  {/* <CongratsModal text={modalText.registration} /> */}
-                </WellDoneModal>
+                {/*< WellDoneModal onClose={openTrainingForm}> 
+                </WellDoneModal > */}
+                {/* <CongratsModal text={modalText.bookRead} onBtnClick= {openTrainingForm}/> */}
+                {/* <CongratsModal text={modalText.trainingCompleted} onBtnClick= {openTrainingForm} /> */}
+                {/* <CongratsModal text={modalText.registration} onBtnClick= {openTrainingForm}  /> */}
+                {/* <ExitModal onClose={openTrainingForm} onLogOut={null}></ExitModal > */}
               </Modal>
             </>
           )}
@@ -239,14 +239,16 @@ const TrainingPage = () => {
             pauseOnFocusLoss
           />
           {loading && <Loader />}
-          {!isShowTrainingModal && (
+          {isShowTrainingModal && (
             <>
               <Modal onClose={openTrainingForm}>
-                <WellDoneModal>
-                  {/* <CongratsModal text={modalText.bookRead} /> */}
-                  {/* <CongratsModal text={modalText.trainingCompleted} /> */}
-                  {/* <CongratsModal text={modalText.registration} /> */}
-                </WellDoneModal>
+                {/*< WellDoneModal onClose={openTrainingForm}> 
+                </WellDoneModal > */}
+                {/* <CongratsModal text={modalText.bookRead} onBtnClick= {openTrainingForm}/> */}
+                {/* <CongratsModal text={modalText.trainingCompleted} onBtnClick= {openTrainingForm}/> */}
+                {/* <CongratsModal text={modalText.registration} onBtnClick= {openTrainingForm} /> */}
+
+                {/* <ExitModal onClose={openTrainingForm} onLogOut={null}></ExitModal > */}
               </Modal>
             </>
           )}

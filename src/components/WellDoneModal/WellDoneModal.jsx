@@ -7,7 +7,7 @@ import {
 } from './WellDoneModal.styled';
 import { ReactComponent as ThumbUpIcon } from 'images/svg/thumbUp.svg';
 
-export default function WellDoneModal() {
+export default function WellDoneModal({ onClose }) {
   return (
     <WellDoneModalStyled>
       <ThumbUpIcon style={{ fill: '#A6ABB9' }} />
@@ -19,8 +19,12 @@ export default function WellDoneModal() {
         {'Наступного разу вам усе вдасться)'}
       </Text>
       <Buttons>
-        <ButtonOrange type="button">Новє тренування</ButtonOrange>
-        <ButtonWhite type="button">Назад</ButtonWhite>
+        <ButtonOrange type="button" onClick={onClose}>
+          Новє тренування
+        </ButtonOrange>
+        <ButtonWhite type="button" onClick={onClose}>
+          Назад
+        </ButtonWhite>
       </Buttons>
     </WellDoneModalStyled>
   );
