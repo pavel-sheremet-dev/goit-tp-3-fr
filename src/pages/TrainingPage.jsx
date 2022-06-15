@@ -103,7 +103,7 @@ const TrainingPage = () => {
                       />
                       <TrainingList style={{ marginBottom: '32px' }} />
                       <Dashboard responce={training} />
-                      <AddButton onBtnClick={openTrainingForm}/>
+                      <AddButton onBtnClick={openTrainingForm} />
                     </>
                   ) : (
                     <>
@@ -151,10 +151,10 @@ const TrainingPage = () => {
             <>
               {/* <Modal onClose={openTrainingForm}>
                 <WellDoneModal> */}
-                  {/* <CongratsModal text={modalText.bookRead} /> */}
-                  {/* <CongratsModal text={modalText.trainingCompleted} /> */}
-                  {/* <CongratsModal text={modalText.registration} /> */}
-                {/* </WellDoneModal>
+              {/* <CongratsModal text={modalText.bookRead} /> */}
+              {/* <CongratsModal text={modalText.trainingCompleted} /> */}
+              {/* <CongratsModal text={modalText.registration} /> */}
+              {/* </WellDoneModal>
               </Modal> */}
             </>
           )}

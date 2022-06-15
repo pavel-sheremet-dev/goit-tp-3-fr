@@ -1,5 +1,6 @@
 export const getOptions = (normalizeResults, maxPoint, labelsQuantity) => ({
   responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       align: 'start',
@@ -18,6 +19,7 @@ export const getOptions = (normalizeResults, maxPoint, labelsQuantity) => ({
       },
     },
   },
+
   layout: {
     autoPadding: true,
     padding: 0,
@@ -70,17 +72,17 @@ export const getOptions = (normalizeResults, maxPoint, labelsQuantity) => ({
 });
 
 export const getData = (plan, points, labels) => ({
-  labels,
+  labels: ['start', ...labels],
   datasets: [
     {
       label: 'План',
-      data: plan,
+      data: [0, ...plan],
       borderColor: '#091E3F',
       backgroundColor: '#091E3F',
     },
     {
       label: 'Факт',
-      data: points,
+      data: [0, ...points],
       borderColor: '#FF6B08',
       backgroundColor: '#FF6B08',
     },

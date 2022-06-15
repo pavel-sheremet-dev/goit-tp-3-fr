@@ -11,6 +11,7 @@ import { authOperations, authSelectors } from 'redux/auth';
 import MainComponent from 'components/main/MainComponent';
 import { Loader } from 'components/Loader/Loader';
 import { useRef } from 'react';
+import Meta from 'components/common/helmet/Meta';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ const App = () => {
       <ThemeProvider theme={getCssVars()}>
         <Layout>
           <GlobalStyle />
+          <Meta />
           {isLoadingUser || firstLoading.current ? (
             <Loader />
           ) : (

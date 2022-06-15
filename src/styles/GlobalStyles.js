@@ -79,6 +79,7 @@ a {
   height: 100vh;
   width: 100vw;
   background-color: ${({ theme }) => theme.colors.lightBackground};
+  box-shadow: ${({ theme }) => theme.shadows.dashboard};
 
 
   @media screen and (min-width: 480px) {
