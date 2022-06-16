@@ -11,38 +11,29 @@ import Dashboard from 'components/dashboard/Dashboard';
 import Results from 'components/results/Results';
 
 import CountdownContainer from 'components/CountdownContainer';
-import CongratsModal from 'components/CongratsModal';
-import WellDoneModal from 'components/WellDoneModal';
+import CongratsModal from 'components/modals/CongratsModal';
+import WellDoneModal from 'components/modals/WellDoneModal';
 import Statistic from 'components/statistic/Statistic';
 import TrainForm from 'components/TrainForm/TrainForm';
 import PlanTimer from 'components/PlanTimer';
 import TrainingList from 'components/TrainingList/TrainingList';
-import Modal from 'components/Modal/Modal';
+import Modal from 'components/modals/Modal/Modal';
 import TrainFormModal from 'components/TrainFormModal/TrainFormModal';
 import AddButton from 'components/buttons/TrainRadialButton/RadialButton';
 
-import { Loader } from 'components/Loader/Loader';
+import { Loader } from 'components/common/Loader/Loader';
 import {
   WrapperNotActiveTrain,
   WrapperDesktop,
   ResultsWrapper,
 } from './TrainingPage.styled';
+import { bookStatusKeys, statusKeys } from 'helpers/config';
 
 const modalText = {
   bookRead: 'Ще одна книга прочитана',
   trainingCompleted: 'Тренування завершено',
   registration: 'Вам на пошту надійшов лист із підтвердженням реєстрації',
 };
-
-const statusKeys = () => ({
-  failed: 'failed',
-  active: 'active',
-  successDone: 'successDone',
-});
-
-const bookStatusKeys = () => ({
-  nowReading: 'nowReading',
-});
 
 const countDays = (startDate = 0, deadlineDate = 0) => {
   const diff = new Date(deadlineDate) - new Date(startDate);

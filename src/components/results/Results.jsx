@@ -1,7 +1,15 @@
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { trainingSelectors } from 'redux/training';
+import { useDispatch } from 'react-redux';
+import { updateActiveTraining } from 'redux/training/training-operations';
+
 import Datetime from 'react-datetime';
 import moment from 'moment';
 import { toast } from 'react-toastify';
 import 'moment/locale/uk';
+
+import IconButton from 'components/buttons/button/IconButton';
 import {
   Title,
   InputDate,
@@ -11,12 +19,6 @@ import {
   Wrapper,
 } from './Results.styled';
 import { ReactComponent as CalendarIconDown } from 'images/svg/calendar-icon-down.svg';
-import IconButton from 'components/buttons/button/IconButton';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { trainingSelectors } from 'redux/training';
-import { useDispatch } from 'react-redux';
-import { updateActiveTraining } from 'redux/training/training-operations';
 
 const getStartDay = (deadlineDate, results) => {
   if (Date.now() < Date.parse(deadlineDate)) {

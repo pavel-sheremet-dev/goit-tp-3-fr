@@ -1,13 +1,9 @@
 import {
-  //   StyledItem,
   StyledList,
-  //   StyledDescriptionText,
   StyledStepText,
-  //   StyledCreateText,
   StyledLibButton,
   StyledNameBook,
   StyledBox,
-  //   StyledWrap,
 } from './EmtpyLibraryText.styled';
 import { useContext } from 'react';
 import { PageFormatContext, format } from 'context/pageFormatContext';

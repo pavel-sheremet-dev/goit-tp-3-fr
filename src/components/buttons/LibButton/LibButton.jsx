@@ -1,7 +1,8 @@
-import { LibActionButton } from './LibButton.styled';
-import { routes } from 'routes/config';
-import { Navigate } from 'react-router-dom';
 import { useState } from 'react';
+import { Navigate } from 'react-router-dom';
+import { routes } from 'routes/config';
+
+import { LibActionButton } from './LibButton.styled';
 
 const { training } = routes;
 

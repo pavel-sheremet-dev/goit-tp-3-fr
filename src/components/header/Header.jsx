@@ -1,7 +1,9 @@
-import Navigation from 'components/header/Navigation/Navigation';
-import { StyledContainerHeader } from './Header.styled';
-import { getIsLoggedIn } from '../../redux/auth/auth-selectors';
 import { useSelector } from 'react-redux';
+import { getIsLoggedIn } from 'redux/auth/auth-selectors';
+
+import Navigation from 'components/header/Navigation/Navigation';
+
+import { StyledContainerHeader } from './Header.styled';
 
 const Header = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);

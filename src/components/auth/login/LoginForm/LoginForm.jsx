@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useFormik, useFormikContext } from 'formik';
+import React, { useEffect } from 'react';
+import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { authOperations, authSelectors } from 'redux/auth';
-import { getValueFromLocalStorage, InputField } from './SignUpForm';
 
 import {
   Form,
@@ -19,28 +18,7 @@ import {
 } from 'helpers/validation/validationLoginForm';
 import { routes } from 'routes/config';
 
-const getInitialValues = () =>
-  JSON.parse(sessionStorage.getItem('auth-form')) ?? {
-    email: getValueFromLocalStorage('name'),
-  };
-
-const FormState = () => {
-  const { values } = useFormikContext();
-
-  useEffect(() => {
-    sessionStorage.setItem('auth-form', JSON.stringify(values));
-  }, [values]);
-
-  useEffect(() => {
-    localStorage.setItem('username', values.name);
-    localStorage.setItem('useremail', values.email);
-  }, [values.email, values.group, values.name]);
-
-  return null;
-};
-
 const LoginForm = () => {
-  const [initialValues, setInitialValues] = useState(() => getInitialValues());
   const dispatch = useDispatch();
   const error = useSelector(authSelectors.getError);
 
@@ -61,7 +39,6 @@ const LoginForm = () => {
       dispatch(authOperations.signIn({ email, password }));
       obj.setSubmitting(false);
       sessionStorage.setItem('auth-form', null);
-      setInitialValues(getInitialValues());
       obj.resetForm();
     },
   });
