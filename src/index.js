@@ -13,6 +13,7 @@ import 'overlayscrollbars/css/OverlayScrollbars.css';
 import App from './App';
 import { persistor, store } from 'redux/store';
 import { BrowserRouter } from 'react-router-dom';
+import 'helpers/i18next';
 
 axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
 

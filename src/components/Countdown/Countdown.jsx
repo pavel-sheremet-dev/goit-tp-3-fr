@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import differenceInSeconds from 'date-fns/differenceInSeconds';
+import { useTranslation } from 'react-i18next';
 import {
   StyledTimer,
   Title,
@@ -15,6 +16,7 @@ const ONE_HOUR = 60 * 60;
 const ONE_MINUTE = 60;
 
 export default function Countdown({ title, deadline }) {
+  const { t } = useTranslation();
   const [currentTime, setCurrentTime] = useState(Date.now());
   const intervalId = useRef(null);
 
@@ -62,22 +64,22 @@ export default function Countdown({ title, deadline }) {
       <TimeList>
         <TimeItem>
           <Number>{countdown.days}</Number>
-          <Word>ДН</Word>
+          <Word>{t('days')}</Word>
         </TimeItem>
         <Dots>:</Dots>
         <TimeItem>
           <Number>{countdown.hours}</Number>
-          <Word>ГОД</Word>
+          <Word>{t('hrs')}</Word>
         </TimeItem>
         <Dots>:</Dots>
         <TimeItem>
           <Number>{countdown.minutes}</Number>
-          <Word>ХВ</Word>
+          <Word>{t('mins')}</Word>
         </TimeItem>
         <Dots>:</Dots>
         <TimeItem>
           <Number>{countdown.seconds}</Number>
-          <Word>СЕК</Word>
+          <Word>{t('secs')}</Word>
         </TimeItem>
       </TimeList>
     </StyledTimer>

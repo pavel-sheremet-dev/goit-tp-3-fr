@@ -10,6 +10,7 @@ import ExitModal from 'components/modals/ExitModal/ExitModal';
 import Logo from '../Logo/Logo';
 import Modal from 'components/modals/Modal/Modal';
 import UserNavMenu from '../UserMenu/UserNavMenu';
+import LngSwitcher from '../LngSwitcher';
 
 import { StyledBox } from 'components/header/Header.styled';
 import {
@@ -53,6 +54,7 @@ const Navigation = () => {
     <>
       <Logo />
 
+      <LngSwitcher />
       {isLoggedIn && (
         <>
           {(isDesktop || isTablet) && (

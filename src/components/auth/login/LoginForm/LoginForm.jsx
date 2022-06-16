@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { authOperations, authSelectors } from 'redux/auth';
+import { useTranslation } from 'react-i18next';
 
 import {
   Form,
@@ -19,6 +20,7 @@ import {
 import { routes } from 'routes/config';
 
 const LoginForm = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const error = useSelector(authSelectors.getError);
 
@@ -47,7 +49,7 @@ const LoginForm = () => {
     <>
       <Form onSubmit={formik.handleSubmit}>
         <LoginFormTitle>
-          Електронна адреса <LoginFormIcon>*</LoginFormIcon>
+          {t('email')} <LoginFormIcon>*</LoginFormIcon>
         </LoginFormTitle>
         <Input
           id="email"
@@ -62,7 +64,7 @@ const LoginForm = () => {
         ) : null}
 
         <LoginFormTitle>
-          Пароль <LoginFormIcon>*</LoginFormIcon>
+          {t('password')} <LoginFormIcon>*</LoginFormIcon>
         </LoginFormTitle>
         <Input
           className="password"
@@ -77,9 +79,9 @@ const LoginForm = () => {
           <Error>{formik.errors.password}</Error>
         ) : null}
 
-        <LoginFormButton type="submit">Увійти</LoginFormButton>
+        <LoginFormButton type="submit">{t('login')}</LoginFormButton>
       </Form>
-      <LoginRef to={routes.signUp.path}>Реєстрація</LoginRef>
+      <LoginRef to={routes.signUp.path}>{t('signup')}</LoginRef>
     </>
   );
 };

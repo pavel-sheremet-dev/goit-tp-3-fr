@@ -71,23 +71,25 @@ export const getOptions = (normalizeResults, maxPoint, labelsQuantity) => ({
   },
 });
 
-export const getData = (plan, points, labels) => ({
-  labels: labels.length === 1 ? ['start', ...labels] : labels,
-  datasets: [
-    {
-      label: 'План',
-      data: plan.length === 1 ? [0, ...plan] : plan,
-      borderColor: '#091E3F',
-      backgroundColor: '#091E3F',
-    },
-    {
-      label: 'Факт',
-      data: points.length === 1 ? [0, ...points] : points,
-      borderColor: '#FF6B08',
-      backgroundColor: '#FF6B08',
-    },
-  ],
-});
+export const getData = (plan, points, labels) => {
+  return {
+    labels: labels.length === 1 ? ['start', ...labels] : labels,
+    datasets: [
+      {
+        label: 'План',
+        data: plan.length === 1 ? [0, ...plan] : plan,
+        borderColor: '#091E3F',
+        backgroundColor: '#091E3F',
+      },
+      {
+        label: 'Факт',
+        data: points.length === 1 ? [0, ...points] : points,
+        borderColor: '#FF6B08',
+        backgroundColor: '#FF6B08',
+      },
+    ],
+  };
+};
 
 export const getPlanValues = (deadlineDate, totalPages, normalizeResults) => {
   const readPagesStatus = getReadPagesStatus(normalizeResults);
