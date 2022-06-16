@@ -72,17 +72,17 @@ export const getOptions = (normalizeResults, maxPoint, labelsQuantity) => ({
 });
 
 export const getData = (plan, points, labels) => ({
-  labels: ['start', ...labels],
+  labels: labels.length === 1 ? ['start', ...labels] : labels,
   datasets: [
     {
       label: 'План',
-      data: [0, ...plan],
+      data: plan.length === 1 ? [0, ...plan] : plan,
       borderColor: '#091E3F',
       backgroundColor: '#091E3F',
     },
     {
       label: 'Факт',
-      data: [0, ...points],
+      data: points.length === 1 ? [0, ...points] : points,
       borderColor: '#FF6B08',
       backgroundColor: '#FF6B08',
     },

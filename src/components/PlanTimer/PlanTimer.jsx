@@ -19,8 +19,6 @@ const PlanTimer = ({ booksAmout = 0, days = 0, booksLeft = 0 }) => {
   const pageFormat = useContext(PageFormatContext);
   const isActiveTraining = Boolean(useSelector(getStatus));
 
-  console.log(isActiveTraining);
-
   const { mobile, response, tablet, desktop } = format;
   const isResponse = pageFormat === response;
   const isMobile = pageFormat === mobile;

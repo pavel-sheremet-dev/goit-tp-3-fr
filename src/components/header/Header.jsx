@@ -1,4 +1,4 @@
-import Navigation from 'components/Navigation/Navigation';
+import Navigation from 'components/header/Navigation/Navigation';
 import { StyledContainerHeader } from './Header.styled';
 import { getIsLoggedIn } from '../../redux/auth/auth-selectors';
 import { useSelector } from 'react-redux';

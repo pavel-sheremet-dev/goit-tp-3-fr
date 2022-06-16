@@ -1,7 +1,7 @@
 import React from 'react';
 import EllipsisText from 'react-ellipsis-text';
 
-import IconButton from '../common/button/IconButton';
+import IconButton from '../buttons/button/IconButton';
 import { ReactComponent as BookIcon } from 'images/svg/icon-book.svg';
 import { ReactComponent as DeleteIcon } from 'images/svg/icon-delete.svg';
 

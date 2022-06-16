@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import {
@@ -25,13 +25,21 @@ const RatingModal = ({ onClose, index }) => {
   const [review, setReview] = useState(() => book.review ?? '');
   const [rating, setRating] = useState(() => Number(book.rating) || 0);
 
+  const saveBtnRef = useRef(null);
+
   const dispatch = useDispatch();
 
   const handleRating = rate => {
+    if (saveBtnRef.current.disabled) {
+      saveBtnRef.current.disabled = false;
+    }
     setRating(rate);
   };
 
   const handleChange = event => {
+    if (saveBtnRef.current.disabled) {
+      saveBtnRef.current.disabled = false;
+    }
     setReview(event.target.value);
   };
 
@@ -73,7 +81,13 @@ const RatingModal = ({ onClose, index }) => {
           <StyledRatingButtonBack onClick={onClose} marginRight="16px">
             Назад
           </StyledRatingButtonBack>
-          <StyledRatingButtonSave>Зберегти</StyledRatingButtonSave>
+          <StyledRatingButtonSave
+            type="submit"
+            ref={saveBtnRef}
+            disabled={true}
+          >
+            Зберегти
+          </StyledRatingButtonSave>
         </StyledBox>
       </StyledRatingForm>
     </StyledRatingBox>

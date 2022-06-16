@@ -1,7 +1,7 @@
 import React from 'react';
 import TrainForm from 'components/TrainForm/TrainForm';
 
-import BackButton from 'pages/LibraryPage/BackButton';
+import BackButton from 'components/buttons/backButton/BackButton';
 
 const TrainFormModal = ({ isShowTrainingModal, setIsShowTrainingModal }) => {
   return (

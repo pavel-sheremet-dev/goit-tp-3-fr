@@ -45,9 +45,7 @@ export const StyledRatingTextArea = styled.textarea`
   }
 `;
 
-export const StyledRatingButtonSave = styled.button.attrs(props => ({
-  type: 'submit',
-}))`
+export const StyledRatingButtonSave = styled.button`
   height: 40px;
   min-width: 98px;
   padding: 0;
@@ -70,6 +68,13 @@ export const StyledRatingButtonSave = styled.button.attrs(props => ({
     outline: 1px solid ${({ theme }) => theme.colors.mainBrandColor};
     box-shadow: ${({ theme }) => theme.shadows.btnShadow};
   }
+
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.disabledBtn};
+    outline: ${({ theme }) => theme.colors.disabledBtn};
+    color: ${({ theme }) => theme.colors.white};
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     min-width: 130px;
   }
