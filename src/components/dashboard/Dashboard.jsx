@@ -1,6 +1,9 @@
 import { useCallback, useState } from 'react';
-import { DashBox } from './Dashboard.styled';
+import { statusKeys } from 'helpers/config';
+
 import StatGraph from './StatGraph';
+
+import { DashBox } from './Dashboard.styled';
 
 const Dashboard = ({ responce }) => {
   const [readingPlan, setReadingPlan] = useState(0);
@@ -9,18 +12,17 @@ const Dashboard = ({ responce }) => {
 
   return (
     <DashBox>
-      <div className="lineyka"></div>
-      {responce.status === 'active' && (
+      {responce.status === statusKeys().active && (
         <p>
           Кількість сторінок / день<span>{readingPlan}</span>
         </p>
       )}
-      {responce.status === 'failed' && (
+      {responce.status === statusKeys().failed && (
         <p>
           Залишилось прочитати сторінок<span>{readingPlan}</span>
         </p>
       )}
-      {responce.status === 'successDone' && (
+      {responce.status === statusKeys().successDone && (
         <p>Ви успішно виконали тренування</p>
       )}
 

@@ -1,10 +1,10 @@
 import { useRef } from 'react';
 import Info from 'components/auth/Info/Info';
 import RegistrationPageContent from 'components/Registration/RegistrationPageContent/RegistrationPageContent';
-import { Section } from './RegistrationPage.styled';
 import { useState } from 'react';
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { useContext } from 'react';
+import { Section } from './RegistrationPage.styled';
 const { response, mobile } = format;
 
 const RegistrationPage = () => {

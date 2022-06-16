@@ -2,8 +2,8 @@ import { useContext } from 'react';
 import { PageFormatContext, format } from 'context/pageFormatContext';
 
 import validationWordLength from 'helpers/validation/validationWordLength';
-import { ReactComponent as ExampleIcon } from 'images/svg/example-svg.svg';
 
+import { ReactComponent as ExampleIcon } from 'images/svg/example-svg.svg';
 import {
   BookIcon,
   FlexTitle,

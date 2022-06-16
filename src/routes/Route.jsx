@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Loader } from 'components/Loader/Loader';
+import { Loader } from 'components/common/Loader/Loader';
 import { routes } from 'routes';
 import AuthRoute from 'routes/AuthRoute';
 import NotAuthRoute from 'routes/NotAuthRoute';
@@ -14,13 +14,17 @@ const NotFoundPage = lazy(() =>
   import('pages/NotFoundPage' /* webpackChunkName: "LoginPage" */),
 );
 const RegistrationPage = lazy(() =>
-  import('pages/RegistrationPage' /* webpackChunkName: "RegistrationPage" */),
+  import(
+    'pages/RegistrationPage/RegistrationPage' /* webpackChunkName: "RegistrationPage" */
+  ),
 );
 const LibraryPage = lazy(() =>
   import('pages/LibraryPage/LibraryPage' /* webpackChunkName: "LibraryPage" */),
 );
 const TrainingPage = lazy(() =>
-  import('pages/TrainingPage' /* webpackChunkName: "TrainingPage" */),
+  import(
+    'pages/TrainingPage/TrainingPage' /* webpackChunkName: "TrainingPage" */
+  ),
 );
 const VerificatePage = lazy(() =>
   import('pages/VerificatePage' /* webpackChunkName: "TrainingPage" */),

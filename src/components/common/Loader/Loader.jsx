@@ -1,7 +1,5 @@
-import { TailSpin } from "react-loader-spinner";
-import { StyledFallBackContainer } from "./Loader.styled";
-
-
+import { TailSpin } from 'react-loader-spinner';
+import { StyledFallBackContainer } from './Loader.styled';
 
 export const Loader = () => {
   return (

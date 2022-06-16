@@ -1,6 +1,6 @@
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import { StatisticItem } from './StatisticItem';
 import { Title, List } from './Statistic.styled';
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 
 const Statistic = ({ results }) => {
   const pad = value => {

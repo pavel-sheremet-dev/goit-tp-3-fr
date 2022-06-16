@@ -1,4 +1,4 @@
-import GoogleButton from 'components/login/googleButton/GoogleButton';
+import GoogleButton from 'components/auth/login/googleButton/GoogleButton';
 import RegistrationForm from 'components/Registration/RegistrationForm/RegistrationForm';
 import { StyledSection, StyledTablet } from './RegistrationPageContent.styled';
 

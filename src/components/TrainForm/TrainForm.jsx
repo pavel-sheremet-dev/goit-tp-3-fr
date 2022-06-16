@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { trainingSelectors, trainingOperations } from 'redux/training';
+import { booksSelectors } from 'redux/books';
 
 import DateTimeInput from './DateTime/DateTime';
 import SelectBook from './SelectBook/SelectBook';
 import TrainingList from '../TrainingList/TrainingList';
 import ActiveTrainList from '../ActiveTrainList/ActiveTrainList';
-import { trainingSelectors, trainingOperations } from 'redux/training';
-import { booksSelectors } from 'redux/books';
 
 import {
   Wrapper,
@@ -18,24 +19,11 @@ import {
   Button,
 } from './TrainForm.styled';
 
-// export const storageKey = 'choose-training-books';
-
-// const getInitialBooks = key => {
-//   try {
-//     const stringifyInitialBooks = sessionStorage.getItem(key);
-//     const initialBooks = JSON.parse(stringifyInitialBooks) ?? [];
-//     return initialBooks;
-//   } catch (error) {
-//     return [];
-//   }
-// };
-
 const TrainForm = () => {
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(null);
   const [deadlineDate, setDeadlineDate] = useState(null);
   const [books, setBooks] = useState([]);
-  // const [books, setBooks] = useState(() => getInitialBooks(storageKey));
   const [booksIds, setBooksIds] = useState([]);
   const [error, setError] = useState('');
   const isValidate = useRef(false);
@@ -58,13 +46,6 @@ const TrainForm = () => {
     }
     setError(false);
   }, [books.length, deadlineDate, startDate]);
-
-  // useEffect(() => {
-  //   if (!books.length) return
-
-  //   const stringifyBooks = JSON.stringify(books);
-  //   sessionStorage.setItem(storageKey, stringifyBooks);
-  // }, [books, books.length]);
 
   const getBooksIds = id => {
     setBooksIds(state => [...state, id]);
@@ -107,7 +88,6 @@ const TrainForm = () => {
     dispatch(
       trainingOperations.addTraining({ startDate, deadlineDate, books }),
     );
-    // sessionStorage.removeItem(storageKey)
     resetForm();
   };
 

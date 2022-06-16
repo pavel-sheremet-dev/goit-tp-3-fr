@@ -1,21 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-// import { storageKey } from '../TrainForm';
 import { trainingSelectors } from 'redux/training';
 import { ReactComponent as CalendarIconDowm } from 'images/svg/calendar-icon-down.svg';
 import { Label } from './SelectBook.styled';
 
 const SelectBook = ({ unreadBooks, getBooksIds, booksIds }) => {
   const isActiveTraining = useSelector(trainingSelectors.getStatus);
-
-  // const savedBooks = sessionStorage.getItem(storageKey) ?? [];
-  // console.log(savedBooks);
-  // const savedBookIds = savedBooks.map(book => book.id);
-
-  //   const filteredBooks = unreadBooks.filter(
-  //   book => ![...booksIds, ...savedBookIds].includes(book.id),
-  // );
 
   const filteredBooks = unreadBooks.filter(book => !booksIds.includes(book.id));
 

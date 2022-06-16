@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authOperations, authSelectors } from 'redux/auth';
-import { useFormik, useFormikContext } from 'formik';
+import { useFormik } from 'formik';
 import {
   Form,
   RegistrationFormTitle,
@@ -13,37 +13,14 @@ import {
   Appeal,
   Question,
 } from './RegistrationForm.styled';
+
 import {
   validationRegistrationSchema,
   validate,
 } from 'helpers/validation/validationRegistrationForm';
 import { routes } from 'routes/config';
 
-export const getValueFromLocalStorage = key => localStorage.getItem(key) ?? '';
-
-export const getInitialValues = () =>
-  JSON.parse(sessionStorage.getItem('auth-form')) ?? {
-    name: getValueFromLocalStorage('username'),
-    email: getValueFromLocalStorage('useremail'),
-  };
-
-const FormState = () => {
-  const { values } = useFormikContext();
-
-  useEffect(() => {
-    sessionStorage.setItem('auth-form', JSON.stringify(values));
-  }, [values]);
-
-  useEffect(() => {
-    localStorage.setItem('username', values.name);
-    localStorage.setItem('useremail', values.email);
-  }, [values.email, values.group, values.name]);
-
-  return null;
-};
-
 const LoginForm = () => {
-  const [initialValues, setInitialValues] = useState(() => getInitialValues());
   const dispatch = useDispatch();
   const error = useSelector(authSelectors.getError);
 
@@ -67,7 +44,6 @@ const LoginForm = () => {
       obj.setSubmitting(false);
       localStorage.setItem('info', true);
       sessionStorage.setItem('auth-form', null);
-      setInitialValues(getInitialValues());
       obj.resetForm();
     },
   });

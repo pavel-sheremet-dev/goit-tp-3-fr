@@ -1,6 +1,6 @@
+import { Fragment } from 'react';
 import { ReactComponent as EmptyStar } from 'images/svg/star-empty.svg';
 import { ReactComponent as FullStar } from 'images/svg/star-full.svg';
-import { Fragment } from 'react';
 
 const GetBookRating = ({ rating }) => {
   return (

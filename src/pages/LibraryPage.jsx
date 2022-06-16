@@ -8,8 +8,8 @@ import InActionBooks from 'components/LibraryBooks/InActionBooks';
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { useContext, useEffect, useState } from 'react';
 import { getTypeKeys } from 'helpers/libraryService';
-import RatingModal from 'components/RatingModal/RatingModal';
-import Modal from 'components/Modal/Modal';
+import RatingModal from 'components/modals/RatingModal/RatingModal';
+import Modal from 'components/modals/Modal/Modal';
 import { useDispatch } from 'react-redux';
 import { getBooks } from 'redux/books/books-operations';
 import { useSelector } from 'react-redux';
@@ -99,4 +99,3 @@ const LibraryPage = () => {
 // 3.1 и 3.2 обьединяем
 
 export default LibraryPage;
-

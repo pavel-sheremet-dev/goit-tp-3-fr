@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { Loader } from 'components/Loader/Loader';
+import { Loader } from 'components/common/Loader/Loader';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';

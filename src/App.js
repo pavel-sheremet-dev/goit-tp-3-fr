@@ -4,12 +4,12 @@ import { GlobalStyle } from 'styles/GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 import { getCssVars } from 'styles/vars';
 import Header from 'components/header/Header';
-import Layout from 'components/layout/Layout';
+import Layout from 'components/common/layout/Layout';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authOperations, authSelectors } from 'redux/auth';
 import MainComponent from 'components/main/MainComponent';
-import { Loader } from 'components/Loader/Loader';
+import { Loader } from 'components/common/Loader/Loader';
 import { useRef } from 'react';
 // import Meta from 'components/common/helmet/Meta';
 

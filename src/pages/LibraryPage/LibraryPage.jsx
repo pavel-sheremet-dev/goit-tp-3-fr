@@ -13,11 +13,11 @@ import FinishedBooks from 'components/LibraryBooks/FinishedBooks';
 import InActionBooks from 'components/LibraryBooks/InActionBooks';
 import LibButton from 'components/buttons/LibButton';
 import BackButton from '../../components/buttons/backButton/BackButton';
-import RatingModal from 'components/RatingModal/RatingModal';
-import Modal from 'components/Modal/Modal';
+import RatingModal from 'components/modals/RatingModal/RatingModal';
+import Modal from 'components/modals/Modal/Modal';
 
 import { LibCollectionLogicPosition } from './LibraryPage.styled';
-import { Loader } from 'components/Loader/Loader';
+import { Loader } from 'components/common/Loader/Loader';
 import { booksSelectors } from 'redux/books';
 import { AddButton } from 'components/buttons/LibraryRadialButton/RadialButton';
 

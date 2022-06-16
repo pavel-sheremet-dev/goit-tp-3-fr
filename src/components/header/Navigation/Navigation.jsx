@@ -1,13 +1,14 @@
-import { StyledBox } from 'components/header/Header.styled';
-import Logo from 'components/header/Logo/Logo';
-import UserNavMenu from 'components/header/UserMenu/UserNavMenu';
-import { PageFormatContext, format } from 'context/pageFormatContext';
 import { useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { authOperations } from 'redux/auth';
 import { getIsLoggedIn, getUserName } from 'redux/auth/auth-selectors';
+import { PageFormatContext, format } from 'context/pageFormatContext';
 
+import Logo from 'components/header/Logo/Logo';
+import UserNavMenu from 'components/header/UserMenu/UserNavMenu';
+
+import { StyledBox } from 'components/header/Header.styled';
 import {
   StyledHeaderButton,
   StyledNav,

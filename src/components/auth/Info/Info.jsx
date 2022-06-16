@@ -1,5 +1,8 @@
 import { useContext } from 'react';
 import { PageFormatContext, format } from 'context/pageFormatContext';
+
+import { routes } from 'routes/config';
+import { ReactComponent as ListIcon } from 'images/svg/icon-list.svg';
 import {
   Container,
   Title,
@@ -12,8 +15,6 @@ import {
   SpanIcon,
   LinkLogin,
 } from './Info.styled';
-import { ReactComponent as ListIcon } from 'images/svg/icon-list.svg';
-import { routes } from 'routes/config';
 
 const Info = ({ handleClick }) => {
   const pageFormat = useContext(PageFormatContext);
