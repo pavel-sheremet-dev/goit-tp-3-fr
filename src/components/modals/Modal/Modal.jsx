@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { WrapperModal, WrapperOverlay } from './Modal.styled';
+import { WrapperOverlay } from './Modal.styled';
 
 const modalRoot = document.querySelector('#root');
 

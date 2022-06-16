@@ -7,6 +7,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   font-size: 11pt;
+  overflow-x: hidden;
 }
 
 

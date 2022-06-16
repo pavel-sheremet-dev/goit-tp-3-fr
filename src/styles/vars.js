@@ -42,15 +42,3 @@ export const styleFlex = {
   alignItems: 'center',
   justifyContent: 'center',
 };
-// #242A37 - logo, text, deep blue
-// #707375 - google,
-// #FFFFFF - white text
-// #FF6B08 - brand orange
-// #A6ABB9 - input placeholder, icons
-// #F6F7FB - light background
-// rgba(43, 43, 43, 0.1) - modal background
-// #898F9F - author, some text
-// #F5F7FA - icon hovers
-// #6D7A8D -grey btn
-// #091E3F - numbers, graph dots and line
-// #  B1B5C2 - disable btn,
