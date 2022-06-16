@@ -11,7 +11,7 @@ import {
   Wrapper,
 } from './Results.styled';
 import { ReactComponent as CalendarIconDown } from 'images/svg/calendar-icon-down.svg';
-import IconButton from 'components/common/button/IconButton';
+import IconButton from 'components/buttons/button/IconButton';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { trainingSelectors } from 'redux/training';

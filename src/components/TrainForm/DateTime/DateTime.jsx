@@ -4,7 +4,7 @@ import 'react-datetime/css/react-datetime.css';
 import moment from 'moment';
 import 'moment/locale/uk';
 
-import IconButton from '../../common/button/IconButton';
+import IconButton from '../../buttons/button/IconButton';
 import { ReactComponent as CalendarIcon } from 'images/svg/calendar-form.svg';
 import { ReactComponent as CalendarIconDowm } from 'images/svg/calendar-icon-down.svg';
 import { Label, Input } from './DateTime.styled';

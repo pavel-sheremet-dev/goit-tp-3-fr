@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useRef } from 'react';
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { ToastContainer } from 'react-toastify';
 import { getUnreadBooks } from 'redux/books/books-operations';
@@ -8,7 +9,7 @@ import { trainingSelectors, trainingOperations } from 'redux/training';
 import Section from 'components/common/section/Section';
 import Dashboard from 'components/dashboard/Dashboard';
 import Results from 'components/results/Results';
-import Countdown from '../components/Countdown';
+
 import CountdownContainer from 'components/CountdownContainer';
 import CongratsModal from 'components/CongratsModal';
 import WellDoneModal from 'components/WellDoneModal';
@@ -16,18 +17,32 @@ import Statistic from 'components/statistic/Statistic';
 import TrainForm from 'components/TrainForm/TrainForm';
 import PlanTimer from 'components/PlanTimer';
 import TrainingList from 'components/TrainingList/TrainingList';
-import IconButton from 'components/common/button/IconButton';
-import { ReactComponent as PlusBtnIcon } from 'images/svg/icon-plus.svg';
+import Modal from 'components/Modal/Modal';
 import TrainFormModal from 'components/TrainFormModal/TrainFormModal';
-import { Loader } from 'components/Loader/Loader';
-import AddButton from 'components/TrainRadialButton/RadialButton';
+import AddButton from 'components/buttons/TrainRadialButton/RadialButton';
 
+import { Loader } from 'components/Loader/Loader';
 import {
   WrapperNotActiveTrain,
   WrapperDesktop,
   ResultsWrapper,
 } from './TrainingPage.styled';
-import Modal from 'components/Modal/Modal';
+
+const modalText = {
+  bookRead: 'Ще одна книга прочитана',
+  trainingCompleted: 'Тренування завершено',
+  registration: 'Вам на пошту надійшов лист із підтвердженням реєстрації',
+};
+
+const statusKeys = () => ({
+  failed: 'failed',
+  active: 'active',
+  successDone: 'successDone',
+});
+
+const bookStatusKeys = () => ({
+  nowReading: 'nowReading',
+});
 
 const countDays = (startDate = 0, deadlineDate = 0) => {
   const diff = new Date(deadlineDate) - new Date(startDate);
@@ -36,55 +51,80 @@ const countDays = (startDate = 0, deadlineDate = 0) => {
 
 const TrainingPage = () => {
   const [isShowTrainingModal, setIsShowTrainingModal] = useState(false);
-  const pageFormat = useContext(PageFormatContext);
+  const [finishedMoreBook, setFinishedMoreBook] = useState(false);
 
-  const isFirstLoading = useSelector(trainingSelectors.getFirstLoading);
   const loading = useSelector(trainingSelectors.getLoading);
-  const isActiveTraining = useSelector(trainingSelectors.getStatus);
-  const training = useSelector(trainingSelectors.getTraining);
-  const traningResults = useSelector(trainingSelectors.getResult);
+  const isFirstLoading = useSelector(trainingSelectors.getFirstLoading);
 
+  const status = useSelector(trainingSelectors.getStatus);
+  const training = useSelector(trainingSelectors.getTraining);
+
+  const traningResults = useSelector(trainingSelectors.getResult);
+  const pageFormat = useContext(PageFormatContext);
   const days = countDays(training.startDate, training.deadlineDate);
 
-  const leftBooks = training.books.filter(
-    book => book.status === 'nowReading',
-  ).length;
+  const left = useRef(null);
+  const isFirst = useRef(true);
 
   const dispatch = useDispatch();
-
-  const isMobile =
-    pageFormat === format.response || pageFormat === format.mobile;
-  const isTabletAndDesktop =
-    pageFormat === format.tablet || pageFormat === format.desktop;
 
   useEffect(() => {
     dispatch(trainingOperations.getActiveTraining());
   }, [dispatch]);
 
   useEffect(() => {
-    if (isFirstLoading || isActiveTraining) return;
-
+    if (!isFirstLoading || status) return;
     dispatch(getUnreadBooks());
-  }, [dispatch, isFirstLoading, isActiveTraining]);
+  }, [dispatch, isFirstLoading, status]);
+
+  const leftBooks = training.books.filter(
+    book => book.status === bookStatusKeys().nowReading,
+  ).length;
 
   useEffect(() => {
-    if (training.status === 'finished') {
+    if (isFirst.current && status === statusKeys().active) {
+      isFirst.current = false;
+      const leftBooks = training.books.filter(
+        book => book.status === bookStatusKeys().nowReading,
+      ).length;
+      left.current = leftBooks;
     }
-  }, []);
+  }, [status, isFirstLoading, training.books]);
 
-  const modalText = {
-    bookRead: 'Ще одна книга прочитана',
-    trainingCompleted: 'Тренування завершено',
-    registration: 'Вам на пошту надійшов лист із підтвердженням реєстрації',
+  useEffect(() => {
+    if (!isFirstLoading) return;
+    if (left.current <= leftBooks) return;
+    left.current = leftBooks;
+    setFinishedMoreBook(true);
+  }, [finishedMoreBook, isFirstLoading, leftBooks, training.books]);
+
+  useEffect(() => {
+    if (status === statusKeys().active) return;
+    setIsShowTrainingModal(true);
+  }, [status]);
+
+  const toggleModal = () => {
+    setIsShowTrainingModal(prev => !prev);
+  };
+
+  const closeModal = () => {
+    setFinishedMoreBook(false);
+    setIsShowTrainingModal(false);
   };
 
   const traningResultNormalize = traningResults.filter(
     item => item.pointResult,
   );
 
-  const openTrainingForm = () => {
-    setIsShowTrainingModal(prev => !prev);
-  };
+  const isFailedTraining = status === statusKeys().failed;
+  const isReadMoreBook = finishedMoreBook && status === statusKeys().active;
+  const issuccessDone =
+    status === statusKeys().successDone && isShowTrainingModal;
+
+  const isMobile =
+    pageFormat === format.response || pageFormat === format.mobile;
+  const isTabletAndDesktop =
+    pageFormat === format.tablet || pageFormat === format.desktop;
 
   switch (true) {
     case isMobile:
@@ -92,7 +132,7 @@ const TrainingPage = () => {
         <Section title="Статистика" titleLevel="h2" isHidden>
           {isFirstLoading && (
             <>
-              {!(isActiveTraining === 'active') ? (
+              {!(status === statusKeys().active) ? (
                 <WrapperNotActiveTrain>
                   {!isShowTrainingModal ? (
                     <>
@@ -103,7 +143,7 @@ const TrainingPage = () => {
                       />
                       <TrainingList style={{ marginBottom: '32px' }} />
                       <Dashboard responce={training} />
-                      <AddButton onBtnClick={openTrainingForm} />
+                      <AddButton onBtnClick={toggleModal} />
                     </>
                   ) : (
                     <>
@@ -147,15 +187,24 @@ const TrainingPage = () => {
             pauseOnFocusLoss
           />
           {loading && <Loader />}
-          {isShowTrainingModal && (
+
+          {(isFailedTraining || isReadMoreBook || issuccessDone) && (
             <>
-              {/* <Modal onClose={openTrainingForm}>
-                <WellDoneModal> */}
-              {/* <CongratsModal text={modalText.bookRead} /> */}
-              {/* <CongratsModal text={modalText.trainingCompleted} /> */}
-              {/* <CongratsModal text={modalText.registration} /> */}
-              {/* </WellDoneModal>
-              </Modal> */}
+              <Modal onClose={closeModal}>
+                {isFailedTraining && <WellDoneModal onBtnClick={closeModal} />}
+                {isReadMoreBook && (
+                  <CongratsModal
+                    text={modalText.bookRead}
+                    onBtnClick={closeModal}
+                  />
+                )}
+                {issuccessDone && (
+                  <CongratsModal
+                    text={modalText.trainingCompleted}
+                    onBtnClick={closeModal}
+                  />
+                )}
+              </Modal>
             </>
           )}
         </Section>
@@ -166,7 +215,7 @@ const TrainingPage = () => {
         <Section title="Статистика" titleLevel="h2" isHidden>
           {isFirstLoading && (
             <>
-              {!(isActiveTraining === 'active') ? (
+              {!(status === statusKeys().active) ? (
                 <>
                   <PlanTimer
                     booksAmout={training.books.length}
@@ -212,14 +261,23 @@ const TrainingPage = () => {
             pauseOnFocusLoss
           />
           {loading && <Loader />}
-          {!isShowTrainingModal && (
+
+          {(isFailedTraining || isReadMoreBook || issuccessDone) && (
             <>
-              <Modal onClose={openTrainingForm}>
-                <WellDoneModal>
-                  {/* <CongratsModal text={modalText.bookRead} /> */}
-                  {/* <CongratsModal text={modalText.trainingCompleted} /> */}
-                  {/* <CongratsModal text={modalText.registration} /> */}
-                </WellDoneModal>
+              <Modal onClose={closeModal}>
+                {isFailedTraining && <WellDoneModal onBtnClick={closeModal} />}
+                {isReadMoreBook && (
+                  <CongratsModal
+                    text={modalText.bookRead}
+                    onBtnClick={closeModal}
+                  />
+                )}
+                {issuccessDone && (
+                  <CongratsModal
+                    text={modalText.trainingCompleted}
+                    onBtnClick={closeModal}
+                  />
+                )}
               </Modal>
             </>
           )}
@@ -231,21 +289,3 @@ const TrainingPage = () => {
   }
 };
 export default TrainingPage;
-
-// это только основные моменты.
-
-// При нажатии на "моє тренування" или иконку в хедере будет открываться эта страница.
-// 1. если есть активная треннировка (запрос на бек) то 1.1 (это бекенд логика)
-// 1.1 показываем всю статистику + добавление результатов
-// 2. просроченная тренировка -- модальное окно / статистика / возможность добаления результатов не рендерим
-// 3. нет треннировки:
-// 3.1 Запрос на наличие библиотеки, если нет библиотеки, показываем шаги (условно модальное окно).
-// 3.2 если библиотека книг есть (со статусом, непрочитанные), то открываем форму для добавления книги в лист
-// кнопка + добавляет дополнительный книги.
-// Кнопку "почати тренування" показываем только в случае, если есть хотя бы одна добавленная книга.
-
-// Модалку про потерю данных можно показывать, когда есть добавленные книги, но не начата тренировка.
-// Также, когда в результатах указано кол-во страниц, но нажата кнопка "Додати результат
-
-// Скорее всего будет коллекция тренировок, в которой будет статус тренировки ['успешно пройденная', 'активная', 'неуспешная']
-// 1.1 При загрузке страницы с треннировкой - идёт запрос на бек, бек смотрит есть ли в базе треннировка со статусом - активная - сравнивает текущее время, если время ушло, обновляет статус, возвращает треннировку, неуспешній статус будет означать показ модального окна. В таком случае рендерить формочку с добавлением результатов, думаю, что не стоит, только результирующую статистику.

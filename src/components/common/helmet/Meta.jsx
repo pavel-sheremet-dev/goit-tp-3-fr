@@ -1,5 +1,7 @@
 import { Helmet } from 'react-helmet';
 
+const serverUrl = process.env.REACT_APP_API_BASE_URL;
+
 const Meta = () => {
   return (
     <Helmet>
@@ -16,10 +18,7 @@ const Meta = () => {
       <meta name="twitter:title" content="Book Reading" />
       <meta name="twitter:creator" content="localhost3000" />
       <meta name="twitter:card" content="summary" />
-      <meta
-        property="og:image"
-        content={`${process.env.REACT_APP_API_BASE_URL}/static/og-image.jpg`}
-      />
+      <meta property="og:image" content={`${serverUrl}/static/og-image.jpg`} />
       <meta property="og:type" content="website" />
       <meta
         property="og:description"

@@ -11,15 +11,15 @@ import EmtpyLibraryText from 'components/emtpyLibraryText/EmtpyLibraryText';
 import LibraryForm from 'components/LibraryForm/LibraryForm';
 import FinishedBooks from 'components/LibraryBooks/FinishedBooks';
 import InActionBooks from 'components/LibraryBooks/InActionBooks';
-import LibButton from 'components/LibButton';
-import BackButton from './BackButton';
+import LibButton from 'components/buttons/LibButton';
+import BackButton from '../../components/buttons/backButton/BackButton';
 import RatingModal from 'components/RatingModal/RatingModal';
 import Modal from 'components/Modal/Modal';
 
 import { LibCollectionLogicPosition } from './LibraryPage.styled';
 import { Loader } from 'components/Loader/Loader';
 import { booksSelectors } from 'redux/books';
-import { AddButton } from 'components/LibraryRadialButton/RadialButton';
+import { AddButton } from 'components/buttons/LibraryRadialButton/RadialButton';
 
 const { mobile, response } = format;
 

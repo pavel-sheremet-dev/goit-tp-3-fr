@@ -1,6 +1,6 @@
 import { StyledBox } from 'components/header/Header.styled';
-import Logo from 'components/Logo/Logo';
-import UserNavMenu from 'components/UserMenu/UserNavMenu';
+import Logo from 'components/header/Logo/Logo';
+import UserNavMenu from 'components/header/UserMenu/UserNavMenu';
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { useContext } from 'react';
 import { useDispatch } from 'react-redux';
