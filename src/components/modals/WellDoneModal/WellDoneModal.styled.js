@@ -35,8 +35,7 @@ export const Button = styled.button`
 
   box-shadow: ${({ theme }) => theme.shadows.btnShadow};
   transition: ${({ theme }) => theme.transition('background-color')},
-    ${({ theme }) => theme.transition('color')},
-    ${({ theme }) => theme.transition('border')};
+    ${({ theme }) => theme.transition('color')};
 
   color: ${({ theme }) => theme.colors.white};
   background: ${({ theme }) => theme.colors.mainBrandColor};
