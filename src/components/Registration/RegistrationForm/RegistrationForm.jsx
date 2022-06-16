@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authOperations, authSelectors } from 'redux/auth';
+import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import {
   Form,
@@ -21,6 +22,7 @@ import {
 import { routes } from 'routes/config';
 
 const LoginForm = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const error = useSelector(authSelectors.getError);
 
@@ -52,7 +54,7 @@ const LoginForm = () => {
     <>
       <Form onSubmit={formik.handleSubmit}>
         <RegistrationFormTitle>
-          Ім'я <LoginFormIcon>*</LoginFormIcon>
+          {t('name')} <LoginFormIcon>*</LoginFormIcon>
         </RegistrationFormTitle>
         <Input
           id="name"
@@ -69,7 +71,7 @@ const LoginForm = () => {
         ) : null}
 
         <RegistrationFormTitle>
-          Електронна адреса <LoginFormIcon>*</LoginFormIcon>
+          {t('email')} <LoginFormIcon>*</LoginFormIcon>
         </RegistrationFormTitle>
         <Input
           id="email"
@@ -85,7 +87,7 @@ const LoginForm = () => {
         ) : null}
 
         <RegistrationFormTitle>
-          Пароль <LoginFormIcon>*</LoginFormIcon>
+          {t('password')} <LoginFormIcon>*</LoginFormIcon>
         </RegistrationFormTitle>
         <Input
           className="password"
@@ -104,7 +106,7 @@ const LoginForm = () => {
         ) : null}
 
         <RegistrationFormTitle>
-          Підтвердити пароль <LoginFormIcon>*</LoginFormIcon>
+          {t('repeatPassword')} <LoginFormIcon>*</LoginFormIcon>
         </RegistrationFormTitle>
         <Input
           className="password"
@@ -121,12 +123,12 @@ const LoginForm = () => {
         {formik.touched.repassword && formik.errors.repassword ? (
           <Error>{formik.errors.repassword}</Error>
         ) : null}
-        <LoginFormButton type="submit">Зареєструватися</LoginFormButton>
+        <LoginFormButton type="submit">{t('registering')}</LoginFormButton>
       </Form>
 
       <Question>
-        <Appeal> Вже з нами?</Appeal>
-        <LoginRef to={routes.login.path}>Увійти</LoginRef>
+        <Appeal>{t('already')}</Appeal>
+        <LoginRef to={routes.login.path}>{t('log_in')}</LoginRef>
       </Question>
     </>
   );

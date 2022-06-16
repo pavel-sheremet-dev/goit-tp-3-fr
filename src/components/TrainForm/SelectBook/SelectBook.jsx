@@ -1,11 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import { trainingSelectors } from 'redux/training';
 import { ReactComponent as CalendarIconDowm } from 'images/svg/calendar-icon-down.svg';
 import { Label } from './SelectBook.styled';
 
 const SelectBook = ({ unreadBooks, getBooksIds, booksIds }) => {
+  const { t } = useTranslation();
   const isActiveTraining = useSelector(trainingSelectors.getStatus);
 
   const filteredBooks = unreadBooks.filter(book => !booksIds.includes(book.id));
@@ -16,7 +18,7 @@ const SelectBook = ({ unreadBooks, getBooksIds, booksIds }) => {
       {!isActiveTraining ? (
         <select name="book" onChange={e => getBooksIds(e.target.value)}>
           <option defaultValue="" hidden>
-            Обрати книги з бібліотеки
+            {t('selectBook')}
           </option>
           {filteredBooks.map(book => (
             <option value={book.id} key={book.id}>
@@ -32,7 +34,7 @@ const SelectBook = ({ unreadBooks, getBooksIds, booksIds }) => {
           onChange={e => getBooksIds(e.target.value)}
         >
           <option defaultValue="" hidden>
-            Обрати книги з бібліотеки
+            {t('selectBook')}
           </option>
         </select>
       )}

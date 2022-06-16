@@ -1,12 +1,9 @@
-import {
-  WellDoneModalStyled,
-  Text,
-  Buttons,
-  ButtonOrange,
-} from './WellDoneModal.styled';
+import { useTranslation } from 'react-i18next';
+import { WellDoneModalStyled, Text, Button } from './WellDoneModal.styled';
 import { ReactComponent as ThumbUpIcon } from 'images/svg/thumbUp.svg';
 
 export default function WellDoneModal({ onBtnClick }) {
+  const { t } = useTranslation();
   const handleNewTraining = () => {
     onBtnClick();
   };
@@ -15,17 +12,15 @@ export default function WellDoneModal({ onBtnClick }) {
     <WellDoneModalStyled>
       <ThumbUpIcon style={{ fill: '#A6ABB9' }} />
       <Text>
-        Ви молодчина,
+        {t('wellDone')}
         <br />
-        але потрібно швидше!
+        {t('faster')}
         <br />
-        {'Наступного разу вам усе вдасться)'}
+        {t('can')}
       </Text>
-      <Buttons>
-        <ButtonOrange type="button" onClick={handleNewTraining}>
-          Новє тренування
-        </ButtonOrange>
-      </Buttons>
+      <Button type="button" onClick={handleNewTraining}>
+        {t('new')}
+      </Button>
     </WellDoneModalStyled>
   );
 }

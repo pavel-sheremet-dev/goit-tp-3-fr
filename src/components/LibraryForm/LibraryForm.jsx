@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addBook } from 'redux/books/books-operations';
 import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
 
 import {
   validationAddFormSchema,
@@ -45,6 +46,7 @@ const initBook = {
 };
 
 const LibraryMobileForm = ({ isArrayFull, style, closeForm }) => {
+  const { t } = useTranslation();
   const [initialValues, setInitialValues] = useState(() =>
     getInitialObject(initBook),
   );
@@ -74,7 +76,7 @@ const LibraryMobileForm = ({ isArrayFull, style, closeForm }) => {
   return (
     <Form onSubmit={formik.handleSubmit} isarray={isArrayFull} style={style}>
       <TitleLabel>
-        <span>Назва книги</span>
+        <span>{t('title')}</span>
         <Input
           id="name"
           name="name"
@@ -89,7 +91,7 @@ const LibraryMobileForm = ({ isArrayFull, style, closeForm }) => {
       </TitleLabel>
 
       <AuthorLabel>
-        <span>Автор книги</span>
+        <span>{t('bookAuthor')}</span>
         <Input
           id="author"
           name="author"
@@ -107,7 +109,7 @@ const LibraryMobileForm = ({ isArrayFull, style, closeForm }) => {
       </AuthorLabel>
 
       <Label>
-        <span>Рік випуску</span>
+        <span>{t('publication')}</span>
         <Input
           id="year"
           name="year"
@@ -123,7 +125,7 @@ const LibraryMobileForm = ({ isArrayFull, style, closeForm }) => {
       </Label>
 
       <Label>
-        <span>Кількість сторінок</span>
+        <span>{t('amountOfPages')}</span>
         <Input
           id="pages"
           name="pages"
@@ -138,7 +140,7 @@ const LibraryMobileForm = ({ isArrayFull, style, closeForm }) => {
         ) : null}
       </Label>
 
-      <Button type="submit">Додати</Button>
+      <Button type="submit">{t('addBook')}</Button>
     </Form>
   );
 };

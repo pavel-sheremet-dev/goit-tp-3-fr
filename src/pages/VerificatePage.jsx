@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 import { Loader } from 'components/common/Loader/Loader';
 import { useEffect } from 'react';
@@ -10,6 +11,7 @@ import { setToken } from 'redux/auth/auth-slice';
 import { routes } from 'routes/config';
 
 const VerificatePage = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const { token } = useParams();
@@ -27,12 +29,12 @@ const VerificatePage = () => {
         await axios.get(location.pathname);
         navigate(routes.login.absolutePath, { replace: true });
       } catch (error) {
-        toast.error('Верифікація вже пройдена або посилання вже не дійне');
+        toast.error(t('alreadyVerified'));
         navigate(routes.login.absolutePath, { replace: true });
       }
     };
     verifyUser();
-  }, [dispatch, location, navigate, token]);
+  }, [dispatch, location, navigate, t, token]);
 
   return (
     <>

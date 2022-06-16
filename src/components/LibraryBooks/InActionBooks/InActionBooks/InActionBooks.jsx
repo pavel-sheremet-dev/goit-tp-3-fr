@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import { PageFormatContext, format } from 'context/pageFormatContext';
 
 import validationWordLength from 'helpers/validation/validationWordLength';
@@ -21,6 +22,7 @@ import {
 } from 'components/LibraryBooks/library.styled';
 
 const InActionBooks = ({ type, title, options = [] }) => {
+  const { t } = useTranslation();
   const pageFormat = useContext(PageFormatContext);
 
   const { mobile, response, tablet, desktop } = format;
@@ -36,53 +38,53 @@ const InActionBooks = ({ type, title, options = [] }) => {
           <Title>{title}</Title>
           {isTablet && (
             <List margin="0 0 10px 0">
-              <BookText>Назва книги</BookText>
+              <BookText>{t('title')}</BookText>
               <BookText
                 margin="0 0 0 125px"
                 more="0 0 0 275px"
                 fn={InActionBooks?.name}
               >
-                Автор
+                {t('author')}
               </BookText>
               <BookText
                 margin="0 0 0 85px"
                 more="0 0 0 170px"
                 fn={InActionBooks?.name}
               >
-                Рік
+                {t('year')}
               </BookText>
               <BookText
                 margin="0 0 0 35px"
                 more="0 0 0 40px"
                 fn={InActionBooks?.name}
               >
-                Стор.
+                {t('pages')}
               </BookText>
             </List>
           )}
           {isDesktop && (
             <List margin="0 0 10px 0">
-              <BookText>Назва книги</BookText>
+              <BookText>{t('title')}</BookText>
               <BookText
                 margin="0 0 0 270px"
                 more="0 0 0 550px"
                 fn={InActionBooks?.name}
               >
-                Автор
+                {t('author')}
               </BookText>
               <BookText
                 margin="0 0 0 225px"
                 more="0 0 0 345px"
                 fn={InActionBooks?.name}
               >
-                Рік
+                {t('year')}
               </BookText>
               <BookText
                 margin="0 0 0 70px"
                 more="0 0 0 80px"
                 fn={InActionBooks?.name}
               >
-                Стор.
+                {t('pages')}
               </BookText>
             </List>
           )}
@@ -102,19 +104,25 @@ const InActionBooks = ({ type, title, options = [] }) => {
                           </BookTitle>
                           <List>
                             <BookText length={author?.length} string={26}>
-                              <BooksTextSentence>Автор:</BooksTextSentence>
+                              <BooksTextSentence>
+                                {t('author')}:
+                              </BooksTextSentence>
                               <BooksGetContent left="75px" width="110px">
                                 {validationWordLength(26, author)}
                               </BooksGetContent>
                             </BookText>
                             <BookText>
-                              <BooksTextSentence>Рік:</BooksTextSentence>
+                              <BooksTextSentence>
+                                {t('year')}:
+                              </BooksTextSentence>
                               <BooksGetContent left="75px">
                                 {year}
                               </BooksGetContent>
                             </BookText>
                             <BookText>
-                              <BooksTextSentence>Стор.:</BooksTextSentence>
+                              <BooksTextSentence>
+                                {t('pages')}:
+                              </BooksTextSentence>
                               <BooksGetContent left="75px">
                                 {pages}
                               </BooksGetContent>

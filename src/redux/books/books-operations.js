@@ -5,7 +5,15 @@ import {
   getAddBookError,
   getBooksError,
   getReviewError,
+  getAddBookErrorEN,
+  getBooksErrorEN,
+  getReviewErrorEN,
 } from 'helpers/getTextError';
+
+import i18next from 'i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+
+const language = i18next.use(LanguageDetector);
 
 const ADD_BOOK_ENDPOINT = '/api/books';
 const GET_BOOK_ENDPOINT = '/api/books';
@@ -17,7 +25,11 @@ export const addBook = createAsyncThunk(
       const { data } = await axios.post(ADD_BOOK_ENDPOINT, book);
       return data;
     } catch (error) {
-      toast.error(getAddBookError(error.response.status));
+      toast.error(
+        language.resolvedLanguage === 'ua'
+          ? getAddBookError(error.response.status)
+          : getAddBookErrorEN(error.response.status),
+      );
       return rejectWithValue(error.message);
     }
   },
@@ -31,7 +43,12 @@ export const getBooks = createAsyncThunk(
       return data;
     } catch (error) {
       const { status } = error.response;
-      status !== 404 && toast.error(getBooksError(status));
+      status !== 404 &&
+        toast.error(
+          language.resolvedLanguage === 'ua'
+            ? getBooksError(error.response.status)
+            : getBooksErrorEN(error.response.status),
+        );
       return rejectWithValue(error.message);
     }
   },
@@ -45,7 +62,12 @@ export const getUnreadBooks = createAsyncThunk(
       return data;
     } catch (error) {
       const { status } = error.response;
-      status !== 404 && toast.error(getBooksError(status));
+      status !== 404 &&
+        toast.error(
+          language.resolvedLanguage === 'ua'
+            ? getBooksError(error.response.status)
+            : getBooksErrorEN(error.response.status),
+        );
       return rejectWithValue(error.message);
     }
   },
@@ -61,7 +83,11 @@ export const updateBookReview = createAsyncThunk(
       );
       return data;
     } catch (error) {
-      toast.error(getReviewError(error.response.status));
+      toast.error(
+        language.resolvedLanguage === 'ua'
+          ? getReviewError(error.response.status)
+          : getReviewErrorEN(error.response.status),
+      );
       return rejectWithValue(error.message);
     }
   },

@@ -1,5 +1,6 @@
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { useContext, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getBooks } from 'redux/books/books-operations';
@@ -24,6 +25,7 @@ import { AddButton } from 'components/buttons/LibraryRadialButton/RadialButton';
 const { mobile, response } = format;
 
 const LibraryPage = () => {
+  const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
   const [index, setIndex] = useState('');
   const pageFormat = useContext(PageFormatContext);
@@ -56,7 +58,7 @@ const LibraryPage = () => {
   switch (true) {
     case isMobile:
       return (
-        <Section title={'Моя бібліотека'} titleLevel={'h2'} isHidden>
+        <Section title={t('myLibrary')} titleLevel={'h2'} isHidden>
           {isFirstLoaded ? (
             <>
               {!hasBookLibrary ? (
@@ -92,14 +94,14 @@ const LibraryPage = () => {
                           <InActionBooks
                             options={reading}
                             type={getTypeKeys().ReadingBooks}
-                            title={'Читаю'}
+                            title={t('read')}
                           />
                         )}
                         {!!unread.length && (
                           <InActionBooks
                             options={unread}
                             type={getTypeKeys().UnreadBooks}
-                            title={'Маю намір прочитати'}
+                            title={t('goingToRead')}
                           />
                         )}
                       </LibCollectionLogicPosition>
@@ -123,7 +125,7 @@ const LibraryPage = () => {
       );
     case !isMobile:
       return (
-        <Section title={'Моя бібліотека'} titleLevel={'h2'} isHidden>
+        <Section title={t('myLibrary')} titleLevel={'h2'} isHidden>
           {isFirstLoaded ? (
             <>
               <LibraryForm closeForm={setShowLibraryForm} />
@@ -143,14 +145,14 @@ const LibraryPage = () => {
                       <InActionBooks
                         options={reading}
                         type={getTypeKeys().ReadingBooks}
-                        title={'Читаю'}
+                        title={t('read')}
                       />
                     )}
                     {!!unread.length && (
                       <InActionBooks
                         options={unread}
                         type={getTypeKeys().UnreadBooks}
-                        title={'Маю намір прочитати'}
+                        title={t('goingToRead')}
                       />
                     )}
                   </LibCollectionLogicPosition>
