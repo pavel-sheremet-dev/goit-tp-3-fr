@@ -87,8 +87,12 @@ const LibraryPage = () => {
                   {!showLibraryForm && (
                     <>
                       <LibCollectionLogicPosition>
-                        {!!finished.length && (
-                          <FinishedBooks getId={getId} options={finished} />
+                        {!!unread.length && (
+                          <InActionBooks
+                            options={unread}
+                            type={getTypeKeys().UnreadBooks}
+                            title={t('goingToRead')}
+                          />
                         )}
                         {!!reading.length && (
                           <InActionBooks
@@ -97,12 +101,8 @@ const LibraryPage = () => {
                             title={t('read')}
                           />
                         )}
-                        {!!unread.length && (
-                          <InActionBooks
-                            options={unread}
-                            type={getTypeKeys().UnreadBooks}
-                            title={t('goingToRead')}
-                          />
+                        {!!finished.length && (
+                          <FinishedBooks getId={getId} options={finished} />
                         )}
                       </LibCollectionLogicPosition>
                       {!!unread.length && <LibButton />}
@@ -138,8 +138,12 @@ const LibraryPage = () => {
               {hasBookLibrary && (
                 <>
                   <LibCollectionLogicPosition>
-                    {!!finished.length && (
-                      <FinishedBooks getId={getId} options={finished} />
+                    {!!unread.length && (
+                      <InActionBooks
+                        options={unread}
+                        type={getTypeKeys().UnreadBooks}
+                        title={t('goingToRead')}
+                      />
                     )}
                     {!!reading.length && (
                       <InActionBooks
@@ -148,12 +152,8 @@ const LibraryPage = () => {
                         title={t('read')}
                       />
                     )}
-                    {!!unread.length && (
-                      <InActionBooks
-                        options={unread}
-                        type={getTypeKeys().UnreadBooks}
-                        title={t('goingToRead')}
-                      />
+                    {!!finished.length && (
+                      <FinishedBooks getId={getId} options={finished} />
                     )}
                   </LibCollectionLogicPosition>
                   {!!unread.length && <LibButton />}
@@ -175,16 +175,5 @@ const LibraryPage = () => {
       return;
   }
 };
-
-// При отсутвии библиотеки рендерить модальное окно с шагами, по сути это не модальное окно
-// а обычный компонент внутри страницы. Мы его условно называем модальным окном, по макету это не так.
-
-// Т.е. при рендериге Страницы мы делаем запрос на бек - если он не возвращает библиотеку, то показываем
-// модалку
-
-// Если есть Библиотека - рендерим её (по категориям в зависимости от статуса книги)
-// Кнопка + открывает форму добавления книги
-// кнопку "моє тренування" дисейблим или вообще не показываем, если нет ниодной книги.
-// 3.1 и 3.2 обьединяем
 
 export default LibraryPage;

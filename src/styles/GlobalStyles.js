@@ -71,26 +71,4 @@ a {
     overflow: hidden;
 }
 
-.body-frame {
-  position: fixed;
-  z-index: -1;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 100vh;
-  width: 100vw;
-  background-color: ${({ theme }) => theme.colors.lightBackground};
-  box-shadow: ${({ theme }) => theme.shadows.dashboard};
-
-
-  @media screen and (min-width: 480px) {
-    width: 480px;
-  }
-  @media screen and (min-width: 768px) {
-    width: 768px;
-  }
-  @media screen and (min-width: 1280px) {
-    width: 1280px;
-  }
-}
 `;
