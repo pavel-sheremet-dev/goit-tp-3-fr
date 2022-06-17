@@ -12,6 +12,7 @@ import {
 const Header = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   return (
+
     <StyledHeader>
       <StyledHeaderBox>
         {isLoggedIn ? (
@@ -25,6 +26,7 @@ const Header = () => {
         )}
       </StyledHeaderBox>
     </StyledHeader>
+
   );
 };
 
