@@ -26,6 +26,34 @@ const trainingErrorMessages = {
   404: 'У вас немає активного тренування.',
 };
 
+const signupErrorMessagesEN = {
+  400: 'It seems that something was said incorrectly. Please try again.',
+  409: 'A user with this email is already registered',
+};
+
+const loginErrorMessagesEN = {
+  403: 'You have entered an incorrect login or password.',
+  404: 'No such user registered.',
+  412: 'You have not confirmed your registration. Please check your inbox or spam folder.',
+};
+
+const addBookErrorMessagesEN = {
+  409: 'Such a book already exists.',
+};
+
+const booksErrorMessagesEN = {
+  404: 'No books found.',
+};
+
+const reviewErrorMessagesEN = {
+  404: 'No books found.',
+  409: 'You have not read this book yet.',
+};
+
+const trainingErrorMessagesEN = {
+  404: 'You do not have an active training.',
+};
+
 const getTextError = errors => status =>
   errors[status] || 'Упс, щось пішло не так, спробуйте повторити пізніше :)';
 
@@ -35,3 +63,10 @@ export const getAddBookError = getTextError(addBookErrorMessages);
 export const getBooksError = getTextError(booksErrorMessages);
 export const getReviewError = getTextError(reviewErrorMessages);
 export const getTrainingError = getTextError(trainingErrorMessages);
+
+export const getSignupErrorEN = getTextError(signupErrorMessagesEN);
+export const getLoginErrorEN = getTextError(loginErrorMessagesEN);
+export const getAddBookErrorEN = getTextError(addBookErrorMessagesEN);
+export const getBooksErrorEN = getTextError(booksErrorMessagesEN);
+export const getReviewErrorEN = getTextError(reviewErrorMessagesEN);
+export const getTrainingErrorEN = getTextError(trainingErrorMessagesEN);

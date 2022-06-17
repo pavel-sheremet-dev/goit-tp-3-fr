@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 import {
   StyledBox,
@@ -20,6 +21,7 @@ import { useSelector } from 'react-redux';
 import { booksSelectors } from 'redux/books';
 
 const RatingModal = ({ onClose, index }) => {
+  const { t } = useTranslation();
   const books = useSelector(booksSelectors.getFinishedBooks);
   const book = books.find(book => book.id === index);
   const [review, setReview] = useState(() => book.review ?? '');
@@ -60,7 +62,7 @@ const RatingModal = ({ onClose, index }) => {
   return (
     <StyledRatingBox>
       <StyledRatingForm onSubmit={handleSubmit}>
-        <StyledRatingText>Обрати рейтинг книги</StyledRatingText>
+        <StyledRatingText>{t('chooseRating')}</StyledRatingText>
         <Rating
           onClick={handleRating}
           initialRating={rating}
@@ -69,7 +71,7 @@ const RatingModal = ({ onClose, index }) => {
         />
 
         <StyledRatingLabel>
-          <StyledRatingResumeText>Резюме</StyledRatingResumeText>
+          <StyledRatingResumeText>{t('resume')}</StyledRatingResumeText>
 
           <StyledRatingTextArea
             value={review}
@@ -79,14 +81,14 @@ const RatingModal = ({ onClose, index }) => {
 
         <StyledBox>
           <StyledRatingButtonBack onClick={onClose} marginRight="16px">
-            Назад
+            {t('back')}
           </StyledRatingButtonBack>
           <StyledRatingButtonSave
             type="submit"
             ref={saveBtnRef}
             disabled={true}
           >
-            Зберегти
+            {t('save')}
           </StyledRatingButtonSave>
         </StyledBox>
       </StyledRatingForm>

@@ -1,15 +1,17 @@
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+import { useTranslation } from 'react-i18next';
 import { StatisticItem } from './StatisticItem';
 import { Title, List } from './Statistic.styled';
 
 const Statistic = ({ results }) => {
+  const { t } = useTranslation();
   const pad = value => {
     return String(value).padStart(2, '0');
   };
 
   return (
     <>
-      <Title>СТАТИСТИКА</Title>
+      <Title>{t('statistics')}</Title>
       <OverlayScrollbarsComponent
         options={{
           scrollbars: {

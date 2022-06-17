@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { getCssVars } from 'styles/vars';
+import { useTranslation } from 'react-i18next';
 
 const RedirectTimer = ({ getRedirect }) => {
+  const { t } = useTranslation();
   const [timer, setTimer] = useState(5);
   const intervalId = useRef(null);
 
@@ -22,7 +24,7 @@ const RedirectTimer = ({ getRedirect }) => {
 
   return timer ? (
     <div>
-      Ви будете автоматично перенаправлені через{' '}
+      {t('redirect')}{' '}
       <b
         style={{
           display: 'inline-flex',
@@ -36,10 +38,10 @@ const RedirectTimer = ({ getRedirect }) => {
       >
         {timer}
       </b>{' '}
-      сек.
+      {t('sec')}
     </div>
   ) : (
-    <div>Перенаправлення...</div>
+    <div>{t('redirection')}</div>
   );
 };
 

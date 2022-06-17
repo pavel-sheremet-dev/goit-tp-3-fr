@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import { trainingSelectors, trainingOperations } from 'redux/training';
 import { booksSelectors } from 'redux/books';
@@ -20,6 +21,7 @@ import {
 } from './TrainForm.styled';
 
 const TrainForm = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(null);
   const [deadlineDate, setDeadlineDate] = useState(null);
@@ -33,19 +35,19 @@ const TrainForm = () => {
   useEffect(() => {
     if (!isValidate.current) return;
     if (!startDate) {
-      setError('Вкажіть дату початку тренування');
+      setError(t('dateOfStartError'));
       return;
     }
     if (!deadlineDate) {
-      setError('Вкажіть дату завершення тренування');
+      setError(t('dateOfEndError'));
       return;
     }
     if (!books.length) {
-      setError('Оберіть хоча б одну книгу');
+      setError(t('oneBookError'));
       return;
     }
     setError(false);
-  }, [books.length, deadlineDate, startDate]);
+  }, [books.length, deadlineDate, startDate, t]);
 
   const getBooksIds = id => {
     setBooksIds(state => [...state, id]);
@@ -72,15 +74,15 @@ const TrainForm = () => {
     isValidate.current = true;
     if (!isValidate.current) return;
     if (!startDate) {
-      setError('Вкажіть дату початку тренування');
+      setError(t('dateOfStartError'));
       return;
     }
     if (!deadlineDate) {
-      setError('Вкажіть дату завершення тренування');
+      setError(t('dateOfEndError'));
       return;
     }
     if (!books.length) {
-      setError('Оберіть хоча б одну книгу');
+      setError(t('oneBookError'));
       return;
     }
     setError(false);
@@ -99,7 +101,7 @@ const TrainForm = () => {
 
   return (
     <Wrapper>
-      <Title>Моє тренування</Title>
+      <Title>{t('myTraining')}</Title>
       <Form onSubmit={handleSubmit} autoComplete="off">
         {!isActiveTraining ? (
           <>
@@ -108,7 +110,7 @@ const TrainForm = () => {
                 name="startDate"
                 selectedDate={startDate}
                 onChange={handleStartDate}
-                placeholderText="Початок"
+                placeholderText={t('startOfTraining')}
                 disabled={isActiveTraining === 'active'}
               />
             </InputWrapper>
@@ -118,7 +120,7 @@ const TrainForm = () => {
                 name="deadLineDate"
                 selectedDate={deadlineDate}
                 onChange={handleDeadlineDate}
-                placeholderText="Завершення"
+                placeholderText={t('endOfTraining')}
                 disabled={isActiveTraining === 'active'}
               />
             </InputWrapper>
@@ -146,10 +148,10 @@ const TrainForm = () => {
 
         {unreadBooks.length === 0 || isActiveTraining ? (
           <Button style={{ display: 'none' }} type="submit">
-            Почати тренування
+            {t('start')}
           </Button>
         ) : (
-          <Button type="submit">Почати тренування</Button>
+          <Button type="submit">{t('start')}</Button>
         )}
       </Form>
     </Wrapper>

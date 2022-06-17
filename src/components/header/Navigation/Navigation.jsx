@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { authOperations } from 'redux/auth';
+import { useTranslation } from 'react-i18next';
 import { getIsLoggedIn, getUserName } from 'redux/auth/auth-selectors';
 import { trainingSelectors } from 'redux/training';
 import { PageFormatContext, format } from 'context/pageFormatContext';
@@ -10,6 +11,7 @@ import ExitModal from 'components/modals/ExitModal/ExitModal';
 import Logo from '../Logo/Logo';
 import Modal from 'components/modals/Modal/Modal';
 import UserNavMenu from '../UserMenu/UserNavMenu';
+import LngSwitcher from '../LngSwitcher';
 
 import { StyledBox } from 'components/header/Header.styled';
 import {
@@ -20,6 +22,7 @@ import {
 } from './Navigation.styled';
 
 const Navigation = () => {
+  const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => {
     setShowModal(showModal => !showModal);
@@ -53,6 +56,7 @@ const Navigation = () => {
     <>
       <Logo />
 
+      <LngSwitcher />
       {isLoggedIn && (
         <>
           {(isDesktop || isTablet) && (
@@ -70,7 +74,9 @@ const Navigation = () => {
             {(isResponse || isMobile) && (
               <StyledSpanFirstLetterName>{iconName}</StyledSpanFirstLetterName>
             )}
-            <StyledHeaderButton onClick={handleClick}>Вихід</StyledHeaderButton>
+            <StyledHeaderButton onClick={handleClick}>
+              {t('logout')}
+            </StyledHeaderButton>
           </StyledBox>
         </>
       )}

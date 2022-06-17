@@ -29,6 +29,7 @@ export const StyledSpanFirstLetterName = styled.span`
   border-radius: 50%;
 `;
 export const StyledHeaderButton = styled.button`
+  color: ${({ theme }) => theme.colors.defaultFont};
   display: inline-block;
   margin-left: 14px;
   padding: 0px;

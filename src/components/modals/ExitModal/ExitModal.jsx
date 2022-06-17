@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import {
   ExitModalStyled,
   Text,
@@ -7,15 +8,13 @@ import {
 } from './ExitModal.styled';
 
 export default function ExitModal({ onClose, onLogOut }) {
+  const { t } = useTranslation();
   return (
     <ExitModalStyled>
-      <Text>
-        Ви молодчина/ Якщо Ви вийдете з програми незбережені дані будуть
-        втрачені
-      </Text>
+      <Text>{t('lost')}</Text>
       <ButtonsDiv>
-        <ButtonWhite onClick={onClose}>Відміна</ButtonWhite>
-        <ButtonOrange onClick={onLogOut}>Вийти</ButtonOrange>
+        <ButtonWhite onClick={onClose}>{t('cancel')}</ButtonWhite>
+        <ButtonOrange onClick={onLogOut}>{t('leave')}</ButtonOrange>
       </ButtonsDiv>
     </ExitModalStyled>
   );

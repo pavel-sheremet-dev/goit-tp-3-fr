@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { PageFormatContext, format } from 'context/pageFormatContext';
+import { useTranslation } from 'react-i18next';
 
 import validationWordLength from 'helpers/validation/validationWordLength';
 import GetBookRating from '../GetBookRating';
@@ -22,6 +23,7 @@ import {
 } from 'components/LibraryBooks/library.styled';
 
 const FinishedBooks = ({ options = [], getId }) => {
+  const { t } = useTranslation();
   const pageFormat = useContext(PageFormatContext);
 
   const { mobile, response, tablet, desktop } = format;
@@ -38,38 +40,38 @@ const FinishedBooks = ({ options = [], getId }) => {
     <>
       {options.length >= 1 ? (
         <PosContainer>
-          <Title>Прочитано</Title>
+          <Title>{t('alreadyRead')}</Title>
           {isTablet && (
             <List margin="0 0 10px 0">
-              <BookText>Назва книги</BookText>
+              <BookText>{t('title')}</BookText>
               <BookText margin="0 0 0 125px" fn={FinishedBooks.name}>
-                Автор
+                {t('author')}
               </BookText>
               <BookText margin="0 0 0 85px" fn={FinishedBooks.name}>
-                Рік
+                {t('year')}
               </BookText>
               <BookText margin="0 0 0 35px" fn={FinishedBooks.name}>
-                Стор.
+                {t('pages')}
               </BookText>
               <BookText margin="0 0 0 35px" fn={FinishedBooks.name}>
-                Рейтинг
+                {t('rating')}
               </BookText>
             </List>
           )}
           {isDesktop && (
             <List margin="0 0 10px 0">
-              <BookText>Назва книги</BookText>
+              <BookText>{t('title')}</BookText>
               <BookText margin="0 0 0 270px" fn={FinishedBooks.name}>
-                Автор
+                {t('author')}
               </BookText>
               <BookText margin="0 0 0 225px" fn={FinishedBooks.name}>
-                Рік
+                {t('year')}
               </BookText>
               <BookText margin="0 0 0 70px" fn={FinishedBooks.name}>
-                Стор.
+                {t('pages')}
               </BookText>
               <BookText margin="0 0 0 110px" fn={FinishedBooks.name}>
-                Рейтинг книги
+                {t('ratingOfBook')}
               </BookText>
             </List>
           )}
@@ -86,25 +88,29 @@ const FinishedBooks = ({ options = [], getId }) => {
                         <BookTitle>{validationWordLength(65, name)}</BookTitle>
                         <List>
                           <BookText length={author.length} string={26}>
-                            <BooksTextSentence>Автор:</BooksTextSentence>
+                            <BooksTextSentence>
+                              {t('author')}:
+                            </BooksTextSentence>
                             <BooksGetContent left="75px" width="110px">
                               {validationWordLength(26, author)}
                             </BooksGetContent>
                           </BookText>
                           <BookText>
-                            <BooksTextSentence>Рік:</BooksTextSentence>
+                            <BooksTextSentence>{t('year')}:</BooksTextSentence>
                             <BooksGetContent left="75px">
                               {year}
                             </BooksGetContent>
                           </BookText>
                           <BookText>
-                            <BooksTextSentence>Стор.:</BooksTextSentence>
+                            <BooksTextSentence>{t('pages')}:</BooksTextSentence>
                             <BooksGetContent left="75px">
                               {pages}
                             </BooksGetContent>
                           </BookText>
                           <BookText>
-                            <BooksTextSentence>Рейтинг:</BooksTextSentence>
+                            <BooksTextSentence>
+                              {t('rating')}:
+                            </BooksTextSentence>
                             <StarContainer left="75px">
                               <GetBookRating rating={rating} />
                             </StarContainer>
@@ -113,7 +119,7 @@ const FinishedBooks = ({ options = [], getId }) => {
                       </FlexTitle>
                     </div>
                     <Button id={id} type="button" onClick={handleClick}>
-                      Резюме
+                      {t('resume')}
                     </Button>
                   </>
                 )}
@@ -170,7 +176,7 @@ const FinishedBooks = ({ options = [], getId }) => {
                       </FlexTitle>
                     </div>
                     <Button id={id} type="button" onClick={handleClick}>
-                      Резюме
+                      {t('resume')}
                     </Button>
                   </>
                 )}
@@ -222,7 +228,7 @@ const FinishedBooks = ({ options = [], getId }) => {
                       </FlexTitle>
                     </ContentBox>
                     <Button id={id} type="button" onClick={handleClick}>
-                      Резюме
+                      {t('resume')}
                     </Button>
                   </>
                 )}

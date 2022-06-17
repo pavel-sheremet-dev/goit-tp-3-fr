@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { ToastContainer } from 'react-toastify';
 import { getUnreadBooks } from 'redux/books/books-operations';
@@ -29,10 +30,20 @@ import {
 } from './TrainingPage.styled';
 import { bookStatusKeys, statusKeys } from 'helpers/config';
 
+import i18next from 'i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+
+const language = i18next.use(LanguageDetector);
+
 const modalText = {
-  bookRead: 'Ще одна книга прочитана',
-  trainingCompleted: 'Тренування завершено',
-  registration: 'Вам на пошту надійшов лист із підтвердженням реєстрації',
+  bookRead: {
+    en: 'Another book read',
+    ua: 'Ще одна книга прочитана',
+  },
+  trainingCompleted: {
+    en: 'Training completed',
+    ua: 'Тренування завершено',
+  },
 };
 
 const countDays = (startDate = 0, deadlineDate = 0) => {
@@ -41,6 +52,7 @@ const countDays = (startDate = 0, deadlineDate = 0) => {
 };
 
 const TrainingPage = () => {
+  const { t } = useTranslation();
   const [isShowTrainingModal, setIsShowTrainingModal] = useState(false);
   const [finishedMoreBook, setFinishedMoreBook] = useState(false);
 
@@ -120,7 +132,7 @@ const TrainingPage = () => {
   switch (true) {
     case isMobile:
       return (
-        <Section title="Статистика" titleLevel="h2" isHidden>
+        <Section title={t('statistics')} titleLevel="h2" isHidden>
           {isFirstLoading && (
             <>
               {!(status === statusKeys().active) ? (
@@ -185,13 +197,21 @@ const TrainingPage = () => {
                 {isFailedTraining && <WellDoneModal onBtnClick={closeModal} />}
                 {isReadMoreBook && (
                   <CongratsModal
-                    text={modalText.bookRead}
+                    text={
+                      language.resolvedLanguage === 'ua'
+                        ? modalText.bookRead.ua
+                        : modalText.bookRead.en
+                    }
                     onBtnClick={closeModal}
                   />
                 )}
                 {issuccessDone && (
                   <CongratsModal
-                    text={modalText.trainingCompleted}
+                    text={
+                      language.resolvedLanguage === 'ua'
+                        ? modalText.trainingCompleted.ua
+                        : modalText.trainingCompleted.en
+                    }
                     onBtnClick={closeModal}
                   />
                 )}
@@ -203,7 +223,7 @@ const TrainingPage = () => {
 
     case isTabletAndDesktop:
       return (
-        <Section title="Статистика" titleLevel="h2" isHidden>
+        <Section title={t('statistics')} titleLevel="h2" isHidden>
           {isFirstLoading && (
             <>
               {!(status === statusKeys().active) ? (
@@ -259,13 +279,21 @@ const TrainingPage = () => {
                 {isFailedTraining && <WellDoneModal onBtnClick={closeModal} />}
                 {isReadMoreBook && (
                   <CongratsModal
-                    text={modalText.bookRead}
+                    text={
+                      language.resolvedLanguage === 'ua'
+                        ? modalText.bookRead.ua
+                        : modalText.bookRead.en
+                    }
                     onBtnClick={closeModal}
                   />
                 )}
                 {issuccessDone && (
                   <CongratsModal
-                    text={modalText.trainingCompleted}
+                    text={
+                      language.resolvedLanguage === 'ua'
+                        ? modalText.trainingCompleted.ua
+                        : modalText.trainingCompleted.en
+                    }
                     onBtnClick={closeModal}
                   />
                 )}

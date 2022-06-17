@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import { useContext } from 'react';
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { useSelector } from 'react-redux';
@@ -16,6 +17,7 @@ import {
 } from './PlanTimer.styled';
 
 const PlanTimer = ({ booksAmout = 0, days = 0, booksLeft = 0 }) => {
+  const { t } = useTranslation();
   const pageFormat = useContext(PageFormatContext);
   const isActiveTraining = Boolean(useSelector(getStatus));
 
@@ -29,19 +31,23 @@ const PlanTimer = ({ booksAmout = 0, days = 0, booksLeft = 0 }) => {
     <>
       {(isResponse || isMobile) && (
         <TimerContainer>
-          <TimerTitle>Моя мета прочитати</TimerTitle>
+          <TimerTitle>{t('goals')}</TimerTitle>
           <TimerFlex>
             <BoxTimer>
               <TimerBg active={isActiveTraining}>
                 <TimerAmout active={isActiveTraining}>{booksAmout}</TimerAmout>
               </TimerBg>
-              <TimerText active={isActiveTraining}>Кількість книжок</TimerText>
+              <TimerText active={isActiveTraining}>
+                {t('amountOfBooks')}
+              </TimerText>
             </BoxTimer>
             <BoxTimer>
               <TimerBg active={isActiveTraining}>
                 <TimerAmout active={isActiveTraining}>{days}</TimerAmout>
               </TimerBg>
-              <TimerText active={isActiveTraining}>Кількість днів</TimerText>
+              <TimerText active={isActiveTraining}>
+                {t('amountOfDays')}
+              </TimerText>
             </BoxTimer>
             {isActiveTraining && (
               <BoxTimer>
@@ -51,7 +57,7 @@ const PlanTimer = ({ booksAmout = 0, days = 0, booksLeft = 0 }) => {
                   </ColoredTimer>
                 </TimerBg>
                 <TimerText active={isActiveTraining}>
-                  Залишилось книжок
+                  {t('booksLeft')}
                 </TimerText>
               </BoxTimer>
             )}
@@ -60,19 +66,23 @@ const PlanTimer = ({ booksAmout = 0, days = 0, booksLeft = 0 }) => {
       )}
       {isTablet && (
         <TimerContainer active={isActiveTraining}>
-          <TimerTitle>Моя мета прочитати</TimerTitle>
+          <TimerTitle>{t('goals')}</TimerTitle>
           <TimerFlex>
             <BoxTimer active={isActiveTraining}>
               <TimerBg>
                 <TimerAmout>{booksAmout}</TimerAmout>
               </TimerBg>
-              <TimerText active={isActiveTraining}>Кількість книжок</TimerText>
+              <TimerText active={isActiveTraining}>
+                {t('amountOfBooks')}
+              </TimerText>
             </BoxTimer>
             <BoxTimer active={isActiveTraining}>
               <TimerBg>
                 <TimerAmout>{days}</TimerAmout>
               </TimerBg>
-              <TimerText active={isActiveTraining}>Кількість днів</TimerText>
+              <TimerText active={isActiveTraining}>
+                {t('amountOfDays')}
+              </TimerText>
             </BoxTimer>
             {isActiveTraining && (
               <BoxTimer active={isActiveTraining}>
@@ -80,7 +90,7 @@ const PlanTimer = ({ booksAmout = 0, days = 0, booksLeft = 0 }) => {
                   <ColoredTimer>{booksLeft}</ColoredTimer>
                 </TimerBg>
                 <TimerText active={isActiveTraining}>
-                  Залишилось книжок
+                  {t('booksLeft')}
                 </TimerText>
               </BoxTimer>
             )}
@@ -89,19 +99,23 @@ const PlanTimer = ({ booksAmout = 0, days = 0, booksLeft = 0 }) => {
       )}
       {isDesktop && (
         <TimerContainer>
-          <TimerTitle active={isActiveTraining}>Моя мета прочитати</TimerTitle>
+          <TimerTitle active={isActiveTraining}>{t('goals')}</TimerTitle>
           <TimerFlex>
             <BoxTimer>
               <TimerBg active={isActiveTraining}>
                 <TimerAmout active={isActiveTraining}>{booksAmout}</TimerAmout>
               </TimerBg>
-              <TimerText active={isActiveTraining}>Кількість книжок</TimerText>
+              <TimerText active={isActiveTraining}>
+                {t('amountOfBooks')}
+              </TimerText>
             </BoxTimer>
             <BoxTimer>
               <TimerBg active={isActiveTraining}>
                 <TimerAmout active={isActiveTraining}>{days}</TimerAmout>
               </TimerBg>
-              <TimerText active={isActiveTraining}>Кількість днів</TimerText>
+              <TimerText active={isActiveTraining}>
+                {t('amountOfDays')}
+              </TimerText>
             </BoxTimer>
             {isActiveTraining && (
               <BoxTimer>
@@ -111,7 +125,7 @@ const PlanTimer = ({ booksAmout = 0, days = 0, booksLeft = 0 }) => {
                   </ColoredTimer>
                 </TimerBg>
                 <TimerText active={isActiveTraining}>
-                  Залишилось книжок
+                  {t('booksLeft')}
                 </TimerText>
               </BoxTimer>
             )}

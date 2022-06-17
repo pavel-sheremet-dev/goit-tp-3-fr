@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import EllipsisText from 'react-ellipsis-text';
+import { useTranslation } from 'react-i18next';
 
 import { trainingSelectors } from 'redux/training';
 import { ReactComponent as CheckIcon } from 'images/svg/icon-check.svg';
@@ -16,14 +17,15 @@ import {
 
 const ActiveTrainList = () => {
   const getTrainingBooks = useSelector(trainingSelectors.getBooks);
+  const { t } = useTranslation();
 
   return (
     <Wrapper>
       <HeaderList>
-        <HeaderListItem>Назва книги</HeaderListItem>
-        <HeaderListItem>Автор</HeaderListItem>
-        <HeaderListItem>Рік</HeaderListItem>
-        <HeaderListItem>Стор.</HeaderListItem>
+        <HeaderListItem>{t('title')}</HeaderListItem>
+        <HeaderListItem>{t('author')}</HeaderListItem>
+        <HeaderListItem>{t('year')}</HeaderListItem>
+        <HeaderListItem>{t('pages')}</HeaderListItem>
       </HeaderList>
 
       <ListBooks>
@@ -39,17 +41,17 @@ const ActiveTrainList = () => {
               </Item>
 
               <Item className={'authorBook'}>
-                <TitleItem className="isHiddenItem">Автор:</TitleItem>
+                <TitleItem className="isHiddenItem">{t('author')}:</TitleItem>
                 <TextItem> {author}</TextItem>
               </Item>
 
               <Item className={'yearBook'}>
-                <TitleItem className="isHiddenItem">Рік:</TitleItem>
+                <TitleItem className="isHiddenItem">{t('year')}:</TitleItem>
                 <TextItem> {year}</TextItem>
               </Item>
 
               <Item className={'pagesBook'}>
-                <TitleItem className="isHiddenItem">Стор.:</TitleItem>
+                <TitleItem className="isHiddenItem">{t('pages')}:</TitleItem>
                 <TextItem> {pages}</TextItem>
               </Item>
             </ItemBooks>
