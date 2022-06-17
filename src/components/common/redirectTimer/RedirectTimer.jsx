@@ -24,7 +24,7 @@ const RedirectTimer = ({ getRedirect }) => {
 
   return timer ? (
     <div>
-      {t('redirect')}{' '}
+      {t('redirect')}
       <b
         style={{
           display: 'inline-flex',
@@ -37,7 +37,7 @@ const RedirectTimer = ({ getRedirect }) => {
         }}
       >
         {timer}
-      </b>{' '}
+      </b>
       {t('sec')}
     </div>
   ) : (

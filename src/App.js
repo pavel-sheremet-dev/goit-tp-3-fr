@@ -1,16 +1,21 @@
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { GlobalStyle } from 'styles/GlobalStyles';
+import { useEffect, useRef } from 'react';
+
 import { ThemeProvider } from 'styled-components';
-import { getCssVars } from 'styles/vars';
-import Header from 'components/header/Header';
-import Layout from 'components/common/layout/Layout';
-import { useEffect } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { authOperations, authSelectors } from 'redux/auth';
-import MainComponent from 'components/main/MainComponent';
+
+import { ToastContainer } from 'react-toastify';
+import { GlobalStyle } from 'styles/GlobalStyles';
+import { getCssVars } from 'styles/vars';
 import { Loader } from 'components/common/Loader/Loader';
-import { useRef } from 'react';
+
+import Layout from 'components/common/layout/Layout';
+import Meta from 'components/common/helmet/Meta';
+import Header from 'components/header/Header';
+import MainComponent from 'components/main/MainComponent';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -32,19 +37,22 @@ const App = () => {
   return (
     <>
       <ThemeProvider theme={getCssVars()}>
-        <Layout>
-          <GlobalStyle />
-          {isLoadingUser || firstLoading.current ? (
-            <Loader />
-          ) : (
-            <>
-              <Header />
-              <MainComponent />
-            </>
-          )}
-          <ToastContainer position="top-center" autoClose={4000} />
-          <div className="body-frame"></div>
-        </Layout>
+        <HelmetProvider>
+          <Layout>
+            <GlobalStyle />
+            <Meta />
+            {isLoadingUser || firstLoading.current ? (
+              <Loader />
+            ) : (
+              <>
+                <Header />
+                <MainComponent />
+              </>
+            )}
+            <ToastContainer position="top-center" autoClose={4000} />
+            <div className="body-frame"></div>
+          </Layout>
+        </HelmetProvider>
       </ThemeProvider>
     </>
   );
