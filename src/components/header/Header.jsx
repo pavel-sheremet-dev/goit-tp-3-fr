@@ -3,21 +3,27 @@ import { getIsLoggedIn } from 'redux/auth/auth-selectors';
 
 import Navigation from 'components/header/Navigation/Navigation';
 
-import { StyledContainerHeader, StyledHeader } from './Header.styled';
+import {
+  StyledContainerHeader,
+  StyledHeader,
+  StyledHeaderBox,
+} from './Header.styled';
 
 const Header = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   return (
     <StyledHeader>
-      {isLoggedIn ? (
-        <StyledContainerHeader style={{ justifyContent: 'space-between' }}>
-          <Navigation />
-        </StyledContainerHeader>
-      ) : (
-        <StyledContainerHeader>
-          <Navigation />
-        </StyledContainerHeader>
-      )}
+      <StyledHeaderBox>
+        {isLoggedIn ? (
+          <StyledContainerHeader style={{ justifyContent: 'space-between' }}>
+            <Navigation />
+          </StyledContainerHeader>
+        ) : (
+          <StyledContainerHeader>
+            <Navigation />
+          </StyledContainerHeader>
+        )}
+      </StyledHeaderBox>
     </StyledHeader>
   );
 };

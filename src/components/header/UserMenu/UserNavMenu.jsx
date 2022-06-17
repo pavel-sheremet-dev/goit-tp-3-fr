@@ -9,12 +9,13 @@ const { training, library } = routes;
 export default function UserNavMenu() {
   return (
     <StyledBox>
+      <NavIcon style={{ marginRight: '13px' }} to={training.path}>
+        <BookIcon />
+      </NavIcon>
       <NavIcon to={library.path}>
         <HomeIcon />
       </NavIcon>
-      <NavIcon style={{ marginLeft: '13px' }} to={training.path}>
-        <BookIcon />
-      </NavIcon>
+
       <StyledSpanBorder></StyledSpanBorder>
     </StyledBox>
   );
