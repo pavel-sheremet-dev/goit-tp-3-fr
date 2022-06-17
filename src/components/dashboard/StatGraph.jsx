@@ -37,6 +37,9 @@ const StatGraph = ({ responce, getReadingPlan }) => {
 
   useEffect(() => {
     switch (true) {
+      case pageFormat === format.response:
+        setlabelsQuantity(3);
+        break;
       case pageFormat === format.mobile:
         setlabelsQuantity(3);
         break;
