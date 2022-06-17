@@ -2,18 +2,18 @@ import Section from 'components/common/section/Section';
 import EmtpyLibraryText from 'components/emtpyLibraryText/EmtpyLibraryText';
 import LibraryForm from 'components/LibraryForm/LibraryForm';
 
-import FinishedBooks from 'components/LibraryBooks/FinishedBooks';
-import InActionBooks from 'components/LibraryBooks/InActionBooks';
-
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { useContext, useEffect, useState } from 'react';
 import { getTypeKeys } from 'helpers/libraryService';
-import RatingModal from 'components/modals/RatingModal/RatingModal';
-import Modal from 'components/modals/Modal/Modal';
 import { useDispatch } from 'react-redux';
 import { getBooks } from 'redux/books/books-operations';
 import { useSelector } from 'react-redux';
 import { booksSelectors } from 'redux/books';
+
+import FinishedBooks from 'components/LibraryBooks/FinishedBooks';
+import InActionBooks from 'components/LibraryBooks/InActionBooks';
+import RatingModal from 'components/modals/RatingModal/RatingModal';
+import Modal from 'components/modals/Modal/Modal';
 
 const { mobile, response } = format;
 
