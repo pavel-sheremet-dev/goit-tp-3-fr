@@ -7,8 +7,6 @@ import { useTranslation } from 'react-i18next';
 import {
   validationAddFormSchema,
   validateForm,
-  normalizeTexValues,
-  isValidNameInputRegex,
   normalizeNumber,
   isValidNumberInputRegex,
 } from 'helpers/validation/validationAddForm';
@@ -82,7 +80,7 @@ const LibraryMobileForm = ({ isArrayFull, style, closeForm }) => {
           name="name"
           type="text"
           placeholder="..."
-          value={normalizeTexValues(formik.values.name, isValidNameInputRegex)}
+          value={formik.values.name}
           onChange={handleChange}
         />
         {formik.touched.name && formik.errors.name ? (
@@ -97,10 +95,7 @@ const LibraryMobileForm = ({ isArrayFull, style, closeForm }) => {
           name="author"
           type="text"
           placeholder="..."
-          value={normalizeTexValues(
-            formik.values.author,
-            isValidNameInputRegex,
-          )}
+          value={formik.values.author}
           onChange={handleChange}
         />
         {formik.touched.author && formik.errors.author ? (
