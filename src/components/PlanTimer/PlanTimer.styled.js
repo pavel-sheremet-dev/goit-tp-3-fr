@@ -41,7 +41,8 @@ export const TimerTitle = styled.p`
   box-shadow: ${({ theme }) => theme.shadows.header};
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
-    padding: 18px 28px;
+    width: 275px;
+    padding: 18px 20px;
     margin: 0 auto 0 0;
   }
 

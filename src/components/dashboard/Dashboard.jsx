@@ -1,11 +1,13 @@
 import { useCallback, useState } from 'react';
 import { statusKeys } from 'helpers/config';
+import { useTranslation } from 'react-i18next';
 
 import StatGraph from './StatGraph';
 
 import { DashBox } from './Dashboard.styled';
 
 const Dashboard = ({ responce }) => {
+  const { t } = useTranslation();
   const [readingPlan, setReadingPlan] = useState(0);
 
   useCallback(setReadingPlan, [setReadingPlan]);
@@ -14,20 +16,20 @@ const Dashboard = ({ responce }) => {
     <DashBox>
       {responce.status === statusKeys().active && (
         <p>
-          Кількість сторінок / день<span>{readingPlan}</span>
+          {t('amountPages')}
+          <span>{readingPlan}</span>
         </p>
       )}
       {responce.status === statusKeys().failed && (
         <p>
-          Залишилось прочитати сторінок<span>{readingPlan}</span>
+          {t('remains')}
+          <span>{readingPlan}</span>
         </p>
       )}
-      {responce.status === statusKeys().successDone && (
-        <p>Ви успішно виконали тренування</p>
-      )}
+      {responce.status === statusKeys().successDone && <p>{t('completed')}</p>}
 
       <StatGraph responce={responce} getReadingPlan={setReadingPlan} />
-      <p className="x-axes-label">час</p>
+      <p className="x-axes-label">{t('time')}</p>
     </DashBox>
   );
 };

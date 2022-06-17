@@ -1,72 +1,154 @@
 import * as Yup from 'yup';
 
+import i18next from 'i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+
+const language = i18next.use(LanguageDetector);
+
+const lngs = {
+  email: {
+    en: 'Enter your email in the format your@email.com',
+    ua: 'Введіть електронну пошту в форматі your@email.com',
+  },
+  required: {
+    en: 'Required field',
+    ua: 'Необхідно заповнити поле',
+  },
+  password: {
+    en: 'Field can contain Latin letters, numbers and symbols',
+    ua: 'Поле може містити літери латиниці, цифри та знаки',
+  },
+  passwordLength: {
+    en: 'The password must be between 5 and 30 characters long',
+    ua: 'Пароль має бути від 5 до 30 символів',
+  },
+  emailLength: {
+    en: 'Email must be between 7 and 63 characters long',
+    ua: 'Електронна пошта повинна містити від 7 до 63 символів',
+  },
+  nameLength: {
+    en: 'Name must be between 3 and 100 characters long',
+    ua: 'Поле може містити від 3 до 100 символів включно',
+  },
+  start: {
+    en: 'Field can start with a letter or number',
+    ua: 'Поле може починатися з літери або цифри',
+  },
+  different: {
+    en: 'Data is different from password field data',
+    ua: 'Дані відрізняються від даних поля пароль',
+  },
+  hyphen: {
+    en: 'Field cannot start with a hyphen or end with a hyphen',
+    ua: 'Поле не може починатися з дефісу або закінчуватися дефісом',
+  },
+};
+
 export const validationRegistrationSchema = Yup.object({
   name: Yup.string()
     .min(3)
     .max(100)
-    .required('Необхідно заповнити поле')
-    .typeError('Поле може починатися з літери або цифри'),
+    .required(
+      language.resolvedLanguage === 'ua' ? lngs.required.ua : lngs.required.en,
+    )
+    .typeError(
+      language.resolvedLanguage === 'ua' ? lngs.start.ua : lngs.start.en,
+    ),
 
   email: Yup.string()
-    .email('Введіть електронну пошту в форматі your@email.com')
+    .email(language.resolvedLanguage === 'ua' ? lngs.email.ua : lngs.email.en)
     .min(7)
     .max(63)
     .email()
-    .required('Необхідно заповнити поле')
-    .typeError('Введіть електронну пошту в форматі your@email.com'),
+    .required(
+      language.resolvedLanguage === 'ua' ? lngs.required.ua : lngs.required.en,
+    )
+    .typeError(
+      language.resolvedLanguage === 'ua' ? lngs.email.ua : lngs.email.en,
+    ),
 
   password: Yup.string()
     .min(5)
     .max(30)
-    .required('Необхідно заповнити поле')
-    .typeError('Поле може містити літери латиниці, цифри та знаки'),
+    .required(
+      language.resolvedLanguage === 'ua' ? lngs.required.ua : lngs.required.en,
+    )
+    .typeError(
+      language.resolvedLanguage === 'ua' ? lngs.password.ua : lngs.password.en,
+    ),
 
   repassword: Yup.string()
     .min(5)
     .max(30)
-    .required('Необхідно заповнити поле')
-    .typeError('Дані відрізняються від даних поля пароль'),
+    .required(
+      language.resolvedLanguage === 'ua' ? lngs.required.ua : lngs.required.en,
+    )
+    .typeError(
+      language.resolvedLanguage === 'ua'
+        ? lngs.different.ua
+        : lngs.different.en,
+    ),
 });
 
 export const validate = values => {
   const reg = new RegExp('[0-9A-Za-zА-Яа-яґҐЁёІіЇїЄє]');
-  const сyrillic = new RegExp('[А-Яа-яґҐЁёІіЇїЄє]');
+  const cyrillic = new RegExp('[А-Яа-яґҐЁёІіЇїЄє]');
 
   const errors = {};
   if (!values.name) {
-    errors.name = 'Необхідно заповнити поле*';
+    errors.name =
+      language.resolvedLanguage === 'ua' ? lngs.required.ua : lngs.required.en;
   } else if (values.name.length < 2 || values.name.length > 99) {
-    errors.name = 'Поле може містити від 3 до 100 символів включно';
+    errors.name =
+      language.resolvedLanguage === 'ua'
+        ? lngs.nameLength.ua
+        : lngs.nameLength.en;
   } else if (!reg.test(values.name[0])) {
-    errors.name = 'Поле може починатися з літери або цифри';
+    errors.name =
+      language.resolvedLanguage === 'ua' ? lngs.start.ua : lngs.start.en;
   }
 
   if (!values.email) {
-    errors.email = 'Необхідно заповнити поле*';
+    errors.email =
+      language.resolvedLanguage === 'ua' ? lngs.required.ua : lngs.required.en;
   } else if (values.email.length < 6 || values.email.length > 62) {
-    errors.email = 'Поле може містити від 7 до 63 символів включно';
+    errors.email =
+      language.resolvedLanguage === 'ua'
+        ? lngs.emailLength.ua
+        : lngs.emailLength.en;
   } else if (values.email.startsWith('-') || values.email.slice(-1) === '-') {
-    errors.email = 'Поле не може починатися з дефісу або закінчуватися дефісом';
-  } else if (сyrillic.test(values.email)) {
-    errors.email = 'Поле може містити літери латиниці, цифри та знаки';
+    errors.email =
+      language.resolvedLanguage === 'ua' ? lngs.hyphen.ua : lngs.hyphen.en;
+  } else if (cyrillic.test(values.email)) {
+    errors.email =
+      language.resolvedLanguage === 'ua' ? lngs.password.ua : lngs.password.en;
   }
 
   if (!values.password) {
-    errors.password = 'Необхідно заповнити поле*';
+    errors.password =
+      language.resolvedLanguage === 'ua' ? lngs.required.ua : lngs.required.en;
   } else if (values.password.length < 4 || values.password.length > 29) {
-    errors.password = 'Поле може містити від 5 до 30 символів включно';
+    errors.password =
+      language.resolvedLanguage === 'ua'
+        ? lngs.passwordLength.ua
+        : lngs.passwordLength.en;
   } else if (
     values.password.startsWith('-') ||
     values.password.startsWith('.') ||
-    сyrillic.test(values.password)
+    cyrillic.test(values.password)
   ) {
-    errors.password = 'Поле може містити літери латиниці, цифри та знаки';
+    errors.password =
+      language.resolvedLanguage === 'ua' ? lngs.password.ua : lngs.password.en;
   }
 
   if (!values.repassword) {
-    errors.repassword = 'Необхідно заповнити поле*';
+    errors.repassword =
+      language.resolvedLanguage === 'ua' ? lngs.required.ua : lngs.required.en;
   } else if (values.repassword !== values.password) {
-    errors.repassword = 'Дані відрізняються від даних поля пароль';
+    errors.repassword =
+      language.resolvedLanguage === 'ua'
+        ? lngs.different.ua
+        : lngs.different.en;
   }
   return errors;
 };

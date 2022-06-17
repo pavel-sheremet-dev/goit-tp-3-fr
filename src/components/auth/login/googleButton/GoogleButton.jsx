@@ -1,5 +1,4 @@
 import {
-  StyledGoogleButton,
   StyledRef,
   StyledContainer,
   ContainerGoogleIcon,
@@ -11,22 +10,16 @@ export default function GoogleButton({ onClick, style }) {
 
   return (
     <StyledContainer>
-      <StyledGoogleButton onClick={onClick} style={style}>
-        <StyledRef href={`${url}/api/users/google`}>
-          <ContainerGoogleIcon>
-            <GoogleIcon />
-          </ContainerGoogleIcon>
-          Google
-        </StyledRef>
-      </StyledGoogleButton>
+      <StyledRef
+        href={`${url}/api/users/google`}
+        onClick={onClick}
+        style={style}
+      >
+        <ContainerGoogleIcon>
+          <GoogleIcon />
+        </ContainerGoogleIcon>
+        Google
+      </StyledRef>
     </StyledContainer>
   );
 }
-
-// <section className={s.section}>
-//       <div className={s.contentBgImg}>
-//         <Container>
-//           <Content  />
-//         </Container>
-//       </div>
-//     </section>

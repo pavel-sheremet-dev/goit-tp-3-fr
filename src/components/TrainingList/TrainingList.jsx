@@ -1,5 +1,6 @@
 import React from 'react';
 import EllipsisText from 'react-ellipsis-text';
+import { useTranslation } from 'react-i18next';
 
 import IconButton from '../buttons/button/IconButton';
 import { ReactComponent as BookIcon } from 'images/svg/icon-book.svg';
@@ -20,13 +21,14 @@ import {
 } from './TrainingList.styled';
 
 const TrainingList = ({ books = [], handleUpdateBook, style }) => {
+  const { t } = useTranslation();
   return (
     <Wrapper>
       <HeaderList>
-        <HeaderListItem>Назва книги</HeaderListItem>
-        <HeaderListItem>Автор</HeaderListItem>
-        <HeaderListItem>Рік</HeaderListItem>
-        <HeaderListItem>Стор.</HeaderListItem>
+        <HeaderListItem>{t('title')}</HeaderListItem>
+        <HeaderListItem>{t('author')}</HeaderListItem>
+        <HeaderListItem>{t('year')}</HeaderListItem>
+        <HeaderListItem>{t('pages')}</HeaderListItem>
       </HeaderList>
 
       <ListBooks style={style}>
@@ -38,17 +40,17 @@ const TrainingList = ({ books = [], handleUpdateBook, style }) => {
             </EmptyTextItem>
 
             <EmptyTextItem className="isHiddenItem">
-              <TitleItem>Автор:</TitleItem>
+              <TitleItem>{t('author')}:</TitleItem>
               <Placeholder>...</Placeholder>
             </EmptyTextItem>
 
             <EmptyTextItem className="isHiddenItem">
-              <TitleItem>Рік: </TitleItem>
+              <TitleItem>{t('year')}: </TitleItem>
               <Placeholder>...</Placeholder>
             </EmptyTextItem>
 
             <EmptyTextItem className="isHiddenItem">
-              <TitleItem>Стор: </TitleItem>
+              <TitleItem>{t('pages')}: </TitleItem>
               <Placeholder>...</Placeholder>
             </EmptyTextItem>
           </EmptyItem>
@@ -62,17 +64,17 @@ const TrainingList = ({ books = [], handleUpdateBook, style }) => {
               </Item>
 
               <Item style={{ width: '170px' }}>
-                <TitleItem className="isHiddenItem">Автор:</TitleItem>
+                <TitleItem className="isHiddenItem">{t('author')}:</TitleItem>
                 <TextItem> {author}</TextItem>
               </Item>
 
               <Item style={{ width: '125px' }}>
-                <TitleItem className="isHiddenItem">Рік:</TitleItem>
+                <TitleItem className="isHiddenItem">{t('year')}:</TitleItem>
                 <TextItem> {year}</TextItem>
               </Item>
 
               <Item style={{ width: '24px', marginRight: '55px' }}>
-                <TitleItem className="isHiddenItem">Стор.:</TitleItem>
+                <TitleItem className="isHiddenItem">{t('pages')}:</TitleItem>
                 <TextItem> {pages}</TextItem>
               </Item>
               <IconButton

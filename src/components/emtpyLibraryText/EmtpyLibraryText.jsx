@@ -6,12 +6,14 @@ import {
   StyledBox,
 } from './EmtpyLibraryText.styled';
 import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { ReactComponent as ArrowIcon } from 'images/svg/arrow.svg';
 import { ReactComponent as BookIcon } from 'images/svg/icon-book.svg';
 import { ReactComponent as FlagIcon } from 'images/svg/flag.svg';
 
 export default function EmtpyLibraryText({ isEmptyLibrary, onClick, style }) {
+  const { t } = useTranslation();
   const pageFormat = useContext(PageFormatContext);
   const isResponse = pageFormat === format.response;
   const isMobile = pageFormat === format.mobile;
@@ -21,45 +23,45 @@ export default function EmtpyLibraryText({ isEmptyLibrary, onClick, style }) {
       {!isEmptyLibrary && (
         <StyledBox style={style}>
           {(isResponse || isMobile) && (
-            <StyledNameBook>Назва книги</StyledNameBook>
+            <StyledNameBook>{t('title')}</StyledNameBook>
           )}
           <StyledList>
             <li>
-              <StyledStepText>Крок 1.</StyledStepText>
+              <StyledStepText>{t('step')} 1.</StyledStepText>
               <p className="step-text">
                 <span>
                   <BookIcon />
                 </span>
-                Створіть особисту бібліотеку
+                {t('library')}
               </p>
 
               <p className="sup-step-text">
                 <span>
                   <ArrowIcon width={10} height={12} />
                 </span>
-                Додайте до неї книжки, які маєте намір прочитати.
+                {t('add')}
               </p>
             </li>
             <li>
-              <StyledStepText>Крок 2. </StyledStepText>
+              <StyledStepText>{t('step')} 2.</StyledStepText>
               <p className="step-text">
                 <span>
                   <FlagIcon />
                 </span>
-                Сформуйте своє перше тренування
+                {t('firstTraining')}
               </p>
 
               <p className="sup-step-text">
                 <span>
                   <ArrowIcon width={10} height={12} />
                 </span>
-                Визначте ціль, оберіть період, розпочинайте тренування.
+                {t('setGoal')}
               </p>
             </li>
           </StyledList>
           {(isMobile || isResponse) && (
             <StyledLibButton type="button" onClick={() => onClick(true)}>
-              Ок
+              {t('ok')}
             </StyledLibButton>
           )}
         </StyledBox>

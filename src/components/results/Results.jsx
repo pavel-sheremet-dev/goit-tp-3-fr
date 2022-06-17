@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { trainingSelectors } from 'redux/training';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { updateActiveTraining } from 'redux/training/training-operations';
 
 import Datetime from 'react-datetime';
@@ -19,6 +20,11 @@ import {
   Wrapper,
 } from './Results.styled';
 import { ReactComponent as CalendarIconDown } from 'images/svg/calendar-icon-down.svg';
+
+import i18next from 'i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+
+const language = i18next.use(LanguageDetector);
 
 const getStartDay = (deadlineDate, results) => {
   if (Date.now() < Date.parse(deadlineDate)) {
@@ -61,7 +67,7 @@ const DateTimeInput = ({
   const renderInput = (props, openCalendar) => {
     return (
       <Label>
-        <span>Дата</span>
+        <span>{language.resolvedLanguage === 'ua' ? 'Дата' : 'Date'}</span>
         <InputDate {...props} />
         <IconButton
           className={'icon'}
@@ -82,7 +88,7 @@ const DateTimeInput = ({
       isValidDate={valid}
       closeOnClickOutside
       closeOnSelect
-      locale="uk"
+      locale={language.resolvedLanguage === 'ua' ? 'uk' : 'en'}
       onChange={date => {
         onChange(date._d);
       }}
@@ -91,6 +97,7 @@ const DateTimeInput = ({
 };
 // const Results = ({ startDate, finishDate }) => {
 const Results = () => {
+  const { t } = useTranslation();
   const [date, setDate] = useState('');
   const [pages, setPages] = useState('');
   const dispatch = useDispatch();
@@ -118,7 +125,7 @@ const Results = () => {
 
   return (
     <Wrapper>
-      <Title>РЕЗУЛЬТАТИ</Title>
+      <Title>{t('results')}</Title>
       <Form onSubmit={handleSubmit}>
         <DateTimeInput
           selectedDate={date}
@@ -128,7 +135,7 @@ const Results = () => {
           date={date}
         />
         <Label>
-          <span>Кількість сторінок</span>
+          <span>{t('amountOfPages')}</span>
           <InputDate
             name="number"
             type="number"
@@ -141,7 +148,7 @@ const Results = () => {
           />
         </Label>
         <ButtonDate type="submit" disabled={status !== 'active'}>
-          Додати результат
+          {t('addResult')}
         </ButtonDate>
       </Form>
     </Wrapper>

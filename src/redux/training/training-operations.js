@@ -1,7 +1,12 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getTrainingError } from 'helpers/getTextError';
+import { getTrainingError, getTrainingErrorEN } from 'helpers/getTextError';
+
+import i18next from 'i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+
+const language = i18next.use(LanguageDetector);
 
 const TRAINING_ENDPOINT = 'api/trainings';
 
@@ -17,7 +22,11 @@ export const addTraining = createAsyncThunk(
       });
       return data;
     } catch (error) {
-      toast.error('Упс, щось пішло не так, спробуйте повторити пізніше :)');
+      toast.error(
+        language.resolvedLanguage === 'ua'
+          ? 'Упс, щось пішло не так, спробуйте повторити пізніше :)'
+          : 'Oops, something went wrong, try to repeat later :)',
+      );
       return rejectWithValue(error.message);
     }
   },
@@ -31,7 +40,12 @@ export const getActiveTraining = createAsyncThunk(
       return data;
     } catch (error) {
       const { status } = error.response;
-      status !== 404 && toast.error(getTrainingError(status));
+      status !== 404 &&
+        toast.error(
+          language.resolvedLanguage === 'ua'
+            ? getTrainingError(error.response.status)
+            : getTrainingErrorEN(error.response.status),
+        );
       return rejectWithValue(error.message);
     }
   },
@@ -48,7 +62,12 @@ export const updateActiveTraining = createAsyncThunk(
       return data;
     } catch (error) {
       const { status } = error.response;
-      status !== 404 && toast.error(getTrainingError(status));
+      status !== 404 &&
+        toast.error(
+          language.resolvedLanguage === 'ua'
+            ? getTrainingError(error.response.status)
+            : getTrainingErrorEN(error.response.status),
+        );
       return rejectWithValue(error.message);
     }
   },

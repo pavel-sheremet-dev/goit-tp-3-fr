@@ -8,6 +8,11 @@ import { ReactComponent as CalendarIcon } from 'images/svg/calendar-form.svg';
 import { ReactComponent as CalendarIconDowm } from 'images/svg/calendar-icon-down.svg';
 import { Label, Input } from './DateTime.styled';
 
+import i18next from 'i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+
+const language = i18next.use(LanguageDetector);
+
 const DateTimeInput = ({
   selectedDate,
   onChange,
@@ -46,7 +51,7 @@ const DateTimeInput = ({
   return (
     <Datetime
       inputProps={!selectedDate ? inputProps : selectedDate}
-      locale="uk"
+      locale={language.resolvedLanguage === 'ua' ? 'uk' : 'en'}
       renderInput={renderDateInput}
       value={selectedDate}
       dateFormat="DD.MM.YYYY"

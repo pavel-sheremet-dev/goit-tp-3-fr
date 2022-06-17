@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { PageFormatContext, format } from 'context/pageFormatContext';
+import { useTranslation } from 'react-i18next';
 
 import { routes } from 'routes/config';
 import { ReactComponent as ListIcon } from 'images/svg/icon-list.svg';
@@ -17,6 +18,7 @@ import {
 } from './Info.styled';
 
 const Info = ({ handleClick }) => {
+  const { t } = useTranslation();
   const pageFormat = useContext(PageFormatContext);
 
   const isResponse = pageFormat === format.response;
@@ -26,61 +28,55 @@ const Info = ({ handleClick }) => {
     <>
       <Container>
         <Title>Books Reading </Title>
-        <SecondTitle>Допоможе вам</SecondTitle>
+        <SecondTitle>{t('help')}</SecondTitle>
         <ListHelp>
           <List>
             <SpanIcon>
               <ListIcon />
             </SpanIcon>
-            <ListItem>
-              Швидше сформулювати свою ціль і розпочати читати
-            </ListItem>
+            <ListItem>{t('goal')}</ListItem>
           </List>
           <List>
             <SpanIcon>
               <ListIcon />
             </SpanIcon>
-            <ListItem>
-              Пропорційно розподілити навантаження на кожний день
-            </ListItem>
+            <ListItem>{t('timing')}</ListItem>
           </List>
           <List>
             <SpanIcon>
               <ListIcon />
             </SpanIcon>
-            <ListItem>Відстежувати особистий успіх</ListItem>
+            <ListItem>{t('success')}</ListItem>
           </List>
         </ListHelp>
-        <SecondTitle>Також ви зможете </SecondTitle>
+        <SecondTitle>{t('youcan')}</SecondTitle>
         <ListHelp>
           <List>
             <SpanIcon>
               <ListIcon />
             </SpanIcon>
-            <ListItem>Формувати особисту думку, незалежну від інших</ListItem>
+            <ListItem>{t('opinion')}</ListItem>
           </List>
           <List>
             <SpanIcon>
               <ListIcon />
             </SpanIcon>
-            <ListItem>
-              Підвищити свої професійні якості, опираючись на нові знання
-            </ListItem>
+            <ListItem>{t('qualities')}</ListItem>
           </List>
           <List>
             <SpanIcon>
               <ListIcon />
             </SpanIcon>
-            <ListItem>Стати цікавим співрозмовником</ListItem>
+            <ListItem>{t('interlocutor')}</ListItem>
           </List>
         </ListHelp>
       </Container>
       {isMobile || isResponse ? (
         <Buttons>
-          <LinkLogin to={routes.login.path}>Увійти</LinkLogin>
+          <LinkLogin to={routes.login.path}>{t('login')}</LinkLogin>
           {/* <Link to="signup"> */}
           <Link type="button" onClick={() => handleClick(false)}>
-            Реєстрація
+            {t('signup')}
           </Link>
         </Buttons>
       ) : null}

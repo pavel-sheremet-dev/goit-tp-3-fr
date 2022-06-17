@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import Countdown from 'components/Countdown';
 import { StyledCountdownContainer } from './CountdownContainer.styled';
 import { Loader } from 'components/common/Loader/Loader';
@@ -8,6 +9,7 @@ const CountdownContainer = ({
   isWaiting = false,
   deadline = Date.now() + 10 * 1000 * 24 * 60 * 60,
 }) => {
+  const { t } = useTranslation();
   return (
     <>
       {isWaiting && <Loader />}
@@ -15,11 +17,11 @@ const CountdownContainer = ({
         <StyledCountdownContainer>
           <Countdown
             deadline={new Date(nextYear, 0, 1)}
-            title="До закінчення року залишилось"
+            title={t('yearsCountdown')}
           />
           <Countdown
             deadline={new Date(deadline)}
-            title="До досягнення мети залишилось"
+            title={t('goalsCountdown')}
           />
         </StyledCountdownContainer>
       )}

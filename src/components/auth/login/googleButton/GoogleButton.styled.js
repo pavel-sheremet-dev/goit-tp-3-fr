@@ -13,31 +13,28 @@ export const StyledContainer = styled.div`
   }
 `;
 
-export const StyledGoogleButton = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-left: 14px;
-  padding-right: 50px;
-  padding-top: 11px;
-  padding-bottom: 11px;
-  width: 150px;
-  height: 40px;
-  background-color: ${({ theme }) => theme.colors.iconsHover};
-  cursor: pointer;
-  box-shadow: ${({ theme }) => theme.shadows.btnGoogle};
-`;
-
 export const StyledRef = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-left: 16px;
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
   font-size: 16px;
-  line-height: 38px;
+  line-height: 2.3;
+  width: 150px;
+  height: 40px;
   color: ${({ theme }) => theme.colors.googleText};
+  background-color: ${({ theme }) => theme.colors.iconsHover};
+  box-shadow: ${({ theme }) => theme.shadows.btnShadow};
+  transition: ${({ theme }) => theme.transition('background-color')},
+    ${({ theme }) => theme.transition('box-shadow')};
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: #e3e4e6;
+    box-shadow: none;
+  }
 `;
 
 export const ContainerGoogleIcon = styled.div`
