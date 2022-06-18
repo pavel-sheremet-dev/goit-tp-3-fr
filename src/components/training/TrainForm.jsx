@@ -109,7 +109,7 @@ const TrainForm = () => {
     <Wrapper>
       <Title>{t('myTraining')}</Title>
       <Form onSubmit={handleSubmit} autoComplete="off">
-        {(status !== statusKeys().active) ? (
+        {status !== statusKeys().active ? (
           <>
             <InputWrapper>
               <DateTimeInput
@@ -145,7 +145,7 @@ const TrainForm = () => {
         )}
 
         <WrapperTrainingList>
-          {(status !== statusKeys().active) ? (
+          {status !== statusKeys().active ? (
             <TrainingList books={books} handleUpdateBook={handleUpdateBook} />
           ) : (
             <ActiveTrainList />

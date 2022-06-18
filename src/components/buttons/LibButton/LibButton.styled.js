@@ -8,7 +8,9 @@ export const LibActionButton = styled.button`
   font-size: 16px;
   line-height: 20px;
   text-align: center;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.buttonText};
+  background-color: ${({ theme }) => theme.colors.mainBrandColor};
+  outline: none;
   cursor: pointer;
 
   padding: 10px 15px;
@@ -16,6 +18,11 @@ export const LibActionButton = styled.button`
   display: flex;
   margin: 0 auto 130px auto;
   width: max-content;
+
+  &:hover,
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.hover};
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
   }

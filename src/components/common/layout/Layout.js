@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 import { PageFormatContext, format } from 'context/pageFormatContext';
-import { getCssVars } from 'styles/vars';
+import { themes } from 'styles';
 
-const { mobile, tablet, desktop } = getCssVars().breakPoints;
+const { mobile, tablet, desktop } = themes.light.breakPoints;
 
 const Layout = ({ children }) => {
   const [pageFormat, setPageFormat] = useState(null);

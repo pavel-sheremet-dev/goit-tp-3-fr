@@ -16,7 +16,7 @@ const SelectBook = ({ unreadBooks, getBooksIds, booksIds }) => {
   return (
     <Label>
       <CalendarIconDowm />
-      {(status !== statusKeys().active) ? (
+      {status !== statusKeys().active ? (
         <select name="book" onChange={e => getBooksIds(e.target.value)}>
           <option defaultValue="" hidden>
             {t('selectBook')}

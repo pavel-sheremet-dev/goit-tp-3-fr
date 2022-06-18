@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledNav = styled.nav`
   display: flex;
-  margin-right: 14px;
+  margin-right: 8px;
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     margin-left: 0px;
     margin-right: 0px;
@@ -31,7 +31,7 @@ export const StyledSpanFirstLetterName = styled.span`
 export const StyledHeaderButton = styled.button`
   color: ${({ theme }) => theme.colors.defaultFont};
   display: inline-block;
-  margin-left: 14px;
+  margin-left: 8px;
   padding: 0px;
   font-weight: 300;
   font-size: 14px;
@@ -42,6 +42,10 @@ export const StyledHeaderButton = styled.button`
   -ms-text-underline-position: below;
   background: none;
   cursor: pointer;
+  &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.colors.mainBrandColor};
+  }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     margin-left: 8px;
   }
