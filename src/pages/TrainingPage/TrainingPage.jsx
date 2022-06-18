@@ -15,11 +15,11 @@ import CountdownContainer from 'components/CountdownContainer';
 import CongratsModal from 'components/modals/CongratsModal';
 import WellDoneModal from 'components/modals/WellDoneModal';
 import Statistic from 'components/statistic/Statistic';
-import TrainForm from 'components/TrainForm/TrainForm';
+import TrainForm from 'components/training/TrainForm';
 import PlanTimer from 'components/PlanTimer';
-import TrainingList from 'components/TrainingList/TrainingList';
+import TrainingList from 'components/training/trainingList/TrainingList';
 import Modal from 'components/modals/Modal/Modal';
-import TrainFormModal from 'components/TrainFormModal/TrainFormModal';
+import TrainFormModal from 'components/training/modalForm/TrainFormModal';
 import AddButton from 'components/buttons/TrainRadialButton/RadialButton';
 
 import { Loader } from 'components/common/Loader/Loader';
@@ -55,6 +55,7 @@ const TrainingPage = () => {
   const { t } = useTranslation();
   const [isShowTrainingModal, setIsShowTrainingModal] = useState(false);
   const [finishedMoreBook, setFinishedMoreBook] = useState(false);
+  const [showCongratsModal, setShowCongratsModal] = useState(false);
 
   const loading = useSelector(trainingSelectors.getLoading);
   const isFirstLoading = useSelector(trainingSelectors.getFirstLoading);
@@ -76,7 +77,7 @@ const TrainingPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (!isFirstLoading || status) return;
+    if (!isFirstLoading || status === statusKeys().active) return;
     dispatch(getUnreadBooks());
   }, [dispatch, isFirstLoading, status]);
 
@@ -103,7 +104,7 @@ const TrainingPage = () => {
 
   useEffect(() => {
     if (status === statusKeys().active) return;
-    setIsShowTrainingModal(true);
+    setShowCongratsModal(true);
   }, [status]);
 
   const toggleModal = () => {
@@ -112,7 +113,7 @@ const TrainingPage = () => {
 
   const closeModal = () => {
     setFinishedMoreBook(false);
-    setIsShowTrainingModal(false);
+    setShowCongratsModal(false);
   };
 
   const traningResultNormalize = traningResults.filter(
@@ -122,7 +123,7 @@ const TrainingPage = () => {
   const isFailedTraining = status === statusKeys().failed;
   const isReadMoreBook = finishedMoreBook && status === statusKeys().active;
   const issuccessDone =
-    status === statusKeys().successDone && isShowTrainingModal;
+    status === statusKeys().successDone && showCongratsModal;
 
   const isMobile =
     pageFormat === format.response || pageFormat === format.mobile;
