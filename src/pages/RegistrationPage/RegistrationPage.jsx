@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Info from 'components/auth/Info/Info';
 import RegistrationPageContent from 'components/Registration/RegistrationPageContent/RegistrationPageContent';
 import { useState } from 'react';
@@ -13,19 +13,28 @@ const RegistrationPage = () => {
   );
   const [showInfo, setShowInfo] = useState(true);
   const titleRef = useRef();
-
   const pageFormat = useContext(PageFormatContext);
-
   const isMobile = pageFormat === response || pageFormat === mobile;
-
+  const valueStorage = localStorage.getItem('infoKey');
+  const conditionRender =
+    (!showInfoLocalStorage && showInfo && valueStorage) ||
+    (!showInfoLocalStorage && !showInfo && valueStorage);
+  useEffect(() => {
+    const isMobile = pageFormat === response || pageFormat === mobile;
+    if (isMobile) {
+      localStorage.setItem('infoKey', 'firstInfo');
+    }
+  }, [isMobile, pageFormat]);
   return (
     <Section>
       {isMobile && (
         <>
-          {(!showInfo || showInfoLocalStorage) && (
+          {((!showInfo && !valueStorage) || showInfoLocalStorage) && (
             <RegistrationPageContent titleRef={titleRef} />
           )}
-          {!showInfoLocalStorage && showInfo && (
+          {conditionRender ? (
+            <RegistrationPageContent titleRef={titleRef} />
+          ) : (
             <Info handleClick={setShowInfo} />
           )}
         </>
