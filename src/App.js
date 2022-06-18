@@ -64,7 +64,6 @@ const App = () => {
                 </>
               )}
               <ToastContainer position="top-center" autoClose={4000} />
-              <div className="body-frame"></div>
             </Layout>
           </HelmetProvider>
         </ThemeProvider>
