@@ -40,7 +40,7 @@ export const ButtonWhite = styled.button.attrs(props => ({
   font-size: 14px;
   line-height: 1.21;
   border: 1px solid #000000;
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.buttonText};
   box-shadow: ${({ theme }) => theme.shadows.btnShadow};
   transition: ${({ theme }) => theme.transition('background-color')},
     ${({ theme }) => theme.transition('color')},
@@ -48,7 +48,7 @@ export const ButtonWhite = styled.button.attrs(props => ({
 
   &:hover,
   &:focus {
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.buttonText};
     background-color: ${({ theme }) => theme.colors.hover};
     border: none;
   }
@@ -57,7 +57,7 @@ export const ButtonWhite = styled.button.attrs(props => ({
 export const ButtonOrange = styled(ButtonWhite)`
   border: none;
   margin-left: 16px;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.buttonText};
   background: ${({ theme }) => theme.colors.mainBrandColor};
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {

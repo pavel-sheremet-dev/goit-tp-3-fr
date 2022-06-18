@@ -32,7 +32,7 @@ export const Button = styled.button`
 
   font-size: 14px;
   line-height: 1.21;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.buttonText};
 
   transition: ${({ theme }) => theme.transition('background-color')};
 

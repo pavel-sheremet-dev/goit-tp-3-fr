@@ -45,6 +45,7 @@ export const Input = styled.input`
   height: 42px;
   border: none;
   outline: none;
+  color: ${({ theme }) => theme.colors.defaultFont};
   background-color: ${({ theme }) => theme.colors.iconsHover};
   box-shadow: ${({ theme }) => theme.shadows.inputShadow};
   transition: ${({ theme }) => theme.transition('background-color')};
@@ -89,7 +90,7 @@ export const LoginFormButton = styled.button`
   outline: none;
   cursor: pointer;
   background-color: ${({ theme }) => theme.colors.mainBrandColor};
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.buttonText};
   transition: ${({ theme }) => theme.transition('background-color')};
 
   &:hover,

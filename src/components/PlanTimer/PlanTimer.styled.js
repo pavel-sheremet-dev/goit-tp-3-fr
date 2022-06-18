@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const TimerContainer = styled.div`
-  background: #ffffff;
+  background: ${({ theme }) => theme.colors.white};
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
   width: 280px;
   margin: 0 auto;

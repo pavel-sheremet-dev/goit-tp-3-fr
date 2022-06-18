@@ -15,7 +15,6 @@ export default function UserNavMenu() {
       <NavIcon to={library.path}>
         <HomeIcon />
       </NavIcon>
-
       <StyledSpanBorder></StyledSpanBorder>
     </StyledBox>
   );

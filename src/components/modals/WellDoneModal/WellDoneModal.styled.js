@@ -37,12 +37,12 @@ export const Button = styled.button`
   transition: ${({ theme }) => theme.transition('background-color')},
     ${({ theme }) => theme.transition('color')};
 
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.buttonText};
   background: ${({ theme }) => theme.colors.mainBrandColor};
 
   &:hover,
   &:focus {
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.buttonText};
     background-color: ${({ theme }) => theme.colors.hover};
   }
 `;

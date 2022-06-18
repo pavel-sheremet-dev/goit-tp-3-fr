@@ -6,7 +6,7 @@ export const DashBox = styled.div`
   height: 290px;
   padding: 20px 10px 20px 10px;
   box-shadow: ${({ theme }) => theme.shadows.dashboard};
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.dashboardBackColor};
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     padding: 30px 37px 30px 37px;

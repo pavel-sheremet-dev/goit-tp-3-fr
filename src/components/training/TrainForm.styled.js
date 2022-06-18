@@ -33,7 +33,7 @@ export const Title = styled.h3`
   font-size: 20px;
   line-height: 1.2;
   font-weight: 600;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.buttonText};
   background-color: ${({ theme }) => theme.colors.disabledBtn};
   box-shadow: ${({ theme }) => theme.shadows.btnShadow};
 
@@ -68,6 +68,11 @@ export const InputWrapper = styled.div`
   justify-content: center;
   margin-bottom: 20px;
   flex-wrap: wrap;
+
+  & .rdt .rdtPicker {
+    background: ${({ theme }) => theme.colors.white};
+    margin-top: 5px;
+  }
 
   &.error {
     min-height: 60px;
@@ -107,7 +112,7 @@ export const Button = styled.button`
   font-weight: 500;
   font-size: 14px;
   line-height: 1.21;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.buttonText};
   background-color: ${({ theme }) => theme.colors.mainBrandColor};
   border: none;
   outline: 1px solid ${({ theme }) => theme.colors.mainBrandColor};
@@ -118,7 +123,7 @@ export const Button = styled.button`
 
   &:hover,
   &:focus {
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.buttonText};
     background-color: ${({ theme }) => theme.colors.hover};
     outline: 1px solid ${({ theme }) => theme.colors.hover};
     box-shadow: ${({ theme }) => theme.shadows.btnShadow};

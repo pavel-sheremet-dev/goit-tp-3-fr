@@ -1,4 +1,4 @@
-import TrainForm from 'components/TrainForm/TrainForm';
+import TrainForm from '../TrainForm';
 import BackButton from 'components/buttons/backButton/BackButton';
 
 const TrainFormModal = ({ isShowTrainingModal, setIsShowTrainingModal }) => {

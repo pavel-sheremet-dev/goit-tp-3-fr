@@ -1,12 +1,10 @@
 import { StyledContainer } from 'components/common/container/Container.styled';
 import styled from 'styled-components';
 
-
 export const StyledHeader = styled.header`
   border-bottom: 1px solid ${({ theme }) => theme.colors.headerBorder};
   background-color: ${({ theme }) => theme.colors.white};
 `;
-
 
 export const StyledHeaderBox = styled.div`
   position: relative;
