@@ -236,6 +236,13 @@ export const Button = styled.button`
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
 
+  &:hover,
+  &:focus,
+  &:active {
+    color: ${({ theme }) => theme.colors.buttonText};
+    background: ${({ theme }) => theme.colors.mainBrandColor};
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     margin: 0 0 0 auto;
     padding: 10px;

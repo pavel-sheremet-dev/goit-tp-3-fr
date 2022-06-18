@@ -1,11 +1,13 @@
-import { useState, useEffect, useRef } from 'react';
-import { getCssVars } from 'styles/vars';
+import { useState, useEffect, useRef, useContext } from 'react';
+import { themes } from 'styles';
 import { useTranslation } from 'react-i18next';
+import { ThemeContext } from 'context/themeContext';
 
 const RedirectTimer = ({ getRedirect }) => {
   const { t } = useTranslation();
   const [timer, setTimer] = useState(5);
   const intervalId = useRef(null);
+  const theme = useContext(ThemeContext);
 
   useEffect(() => {
     if (timer) return;
@@ -33,7 +35,7 @@ const RedirectTimer = ({ getRedirect }) => {
           alignItems: 'center',
           width: '50px',
           height: '30px',
-          backgroundColor: getCssVars().colors.mainBrandColor,
+          backgroundColor: themes[theme].colors.mainBrandColor,
         }}
       >
         {timer}

@@ -43,6 +43,7 @@ export const Input = styled.input`
   border: none;
   outline: 1px solid ${({ theme }) => theme.colors.placeholder};
   box-shadow: 0 0 0 transparent;
+  color: ${({ theme }) => theme.colors.defaultFont};
   background-color: ${({ theme }) => theme.colors.lightBackground};
   transition: ${({ theme }) => theme.transition('background-color')},
     ${({ theme }) => theme.transition('box-shadow')},

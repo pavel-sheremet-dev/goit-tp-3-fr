@@ -16,6 +16,10 @@ export const Form = styled.form`
     align-items: center;
     margin-left: 0;
   }
+  & .datetime .rdtPicker {
+    background: ${({ theme }) => theme.colors.white};
+    margin-top: 5px;
+  }
 `;
 export const Title = styled.h2`
   text-align: center;
@@ -38,6 +42,7 @@ export const InputDate = styled(Input)`
   width: 110px;
   font-size: 13px;
   line-height: 1.21;
+  color: ${({ theme }) => theme.colors.defaultFont};
 `;
 
 export const Label = styled.label`
@@ -52,18 +57,17 @@ export const Label = styled.label`
     line-height: 1.2;
     margin-bottom: 4px;
   }
+  & input:hover + button {
+    background-color: ${({ theme }) => theme.colors.white};
+  }
   & .icon {
     position: absolute;
     top: 65%;
     right: 0;
     margin-top: 0;
+    border-radius: 0;
     background-color: ${({ theme }) => theme.colors.lightBackground};
     transform: translateY(-50%);
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: transparent;
-    }
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     margin-right: 20px;
@@ -76,13 +80,14 @@ export const Label = styled.label`
 export const ButtonDate = styled(Button)`
   width: 240px;
   margin-top: 28px;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.buttonText};
   background-color: ${({ theme }) => theme.colors.mainBrandColor};
   outline: none;
   cursor: pointer;
 
   &:hover,
   &:focus {
+    color: ${({ theme }) => theme.colors.buttonText};
     background-color: ${({ theme }) => theme.colors.hover};
   }
 

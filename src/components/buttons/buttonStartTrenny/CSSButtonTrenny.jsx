@@ -23,7 +23,7 @@ export const Button = styled.button`
 
   &:hover,
   &:focus {
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.buttonText};
     background-color: ${({ theme }) => theme.colors.mainBrandColor};
     outline: 1px solid ${({ theme }) => theme.colors.mainBrandColor};
     box-shadow: ${({ theme }) => theme.shadows.btnShadow};

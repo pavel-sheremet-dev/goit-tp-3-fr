@@ -11,7 +11,8 @@ import ExitModal from 'components/modals/ExitModal/ExitModal';
 import Logo from '../Logo/Logo';
 import Modal from 'components/modals/Modal/Modal';
 import UserNavMenu from '../UserMenu/UserNavMenu';
-import LngSwitcher from '../LngSwitcher';
+import { ButtonTheme } from '../buttonTheme/ButtonTheme';
+import LngSwitcher from '../LngSwitcher/LngSwitcher';
 
 import { StyledBox } from 'components/header/Header.styled';
 import {
@@ -55,8 +56,6 @@ const Navigation = () => {
   return (
     <>
       <Logo />
-
-      <LngSwitcher />
       {isLoggedIn && (
         <>
           {(isDesktop || isTablet) && (
@@ -65,7 +64,12 @@ const Navigation = () => {
               <StyledSpanName>{name}</StyledSpanName>
             </StyledBox>
           )}
+
           <StyledBox>
+            <StyledBox>
+              <ButtonTheme />
+              <LngSwitcher />
+            </StyledBox>
             <StyledNav>
               <StyledBox>
                 <UserNavMenu />

@@ -79,6 +79,7 @@ export const Input = styled.input`
   background-color: ${({ theme }) => theme.colors.lightBackground};
   border: none;
   box-shadow: 0 0 0 transparent;
+  color: ${({ theme }) => theme.colors.defaultFont};
   transition: ${({ theme }) => theme.transition('background-color')},
     ${({ theme }) => theme.transition('outline-color')},
     ${({ theme }) => theme.transition('box-shadow')};
@@ -113,7 +114,7 @@ export const Button = styled.button`
 
   &:hover,
   &:focus {
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.buttonText};
     background-color: ${({ theme }) => theme.colors.hover};
     outline: none;
   }

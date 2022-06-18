@@ -12,7 +12,7 @@ export default function UserNavMenu() {
       <NavIcon to={library.path}>
         <HomeIcon />
       </NavIcon>
-      <NavIcon style={{ marginLeft: '13px' }} to={training.path}>
+      <NavIcon style={{ marginLeft: '10px' }} to={training.path}>
         <BookIcon />
       </NavIcon>
       <StyledSpanBorder></StyledSpanBorder>

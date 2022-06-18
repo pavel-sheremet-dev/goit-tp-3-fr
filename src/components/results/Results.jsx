@@ -80,6 +80,7 @@ const DateTimeInput = ({
 
   return (
     <Datetime
+      className="datetime"
       inputProps={!date ? inputProps : selectedDate}
       renderInput={renderInput}
       value={selectedDate}
