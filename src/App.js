@@ -3,13 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { authOperations, authSelectors } from 'redux/auth';
 import { GlobalStyle } from 'styles/GlobalStyles';
 import { ThemeProvider } from 'styled-components';
+import { HelmetProvider } from 'react-helmet-async';
+import { ThemeContext, themesValue } from 'context/themeContext';
 import { themes } from 'styles';
+
 import { ToastContainer } from 'react-toastify';
 import Header from 'components/header/Header';
+import Meta from 'components/common/helmet/Meta';
 import Layout from 'components/common/layout/Layout';
 import MainComponent from 'components/main/MainComponent';
 import { Loader } from 'components/common/Loader/Loader';
-import { ThemeContext, themesValue } from 'context/themeContext';
 
 const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
 const defaultTheme = isDark ? themesValue.dark : themesValue.light;
@@ -48,19 +51,22 @@ const App = () => {
     <>
       <ThemeContext.Provider value={{ themeSelect, toggleTheme }}>
         <ThemeProvider theme={themes[themeSelect]}>
-          <Layout>
-            <GlobalStyle />
-            {isLoadingUser || firstLoading.current ? (
-              <Loader />
-            ) : (
-              <>
-                <Header />
-                <MainComponent />
-              </>
-            )}
-            <ToastContainer position="top-center" autoClose={4000} />
-            <div className="body-frame"></div>
-          </Layout>
+          <HelmetProvider>
+            <Layout>
+              <GlobalStyle />
+              <Meta />
+              {isLoadingUser || firstLoading.current ? (
+                <Loader />
+              ) : (
+                <>
+                  <Header />
+                  <MainComponent />
+                </>
+              )}
+              <ToastContainer position="top-center" autoClose={4000} />
+              <div className="body-frame"></div>
+            </Layout>
+          </HelmetProvider>
         </ThemeProvider>
       </ThemeContext.Provider>
     </>

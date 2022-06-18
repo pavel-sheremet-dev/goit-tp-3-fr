@@ -19,7 +19,7 @@ const RegistrationPage = lazy(() =>
   ),
 );
 const LibraryPage = lazy(() =>
-  import('pages/LibraryPage/LibraryPage' /* webpackChunkName: "LibraryPage" */),
+  import('pages/LibraryPage/' /* webpackChunkName: "LibraryPage" */),
 );
 const TrainingPage = lazy(() =>
   import(

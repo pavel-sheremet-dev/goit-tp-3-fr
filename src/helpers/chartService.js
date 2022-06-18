@@ -32,7 +32,7 @@ export const getOptions = (normalizeResults, maxPoint, labelsQuantity) => ({
   scales: {
     x: {
       min:
-        normalizeResults.length < 0
+        normalizeResults.length <= 0
           ? labelsQuantity
           : normalizeResults.length - labelsQuantity,
       max: normalizeResults.length - 1,

@@ -21,6 +21,7 @@ export const validationAddFormSchema = Yup.object({
     ),
   author: Yup.string()
     .min(1)
+    .max(50)
     .required(
       language.resolvedLanguage === 'ua'
         ? 'Це обов‘язкове поле'
@@ -118,7 +119,7 @@ export const validateForm = values => {
 
 export const isValidNumberInputRegex = new RegExp('[0-9]');
 export const isValidNameInputRegex = new RegExp(
-  "[0-9A-Za-zА-Яа-яґҐЁёІіЇїЄє'’ʼ\\s-]",
+  `[0-9A-Za-zА-Яа-яґҐЁёІіЇїЄє.,:"'’ʼ\\s-]`,
 );
 
 export const normalizeNumber = (value, regexp) => {

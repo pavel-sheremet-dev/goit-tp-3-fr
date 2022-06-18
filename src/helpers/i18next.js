@@ -6,7 +6,7 @@ i18next
   .use(initReactI18next)
   .use(LanguageDetector)
   .init({
-    debug: true,
+    debug: false,
     fallbackLng: 'ua',
     resources: {
       ua: {
@@ -111,6 +111,12 @@ i18next
             'Верифікація вже пройдена або посилання вже не дійне',
           mainPage: 'На головну сторінку',
           sorry: 'Нажаль, за вашим запитом сторінка не знайдена ¯_(ツ)_/¯',
+          metatags: {
+            description: 'Найкращий Сeрвіс - Book Reading',
+            title: 'Book Reading',
+            team: 'localhost3000',
+            website: 'Веб-сайт',
+          },
         },
       },
       en: {
@@ -214,6 +220,12 @@ i18next
           alreadyVerified: 'Verification passed or link no longer valid',
           mainPage: 'To the main page',
           sorry: 'Oops, your page was not found ¯_(ツ)_/¯',
+          metatags: {
+            description: 'Best service - Book Reading',
+            title: 'Book Reading',
+            team: 'localhost3000',
+            website: 'website',
+          },
         },
       },
     },

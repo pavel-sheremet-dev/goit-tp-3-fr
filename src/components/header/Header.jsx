@@ -9,25 +9,28 @@ import {
   StyledContainerHeader,
   StyledHeader,
   StyledBox,
+  StyledHeaderBox,
 } from './Header.styled';
 
 const Header = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   return (
     <StyledHeader>
-      {isLoggedIn ? (
-        <StyledContainerHeader style={{ justifyContent: 'space-between' }}>
-          <Navigation />
-        </StyledContainerHeader>
-      ) : (
-        <StyledContainerHeader>
-          <Navigation />
-          <StyledBox>
-            <ButtonTheme />
-            <LngSwitcher />
-          </StyledBox>
-        </StyledContainerHeader>
-      )}
+      <StyledHeaderBox>
+        {isLoggedIn ? (
+          <StyledContainerHeader style={{ justifyContent: 'space-between' }}>
+            <Navigation />
+          </StyledContainerHeader>
+        ) : (
+          <StyledContainerHeader>
+            <Navigation />
+            <StyledBox>
+              <ButtonTheme />
+              <LngSwitcher />
+            </StyledBox>
+          </StyledContainerHeader>
+        )}
+      </StyledHeaderBox>
     </StyledHeader>
   );
 };
