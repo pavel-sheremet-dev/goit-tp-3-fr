@@ -154,25 +154,25 @@ const BooksTemplate = ({ options = [], getId, type, title }) => {
                           />
                         </BookCategoryOutput>
                         <BookCategoryOutput
-                          tablet={typeOf ? '85px' : '75px'}
-                          desktop={typeOf ? '122px' : '108px'}
+                          tablet={typeOf ? '65px' : '75px'}
+                          desktop={typeOf ? '100px' : '108px'}
                         >
                           <BookCategoryOutputPos>
                             {book.year}
                           </BookCategoryOutputPos>
                         </BookCategoryOutput>
                         <BookCategoryOutput
-                          tablet={typeOf ? '53px' : '35px'}
-                          desktop={typeOf ? '135px' : '35px'}
+                          tablet={typeOf ? '42px' : '35px'}
+                          desktop={typeOf ? '45px' : '35px'}
                         >
                           <BookCategoryOutputPos
-                            margin={typeOf ? '0' : '0 0 0 auto'}
+                            margin={typeOf ? '0 0 0 auto' : '0 0 0 auto'}
                           >
                             {book.pages}
                           </BookCategoryOutputPos>
                         </BookCategoryOutput>
                         {typeOf && (
-                          <BookCategoryOutput>
+                          <BookCategoryOutput tablet="116px" desktop="196px">
                             <RatingContainer>
                               <GetBookRating rating={book.rating} />
                             </RatingContainer>
@@ -180,7 +180,11 @@ const BooksTemplate = ({ options = [], getId, type, title }) => {
                         )}
                       </ListBookCategory>
                       {typeOf && (
-                        <Button type="button" onClick={() => getId(book.id)}>
+                        <Button
+                          type="button"
+                          id="butt"
+                          onClick={() => getId(book.id)}
+                        >
                           {t('resume')}
                         </Button>
                       )}
