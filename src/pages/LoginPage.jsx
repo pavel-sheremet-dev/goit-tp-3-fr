@@ -1,13 +1,18 @@
 import LoginPageContent from 'components/auth/login/LoginPageContent/LoginPageContent';
 import LoginQuote from 'components/auth/login/LoginQuote/LoginQuote';
-import { Section } from './RegistrationPage/RegistrationPage.styled';
+import {
+  Section,
+  LoginSection,
+} from './registrationPage/RegistrationPage.styled';
 
 const LoginPage = () => {
   return (
-    <Section>
-      <LoginPageContent />
-      <LoginQuote />
-    </Section>
+    <LoginSection>
+      <Section>
+        <LoginPageContent />
+        <LoginQuote />
+      </Section>
+    </LoginSection>
   );
 };
 

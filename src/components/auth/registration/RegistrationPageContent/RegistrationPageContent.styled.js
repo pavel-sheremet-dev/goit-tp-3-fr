@@ -21,7 +21,7 @@ export const StyledSection = styled.div`
     ),
     url(${imagesMobile});
   background-repeat: no-repeat;
-  background-position: 50%;
+  background-position: top center;
   background-size: cover;
 
   @media (min-device-pixel-ratio: 2),
@@ -35,11 +35,12 @@ export const StyledSection = styled.div`
       url(${imagesMobileForIOS});
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.response}) {
-    /* max-width: 479px; */
+    max-width: 479px;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
-    /* max-width: 768px; */
+    max-width: 768px;
+
     background-image: linear-gradient(
         to right,
         ${({ theme }) => theme.colors.overlay},
@@ -60,7 +61,9 @@ export const StyledSection = styled.div`
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
-    /* max-width: 549px;   */
+    justify-content: flex-end;
+    padding-right: 75px;
+
     background-image: linear-gradient(
         to right,
         ${({ theme }) => theme.colors.overlay},
@@ -89,7 +92,6 @@ export const StyledTablet = styled.div`
     background-color: ${({ theme }) => theme.colors.background1};
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
-    margin-top: 185px;
-    margin-bottom: 175px;
+    margin-top: 90px;
   }
 `;

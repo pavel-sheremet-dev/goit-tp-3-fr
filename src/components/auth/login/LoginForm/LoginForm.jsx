@@ -54,6 +54,7 @@ const LoginForm = () => {
             <LoginFormIcon>*</LoginFormIcon>
           ) : null}
         </LoginFormTitle>
+
         <Input
           id="email"
           name="email"
@@ -62,6 +63,9 @@ const LoginForm = () => {
           value={formik.values.email.trim()}
           placeholder="your@email.com"
         />
+        {formik.touched.email && formik.errors.email ? (
+          <Error>{formik.errors.email}</Error>
+        ) : null}
 
         <LoginFormTitle>
           {t('password')}{' '}

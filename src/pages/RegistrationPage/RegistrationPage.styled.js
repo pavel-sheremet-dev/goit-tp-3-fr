@@ -1,22 +1,21 @@
 import styled from 'styled-components';
 import { StyledContainer } from 'components/common/container/Container.styled';
 
-export const Section = styled(StyledContainer)`
-  display: grid;
+export const LoginSection = styled.section`
+  background-color: ${({ theme }) => theme.colors.background1};
+`;
 
-  /* display: flex;
+export const Section = styled(StyledContainer)`
+  display: flex;
   flex-direction: column;
-  justify-content: center; */
+  justify-content: center;
   align-items: center;
   padding: 0;
   width: 100%;
   outline: -1px transparent;
-  background-color: ${({ theme }) => theme.colors.background1};
 
-  /* @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
-  } */
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
-    // flex-direction: row;
+    display: grid;
     grid-template-columns: 43% 57%;
   }
 `;

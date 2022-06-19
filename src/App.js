@@ -13,7 +13,7 @@ import Header from 'components/header/Header';
 import Meta from 'components/common/helmet/Meta';
 import Layout from 'components/common/layout/Layout';
 import MainComponent from 'components/main/MainComponent';
-import { Loader } from 'components/common/Loader/Loader';
+import { Loader } from 'components/common/loader/Loader';
 
 const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
 const defaultTheme = isDark ? themesValue.dark : themesValue.light;

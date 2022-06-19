@@ -8,18 +8,18 @@ import { getBooks } from 'redux/books/books-operations';
 import { getTypeKeys } from 'helpers/libraryService';
 
 import Section from 'components/common/section/Section';
-import EmtpyLibraryText from 'components/emtpyLibraryText/EmtpyLibraryText';
-import LibraryForm from 'components/LibraryForm/LibraryForm';
+import EmtpyLibraryText from 'components/library/emtpyLibraryText/EmtpyLibraryText';
+import LibraryForm from 'components/library/libraryForm/LibraryForm';
 import BooksTemplate from 'components/LibraryBooks/BooksTemplate';
 
-import LibButton from 'components/buttons/LibButton';
+import LibButton from 'components/buttons/libButton';
 import BackButton from '../../components/buttons/backButton/BackButton';
-import RatingModal from 'components/modals/RatingModal/RatingModal';
-import Modal from 'components/modals/Modal/Modal';
+import RatingModal from 'components/modals/ratingModal/RatingModal';
+import Modal from 'components/modals/modal/Modal';
 import { LibCollectionLogicPosition } from './LibraryPage.styled';
-import { Loader } from 'components/common/Loader/Loader';
+import { Loader } from 'components/common/loader/Loader';
 import { booksSelectors } from 'redux/books';
-import { AddButton } from 'components/buttons/LibraryRadialButton/RadialButton';
+import { AddButton } from 'components/buttons/libraryRadialButton/RadialButton';
 
 const { mobile, response } = format;
 

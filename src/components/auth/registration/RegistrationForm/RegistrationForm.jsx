@@ -68,6 +68,7 @@ const LoginForm = () => {
           onBlur={formik.handleBlur}
           value={formik.values.name}
           placeholder="..."
+          style={{ color: formik.touched.name && formik.errors.name && 'red' }}
         />
         {formik.touched.name && formik.errors.name ? (
           <Error>{formik.errors.name}</Error>
@@ -87,6 +88,9 @@ const LoginForm = () => {
           onBlur={formik.handleBlur}
           value={formik.values.email.trim()}
           placeholder="your@email.com"
+          style={{
+            color: formik.touched.email && formik.errors.email && 'red',
+          }}
         />
         {formik.touched.email && formik.errors.email ? (
           <Error>{formik.errors.email}</Error>
@@ -109,6 +113,9 @@ const LoginForm = () => {
           onBlur={formik.handleBlur}
           value={formik.values.password.trim()}
           placeholder="..."
+          style={{
+            color: formik.touched.password && formik.errors.password && 'red',
+          }}
         />
         {formik.touched.password && formik.errors.password ? (
           <Error>{formik.errors.password}</Error>
@@ -131,6 +138,10 @@ const LoginForm = () => {
           onBlur={formik.handleBlur}
           value={formik.values.repassword.trim()}
           placeholder="..."
+          style={{
+            color:
+              formik.touched.repassword && formik.errors.repassword && 'red',
+          }}
         />
         {formik.touched.repassword && formik.errors.repassword ? (
           <Error>{formik.errors.repassword}</Error>

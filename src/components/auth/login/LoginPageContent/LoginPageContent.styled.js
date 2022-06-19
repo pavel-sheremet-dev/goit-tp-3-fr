@@ -19,6 +19,7 @@ export const StyledSection = styled.div`
       ${({ theme }) => theme.colors.overlay}
     ),
     url(${imagesMobile});
+
   background-repeat: no-repeat;
   background-position: bottom left;
   background-size: cover;
@@ -59,7 +60,9 @@ export const StyledSection = styled.div`
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
-    width: 549px;
+    justify-content: flex-end;
+    padding-right: 74px;
+
     background-image: linear-gradient(
         to right,
         ${({ theme }) => theme.colors.overlay},

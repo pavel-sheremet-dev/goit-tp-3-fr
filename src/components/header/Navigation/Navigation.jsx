@@ -8,11 +8,11 @@ import { trainingSelectors } from 'redux/training';
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { routes } from 'routes/config';
 
-import ExitModal from 'components/modals/ExitModal/ExitModal';
-import Modal from 'components/modals/Modal/Modal';
-import UserNavMenu from '../UserMenu/UserNavMenu';
+import ExitModal from 'components/modals/exitModal/ExitModal';
+import Modal from 'components/modals/modal/Modal';
+import UserNavMenu from '../userMenu/UserNavMenu';
 import { ButtonTheme } from '../buttonTheme/ButtonTheme';
-import LngSwitcher from '../LngSwitcher/LngSwitcher';
+import LngSwitcher from '../lngSwitcher/LngSwitcher';
 
 import { StyledBox } from 'components/header/Header.styled';
 import {
@@ -24,7 +24,7 @@ import {
 } from './Navigation.styled';
 import { ReactComponent as BookIcon } from 'images/svg/icon-book.svg';
 import { ReactComponent as HomeIcon } from 'images/svg/icon-home.svg';
-import NavigationLink from '../UserMenu/NavigationLink';
+import NavigationLink from '../userMenu/NavigationLink';
 
 const { training, library } = routes;
 

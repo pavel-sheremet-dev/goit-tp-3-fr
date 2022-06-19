@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 
-import { Loader } from 'components/common/Loader/Loader';
+import { Loader } from 'components/common/loader/Loader';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
