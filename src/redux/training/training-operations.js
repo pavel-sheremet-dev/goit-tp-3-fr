@@ -23,7 +23,7 @@ export const addTraining = createAsyncThunk(
       return data;
     } catch (error) {
       toast.error(
-        language.resolvedLanguage === 'ua'
+        language.resolvedLanguage === 'uk'
           ? 'Упс, щось пішло не так, спробуйте повторити пізніше :)'
           : 'Oops, something went wrong, try to repeat later :)',
       );
@@ -42,7 +42,7 @@ export const getActiveTraining = createAsyncThunk(
       const { status } = error.response;
       status !== 404 &&
         toast.error(
-          language.resolvedLanguage === 'ua'
+          language.resolvedLanguage === 'uk'
             ? getTrainingError(error.response.status)
             : getTrainingErrorEN(error.response.status),
         );
@@ -64,7 +64,7 @@ export const updateActiveTraining = createAsyncThunk(
       const { status } = error.response;
       status !== 404 &&
         toast.error(
-          language.resolvedLanguage === 'ua'
+          language.resolvedLanguage === 'uk'
             ? getTrainingError(error.response.status)
             : getTrainingErrorEN(error.response.status),
         );

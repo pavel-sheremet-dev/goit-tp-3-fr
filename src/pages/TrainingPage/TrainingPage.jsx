@@ -199,7 +199,7 @@ const TrainingPage = () => {
                 {isReadMoreBook && (
                   <CongratsModal
                     text={
-                      language.resolvedLanguage === 'ua'
+                      language.resolvedLanguage === 'uk'
                         ? modalText.bookRead.ua
                         : modalText.bookRead.en
                     }
@@ -209,7 +209,7 @@ const TrainingPage = () => {
                 {issuccessDone && (
                   <CongratsModal
                     text={
-                      language.resolvedLanguage === 'ua'
+                      language.resolvedLanguage === 'uk'
                         ? modalText.trainingCompleted.ua
                         : modalText.trainingCompleted.en
                     }
@@ -281,7 +281,7 @@ const TrainingPage = () => {
                 {isReadMoreBook && (
                   <CongratsModal
                     text={
-                      language.resolvedLanguage === 'ua'
+                      language.resolvedLanguage === 'uk'
                         ? modalText.bookRead.ua
                         : modalText.bookRead.en
                     }
@@ -291,7 +291,7 @@ const TrainingPage = () => {
                 {issuccessDone && (
                   <CongratsModal
                     text={
-                      language.resolvedLanguage === 'ua'
+                      language.resolvedLanguage === 'uk'
                         ? modalText.trainingCompleted.ua
                         : modalText.trainingCompleted.en
                     }

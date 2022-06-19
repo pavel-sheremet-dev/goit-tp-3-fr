@@ -49,42 +49,42 @@ export const validationRegistrationSchema = Yup.object({
     .min(3)
     .max(100)
     .required(
-      language.resolvedLanguage === 'ua' ? lngs.required.ua : lngs.required.en,
+      language.resolvedLanguage === 'uk' ? lngs.required.ua : lngs.required.en,
     )
     .typeError(
-      language.resolvedLanguage === 'ua' ? lngs.start.ua : lngs.start.en,
+      language.resolvedLanguage === 'uk' ? lngs.start.ua : lngs.start.en,
     ),
 
   email: Yup.string()
-    .email(language.resolvedLanguage === 'ua' ? lngs.email.ua : lngs.email.en)
+    .email(language.resolvedLanguage === 'uk' ? lngs.email.ua : lngs.email.en)
     .min(7)
     .max(63)
     .email()
     .required(
-      language.resolvedLanguage === 'ua' ? lngs.required.ua : lngs.required.en,
+      language.resolvedLanguage === 'uk' ? lngs.required.ua : lngs.required.en,
     )
     .typeError(
-      language.resolvedLanguage === 'ua' ? lngs.email.ua : lngs.email.en,
+      language.resolvedLanguage === 'uk' ? lngs.email.ua : lngs.email.en,
     ),
 
   password: Yup.string()
     .min(5)
     .max(30)
     .required(
-      language.resolvedLanguage === 'ua' ? lngs.required.ua : lngs.required.en,
+      language.resolvedLanguage === 'uk' ? lngs.required.ua : lngs.required.en,
     )
     .typeError(
-      language.resolvedLanguage === 'ua' ? lngs.password.ua : lngs.password.en,
+      language.resolvedLanguage === 'uk' ? lngs.password.ua : lngs.password.en,
     ),
 
   repassword: Yup.string()
     .min(5)
     .max(30)
     .required(
-      language.resolvedLanguage === 'ua' ? lngs.required.ua : lngs.required.en,
+      language.resolvedLanguage === 'uk' ? lngs.required.ua : lngs.required.en,
     )
     .typeError(
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? lngs.different.ua
         : lngs.different.en,
     ),
@@ -97,39 +97,39 @@ export const validate = values => {
   const errors = {};
   if (!values.name) {
     errors.name =
-      language.resolvedLanguage === 'ua' ? lngs.required.ua : lngs.required.en;
+      language.resolvedLanguage === 'uk' ? lngs.required.ua : lngs.required.en;
   } else if (values.name.length < 2 || values.name.length > 99) {
     errors.name =
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? lngs.nameLength.ua
         : lngs.nameLength.en;
   } else if (!reg.test(values.name[0])) {
     errors.name =
-      language.resolvedLanguage === 'ua' ? lngs.start.ua : lngs.start.en;
+      language.resolvedLanguage === 'uk' ? lngs.start.ua : lngs.start.en;
   }
 
   if (!values.email) {
     errors.email =
-      language.resolvedLanguage === 'ua' ? lngs.required.ua : lngs.required.en;
+      language.resolvedLanguage === 'uk' ? lngs.required.ua : lngs.required.en;
   } else if (values.email.length < 6 || values.email.length > 62) {
     errors.email =
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? lngs.emailLength.ua
         : lngs.emailLength.en;
   } else if (values.email.startsWith('-') || values.email.slice(-1) === '-') {
     errors.email =
-      language.resolvedLanguage === 'ua' ? lngs.hyphen.ua : lngs.hyphen.en;
+      language.resolvedLanguage === 'uk' ? lngs.hyphen.ua : lngs.hyphen.en;
   } else if (cyrillic.test(values.email)) {
     errors.email =
-      language.resolvedLanguage === 'ua' ? lngs.password.ua : lngs.password.en;
+      language.resolvedLanguage === 'uk' ? lngs.password.ua : lngs.password.en;
   }
 
   if (!values.password) {
     errors.password =
-      language.resolvedLanguage === 'ua' ? lngs.required.ua : lngs.required.en;
+      language.resolvedLanguage === 'uk' ? lngs.required.ua : lngs.required.en;
   } else if (values.password.length < 4 || values.password.length > 29) {
     errors.password =
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? lngs.passwordLength.ua
         : lngs.passwordLength.en;
   } else if (
@@ -138,15 +138,15 @@ export const validate = values => {
     cyrillic.test(values.password)
   ) {
     errors.password =
-      language.resolvedLanguage === 'ua' ? lngs.password.ua : lngs.password.en;
+      language.resolvedLanguage === 'uk' ? lngs.password.ua : lngs.password.en;
   }
 
   if (!values.repassword) {
     errors.repassword =
-      language.resolvedLanguage === 'ua' ? lngs.required.ua : lngs.required.en;
+      language.resolvedLanguage === 'uk' ? lngs.required.ua : lngs.required.en;
   } else if (values.repassword !== values.password) {
     errors.repassword =
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? lngs.different.ua
         : lngs.different.en;
   }

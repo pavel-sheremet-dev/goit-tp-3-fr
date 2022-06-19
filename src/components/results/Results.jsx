@@ -67,7 +67,7 @@ const DateTimeInput = ({
   const renderInput = (props, openCalendar) => {
     return (
       <Label>
-        <span>{language.resolvedLanguage === 'ua' ? 'Дата' : 'Date'}</span>
+        <span>{language.resolvedLanguage === 'uk' ? 'Дата' : 'Date'}</span>
         <InputDate {...props} />
         <IconButton
           className={'icon'}
@@ -89,7 +89,7 @@ const DateTimeInput = ({
       isValidDate={valid}
       closeOnClickOutside
       closeOnSelect
-      locale={language.resolvedLanguage === 'ua' ? 'uk' : 'en'}
+      locale={language.resolvedLanguage}
       onChange={date => {
         onChange(date._d);
       }}
