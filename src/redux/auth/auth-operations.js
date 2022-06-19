@@ -33,14 +33,14 @@ const signUp = createAsyncThunk(
     try {
       const res = await axios.post(SIGN_UP_ENDPOINT, credentials);
       toast.info(
-        language.resolvedLanguage === 'ua'
+        language.resolvedLanguage === 'uk'
           ? 'Супер! Перевірте свою пошту та підтвердіть реєстрацію.'
           : 'Super! Check your mail and confirm registration.',
       );
       return res.data;
     } catch (error) {
       toast.error(
-        language.resolvedLanguage === 'ua'
+        language.resolvedLanguage === 'uk'
           ? getSignupError(error.response.status)
           : getSignupErrorEN(error.response.status),
       );
@@ -56,7 +56,7 @@ const signIn = createAsyncThunk('auth/logIn', async (credentials, thunkAPI) => {
     return res.data;
   } catch (error) {
     toast.error(
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? getLoginError(error.response.status)
         : getLoginErrorEN(error.response.status),
     );
@@ -70,7 +70,7 @@ const signOut = createAsyncThunk('auth/signOut', async (_, thunkAPI) => {
     token.unset();
   } catch (error) {
     toast.error(
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? 'Упс, щось пішло не так, спробуйте повторити пізніше :)'
         : 'Oops, something went wrong, try to repeat later :)',
     );

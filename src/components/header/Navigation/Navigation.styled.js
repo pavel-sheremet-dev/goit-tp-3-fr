@@ -30,6 +30,7 @@ export const StyledSpanFirstLetterName = styled.span`
 export const StyledHeaderButton = styled.button`
   color: ${({ theme }) => theme.colors.defaultFont};
   display: inline-block;
+  min-width: 60px;
   margin-left: 8px;
   padding: 0px;
   font-weight: 300;

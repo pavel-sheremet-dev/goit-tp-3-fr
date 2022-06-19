@@ -3,7 +3,7 @@ import { LngSwitcherStyled, Button } from './LngSwitcher.styled';
 
 const lngs = {
   en: { nativeName: 'EN' },
-  ua: { nativeName: 'UA' },
+  uk: { nativeName: 'UA' },
 };
 
 const LngSwitcher = ({ style }) => {
