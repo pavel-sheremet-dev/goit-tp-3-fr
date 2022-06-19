@@ -1,5 +1,5 @@
-import LoginPageContent from 'components/auth/login/LoginPageContent/LoginPageContent';
-import LoginQuote from 'components/auth/login/LoginQuote/LoginQuote';
+import LoginPageContent from 'components/auth/login/loginPageContent/LoginPageContent';
+import LoginQuote from 'components/auth/login/loginQuote/LoginQuote';
 import {
   Section,
   LoginSection,
