@@ -14,5 +14,5 @@ export const WrapperOverlay = styled.div`
   z-index: 10;
 `;
 export const WrapperModal = styled(StyledContainer)`
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.background1};
 `;

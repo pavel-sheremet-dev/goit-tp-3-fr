@@ -85,7 +85,7 @@ export const StyledTablet = styled.div`
     margin-top: 64px;
     margin-bottom: 65px;
     width: 400px;
-    background-color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.background1};
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
     margin-top: 185px;

@@ -2,7 +2,7 @@ export const dark = {
   colors: {
     defaultFont: '#ffffff',
     lightText: '#b7b8c4',
-    white: '#2f2f33',
+    background1: '#2f2f33',
     googleText: '#e1e2e6',
     googleBackColor: '#161617',
     placeholder: '#c0c1c4',
@@ -22,6 +22,7 @@ export const dark = {
     scroll: 'rgba(177, 181, 194, 0.25)',
     dashboardBackColor: '#a4a4a6',
     buttonText: '#ffffff',
+    disabledSwitch: '#d2d2d2',
   },
   delay: 200,
   breakPoints: {

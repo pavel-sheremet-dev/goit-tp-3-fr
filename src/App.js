@@ -5,6 +5,7 @@ import { GlobalStyle } from 'styles/GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 import { HelmetProvider } from 'react-helmet-async';
 import { ThemeContext, themesValue } from 'context/themeContext';
+import { PositionContext } from 'context/positionContext';
 import { themes } from 'styles';
 
 import { ToastContainer } from 'react-toastify';
@@ -22,6 +23,9 @@ const App = () => {
   const firstLoading = useRef(true);
   const [themeSelect, setThemeSelect] = useState(
     localStorage.getItem('app-theme') || defaultTheme,
+  );
+  const [isRightHand, setIsRightHand] = useState(
+    () => JSON.parse(localStorage.getItem('right-hand')) ?? false,
   );
   useEffect(() => {
     setThemeSelect(themeSelect);
@@ -41,6 +45,14 @@ const App = () => {
     }
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem('right-hand', isRightHand);
+  }, [isRightHand]);
+
+  const toggleHand = value => {
+    setIsRightHand(value);
+  };
+
   const isLoadingUser = useSelector(authSelectors.getLoadingUser);
 
   useEffect(() => {
@@ -51,21 +63,23 @@ const App = () => {
     <>
       <ThemeContext.Provider value={{ themeSelect, toggleTheme }}>
         <ThemeProvider theme={themes[themeSelect]}>
-          <HelmetProvider>
-            <Layout>
-              <GlobalStyle />
-              <Meta />
-              {isLoadingUser || firstLoading.current ? (
-                <Loader />
-              ) : (
-                <>
-                  <Header />
-                  <MainComponent />
-                </>
-              )}
-              <ToastContainer position="top-center" autoClose={4000} />
-            </Layout>
-          </HelmetProvider>
+          <PositionContext.Provider value={{ isRightHand, toggleHand }}>
+            <HelmetProvider>
+              <Layout>
+                <GlobalStyle />
+                <Meta />
+                {isLoadingUser || firstLoading.current ? (
+                  <Loader />
+                ) : (
+                  <>
+                    <Header />
+                    <MainComponent />
+                  </>
+                )}
+                <ToastContainer position="top-center" autoClose={4000} />
+              </Layout>
+            </HelmetProvider>
+          </PositionContext.Provider>
         </ThemeProvider>
       </ThemeContext.Provider>
     </>

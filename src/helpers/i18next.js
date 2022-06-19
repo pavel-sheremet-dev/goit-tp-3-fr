@@ -117,6 +117,13 @@ i18next
             team: 'localhost3000',
             website: 'Веб-сайт',
           },
+          mobileMenu: {
+            language: 'Мова',
+            theme: 'Темна тема',
+            library: 'Моя Бібіліотека',
+            training: 'Моє тренування',
+            hand: 'Рука',
+          },
         },
       },
       en: {
@@ -225,6 +232,13 @@ i18next
             title: 'Book Reading',
             team: 'localhost3000',
             website: 'website',
+          },
+          mobileMenu: {
+            language: 'Language',
+            theme: 'Night theme',
+            library: 'My Library',
+            training: 'My training',
+            hand: 'Hand switcher',
           },
         },
       },

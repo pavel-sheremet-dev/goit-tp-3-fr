@@ -7,7 +7,7 @@ export const StyledRatingBox = styled.div`
   max-width: 280px;
   max-height: 395px;
   padding: 20px 20px 40px;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.background1};
   box-shadow: ${({ theme }) => theme.shadows.ratingModal};
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     max-width: 608px;

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const StyledNav = styled.nav`
   display: flex;
-  margin-right: 8px;
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     margin-left: 0px;
     margin-right: 0px;
@@ -17,9 +16,9 @@ export const StyledSpanName = styled.span`
 `;
 
 export const StyledSpanFirstLetterName = styled.span`
-  width: 33px;
+  min-width: 33px;
   height: 33px;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   font-weight: 600;
@@ -42,6 +41,7 @@ export const StyledHeaderButton = styled.button`
   -ms-text-underline-position: below;
   background: none;
   cursor: pointer;
+  transition: ${({ theme }) => theme.transition('color')};
   &:hover,
   &:focus {
     color: ${({ theme }) => theme.colors.mainBrandColor};
@@ -51,5 +51,15 @@ export const StyledHeaderButton = styled.button`
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
     margin-left: 14px;
+  }
+`;
+
+export const StyledSpanBorder = styled.span`
+  margin: 0 8px;
+  width: 1px;
+  height: 33px;
+  background-color: ${({ theme }) => theme.colors.borderColor};
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+    margin-left: 6px;
   }
 `;

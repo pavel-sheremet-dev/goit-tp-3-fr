@@ -58,7 +58,7 @@ export const Input = styled.input`
 
   &:focus,
   &:active {
-    background-color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.background1};
     box-shadow: inset ${({ theme }) => theme.shadows.inputShadow};
     outline-color: transparent;
   }
