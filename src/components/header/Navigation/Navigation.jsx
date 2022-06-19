@@ -100,10 +100,13 @@ const Navigation = ({ columnDirection = false, onCloseMobileMenu }) => {
                       {iconName}
                     </StyledSpanFirstLetterName>
                   )}
-                  <StyledHeaderButton onClick={handleClick}>
-                    {t('logout')}
-                  </StyledHeaderButton>
                 </>
+              )}
+
+              {(isDesktop || isTablet) && (
+                <StyledHeaderButton onClick={handleClick}>
+                  {t('logout')}
+                </StyledHeaderButton>
               )}
             </>
           )}
