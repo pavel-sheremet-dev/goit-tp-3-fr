@@ -4,6 +4,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   padding: 32px 25px 60px 25px;
   max-width: 480px;
+  flex-grow: 2;
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     margin: 0 auto;
     padding-top: 64px;

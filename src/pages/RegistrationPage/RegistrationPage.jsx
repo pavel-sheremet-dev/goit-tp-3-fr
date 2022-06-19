@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import Info from 'components/auth/Info/Info';
-import RegistrationPageContent from 'components/Registration/RegistrationPageContent/RegistrationPageContent';
+import RegistrationPageContent from 'components/auth/registration/RegistrationPageContent/RegistrationPageContent';
 import { useState } from 'react';
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { useContext } from 'react';

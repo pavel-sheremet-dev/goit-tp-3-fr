@@ -54,7 +54,10 @@ const LoginForm = () => {
     <>
       <Form onSubmit={formik.handleSubmit}>
         <RegistrationFormTitle>
-          {t('name')} <LoginFormIcon>*</LoginFormIcon>
+          {t('name')}
+          {formik.touched.name && formik.errors.name ? (
+            <LoginFormIcon>*</LoginFormIcon>
+          ) : null}
         </RegistrationFormTitle>
         <Input
           id="name"
@@ -71,7 +74,10 @@ const LoginForm = () => {
         ) : null}
 
         <RegistrationFormTitle>
-          {t('email')} <LoginFormIcon>*</LoginFormIcon>
+          {t('email')}
+          {formik.touched.email && formik.errors.email ? (
+            <LoginFormIcon>*</LoginFormIcon>
+          ) : null}
         </RegistrationFormTitle>
         <Input
           id="email"
@@ -87,7 +93,10 @@ const LoginForm = () => {
         ) : null}
 
         <RegistrationFormTitle>
-          {t('password')} <LoginFormIcon>*</LoginFormIcon>
+          {t('password')}
+          {formik.touched.password && formik.errors.password ? (
+            <LoginFormIcon>*</LoginFormIcon>
+          ) : null}
         </RegistrationFormTitle>
         <Input
           className="password"
@@ -106,7 +115,10 @@ const LoginForm = () => {
         ) : null}
 
         <RegistrationFormTitle>
-          {t('repeatPassword')} <LoginFormIcon>*</LoginFormIcon>
+          {t('repeatPassword')}
+          {formik.touched.repassword && formik.errors.repassword ? (
+            <LoginFormIcon>*</LoginFormIcon>
+          ) : null}
         </RegistrationFormTitle>
         <Input
           className="password"
@@ -123,7 +135,9 @@ const LoginForm = () => {
         {formik.touched.repassword && formik.errors.repassword ? (
           <Error>{formik.errors.repassword}</Error>
         ) : null}
-        <LoginFormButton type="submit">{t('registering')}</LoginFormButton>
+        <LoginFormButton type="submit" disabled={!formik.isValid}>
+          {t('registering')}
+        </LoginFormButton>
       </Form>
 
       <Question>
