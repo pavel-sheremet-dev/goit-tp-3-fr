@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import EllipsisText from 'react-ellipsis-text';
 import { ReactComponent as ExampleIcon } from 'images/svg/example-svg.svg';
+import { getTypeKeys } from 'helpers/libraryService';
 
 export const PositionContainer = styled.div`
   width: 280px;
@@ -50,10 +51,12 @@ export const TitleListCategory = styled.li`
   position: ${props => props.position || 'absolute'};
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
-    left: ${props => props.tablet || '0'};
+    right: ${props => props.tablet || null};
+    left: ${props => props.lefttablet || null};
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
-    left: ${props => props.desktop || '0'};
+    right: ${props => props.desktop || null};
+    left: ${props => props.leftdesktop || null};
   }
 `;
 
@@ -218,6 +221,7 @@ export const BookCategoryOutput = styled.li`
 
 export const BookCategoryOutputPos = styled.span`
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+    margin: ${props => props.margin || null};
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
   }
@@ -233,7 +237,10 @@ export const BoxIcon = styled.span`
 `;
 
 export const BookIcon = styled(ExampleIcon)`
-  fill: ${props => props.fill || (({ theme }) => theme.colors.placeholder)};
+  fill: ${props =>
+    props.fill === getTypeKeys().ReadingBooks
+      ? ({ theme }) => theme.colors.mainBrandColor
+      : ({ theme }) => theme.colors.placeholder};
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {

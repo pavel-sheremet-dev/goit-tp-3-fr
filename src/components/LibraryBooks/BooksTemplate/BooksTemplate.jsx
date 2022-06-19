@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { useTranslation } from 'react-i18next';
 import { getTypeKeys } from 'helpers/libraryService';
-import { getCssVars } from 'styles/vars';
 import { nanoid } from '@reduxjs/toolkit';
 
 import GetBookRating from '../GetBookRating';
@@ -50,25 +49,25 @@ const BooksTemplate = ({ options = [], getId, type, title }) => {
                 {t('title')}
               </TitleListCategory>
               <TitleListCategory
-                tablet={typeOf ? '215px' : '370px'}
-                desktop={typeOf ? '360px' : '640px'}
+                lefttablet={typeOf ? '216px' : '368px'}
+                leftdesktop={typeOf ? '360px' : '640px'}
               >
                 {t('author')}
               </TitleListCategory>
               <TitleListCategory
-                tablet={typeOf ? '345px' : '580px'}
-                desktop={typeOf ? '630px' : '1030px'}
+                tablet={typeOf ? '336px' : '100px'}
+                desktop={typeOf ? '595px' : '195px'}
               >
                 {t('year')}
               </TitleListCategory>
               <TitleListCategory
-                tablet={typeOf ? '415px' : '645px'}
-                desktop={typeOf ? '730px' : '1130px'}
+                tablet={typeOf ? '260px' : '20px'}
+                desktop={typeOf ? '480px' : '80px'}
               >
                 {t('pages')}
               </TitleListCategory>
               {typeOf && (
-                <TitleListCategory tablet="500px" desktop="880px">
+                <TitleListCategory lefttablet="475px" leftdesktop="880px">
                   {isTablet ? t('rating') : t('ratingOfBook')}
                 </TitleListCategory>
               )}
@@ -82,13 +81,7 @@ const BooksTemplate = ({ options = [], getId, type, title }) => {
                     <Box>
                       <BoxPreview>
                         <BoxIcon>
-                          <BookIcon
-                            fill={
-                              type === getTypeKeys().ReadingBooks
-                                ? getCssVars().colors.mainBrandColor
-                                : getCssVars().colors.placeholder
-                            }
-                          />
+                          <BookIcon fill={type} />
                         </BoxIcon>
                         <BoxContent margin={typeOf && '0 0 24px 0'}>
                           <BookNameOutput
@@ -141,13 +134,7 @@ const BooksTemplate = ({ options = [], getId, type, title }) => {
                           desktop={typeOf ? '338px' : '618px'}
                         >
                           <BoxIcon>
-                            <BookIcon
-                              fill={
-                                type === getTypeKeys().ReadingBooks
-                                  ? getCssVars().colors.mainBrandColor
-                                  : getCssVars().colors.placeholder
-                              }
-                            />
+                            <BookIcon fill={type} />
                           </BoxIcon>
                           <BookNameOutput
                             text={book.name}
@@ -157,39 +144,37 @@ const BooksTemplate = ({ options = [], getId, type, title }) => {
                           />
                         </BookCategoryOutput>
                         <BookCategoryOutput
-                          tablet={typeOf ? '130px' : '212px'}
-                          desktop={typeOf ? '272px' : '392px'}
+                          tablet={typeOf ? '122px' : '205px'}
+                          desktop={typeOf ? '265px' : '385px'}
                         >
                           <BookAuthorOutputValid
                             text={book.author}
                             title={book.author}
-                            length={typeOf ? 14 : 20}
+                            length={typeOf ? 12 : 20}
                           />
                         </BookCategoryOutput>
                         <BookCategoryOutput
-                          tablet={typeOf ? '70px' : '65px'}
-                          desktop="100px"
+                          tablet={typeOf ? '85px' : '75px'}
+                          desktop={typeOf ? '122px' : '108px'}
                         >
                           <BookCategoryOutputPos>
                             {book.year}
                           </BookCategoryOutputPos>
                         </BookCategoryOutput>
                         <BookCategoryOutput
-                          tablet={typeOf ? '84px' : 'auto'}
-                          desktop="148px"
+                          tablet={typeOf ? '53px' : '35px'}
+                          desktop={typeOf ? '135px' : '35px'}
                         >
-                          <BookCategoryOutputPos>
+                          <BookCategoryOutputPos
+                            margin={typeOf ? '0' : '0 0 0 auto'}
+                          >
                             {book.pages}
                           </BookCategoryOutputPos>
                         </BookCategoryOutput>
                         {typeOf && (
                           <BookCategoryOutput>
                             <RatingContainer>
-                              <GetBookRating
-                                rating={book.rating}
-                                tablet="84px"
-                                desktop="148px"
-                              />
+                              <GetBookRating rating={book.rating} />
                             </RatingContainer>
                           </BookCategoryOutput>
                         )}
