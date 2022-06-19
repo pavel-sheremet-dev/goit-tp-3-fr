@@ -20,7 +20,7 @@ export const WrapperDesktop = styled.div`
   }
 `;
 export const ResultsWrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.background1};
   box-shadow: ${({ theme }) => theme.shadows.dashboard};
   padding: 20px;
   margin-top: 32px;

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledList = styled.ul`
   padding: 20px;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.background1};
   box-shadow: ${({ theme }) => theme.shadows.header};
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
@@ -10,7 +10,7 @@ export const StyledList = styled.ul`
   }
 
   margin-bottom: 40px;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.background1};
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     margin-bottom: 0px;
   }
@@ -92,7 +92,7 @@ export const StyledLibButton = styled.button`
 
   &:hover,
   &:focus {
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.background1};
     background-color: ${({ theme }) => theme.colors.mainBrandColor};
     outline: 1px solid ${({ theme }) => theme.colors.mainBrandColor};
     box-shadow: ${({ theme }) => theme.shadows.btnShadow};

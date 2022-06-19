@@ -1,26 +1,48 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const StyledSpanBorder = styled.span`
-  margin-left: 8px;
-  width: 0px;
-  height: 33px;
-  border: 1px solid ${({ theme }) => theme.colors.borderColor};
-  @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
-    margin-left: 6px;
-  }
-`;
-
-export const NavIcon = styled(NavLink)`
+export const IconWrapper = styled.div`
   width: 33px;
   height: 33px;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
   transition: ${({ theme }) => theme.transition('background-color')};
+`;
 
-  &.active {
+export const NavLinkStyled = styled(NavLink)`
+  display: flex;
+  align-items: center;
+
+  & span {
+    margin-left: 12px;
+    transition: ${({ theme }) => theme.transition('color')};
+  }
+  &:not(:last-child) {
+    margin-right: 8px;
+  }
+
+  & svg {
+    fill: ${({ theme }) => theme.colors.placeholder};
+    transition: ${({ theme }) => theme.transition('fill')};
+  }
+
+  &.active span,
+  &:hover span,
+  &:focus span {
+    color: ${({ theme }) => theme.colors.mainBrandColor};
+  }
+
+  &.active div,
+  &:hover div,
+  &:focus div {
     background-color: ${({ theme }) => theme.colors.iconsHover};
-    border-radius: 50%;
+  }
+
+  &.active svg,
+  &:hover svg,
+  &:focus svg {
+    fill: ${({ theme }) => theme.colors.mainBrandColor};
   }
 `;

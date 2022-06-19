@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 export const LngSwitcherStyled = styled.div`
-  @media screen and (max-width: 767px) {
+  /* @media screen and (max-width: 767px) {
     display: flex;
     flex-direction: column;
     margin-left: auto;
     margin-right: 13px;
-  }
+  } */
 `;
 
 export const Button = styled.button`
@@ -17,7 +17,7 @@ export const Button = styled.button`
   cursor: pointer;
 
   color: ${({ theme }) => theme.colors.lightText};
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.background1};
 
   transition: ${({ theme }) => theme.transition('color')};
 
@@ -31,10 +31,10 @@ export const Button = styled.button`
   }
 
   &:not(:last-child) {
-    @media screen and (max-width: 767px) {
+    /* @media screen and (max-width: 767px) {
       border-bottom: 1px solid ${({ theme }) => theme.colors.lightText};
       border-right: none;
-    }
+    } */
     border-bottom: none;
     border-right: 1px solid ${({ theme }) => theme.colors.lightText};
   }

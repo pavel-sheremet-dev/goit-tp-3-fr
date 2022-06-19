@@ -7,13 +7,14 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   padding: 0;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.background1};
   cursor: pointer;
 
   & svg {
     width: 20px;
     height: 20px;
     fill: ${({ theme }) => theme.colors.placeholder};
+    transition: ${({ theme }) => theme.transition('fill')};
     margin: 0;
   }
   &:hover svg,

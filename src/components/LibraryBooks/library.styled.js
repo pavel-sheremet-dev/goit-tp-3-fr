@@ -33,7 +33,7 @@ export const LibraryBox = styled.div`
   &:last-child {
     margin: 0;
   }
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.background1};
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
@@ -231,7 +231,7 @@ export const Button = styled.button`
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.background1};
   background: ${({ theme }) => theme.colors.reviewBtn};
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
