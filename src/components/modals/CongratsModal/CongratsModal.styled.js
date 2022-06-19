@@ -5,7 +5,7 @@ export const CongratsModalStyled = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 40px 20px;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.background1};
 
   @media screen and (max-width: 767px) {
     width: 280px;

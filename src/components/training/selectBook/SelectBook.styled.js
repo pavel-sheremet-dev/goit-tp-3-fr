@@ -10,7 +10,7 @@ export const Label = styled.label`
   & #dropdown {
     appearance: none;
     padding: 5px;
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.background1};
     border: none;
     font-family: inherit;
     outline: none;
@@ -27,7 +27,7 @@ export const Label = styled.label`
     color: ${({ theme }) => theme.colors.placeholder};
     outline: none;
     border: none;
-    background-color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.background1};
     box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
     cursor: pointer;
 

@@ -84,7 +84,7 @@ export const Link = styled.button`
   height: 40px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   background-color: ${({ theme }) => theme.colors.mainBrandColor};
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.background1};
   transition: ${({ theme }) => theme.transition('background-color')};
   cursor: pointer;
 
@@ -103,7 +103,7 @@ export const LinkLogin = styled(NavLink)`
   height: 40px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   background-color: ${({ theme }) => theme.colors.mainBrandColor};
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.background1};
   transition: ${({ theme }) => theme.transition('background-color')};
 
   &:hover,
@@ -129,7 +129,7 @@ export const LinkLogin = styled(NavLink)`
     &:active {
       background-color: ${({ theme }) => theme.colors.mainBrandColor};
       outline-color: ${({ theme }) => theme.colors.mainBrandColor};
-      color: ${({ theme }) => theme.colors.white};
+      color: ${({ theme }) => theme.colors.background1};
     }
   }
 `;

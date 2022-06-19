@@ -22,7 +22,7 @@ export const RegistrationFormTitle = styled.p`
   font-weight: 600;
   font-size: 14px;
   line-height: 1.21;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.background1};
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     width: 320px;
@@ -58,7 +58,7 @@ export const Input = styled.input`
   &:hover,
   &:focus,
   &:active {
-    background-color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.background1};
   }
 
   ::placeholder {

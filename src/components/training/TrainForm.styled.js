@@ -70,7 +70,7 @@ export const InputWrapper = styled.div`
   flex-wrap: wrap;
 
   & .rdt .rdtPicker {
-    background: ${({ theme }) => theme.colors.white};
+    background: ${({ theme }) => theme.colors.background1};
     margin-top: 5px;
   }
 

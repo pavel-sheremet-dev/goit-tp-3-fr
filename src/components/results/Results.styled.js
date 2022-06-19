@@ -17,7 +17,7 @@ export const Form = styled.form`
     margin-left: 0;
   }
   & .datetime .rdtPicker {
-    background: ${({ theme }) => theme.colors.white};
+    background: ${({ theme }) => theme.colors.background1};
     margin-top: 5px;
   }
 `;
@@ -58,7 +58,7 @@ export const Label = styled.label`
     margin-bottom: 4px;
   }
   & input:hover + button {
-    background-color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.background1};
   }
   & .icon {
     position: absolute;

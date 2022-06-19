@@ -89,7 +89,7 @@ export const Input = styled.input`
   &:active {
     box-shadow: inset ${({ theme }) => theme.shadows.inputShadow};
     outline-color: transparent;
-    background-color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.background1};
   }
 `;
 
@@ -101,6 +101,7 @@ export const Button = styled.button`
   min-width: 170px;
   padding: 0;
   margin-top: 20px;
+  color: ${({ theme }) => theme.colors.defaultFont};
 
   font-size: 14px;
   font-weight: 500;
@@ -115,8 +116,8 @@ export const Button = styled.button`
   &:hover,
   &:focus {
     color: ${({ theme }) => theme.colors.buttonText};
-    background-color: ${({ theme }) => theme.colors.hover};
-    outline: none;
+    background-color: ${({ theme }) => theme.colors.mainBrandColor};
+    outline-color: ${({ theme }) => theme.colors.mainBrandColor};
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
