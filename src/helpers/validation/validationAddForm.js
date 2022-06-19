@@ -10,12 +10,12 @@ export const validationAddFormSchema = Yup.object({
     .min(1)
     .max(50)
     .required(
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? 'Це обов‘язкове поле'
         : 'This is a required field',
     )
     .typeError(
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? 'Має бути рядок'
         : 'There must be a string',
     ),
@@ -23,41 +23,41 @@ export const validationAddFormSchema = Yup.object({
     .min(1)
     .max(50)
     .required(
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? 'Це обов‘язкове поле'
         : 'This is a required field',
     )
     .typeError(
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? 'Має бути рядок'
         : 'There must be a string',
     ),
   year: Yup.number()
     .integer()
     .required(
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? 'Це обов‘язкове поле'
         : 'This is a required field',
     )
     .typeError(
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? 'Може містити лише цифри'
         : 'Can contain only numbers',
     ),
   pages: Yup.number()
     .min(
       1,
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? 'Мінімум 1 сторінка'
         : 'At least 1 page',
     )
     .required(
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? 'Це обов‘язкове поле'
         : 'This is a required field',
     )
     .typeError(
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? 'Може містити лише цифри'
         : 'Can contain only numbers',
     ),
@@ -70,47 +70,47 @@ export const validateForm = values => {
 
   if (values.name === ' ' || values.name === '-') {
     errors.name =
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? 'Поле не може починатися з пробілу або дефісу'
         : 'The field cannot start with a space or a hyphen';
   } else if (values.name.startsWith(' ') || values.name.startsWith('-')) {
     errors.name =
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? 'Поле не може починатися з пробілу або дефісу'
         : 'The field cannot start with a space or a hyphen';
   } else if (Number(values.author) || /\d/.test(values.author)) {
     errors.author =
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? 'Поле не може містити в собі цифри'
         : 'The field cannot contain numbers';
   } else if (values.author === ' ' || values.author === '-') {
     errors.author =
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? 'Поле не може починатися з пробілу або дефісу'
         : 'The field cannot start with a space or a hyphen';
   } else if (values.author.startsWith(' ') || values.author.startsWith('-')) {
     errors.author =
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? 'Поле не може починатися з пробілу або дефісу'
         : 'The field cannot start with a space or a hyphen';
   } else if (values.year > date) {
     errors.year =
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? 'Рік не повинен бути майбутнім'
         : 'The year should not be the future';
   } else if (values.year.length <= 3) {
     errors.year =
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? 'Рік має складатися з 4 цифр'
         : 'The year must consist of 4 digits';
   } else if (values.year.startsWith(0)) {
     errors.year =
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? 'Рік не може починатися із 0'
         : 'The year cannot start with 0';
   } else if (values.pages.startsWith(0)) {
     errors.pages =
-      language.resolvedLanguage === 'ua'
+      language.resolvedLanguage === 'uk'
         ? 'Кількість сторінок не може починатися із 0'
         : 'Number of pages cannot start with 0';
   }

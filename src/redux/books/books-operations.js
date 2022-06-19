@@ -26,7 +26,7 @@ export const addBook = createAsyncThunk(
       return data;
     } catch (error) {
       toast.error(
-        language.resolvedLanguage === 'ua'
+        language.resolvedLanguage === 'uk'
           ? getAddBookError(error.response.status)
           : getAddBookErrorEN(error.response.status),
       );
@@ -45,7 +45,7 @@ export const getBooks = createAsyncThunk(
       const { status } = error.response;
       status !== 404 &&
         toast.error(
-          language.resolvedLanguage === 'ua'
+          language.resolvedLanguage === 'uk'
             ? getBooksError(error.response.status)
             : getBooksErrorEN(error.response.status),
         );
@@ -64,7 +64,7 @@ export const getUnreadBooks = createAsyncThunk(
       const { status } = error.response;
       status !== 404 &&
         toast.error(
-          language.resolvedLanguage === 'ua'
+          language.resolvedLanguage === 'uk'
             ? getBooksError(error.response.status)
             : getBooksErrorEN(error.response.status),
         );
@@ -84,7 +84,7 @@ export const updateBookReview = createAsyncThunk(
       return data;
     } catch (error) {
       toast.error(
-        language.resolvedLanguage === 'ua'
+        language.resolvedLanguage === 'uk'
           ? getReviewError(error.response.status)
           : getReviewErrorEN(error.response.status),
       );

@@ -7,9 +7,9 @@ i18next
   .use(LanguageDetector)
   .init({
     debug: false,
-    fallbackLng: 'ua',
+    fallbackLng: 'uk',
     resources: {
-      ua: {
+      uk: {
         translation: {
           login: 'Увійти',
           signup: 'Реєстрація',
