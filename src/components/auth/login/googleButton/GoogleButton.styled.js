@@ -32,7 +32,7 @@ export const StyledRef = styled.a`
 
   &:hover,
   &:focus {
-    background-color: #e3e4e6;
+    background-color: ${({ theme }) => theme.colors.googleBackColor};
     box-shadow: none;
   }
   &:disabled {

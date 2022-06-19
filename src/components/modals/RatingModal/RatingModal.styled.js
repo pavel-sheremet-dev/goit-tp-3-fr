@@ -7,7 +7,7 @@ export const StyledRatingBox = styled.div`
   max-width: 280px;
   max-height: 395px;
   padding: 20px 20px 40px;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.background1};
   box-shadow: ${({ theme }) => theme.shadows.ratingModal};
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     max-width: 608px;
@@ -63,7 +63,7 @@ export const StyledRatingButtonSave = styled.button`
 
   &:hover,
   &:focus {
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.buttonText};
     background-color: ${({ theme }) => theme.colors.mainBrandColor};
     outline: 1px solid ${({ theme }) => theme.colors.mainBrandColor};
     box-shadow: ${({ theme }) => theme.shadows.btnShadow};
@@ -72,7 +72,7 @@ export const StyledRatingButtonSave = styled.button`
   &:disabled {
     background-color: ${({ theme }) => theme.colors.disabledBtn};
     outline: ${({ theme }) => theme.colors.disabledBtn};
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.buttonText};
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {

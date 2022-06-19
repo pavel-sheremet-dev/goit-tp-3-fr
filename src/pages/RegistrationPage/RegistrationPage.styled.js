@@ -11,7 +11,7 @@ export const Section = styled(StyledContainer)`
   padding: 0;
   width: 100%;
   outline: -1px transparent;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.background1};
 
   /* @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
   } */

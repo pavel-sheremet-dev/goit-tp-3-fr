@@ -1,12 +1,10 @@
 import { StyledContainer } from 'components/common/container/Container.styled';
 import styled from 'styled-components';
 
-
 export const StyledHeader = styled.header`
   border-bottom: 1px solid ${({ theme }) => theme.colors.headerBorder};
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.background1};
 `;
-
 
 export const StyledHeaderBox = styled.div`
   position: relative;
@@ -27,11 +25,11 @@ export const StyledHeaderBox = styled.div`
 
 export const StyledContainerHeader = styled(StyledContainer)`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding-top: 16px;
   padding-bottom: 17px;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.background1};
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     justify-content: space-between;

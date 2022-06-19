@@ -5,7 +5,7 @@ export const WellDoneModalStyled = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 40px 20px;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.background1};
 
   @media screen and (max-width: 767px) {
     width: 280px;
@@ -37,12 +37,12 @@ export const Button = styled.button`
   transition: ${({ theme }) => theme.transition('background-color')},
     ${({ theme }) => theme.transition('color')};
 
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.buttonText};
   background: ${({ theme }) => theme.colors.mainBrandColor};
 
   &:hover,
   &:focus {
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.buttonText};
     background-color: ${({ theme }) => theme.colors.hover};
   }
 `;

@@ -6,32 +6,39 @@ import { useTranslation } from 'react-i18next';
 import { getIsLoggedIn, getUserName } from 'redux/auth/auth-selectors';
 import { trainingSelectors } from 'redux/training';
 import { PageFormatContext, format } from 'context/pageFormatContext';
+import { routes } from 'routes/config';
 
 import ExitModal from 'components/modals/ExitModal/ExitModal';
-import Logo from '../Logo/Logo';
 import Modal from 'components/modals/Modal/Modal';
 import UserNavMenu from '../UserMenu/UserNavMenu';
-import LngSwitcher from '../LngSwitcher';
+import { ButtonTheme } from '../buttonTheme/ButtonTheme';
+import LngSwitcher from '../LngSwitcher/LngSwitcher';
 
 import { StyledBox } from 'components/header/Header.styled';
 import {
   StyledHeaderButton,
   StyledNav,
+  StyledSpanBorder,
   StyledSpanFirstLetterName,
   StyledSpanName,
 } from './Navigation.styled';
+import { ReactComponent as BookIcon } from 'images/svg/icon-book.svg';
+import { ReactComponent as HomeIcon } from 'images/svg/icon-home.svg';
+import NavigationLink from '../UserMenu/NavigationLink';
 
-const Navigation = () => {
+const { training, library } = routes;
+
+const Navigation = ({ columnDirection = false, onCloseMobileMenu }) => {
   const { t } = useTranslation();
+  const text = t('mobileMenu', { returnObjects: true });
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => {
     setShowModal(showModal => !showModal);
   };
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn);
-  const isActiveTraining = useSelector(trainingSelectors.getStatus);
+  const status = useSelector(trainingSelectors.getStatus);
   const pageFormat = useContext(PageFormatContext);
-  const isResponse = pageFormat === format.response;
   const isMobile = pageFormat === format.mobile;
   const isTablet = pageFormat === format.tablet;
   const isDesktop = pageFormat === format.desktop;
@@ -39,7 +46,7 @@ const Navigation = () => {
   const iconName = name[0]?.toUpperCase();
 
   const handleClick = () => {
-    if (isActiveTraining === 'active') {
+    if (status === 'active') {
       toggleModal();
       return;
     }
@@ -48,36 +55,103 @@ const Navigation = () => {
   };
 
   const LogOut = () => {
-    dispatch(authOperations.signOut());
     toggleModal();
+  };
+
+  const logOutFromMobileMenu = () => {
+    onCloseMobileMenu();
+    dispatch(authOperations.signOut());
   };
 
   return (
     <>
-      <Logo />
-
-      <LngSwitcher />
       {isLoggedIn && (
         <>
-          {(isDesktop || isTablet) && (
-            <StyledBox>
-              <StyledSpanFirstLetterName>{iconName}</StyledSpanFirstLetterName>
-              <StyledSpanName>{name}</StyledSpanName>
-            </StyledBox>
-          )}
-          <StyledBox>
-            <StyledNav>
-              <StyledBox>
-                <UserNavMenu />
+          {!columnDirection && (
+            <>
+              {(isDesktop || isTablet) && (
+                <StyledBox style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+                  <StyledSpanFirstLetterName>
+                    {iconName}
+                  </StyledSpanFirstLetterName>
+                  <StyledSpanName>{name}</StyledSpanName>
+                </StyledBox>
+              )}
+
+              <StyledBox
+                style={{
+                  marginLeft: isDesktop || isTablet ? '0' : 'auto',
+                  marginRight: '4px',
+                }}
+              >
+                <ButtonTheme style={{ marginRight: '4px' }} />
+                <LngSwitcher />
               </StyledBox>
-            </StyledNav>
-            {(isResponse || isMobile) && (
-              <StyledSpanFirstLetterName>{iconName}</StyledSpanFirstLetterName>
-            )}
-            <StyledHeaderButton onClick={handleClick}>
-              {t('logout')}
-            </StyledHeaderButton>
+
+              <StyledNav>
+                <UserNavMenu />
+              </StyledNav>
+
+              {(isMobile || isTablet) && (
+                <>
+                  <StyledSpanBorder></StyledSpanBorder>
+                  {isMobile && (
+                    <StyledSpanFirstLetterName>
+                      {iconName}
+                    </StyledSpanFirstLetterName>
+                  )}
+                  <StyledHeaderButton onClick={handleClick}>
+                    {t('logout')}
+                  </StyledHeaderButton>
+                </>
+              )}
+            </>
+          )}
+        </>
+      )}
+
+      {columnDirection && (
+        <>
+          <StyledBox
+            style={{
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: '7px',
+              marginBottom: '10px',
+            }}
+          >
+            <p>{text.language}</p>
+            <LngSwitcher />
           </StyledBox>
+          {isLoggedIn && (
+            <>
+              <StyledBox
+                style={{ justifyContent: 'start', marginBottom: '15px' }}
+              >
+                <StyledSpanFirstLetterName>
+                  {iconName}
+                </StyledSpanFirstLetterName>
+                <StyledSpanName>{name}</StyledSpanName>
+                <StyledHeaderButton onClick={logOutFromMobileMenu}>
+                  {t('logout')}
+                </StyledHeaderButton>
+              </StyledBox>
+
+              <NavigationLink
+                to={library.path}
+                IconComponent={HomeIcon}
+                text={text.library}
+                onCloseMobileMenu={onCloseMobileMenu}
+              />
+              <NavigationLink
+                to={training.path}
+                IconComponent={BookIcon}
+                text={text.training}
+                onCloseMobileMenu={onCloseMobileMenu}
+                style={{ marginBottom: '15px' }}
+              />
+            </>
+          )}
         </>
       )}
       {showModal && (

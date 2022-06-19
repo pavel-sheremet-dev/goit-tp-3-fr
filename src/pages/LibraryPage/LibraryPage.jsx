@@ -10,13 +10,12 @@ import { getTypeKeys } from 'helpers/libraryService';
 import Section from 'components/common/section/Section';
 import EmtpyLibraryText from 'components/emtpyLibraryText/EmtpyLibraryText';
 import LibraryForm from 'components/LibraryForm/LibraryForm';
-import FinishedBooks from 'components/LibraryBooks/FinishedBooks';
-import InActionBooks from 'components/LibraryBooks/InActionBooks';
+import BooksTemplate from 'components/LibraryBooks/BooksTemplate';
+
 import LibButton from 'components/buttons/LibButton';
 import BackButton from '../../components/buttons/backButton/BackButton';
 import RatingModal from 'components/modals/RatingModal/RatingModal';
 import Modal from 'components/modals/Modal/Modal';
-
 import { LibCollectionLogicPosition } from './LibraryPage.styled';
 import { Loader } from 'components/common/Loader/Loader';
 import { booksSelectors } from 'redux/books';
@@ -88,21 +87,26 @@ const LibraryPage = () => {
                     <>
                       <LibCollectionLogicPosition>
                         {!!unread.length && (
-                          <InActionBooks
+                          <BooksTemplate
                             options={unread}
                             type={getTypeKeys().UnreadBooks}
                             title={t('goingToRead')}
                           />
                         )}
                         {!!reading.length && (
-                          <InActionBooks
+                          <BooksTemplate
                             options={reading}
                             type={getTypeKeys().ReadingBooks}
                             title={t('read')}
                           />
                         )}
                         {!!finished.length && (
-                          <FinishedBooks getId={getId} options={finished} />
+                          <BooksTemplate
+                            getId={getId}
+                            options={finished}
+                            type={getTypeKeys().FinishedBooks}
+                            title={t('alreadyRead')}
+                          />
                         )}
                       </LibCollectionLogicPosition>
                       {!!unread.length && <LibButton />}
@@ -139,21 +143,26 @@ const LibraryPage = () => {
                 <>
                   <LibCollectionLogicPosition>
                     {!!unread.length && (
-                      <InActionBooks
+                      <BooksTemplate
                         options={unread}
                         type={getTypeKeys().UnreadBooks}
                         title={t('goingToRead')}
                       />
                     )}
                     {!!reading.length && (
-                      <InActionBooks
+                      <BooksTemplate
                         options={reading}
                         type={getTypeKeys().ReadingBooks}
                         title={t('read')}
                       />
                     )}
                     {!!finished.length && (
-                      <FinishedBooks getId={getId} options={finished} />
+                      <BooksTemplate
+                        getId={getId}
+                        options={finished}
+                        type={getTypeKeys().FinishedBooks}
+                        title={t('alreadyRead')}
+                      />
                     )}
                   </LibCollectionLogicPosition>
                   {!!unread.length && <LibButton />}

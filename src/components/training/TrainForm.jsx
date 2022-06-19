@@ -5,10 +5,15 @@ import { useTranslation } from 'react-i18next';
 import { trainingSelectors, trainingOperations } from 'redux/training';
 import { booksSelectors } from 'redux/books';
 
-import DateTimeInput from './DateTime/DateTime';
-import SelectBook from './SelectBook/SelectBook';
-import TrainingList from '../TrainingList/TrainingList';
-import ActiveTrainList from '../ActiveTrainList/ActiveTrainList';
+import DateTimeInput from './datetime/DateTime';
+import SelectBook from './selectBook/SelectBook';
+import TrainingList from './trainingList/TrainingList';
+import ActiveTrainList from './activeList/ActiveTrainList';
+import { statusKeys } from 'helpers/config';
+
+// successDone
+// active
+// failed
 
 import {
   Wrapper,
@@ -29,7 +34,7 @@ const TrainForm = () => {
   const [booksIds, setBooksIds] = useState([]);
   const [error, setError] = useState('');
   const isValidate = useRef(false);
-  const isActiveTraining = useSelector(trainingSelectors.getStatus);
+  const status = useSelector(trainingSelectors.getStatus);
   const unreadBooks = useSelector(booksSelectors.getUnreadBooks);
 
   useEffect(() => {
@@ -97,13 +102,14 @@ const TrainForm = () => {
     setError(false);
     setStartDate('');
     setDeadlineDate('');
+    setBooks([]);
   };
 
   return (
     <Wrapper>
       <Title>{t('myTraining')}</Title>
       <Form onSubmit={handleSubmit} autoComplete="off">
-        {!isActiveTraining ? (
+        {status !== statusKeys().active ? (
           <>
             <InputWrapper>
               <DateTimeInput
@@ -111,7 +117,7 @@ const TrainForm = () => {
                 selectedDate={startDate}
                 onChange={handleStartDate}
                 placeholderText={t('startOfTraining')}
-                disabled={isActiveTraining === 'active'}
+                disabled={status === statusKeys().active}
               />
             </InputWrapper>
 
@@ -121,7 +127,7 @@ const TrainForm = () => {
                 selectedDate={deadlineDate}
                 onChange={handleDeadlineDate}
                 placeholderText={t('endOfTraining')}
-                disabled={isActiveTraining === 'active'}
+                disabled={status === statusKeys().active}
               />
             </InputWrapper>
 
@@ -139,14 +145,14 @@ const TrainForm = () => {
         )}
 
         <WrapperTrainingList>
-          {!isActiveTraining ? (
+          {status !== statusKeys().active ? (
             <TrainingList books={books} handleUpdateBook={handleUpdateBook} />
           ) : (
             <ActiveTrainList />
           )}
         </WrapperTrainingList>
 
-        {unreadBooks.length === 0 || isActiveTraining ? (
+        {unreadBooks.length === 0 || status === statusKeys().active ? (
           <Button style={{ display: 'none' }} type="submit">
             {t('start')}
           </Button>

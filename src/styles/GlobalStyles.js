@@ -29,7 +29,6 @@ ol,
 li {
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 12pt;
 }
 
 ul {

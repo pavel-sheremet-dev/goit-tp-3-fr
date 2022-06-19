@@ -6,10 +6,10 @@ const lngs = {
   ua: { nativeName: 'UA' },
 };
 
-const LngSwitcher = () => {
+const LngSwitcher = ({ style }) => {
   const { i18n } = useTranslation();
   return (
-    <LngSwitcherStyled>
+    <LngSwitcherStyled style={style}>
       {Object.keys(lngs).map(lng => (
         <Button
           type="submit"

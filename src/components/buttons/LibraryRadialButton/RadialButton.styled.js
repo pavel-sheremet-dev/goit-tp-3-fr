@@ -14,3 +14,13 @@ export const LibAddButton = styled(AddButton)`
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
   }
 `;
+
+export const Button = styled.button`
+  background: none;
+  border: none;
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
+  }
+`;
