@@ -22,6 +22,7 @@ import {
   StyledSpanFirstLetterName,
   StyledSpanName,
 } from './Navigation.styled';
+
 import { ReactComponent as BookIcon } from 'images/svg/icon-book.svg';
 import { ReactComponent as HomeIcon } from 'images/svg/icon-home.svg';
 import NavigationLink from '../userMenu/NavigationLink';

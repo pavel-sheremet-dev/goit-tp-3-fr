@@ -1,11 +1,13 @@
 import { useState, useEffect, useContext } from 'react';
+import { PositionContext } from 'context/positionContext';
+import { useTranslation } from 'react-i18next';
+
+import Navigation from 'components/header/navigation/Navigation';
+import MobileMenuButtons from 'components/buttons/mobileMenuButtons/MobileMenuButtons';
+import Switch from 'components/common/swith/Switch';
+
 import { StyledMobileMenu, BottomPanel } from './MobileMenu.styled';
 import { ReactComponent as CloseIcon } from 'images/svg/close.svg';
-import Switch from 'components/swith/Switch';
-import { PositionContext } from 'context/positionContext';
-import MobileMenuButtons from 'components/buttons/mobileMenuButtons/MobileMenuButtons';
-import Navigation from 'components/header/navigation/Navigation';
-import { useTranslation } from 'react-i18next';
 
 const MobileMenu = ({ onClose, showMenu }) => {
   const [isOpen, setIsOpen] = useState(false);

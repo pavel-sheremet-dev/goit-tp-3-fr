@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { getTypeKeys } from 'helpers/libraryService';
 import { nanoid } from '@reduxjs/toolkit';
 
-import GetBookRating from '../GetBookRating';
+import GetBookRating from '../getBookRating';
 import {
   PositionContainer,
   Title,

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import Countdown from 'components/countdown';
+import { Countdown } from 'components/training/timerCountdown';
 import { StyledCountdownContainer } from './CountdownContainer.styled';
 import { Loader } from 'components/common/loader/Loader';
 

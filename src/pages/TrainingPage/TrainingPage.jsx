@@ -8,10 +8,10 @@ import { getUnreadBooks } from 'redux/books/books-operations';
 import { trainingSelectors, trainingOperations } from 'redux/training';
 
 import Section from 'components/common/section/Section';
-import Dashboard from 'components/dashboard/Dashboard';
-import Results from 'components/results/Results';
+import Dashboard from 'components/training/dashboard/Dashboard';
+import Results from 'components/training/results/Results';
 
-import CountdownContainer from 'components/countdownContainer';
+// import CountdownContainer from 'components/timerCountdown/countdownContainer';
 import CongratsModal from 'components/modals/congratsModal';
 import WellDoneModal from 'components/modals/wellDoneModal';
 import Statistic from 'components/training/statistic/Statistic';
@@ -32,6 +32,7 @@ import { bookStatusKeys, statusKeys } from 'helpers/config';
 
 import i18next from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import { CountdownContainer } from 'components/training/timerCountdown';
 
 const language = i18next.use(LanguageDetector);
 
