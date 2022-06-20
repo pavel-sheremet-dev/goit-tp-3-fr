@@ -1,5 +1,5 @@
 import GoogleButton from 'components/auth/login/googleButton/GoogleButton';
-import LoginForm from 'components/auth/login/LoginForm/LoginForm';
+import LoginForm from 'components/auth/login/loginForm/LoginForm';
 import { StyledSection, StyledTablet } from './LoginPageContent.styled';
 
 export default function LoginPageContent() {

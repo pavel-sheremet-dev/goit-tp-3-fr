@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux';
 import { getIsLoggedIn } from 'redux/auth/auth-selectors';
-import LngSwitcher from './LngSwitcher';
+import LngSwitcher from './lngSwitcher';
 import { ButtonTheme } from './buttonTheme/ButtonTheme';
 import { ReactComponent as MenuIcon } from 'images/svg/menu.svg';
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { themes } from 'styles';
 
-import Navigation from 'components/header/Navigation/Navigation';
+import Navigation from 'components/header/navigation/Navigation';
 
 import {
   StyledContainerHeader,
@@ -19,7 +19,7 @@ import { useContext, useState } from 'react';
 import { PositionContext } from 'context/positionContext';
 import MobileMenuButtons from 'components/buttons/mobileMenuButtons/MobileMenuButtons';
 import MobileMenu from 'components/mobileMenu/MobileMenu';
-import Logo from './Logo/Logo';
+import Logo from './logo/Logo';
 
 const { delay } = themes.light;
 

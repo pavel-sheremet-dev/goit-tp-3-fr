@@ -99,6 +99,10 @@ export const LoginFormButton = styled.button`
     background-color: ${({ theme }) => theme.colors.hover};
   }
 
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.lightText};
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.tablet}) {
     width: 320px;
   }

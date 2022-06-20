@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
-import Info from 'components/auth/Info/Info';
-import RegistrationPageContent from 'components/Registration/RegistrationPageContent/RegistrationPageContent';
+import Info from 'components/auth/info/Info';
+import RegistrationPageContent from 'components/auth/registration/registrationPageContent/RegistrationPageContent';
 import { useState } from 'react';
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { useContext } from 'react';
-import { Section } from './RegistrationPage.styled';
+import { Section, LoginSection } from './RegistrationPage.styled';
 const { response, mobile } = format;
 
 const RegistrationPage = () => {
@@ -26,26 +26,28 @@ const RegistrationPage = () => {
     }
   }, [isMobile, pageFormat]);
   return (
-    <Section>
-      {isMobile && (
-        <>
-          {((!showInfo && !valueStorage) || showInfoLocalStorage) && (
+    <LoginSection>
+      <Section>
+        {isMobile && (
+          <>
+            {((!showInfo && !valueStorage) || showInfoLocalStorage) && (
+              <RegistrationPageContent titleRef={titleRef} />
+            )}
+            {conditionRender ? (
+              <RegistrationPageContent titleRef={titleRef} />
+            ) : (
+              <Info handleClick={setShowInfo} />
+            )}
+          </>
+        )}
+        {!isMobile && (
+          <>
             <RegistrationPageContent titleRef={titleRef} />
-          )}
-          {conditionRender ? (
-            <RegistrationPageContent titleRef={titleRef} />
-          ) : (
             <Info handleClick={setShowInfo} />
-          )}
-        </>
-      )}
-      {!isMobile && (
-        <>
-          <RegistrationPageContent titleRef={titleRef} />
-          <Info handleClick={setShowInfo} />
-        </>
-      )}
-    </Section>
+          </>
+        )}
+      </Section>
+    </LoginSection>
   );
 };
 

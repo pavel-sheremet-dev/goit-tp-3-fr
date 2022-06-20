@@ -11,18 +11,18 @@ import Section from 'components/common/section/Section';
 import Dashboard from 'components/dashboard/Dashboard';
 import Results from 'components/results/Results';
 
-import CountdownContainer from 'components/CountdownContainer';
-import CongratsModal from 'components/modals/CongratsModal';
-import WellDoneModal from 'components/modals/WellDoneModal';
-import Statistic from 'components/statistic/Statistic';
+import CountdownContainer from 'components/countdownContainer';
+import CongratsModal from 'components/modals/congratsModal';
+import WellDoneModal from 'components/modals/wellDoneModal';
+import Statistic from 'components/training/statistic/Statistic';
 import TrainForm from 'components/training/TrainForm';
-import PlanTimer from 'components/PlanTimer';
+import PlanTimer from 'components/training/planTimer';
 import TrainingList from 'components/training/trainingList/TrainingList';
-import Modal from 'components/modals/Modal/Modal';
+import Modal from 'components/modals/modal/Modal';
 import TrainFormModal from 'components/training/modalForm/TrainFormModal';
-import AddButton from 'components/buttons/TrainRadialButton/RadialButton';
+import AddButton from 'components/buttons/trainRadialButton/RadialButton';
 
-import { Loader } from 'components/common/Loader/Loader';
+import { Loader } from 'components/common/loader/Loader';
 import {
   WrapperNotActiveTrain,
   WrapperDesktop,

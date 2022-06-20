@@ -49,8 +49,12 @@ const LoginForm = () => {
     <>
       <Form onSubmit={formik.handleSubmit}>
         <LoginFormTitle>
-          {t('email')} <LoginFormIcon>*</LoginFormIcon>
+          {t('email')}{' '}
+          {formik.touched.email && formik.errors.email ? (
+            <LoginFormIcon>*</LoginFormIcon>
+          ) : null}
         </LoginFormTitle>
+
         <Input
           id="email"
           name="email"
@@ -64,7 +68,10 @@ const LoginForm = () => {
         ) : null}
 
         <LoginFormTitle>
-          {t('password')} <LoginFormIcon>*</LoginFormIcon>
+          {t('password')}{' '}
+          {formik.touched.password && formik.errors.password ? (
+            <LoginFormIcon>*</LoginFormIcon>
+          ) : null}
         </LoginFormTitle>
         <Input
           className="password"
@@ -79,7 +86,9 @@ const LoginForm = () => {
           <Error>{formik.errors.password}</Error>
         ) : null}
 
-        <LoginFormButton type="submit">{t('login')}</LoginFormButton>
+        <LoginFormButton type="submit" disabled={!formik.isValid}>
+          {t('login')}
+        </LoginFormButton>
       </Form>
       <LoginRef to={routes.signUp.path}>{t('signup')}</LoginRef>
     </>

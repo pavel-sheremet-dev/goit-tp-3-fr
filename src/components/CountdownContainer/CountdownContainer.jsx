@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import Countdown from 'components/Countdown';
+import Countdown from 'components/countdown';
 import { StyledCountdownContainer } from './CountdownContainer.styled';
-import { Loader } from 'components/common/Loader/Loader';
+import { Loader } from 'components/common/loader/Loader';
 
 const nextYear = new Date().getFullYear() + 1;
 

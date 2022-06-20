@@ -54,7 +54,10 @@ const LoginForm = () => {
     <>
       <Form onSubmit={formik.handleSubmit}>
         <RegistrationFormTitle>
-          {t('name')} <LoginFormIcon>*</LoginFormIcon>
+          {t('name')}
+          {formik.touched.name && formik.errors.name ? (
+            <LoginFormIcon>*</LoginFormIcon>
+          ) : null}
         </RegistrationFormTitle>
         <Input
           id="name"
@@ -65,13 +68,17 @@ const LoginForm = () => {
           onBlur={formik.handleBlur}
           value={formik.values.name}
           placeholder="..."
+          style={{ color: formik.touched.name && formik.errors.name && 'red' }}
         />
         {formik.touched.name && formik.errors.name ? (
           <Error>{formik.errors.name}</Error>
         ) : null}
 
         <RegistrationFormTitle>
-          {t('email')} <LoginFormIcon>*</LoginFormIcon>
+          {t('email')}
+          {formik.touched.email && formik.errors.email ? (
+            <LoginFormIcon>*</LoginFormIcon>
+          ) : null}
         </RegistrationFormTitle>
         <Input
           id="email"
@@ -81,13 +88,19 @@ const LoginForm = () => {
           onBlur={formik.handleBlur}
           value={formik.values.email.trim()}
           placeholder="your@email.com"
+          style={{
+            color: formik.touched.email && formik.errors.email && 'red',
+          }}
         />
         {formik.touched.email && formik.errors.email ? (
           <Error>{formik.errors.email}</Error>
         ) : null}
 
         <RegistrationFormTitle>
-          {t('password')} <LoginFormIcon>*</LoginFormIcon>
+          {t('password')}
+          {formik.touched.password && formik.errors.password ? (
+            <LoginFormIcon>*</LoginFormIcon>
+          ) : null}
         </RegistrationFormTitle>
         <Input
           className="password"
@@ -100,13 +113,19 @@ const LoginForm = () => {
           onBlur={formik.handleBlur}
           value={formik.values.password.trim()}
           placeholder="..."
+          style={{
+            color: formik.touched.password && formik.errors.password && 'red',
+          }}
         />
         {formik.touched.password && formik.errors.password ? (
           <Error>{formik.errors.password}</Error>
         ) : null}
 
         <RegistrationFormTitle>
-          {t('repeatPassword')} <LoginFormIcon>*</LoginFormIcon>
+          {t('repeatPassword')}
+          {formik.touched.repassword && formik.errors.repassword ? (
+            <LoginFormIcon>*</LoginFormIcon>
+          ) : null}
         </RegistrationFormTitle>
         <Input
           className="password"
@@ -119,11 +138,17 @@ const LoginForm = () => {
           onBlur={formik.handleBlur}
           value={formik.values.repassword.trim()}
           placeholder="..."
+          style={{
+            color:
+              formik.touched.repassword && formik.errors.repassword && 'red',
+          }}
         />
         {formik.touched.repassword && formik.errors.repassword ? (
           <Error>{formik.errors.repassword}</Error>
         ) : null}
-        <LoginFormButton type="submit">{t('registering')}</LoginFormButton>
+        <LoginFormButton type="submit" disabled={!formik.isValid}>
+          {t('registering')}
+        </LoginFormButton>
       </Form>
 
       <Question>

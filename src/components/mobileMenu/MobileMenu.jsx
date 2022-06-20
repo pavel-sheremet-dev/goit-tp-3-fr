@@ -4,7 +4,7 @@ import { ReactComponent as CloseIcon } from 'images/svg/close.svg';
 import Switch from 'components/swith/Switch';
 import { PositionContext } from 'context/positionContext';
 import MobileMenuButtons from 'components/buttons/mobileMenuButtons/MobileMenuButtons';
-import Navigation from 'components/header/Navigation/Navigation';
+import Navigation from 'components/header/navigation/Navigation';
 import { useTranslation } from 'react-i18next';
 
 const MobileMenu = ({ onClose, showMenu }) => {

@@ -12,10 +12,6 @@ export const SectionQuote = styled.div`
     flex-direction: column;
     padding-top: 64px;
     padding-bottom: 71px;
-
-    @media screen and (min-width: ${({ theme }) => theme.breakPoints.desktop}) {
-      width: calc(100% - 549px);
-    }
   }
 `;
 

@@ -35,6 +35,9 @@ export const StyledRef = styled.a`
     background-color: ${({ theme }) => theme.colors.googleBackColor};
     box-shadow: none;
   }
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.lightText};
+  }
 `;
 
 export const ContainerGoogleIcon = styled.div`
