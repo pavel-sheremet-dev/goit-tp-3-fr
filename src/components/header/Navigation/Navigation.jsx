@@ -51,17 +51,15 @@ const Navigation = ({ columnDirection = false, onCloseMobileMenu }) => {
       toggleModal();
       return;
     }
-
     dispatch(authOperations.signOut());
   };
 
   const LogOut = () => {
-    toggleModal();
-  };
-
-  const logOutFromMobileMenu = () => {
-    onCloseMobileMenu();
     dispatch(authOperations.signOut());
+    if (columnDirection) {
+      onCloseMobileMenu();
+    }
+    toggleModal();
   };
 
   return (
@@ -136,7 +134,7 @@ const Navigation = ({ columnDirection = false, onCloseMobileMenu }) => {
                   {iconName}
                 </StyledSpanFirstLetterName>
                 <StyledSpanName>{name}</StyledSpanName>
-                <StyledHeaderButton onClick={logOutFromMobileMenu}>
+                <StyledHeaderButton onClick={LogOut}>
                   {t('logout')}
                 </StyledHeaderButton>
               </StyledBox>
