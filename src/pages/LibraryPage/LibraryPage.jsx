@@ -10,7 +10,7 @@ import { getTypeKeys } from 'helpers/libraryService';
 import Section from 'components/common/section/Section';
 import EmtpyLibraryText from 'components/library/emtpyLibraryText/EmtpyLibraryText';
 import LibraryForm from 'components/library/libraryForm/LibraryForm';
-import BooksTemplate from 'components/LibraryBooks/BooksTemplate';
+import BooksTemplate from 'components/library/libraryBooks';
 
 import LibButton from 'components/buttons/libButton';
 import BackButton from '../../components/buttons/backButton/BackButton';

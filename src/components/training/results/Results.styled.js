@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Input, Button } from '../library/libraryForm/LibraryForm.styled';
+import { Input, Button } from '../../library/libraryForm/LibraryForm.styled';
 
 export const Form = styled.form`
   display: flex;

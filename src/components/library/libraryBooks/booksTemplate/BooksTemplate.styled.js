@@ -254,9 +254,15 @@ export const Button = styled.button`
   font-size: 14px;
   line-height: 17px;
   text-align: center;
-  color: ${({ theme }) => theme.colors.white};
-  background: ${({ theme }) => theme.colors.reviewBtn};
+  color: ${({ theme }) => theme.colors.buttonText};
+  background-color: ${({ theme }) => theme.colors.reviewBtn};
   box-shadow: ${({ theme }) => theme.shadows.btnShadow};
+  transition: ${({ theme }) => theme.transition('background-color')};
+
+  &:hover,
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.mainBrandColor};
+  }
 
   padding: 10px 34px;
   margin: 0 auto;
