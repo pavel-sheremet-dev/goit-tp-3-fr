@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { useSelector } from 'react-redux';
 import { getStatus } from 'redux/training/training-selectors';
+import { statusKeys } from 'helpers/config';
 
 import {
   TimerContainer,
@@ -19,7 +20,7 @@ import {
 const PlanTimer = ({ booksAmout = 0, days = 0, booksLeft = 0 }) => {
   const { t } = useTranslation();
   const pageFormat = useContext(PageFormatContext);
-  const isActiveTraining = Boolean(useSelector(getStatus));
+  const status = useSelector(getStatus);
 
   const { mobile, response, tablet, desktop } = format;
   const isResponse = pageFormat === response;
@@ -27,109 +28,146 @@ const PlanTimer = ({ booksAmout = 0, days = 0, booksLeft = 0 }) => {
   const isTablet = pageFormat === tablet;
   const isDesktop = pageFormat === desktop;
 
+  const activeStatus = status === statusKeys().active;
+
   return (
     <>
       {(isResponse || isMobile) && (
         <TimerContainer>
           <TimerTitle>{t('goals')}</TimerTitle>
-          <TimerFlex>
-            <BoxTimer>
-              <TimerBg active={isActiveTraining}>
-                <TimerAmout active={isActiveTraining}>{booksAmout}</TimerAmout>
-              </TimerBg>
-              <TimerText active={isActiveTraining}>
-                {t('amountOfBooks')}
-              </TimerText>
-            </BoxTimer>
-            <BoxTimer>
-              <TimerBg active={isActiveTraining}>
-                <TimerAmout active={isActiveTraining}>{days}</TimerAmout>
-              </TimerBg>
-              <TimerText active={isActiveTraining}>
-                {t('amountOfDays')}
-              </TimerText>
-            </BoxTimer>
-            {isActiveTraining && (
+          {status !== statusKeys().active ? (
+            <TimerFlex>
               <BoxTimer>
-                <TimerBg active={isActiveTraining}>
-                  <ColoredTimer active={isActiveTraining}>
-                    {booksLeft}
-                  </ColoredTimer>
+                <TimerBg active={activeStatus}>
+                  <TimerAmout active={activeStatus}>0</TimerAmout>
                 </TimerBg>
-                <TimerText active={isActiveTraining}>
-                  {t('booksLeft')}
+                <TimerText active={activeStatus}>
+                  {t('amountOfBooks')}
                 </TimerText>
               </BoxTimer>
-            )}
-          </TimerFlex>
+              <BoxTimer>
+                <TimerBg active={activeStatus}>
+                  <TimerAmout active={activeStatus}>0</TimerAmout>
+                </TimerBg>
+                <TimerText active={activeStatus}>{t('amountOfDays')}</TimerText>
+              </BoxTimer>
+            </TimerFlex>
+          ) : (
+            <TimerFlex>
+              <BoxTimer>
+                <TimerBg active={activeStatus}>
+                  <TimerAmout active={activeStatus}>{booksAmout}</TimerAmout>
+                </TimerBg>
+                <TimerText active={activeStatus}>
+                  {t('amountOfBooks')}
+                </TimerText>
+              </BoxTimer>
+              <BoxTimer>
+                <TimerBg active={activeStatus}>
+                  <TimerAmout active={activeStatus}>{days}</TimerAmout>
+                </TimerBg>
+                <TimerText active={activeStatus}>{t('amountOfDays')}</TimerText>
+              </BoxTimer>
+              <BoxTimer>
+                <TimerBg active={activeStatus}>
+                  <ColoredTimer active={activeStatus}>{booksLeft}</ColoredTimer>
+                </TimerBg>
+                <TimerText active={activeStatus}>{t('booksLeft')}</TimerText>
+              </BoxTimer>
+            </TimerFlex>
+          )}
         </TimerContainer>
       )}
       {isTablet && (
-        <TimerContainer active={isActiveTraining}>
+        <TimerContainer active={activeStatus}>
           <TimerTitle>{t('goals')}</TimerTitle>
-          <TimerFlex>
-            <BoxTimer active={isActiveTraining}>
-              <TimerBg>
-                <TimerAmout>{booksAmout}</TimerAmout>
-              </TimerBg>
-              <TimerText active={isActiveTraining}>
-                {t('amountOfBooks')}
-              </TimerText>
-            </BoxTimer>
-            <BoxTimer active={isActiveTraining}>
-              <TimerBg>
-                <TimerAmout>{days}</TimerAmout>
-              </TimerBg>
-              <TimerText active={isActiveTraining}>
-                {t('amountOfDays')}
-              </TimerText>
-            </BoxTimer>
-            {isActiveTraining && (
-              <BoxTimer active={isActiveTraining}>
+          {status !== statusKeys().active ? (
+            <TimerFlex>
+              <BoxTimer active={activeStatus}>
+                <TimerBg>
+                  <TimerAmout>0</TimerAmout>
+                </TimerBg>
+                <TimerText active={activeStatus}>
+                  {t('amountOfBooks')}
+                </TimerText>
+              </BoxTimer>
+              <BoxTimer active={activeStatus}>
+                <TimerBg>
+                  <TimerAmout>0</TimerAmout>
+                </TimerBg>
+                <TimerText active={activeStatus}>{t('amountOfDays')}</TimerText>
+              </BoxTimer>
+            </TimerFlex>
+          ) : (
+            <TimerFlex>
+              <BoxTimer active={activeStatus}>
+                <TimerBg>
+                  <TimerAmout>{booksAmout}</TimerAmout>
+                </TimerBg>
+                <TimerText active={activeStatus}>
+                  {t('amountOfBooks')}
+                </TimerText>
+              </BoxTimer>
+              <BoxTimer active={activeStatus}>
+                <TimerBg>
+                  <TimerAmout>{days}</TimerAmout>
+                </TimerBg>
+                <TimerText active={activeStatus}>{t('amountOfDays')}</TimerText>
+              </BoxTimer>
+              <BoxTimer active={activeStatus}>
                 <TimerBg>
                   <ColoredTimer>{booksLeft}</ColoredTimer>
                 </TimerBg>
-                <TimerText active={isActiveTraining}>
-                  {t('booksLeft')}
-                </TimerText>
+                <TimerText active={activeStatus}>{t('booksLeft')}</TimerText>
               </BoxTimer>
-            )}
-          </TimerFlex>
+            </TimerFlex>
+          )}
         </TimerContainer>
       )}
       {isDesktop && (
         <TimerContainer>
-          <TimerTitle active={isActiveTraining}>{t('goals')}</TimerTitle>
-          <TimerFlex>
-            <BoxTimer>
-              <TimerBg active={isActiveTraining}>
-                <TimerAmout active={isActiveTraining}>{booksAmout}</TimerAmout>
-              </TimerBg>
-              <TimerText active={isActiveTraining}>
-                {t('amountOfBooks')}
-              </TimerText>
-            </BoxTimer>
-            <BoxTimer>
-              <TimerBg active={isActiveTraining}>
-                <TimerAmout active={isActiveTraining}>{days}</TimerAmout>
-              </TimerBg>
-              <TimerText active={isActiveTraining}>
-                {t('amountOfDays')}
-              </TimerText>
-            </BoxTimer>
-            {isActiveTraining && (
+          <TimerTitle active={activeStatus}>{t('goals')}</TimerTitle>
+          {status !== statusKeys().active ? (
+            <TimerFlex>
               <BoxTimer>
-                <TimerBg active={isActiveTraining}>
-                  <ColoredTimer active={isActiveTraining}>
-                    {booksLeft}
-                  </ColoredTimer>
+                <TimerBg active={activeStatus}>
+                  <TimerAmout active={activeStatus}>0</TimerAmout>
                 </TimerBg>
-                <TimerText active={isActiveTraining}>
-                  {t('booksLeft')}
+                <TimerText active={activeStatus}>
+                  {t('amountOfBooks')}
                 </TimerText>
               </BoxTimer>
-            )}
-          </TimerFlex>
+              <BoxTimer>
+                <TimerBg active={activeStatus}>
+                  <TimerAmout active={activeStatus}>0</TimerAmout>
+                </TimerBg>
+                <TimerText active={activeStatus}>{t('amountOfDays')}</TimerText>
+              </BoxTimer>
+            </TimerFlex>
+          ) : (
+            <TimerFlex>
+              <BoxTimer>
+                <TimerBg active={activeStatus}>
+                  <TimerAmout active={activeStatus}>{booksAmout}</TimerAmout>
+                </TimerBg>
+                <TimerText active={activeStatus}>
+                  {t('amountOfBooks')}
+                </TimerText>
+              </BoxTimer>
+              <BoxTimer>
+                <TimerBg active={activeStatus}>
+                  <TimerAmout active={activeStatus}>{days}</TimerAmout>
+                </TimerBg>
+                <TimerText active={activeStatus}>{t('amountOfDays')}</TimerText>
+              </BoxTimer>
+              <BoxTimer>
+                <TimerBg active={activeStatus}>
+                  <ColoredTimer active={activeStatus}>{booksLeft}</ColoredTimer>
+                </TimerBg>
+                <TimerText active={activeStatus}>{t('booksLeft')}</TimerText>
+              </BoxTimer>
+            </TimerFlex>
+          )}
         </TimerContainer>
       )}
     </>
