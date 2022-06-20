@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { WellDoneModalStyled, Text, Button } from './WellDoneModal.styled';
-import { ReactComponent as ThumbUpIcon } from 'images/svg/thumbUp.svg';
+import { ReactComponent as ThumbUpIcon } from 'assets/images/svg/thumbUp.svg';
 
 export default function WellDoneModal({ onBtnClick }) {
   const { t } = useTranslation();

@@ -3,8 +3,8 @@ import EllipsisText from 'react-ellipsis-text';
 import { useTranslation } from 'react-i18next';
 
 import IconButton from 'components/buttons/button/IconButton';
-import { ReactComponent as BookIcon } from 'images/svg/icon-book.svg';
-import { ReactComponent as DeleteIcon } from 'images/svg/icon-delete.svg';
+import { ReactComponent as BookIcon } from 'assets/images/svg/icon-book.svg';
+import { ReactComponent as DeleteIcon } from 'assets/images/svg/icon-delete.svg';
 
 import {
   Wrapper,

@@ -8,9 +8,9 @@ import {
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PageFormatContext, format } from 'context/pageFormatContext';
-import { ReactComponent as ArrowIcon } from 'images/svg/arrow.svg';
-import { ReactComponent as BookIcon } from 'images/svg/icon-book.svg';
-import { ReactComponent as FlagIcon } from 'images/svg/flag.svg';
+import { ReactComponent as ArrowIcon } from 'assets/images/svg/arrow.svg';
+import { ReactComponent as BookIcon } from 'assets/images/svg/icon-book.svg';
+import { ReactComponent as FlagIcon } from 'assets/images/svg/flag.svg';
 
 export default function EmtpyLibraryText({ isEmptyLibrary, onClick, style }) {
   const { t } = useTranslation();

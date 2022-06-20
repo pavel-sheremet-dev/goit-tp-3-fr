@@ -1,5 +1,5 @@
 import { CongratsModalStyled, Text, Button } from './CongratsModal.styled';
-import { ReactComponent as ThumbUpIcon } from 'images/svg/thumbUp.svg';
+import { ReactComponent as ThumbUpIcon } from 'assets/images/svg/thumbUp.svg';
 import { useTranslation } from 'react-i18next';
 
 export default function CongratsModal({ text, onBtnClick }) {

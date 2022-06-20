@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import imagesMobile from 'images/main/auth-mobile.jpg';
-import imagesMobileForIOS from 'images/main/auth-mobile@2x.jpg';
-import imagesTablet from 'images/main/auth-tablet.jpg';
-import imagesTabletForIOS from 'images/main/auth-tablet@2x.jpg';
-import imagesDesktop from 'images/main/auth-desktop.jpg';
-import imagesDesktopForIOS from 'images/main/auth-desktop@2x.jpg';
+import imagesMobile from 'assets/images/main/auth-mobile.jpg';
+import imagesMobileForIOS from 'assets/images/main/auth-mobile@2x.jpg';
+import imagesTablet from 'assets/images/main/auth-tablet.jpg';
+import imagesTabletForIOS from 'assets/images/main/auth-tablet@2x.jpg';
+import imagesDesktop from 'assets/images/main/auth-desktop.jpg';
+import imagesDesktopForIOS from 'assets/images/main/auth-desktop@2x.jpg';
 
 export const StyledSection = styled.div`
   display: flex;

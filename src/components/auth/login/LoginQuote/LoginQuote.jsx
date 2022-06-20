@@ -1,4 +1,4 @@
-import { ReactComponent as QuoteIcon } from 'images/svg/quotes-icon.svg';
+import { ReactComponent as QuoteIcon } from 'assets/images/svg/quotes-icon.svg';
 import { useTranslation } from 'react-i18next';
 import {
   StyledQuote,

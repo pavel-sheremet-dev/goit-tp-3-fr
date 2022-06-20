@@ -1,4 +1,4 @@
-import { ReactComponent as AddButton } from 'images/svg/lib-rad-button.svg';
+import { ReactComponent as AddButton } from 'assets/images/svg/lib-rad-button.svg';
 import styled from 'styled-components';
 
 export const LibAddButton = styled(AddButton)`

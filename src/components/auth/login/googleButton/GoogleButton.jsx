@@ -4,7 +4,7 @@ import {
   StyledContainer,
   ContainerGoogleIcon,
 } from './GoogleButton.styled';
-import { ReactComponent as GoogleIcon } from 'images/svg/google-icon.svg';
+import { ReactComponent as GoogleIcon } from 'assets/images/svg/google-icon.svg';
 import { Loader } from 'components/common/loader/Loader';
 
 export default function GoogleButton() {
