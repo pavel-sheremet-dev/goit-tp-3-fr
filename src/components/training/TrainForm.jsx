@@ -11,10 +11,6 @@ import TrainingList from './trainingList/TrainingList';
 import ActiveTrainList from './activeList/ActiveTrainList';
 import { statusKeys } from 'helpers/config';
 
-// successDone
-// active
-// failed
-
 import {
   Wrapper,
   Form,

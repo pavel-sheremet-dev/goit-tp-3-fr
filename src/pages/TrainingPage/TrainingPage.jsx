@@ -144,7 +144,6 @@ const TrainingPage = () => {
                       <PlanTimer
                         booksAmout={training.books.length}
                         days={days}
-                        booksLeft={leftBooks}
                       />
                       <TrainingList style={{ marginBottom: '32px' }} />
                       <Dashboard responce={training} />
@@ -233,7 +232,6 @@ const TrainingPage = () => {
                   <PlanTimer
                     booksAmout={training.books.length}
                     days={days}
-                    booksLeft={leftBooks}
                   />
                   <TrainForm />
                   <Dashboard responce={training} />

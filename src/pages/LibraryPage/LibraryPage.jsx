@@ -13,7 +13,7 @@ import LibraryForm from 'components/library/libraryForm/LibraryForm';
 import BooksTemplate from 'components/library/libraryBooks';
 
 import LibButton from 'components/buttons/libButton';
-import BackButton from '../../components/buttons/backButton/BackButton';
+import BackButton from 'components/buttons/backButton/BackButton';
 import RatingModal from 'components/modals/ratingModal/RatingModal';
 import Modal from 'components/modals/modal/Modal';
 import { LibCollectionLogicPosition } from './LibraryPage.styled';

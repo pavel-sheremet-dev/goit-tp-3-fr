@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { getIsLoggedIn } from 'redux/auth/auth-selectors';
-import LngSwitcher from './lngSwitcher';
+import  LngSwitcher  from './lngSwitcher';
 import { ButtonTheme } from './buttonTheme/ButtonTheme';
 import { ReactComponent as MenuIcon } from 'assets/images/svg/menu.svg';
 import { PageFormatContext, format } from 'context/pageFormatContext';
