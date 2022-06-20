@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { ReactComponent as StarEmptyIcon } from 'images/svg/star-empty.svg';
-import { ReactComponent as StarFullIcon } from 'images/svg/star-full.svg';
+import { ReactComponent as StarEmptyIcon } from 'assets/images/svg/star-empty.svg';
+import { ReactComponent as StarFullIcon } from 'assets/images/svg/star-full.svg';
 
 export const StyledRatingBox = styled.div`
   width: 100%;

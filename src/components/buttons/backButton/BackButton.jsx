@@ -1,4 +1,4 @@
-import { ReactComponent as BackIcon } from 'images/svg/back-button.svg';
+import { ReactComponent as BackIcon } from 'assets/images/svg/back-button.svg';
 
 import styled from 'styled-components';
 

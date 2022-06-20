@@ -3,7 +3,7 @@ import { PageFormatContext, format } from 'context/pageFormatContext';
 import { useTranslation } from 'react-i18next';
 
 import { routes } from 'routes/config';
-import { ReactComponent as ListIcon } from 'images/svg/icon-list.svg';
+import { ReactComponent as ListIcon } from 'assets/images/svg/icon-list.svg';
 import {
   Container,
   Title,

@@ -1,6 +1,6 @@
 import { Button } from './ButtonTheme.styled';
 import { ThemeContext } from 'context/themeContext';
-import { ReactComponent as ThemeButton } from 'images/svg/icon-theme.svg';
+import { ReactComponent as ThemeButton } from 'assets/images/svg/icon-theme.svg';
 
 export const ButtonTheme = ({ style }) => {
   return (

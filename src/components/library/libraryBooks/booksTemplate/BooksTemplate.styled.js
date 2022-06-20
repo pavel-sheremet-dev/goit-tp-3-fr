@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import EllipsisText from 'react-ellipsis-text';
-import { ReactComponent as ExampleIcon } from 'images/svg/example-svg.svg';
+import { ReactComponent as ExampleIcon } from 'assets/images/svg/example-svg.svg';
 import { getTypeKeys } from 'helpers/libraryService';
 
 export const PositionContainer = styled.div`

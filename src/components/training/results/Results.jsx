@@ -19,7 +19,7 @@ import {
   Form,
   Wrapper,
 } from './Results.styled';
-import { ReactComponent as CalendarIconDown } from 'images/svg/calendar-icon-down.svg';
+import { ReactComponent as CalendarIconDown } from 'assets/images/svg/calendar-icon-down.svg';
 
 import i18next from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';

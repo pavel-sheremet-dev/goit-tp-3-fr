@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import SmallLine from 'images/svg/smLine.svg';
-import LargeLine from 'images/svg/lgLine.svg';
+import SmallLine from 'assets/images/svg/smLine.svg';
+import LargeLine from 'assets/images/svg/lgLine.svg';
 
 export const Title = styled.h2`
   display: flex;

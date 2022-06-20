@@ -7,7 +7,7 @@ import MobileMenuButtons from 'components/buttons/mobileMenuButtons/MobileMenuBu
 import Switch from 'components/common/swith/Switch';
 
 import { StyledMobileMenu, BottomPanel } from './MobileMenu.styled';
-import { ReactComponent as CloseIcon } from 'images/svg/close.svg';
+import { ReactComponent as CloseIcon } from 'assets/images/svg/close.svg';
 
 const MobileMenu = ({ onClose, showMenu }) => {
   const [isOpen, setIsOpen] = useState(false);

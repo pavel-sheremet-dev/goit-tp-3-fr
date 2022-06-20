@@ -3,7 +3,7 @@ import EllipsisText from 'react-ellipsis-text';
 import { useTranslation } from 'react-i18next';
 
 import { trainingSelectors } from 'redux/training';
-import { ReactComponent as CheckIcon } from 'images/svg/icon-check.svg';
+import { ReactComponent as CheckIcon } from 'assets/images/svg/icon-check.svg';
 import {
   Wrapper,
   ListBooks,

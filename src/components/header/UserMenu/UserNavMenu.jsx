@@ -1,6 +1,6 @@
 import { routes } from 'routes/config';
-import { ReactComponent as BookIcon } from 'images/svg/icon-book.svg';
-import { ReactComponent as HomeIcon } from 'images/svg/icon-home.svg';
+import { ReactComponent as BookIcon } from 'assets/images/svg/icon-book.svg';
+import { ReactComponent as HomeIcon } from 'assets/images/svg/icon-home.svg';
 import { StyledBox } from 'components/header/Header.styled';
 import { useLocation } from 'react-router-dom';
 import { PageFormatContext, format } from 'context/pageFormatContext';

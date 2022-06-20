@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import { trainingSelectors } from 'redux/training';
-import { ReactComponent as CalendarIconDowm } from 'images/svg/calendar-icon-down.svg';
+import { ReactComponent as CalendarIconDowm } from 'assets/images/svg/calendar-icon-down.svg';
 import { statusKeys } from 'helpers/config';
 import { Label } from './SelectBook.styled';
 
