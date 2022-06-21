@@ -49,6 +49,7 @@ export const Label = styled.label`
   width: 110px;
   position: relative;
   display: flex;
+  white-space: nowrap;
   flex-direction: column;
   min-height: 42px;
   color: ${({ theme }) => theme.colors.lightText};
