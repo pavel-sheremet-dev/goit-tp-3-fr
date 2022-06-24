@@ -1,10 +1,10 @@
-import { useEffect, useRef } from 'react';
-import Info from 'components/auth/info/Info';
-import RegistrationPageContent from 'components/auth/registration/registrationPageContent/RegistrationPageContent';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { PageFormatContext, format } from 'context/pageFormatContext';
 import { useContext } from 'react';
-import { Section, LoginSection } from './RegistrationPage.styled';
+import { MainStyled } from './RegistrationPage.styled';
+import Advantages from 'components/advantages/Advantages';
+import Signup from 'components/auth/signUp/SignUp';
 const { response, mobile } = format;
 
 const RegistrationPage = () => {
@@ -12,7 +12,7 @@ const RegistrationPage = () => {
     Boolean(localStorage.getItem('info')),
   );
   const [showInfo, setShowInfo] = useState(true);
-  const titleRef = useRef();
+
   const pageFormat = useContext(PageFormatContext);
   const isMobile = pageFormat === response || pageFormat === mobile;
   const valueStorage = localStorage.getItem('infoKey');
@@ -26,28 +26,24 @@ const RegistrationPage = () => {
     }
   }, [isMobile, pageFormat]);
   return (
-    <LoginSection>
-      <Section>
-        {isMobile && (
-          <>
-            {((!showInfo && !valueStorage) || showInfoLocalStorage) && (
-              <RegistrationPageContent titleRef={titleRef} />
-            )}
-            {conditionRender ? (
-              <RegistrationPageContent titleRef={titleRef} />
-            ) : (
-              <Info handleClick={setShowInfo} />
-            )}
-          </>
-        )}
-        {!isMobile && (
-          <>
-            <RegistrationPageContent titleRef={titleRef} />
-            <Info handleClick={setShowInfo} />
-          </>
-        )}
-      </Section>
-    </LoginSection>
+    <MainStyled>
+      {isMobile && (
+        <>
+          {((!showInfo && !valueStorage) || showInfoLocalStorage) && <Signup />}
+          {conditionRender ? (
+            <Signup />
+          ) : (
+            <Advantages handleClick={setShowInfo} />
+          )}
+        </>
+      )}
+      {!isMobile && (
+        <>
+          <Signup />
+          <Advantages handleClick={setShowInfo} />
+        </>
+      )}
+    </MainStyled>
   );
 };
 

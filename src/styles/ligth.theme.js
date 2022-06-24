@@ -23,6 +23,7 @@ export const light = {
     dashboardBackColor: '#ffffff',
     buttonText: '#ffffff',
     disabledSwitch: '#d2d2d2',
+    required: '#F25137',
   },
   delay: 200,
   breakPoints: {
@@ -33,10 +34,11 @@ export const light = {
   },
   shadows: {
     counter: '4px 4px 8px rgba(36, 42, 55, 0.15)',
-    inputShadow: '0px 1px 2px rgba(29, 29, 27, 0.15)',
+    inputShadow: 'inset 0px 1px 2px rgba(29, 29, 27, 0.15)',
     btnShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)',
     dashboard: '0px 2px 3px rgba(9, 30, 63, 0.25)',
     header: '0px 2px 3px rgba(9, 30, 63, 0.1)',
+    google: '0px 2px 2px rgba(9, 30, 63, 0.15)',
   },
   transition: property => `${property} 200ms linear`,
 };

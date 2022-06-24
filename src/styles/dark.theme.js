@@ -23,6 +23,7 @@ export const dark = {
     dashboardBackColor: '#a4a4a6',
     buttonText: '#ffffff',
     disabledSwitch: '#d2d2d2',
+    required: '#F25137',
   },
   delay: 200,
   breakPoints: {
@@ -37,6 +38,7 @@ export const dark = {
     btnShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)',
     dashboard: '0px 2px 3px rgba(9, 30, 63, 0.25)',
     header: '0px 2px 3px rgba(9, 30, 63, 0.1)',
+    google: '0px 2px 2px rgba(9, 30, 63, 0.15)',
   },
   transition: property => `${property} 200ms linear`,
 };
