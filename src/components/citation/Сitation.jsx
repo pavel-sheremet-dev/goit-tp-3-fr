@@ -1,6 +1,6 @@
 import { QuoteContainer } from 'components/common/container/Container.styled';
 import { useTranslation } from 'react-i18next';
-import { AuthorQuoteSection } from './AuthorQuote.styled';
+import { AuthorQuoteSection } from './Сitation.styled';
 
 const AuthorQuote = () => {
   const { t } = useTranslation();

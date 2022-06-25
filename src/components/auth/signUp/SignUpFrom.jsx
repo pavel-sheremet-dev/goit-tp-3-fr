@@ -26,8 +26,8 @@ const FormState = () => {
   }, [values]);
 
   useEffect(() => {
-    sessionStorage.setItem('username', values.name);
-    sessionStorage.setItem('useremail', values.email);
+    sessionStorage.setItem('username', values.name ?? '');
+    sessionStorage.setItem('useremail', values.email ?? '');
   }, [values.email, values.name]);
 
   return null;
@@ -37,6 +37,7 @@ const SignUpForm = () => {
   const [initialValues, setInitialValues] = useState(() => getInitialValues());
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const val = t('validation', { returnObjects: true });
 
   return (
     <>
@@ -48,35 +49,32 @@ const SignUpForm = () => {
         }}
         validationSchema={Yup.object({
           name: Yup.string()
-            .min(3, 'Мін. 3 символи')
-            .max(30, 'Макс. 30 символів')
-            .matches(
-              /^[А-Яа-яґҐЁёІіЇїЄє'’ʼ\s\w-]{3,30}$/,
-              'Дозволені знаки: пробіл, дефіс, апостроф',
-            )
-            .required('Обов`язкове поле'),
+            .min(3, val.min3)
+            .max(30, val.max30)
+            .matches(/^[А-Яа-яґҐЁёІіЇїЄє'’ʼ\s\w-]{3,30}$/, val.errname)
+            .required(val.required),
           email: Yup.string()
-            .min(7, 'Мін. 7 символів')
-            .max(63, 'Макс. 63 символів')
-            .email('Невірно вказаний email')
-            .required(''),
+            .min(7, val.min7)
+            .max(63, val.max63)
+            .email(val.erremail)
+            .required(val.required),
           password: Yup.string()
-            .min(8, 'Мін. 8 символи')
-            .max(30, 'Макс. 30 символів')
+            .min(8, val.min8)
+            .max(30, val.max30)
             .matches(
               /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&_]{8,30}$/,
-              'Мін. 1 маленька, 1 велика букви та 1 цифра. Дозволені знаки $ ! % * ? & _',
+              val.errpassword,
             )
-            .required('Обов`язкове поле'),
+            .required(val.required),
           passwordConfirmation: Yup.string()
-            .oneOf([Yup.ref('password'), null], 'Має співпадати з паролем')
-            .required('Обов`язкове поле'),
+            .oneOf([Yup.ref('password'), null], val.errcongpassword)
+            .required(val.required),
         })}
         onSubmit={(values, obj) => {
           const { name, email, password } = values;
           const credentials = {
             name: name.trim(),
-            email: email.trim(),
+            email: email.trim().toLowerCase(),
             password,
           };
           dispatch(authOperations.signUp(credentials));

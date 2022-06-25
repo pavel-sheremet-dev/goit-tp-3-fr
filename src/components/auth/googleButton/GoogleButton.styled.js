@@ -12,6 +12,7 @@ export const LinkStyled = styled.a`
   background-color: ${({ theme }) => theme.colors.iconsHover};
   box-shadow: ${({ theme }) => theme.shadows.google};
   transition: ${({ theme }) => theme.transition('background-color')};
+  pointer-events: ${({ isLoading }) => (isLoading ? 'none' : 'visible')};
 
   &:hover,
   &:focus,

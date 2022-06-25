@@ -9,17 +9,17 @@ const GoogleButton = ({ className }) => {
   const url = process.env.REACT_APP_API_BASE_URL;
   const [isLoading, setIsLoading] = useState(false);
 
-  const toggleLoading = () => {
-    setIsLoading(!isLoading);
+  const disableLink = () => {
+    setIsLoading(true);
   };
 
   return (
     <>
       {isLoading && <Loader />}
       <LinkStyled
+        isLoading={isLoading}
         href={`${url}/api/users/google`}
-        disabled={isLoading}
-        onClick={toggleLoading}
+        onClick={disableLink}
         className={className}
       >
         <GoogleIcon />

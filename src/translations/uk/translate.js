@@ -23,6 +23,20 @@ const buttons = {
   signup: 'Реєстрація',
 };
 
-const uk = { advanteges, buttons };
+const validation = {
+  required: 'Обов`язкове поле',
+  min3: 'Мін. 3 символи',
+  min7: 'Мін. 7 символів',
+  min8: 'Мін. 8 символів',
+  max30: 'Макс. 30 символів',
+  max63: 'Макс. 63 символи',
+  errname: 'Дозволені знаки: пробіл, дефіс, апостроф',
+  erremail: 'Невірно вказаний email',
+  errpassword:
+    'Мін. 1 маленька, 1 велика букви та 1 цифра. Дозволено $ ! % * ? & _',
+  errcongpassword: 'Має співпадати з паролем',
+};
+
+const uk = { advanteges, buttons, validation };
 
 export default uk;

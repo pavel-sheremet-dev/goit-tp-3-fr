@@ -25,7 +25,7 @@ const FormState = () => {
   }, [values]);
 
   useEffect(() => {
-    sessionStorage.setItem('useremail', values.email);
+    sessionStorage.setItem('useremail', values.email ?? '');
   }, [values.email]);
 
   return null;
@@ -35,63 +35,62 @@ const SignInForm = () => {
   const [initialValues, setInitialValues] = useState(() => getInitialValues());
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const val = t('validation', { returnObjects: true });
 
   return (
-    <>
-      <Formik
-        initialValues={{ ...initialValues, password: '' }}
-        validationSchema={Yup.object({
-          email: Yup.string()
-            .min(7, 'Мін. 7 символів')
-            .max(63, 'Макс. 63 символів')
-            .email('Невірно вказаний email')
-            .required(''),
-          password: Yup.string()
-            .min(8, 'Мін. 8 символи')
-            .max(30, 'Макс. 30 символів')
-            .matches(
-              /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&_]{8,30}$/,
-              'Мін. 1 маленька, 1 велика букви та 1 цифра. Дозволені знаки $ ! % * ? & _',
-            )
-            .required('Обов`язкове поле'),
-        })}
-        onSubmit={(values, obj) => {
-          const { email, password } = values;
-          const credentials = {
-            email: email.trim(),
-            password,
-          };
-          dispatch(authOperations.signIn(credentials));
-          obj.setSubmitting(false);
-          sessionStorage.removeItem('auth-form-signin');
-          setInitialValues(getInitialValues());
-          obj.resetForm();
-        }}
-        enableReinitialize
-      >
-        {({ isValid }) => (
-          <Form>
-            <InputField
-              label={t('email')}
-              name="email"
-              type="text"
-              placeholder="your@email.com"
-            />
-            <InputField
-              label={t('password')}
-              name="password"
-              type="password"
-              placeholder="..."
-            />
+    <Formik
+      initialValues={{ ...initialValues, password: '' }}
+      validationSchema={Yup.object({
+        email: Yup.string()
+          .min(7, val.min7)
+          .max(63, val.max63)
+          .email(val.erremail)
+          .required(val.required),
+        password: Yup.string()
+          .min(8, val.min8)
+          .max(30, val.max30)
+          .matches(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&_]{8,30}$/,
+            val.errpassword,
+          )
+          .required(val.required),
+      })}
+      onSubmit={(values, obj) => {
+        const { email, password } = values;
+        const credentials = {
+          email: email.trim().toLowerCase(),
+          password,
+        };
+        dispatch(authOperations.signIn(credentials));
+        obj.setSubmitting(false);
+        sessionStorage.removeItem('auth-form-signin');
+        setInitialValues(getInitialValues());
+        obj.resetForm();
+      }}
+      enableReinitialize
+    >
+      {({ isValid }) => (
+        <Form>
+          <InputField
+            label={t('email')}
+            name="email"
+            type="text"
+            placeholder="your@email.com"
+          />
+          <InputField
+            label={t('password')}
+            name="password"
+            type="password"
+            placeholder="..."
+          />
 
-            <SignButton type="submit" disabled={!isValid ?? true}>
-              {t('login')}
-            </SignButton>
-            <FormState />
-          </Form>
-        )}
-      </Formik>
-    </>
+          <SignButton type="submit" disabled={!isValid ?? true}>
+            {t('login')}
+          </SignButton>
+          <FormState />
+        </Form>
+      )}
+    </Formik>
   );
 };
 

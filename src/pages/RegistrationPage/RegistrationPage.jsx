@@ -5,26 +5,34 @@ import { useContext } from 'react';
 import { MainStyled } from './RegistrationPage.styled';
 import Advantages from 'components/advantages/Advantages';
 import Signup from 'components/auth/signUp/SignUp';
+import { Loader } from 'components/common/loader/Loader';
+import { useSelector } from 'react-redux';
+import { authSelectors } from 'redux/auth';
 const { response, mobile } = format;
 
 const RegistrationPage = () => {
   const [showInfoLocalStorage] = useState(() =>
     Boolean(localStorage.getItem('info')),
   );
-  const [showInfo, setShowInfo] = useState(true);
+  const loading = useSelector(authSelectors.getLoading);
 
   const pageFormat = useContext(PageFormatContext);
   const isMobile = pageFormat === response || pageFormat === mobile;
-  const valueStorage = localStorage.getItem('infoKey');
-  const conditionRender =
-    (!showInfoLocalStorage && showInfo && valueStorage) ||
-    (!showInfoLocalStorage && !showInfo && valueStorage);
+
   useEffect(() => {
-    const isMobile = pageFormat === response || pageFormat === mobile;
     if (isMobile) {
       localStorage.setItem('infoKey', 'firstInfo');
     }
-  }, [isMobile, pageFormat]);
+  }, [isMobile]);
+
+  const valueStorage = localStorage.getItem('infoKey');
+
+  const [showInfo, setShowInfo] = useState(true);
+
+  const conditionRender =
+    (!showInfoLocalStorage && showInfo && valueStorage) ||
+    (!showInfoLocalStorage && !showInfo && valueStorage);
+
   return (
     <MainStyled>
       {isMobile && (
@@ -43,6 +51,7 @@ const RegistrationPage = () => {
           <Advantages handleClick={setShowInfo} />
         </>
       )}
+      {loading && <Loader />}
     </MainStyled>
   );
 };
